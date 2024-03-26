@@ -1,0 +1,3 @@
+ModLoader.SetupFileHook( "lua/Balance.lua", "lua/Joshua-Boo-Boos Sentry Enhancer/Balance.lua", "post" ) -- Sentry changes / Balance.lua
+ModLoader.SetupFileHook( "lua/BalanceHealth.lua", "lua/Joshua-Boo-Boos Sentry Enhancer/BalanceHealth.lua", "post" ) -- Sentry changes / BalanceHealth.lua
+ModLoader.SetupFileHook( "lua/Sentry.lua", "lua/Joshua-Boo-Boos Sentry Enhancer/Sentry.lua", "replace" ) -- Sentry changes / Sentry.lua

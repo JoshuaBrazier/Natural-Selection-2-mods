@@ -1,0 +1,4 @@
+modEntry = {
+    FileHooks = "lua/Joshua-Boo-Boos Sentry Enhancer/FileHooks.lua",
+    Priority = 10
+}

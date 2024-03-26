@@ -1,0 +1,5 @@
+shader = "shaders/ShotgunLights_emissive.surface_shader"
+albedoMap = "models/marine/shotgun/shotgun_view_lights_chroma.dds"
+emissiveMap = "models/marine/shotgun/shotgun_view_lights_chroma.dds"
+normalMap = "materials/dev/dev_normal.dds"
+specularMap = "materials/dev/black.dds"

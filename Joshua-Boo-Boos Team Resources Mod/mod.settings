@@ -1,0 +1,8 @@
+name        = "Joshua-Boo-Boos Team Resources Mod"
+source_dir  = "source"
+output_dir  = "output"
+description = [=[This mod provides the team of a player who gets a kill with 0.5 team resources.]=]
+image       = "preview.jpg"
+tag_modtype = "Gameplay Tweak"
+tag_support = "Must be run on Server"
+publish_id = 3201677227
