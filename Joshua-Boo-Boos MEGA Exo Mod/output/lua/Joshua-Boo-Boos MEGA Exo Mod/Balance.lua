@@ -1,2 +1,2 @@
-kDualExosuitCost = 62
-kDualRailgunExosuitCost = 60
+kDualExosuitCost = 55
+kDualRailgunExosuitCost = 55

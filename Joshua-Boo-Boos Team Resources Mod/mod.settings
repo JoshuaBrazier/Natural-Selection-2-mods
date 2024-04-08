@@ -1,7 +1,7 @@
 name        = "Joshua-Boo-Boos Team Resources Mod"
 source_dir  = "source"
 output_dir  = "output"
-description = [=[This mod provides the team of a player who gets a kill with 0.5 team resources.]=]
+description = [=[This mod provides the team of a player who gets a kill with an amount of team resources scaled by the fraction of RTs each team has plus a random amount chosen out of the values of 0.0, 0.05 and 0.1 depending on the value of a random number generator to stop commanders working out how many RTs the other team has.]=]
 image       = "preview.jpg"
 tag_modtype = "Gameplay Tweak"
 tag_support = "Must be run on Server"

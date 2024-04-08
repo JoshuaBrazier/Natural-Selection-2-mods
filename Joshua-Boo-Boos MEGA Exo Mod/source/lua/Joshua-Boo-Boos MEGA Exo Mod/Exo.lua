@@ -30,6 +30,8 @@ Script.Load("lua/MarineVariantMixin.lua")
 Script.Load("lua/AutoWeldMixin.lua")
 Script.Load("lua/Hud/GUINotificationMixin.lua")
 Script.Load("lua/PlayerStatusMixin.lua")
+Script.Load("lua/Joshua-Boo-Boos MEGA Exo Mod/Exo_Missile.lua")
+Script.Load("lua/DamageTypes.lua")
 
 if Client then
     Script.Load("lua/ExoFlashlight_Client.lua")
@@ -60,6 +62,18 @@ local networkVars =
     last_scan = "float",
     time_now = "float",
     siege_mode = "boolean",
+    -- missile_check_time = "float",
+    -- missile_fired_at = "float",
+    ammo_left = "integer",
+    ammo_right = "integer",
+    ammo_siege_left = "integer",
+    ammo_siege_right = "integer",
+    -- is_near_an_armoury = "compensated boolean",
+    -- time_ammo_left_updated = "compensated float",
+    -- time_ammo_right_updated = "compensated float",
+    -- time_ammo_siege_left_updated = "compensated float",
+    -- time_ammo_siege_right_updated = "compensated float",
+    -- time_armoury_check_now = "compensated float",
 }
 
 Exo.kMapName = "exo"
@@ -128,11 +142,10 @@ local kHorizontalThrusterAddSpeed = 2.5
 local kExoEjectDuration = 0
 local kExoDeployDuration = 1.4
 
--- local kHOI4 = PrecacheAsset("sound/Exo_Sounds.fev/Exo_Sounds/HOI4")
--- local kMozart = PrecacheAsset("sound/Exo_Sounds.fev/Exo_Sounds/Mozart")
-
-local siege_activated_sound = PrecacheAsset("sound/NS2_Exo_Mod_Sounds.fev/Siege_Sounds/Siege_Activated")
-local siege_deactivated_sound = PrecacheAsset("sound/NS2_Exo_Mod_Sounds.fev/Siege_Sounds/Siege_Deactivated")
+local siege_activated_sound = PrecacheAsset("sound/NS2_Exo_Mod_Sounds.fev/Exo_Mod_Sounds/Siege_Activated")
+local siege_deactivated_sound = PrecacheAsset("sound/NS2_Exo_Mod_Sounds.fev/Exo_Mod_Sounds/Siege_Deactivated")
+local missile_lock_sound = PrecacheAsset("sound/NS2_Exo_Mod_Sounds.fev/Exo_Mod_Sounds/Missile_Lock")
+local missile_launch_sound = PrecacheAsset("sound/NS2_Exo_Mod_Sounds.fev/Exo_Mod_Sounds/Missile_Launch")
 
 local gHurtCinematic
 
@@ -257,6 +270,30 @@ function Exo:OnCreate()
 
     self.siege_mode_timer = 0
     self.siege_mode_timer_now = 0
+
+    self.ammo_left = Minigun.ammo_left --1000
+    self.ammo_right = Minigun.ammo_right --1000
+    self.ammo_siege_left = Minigun.ammo_siege_left --200
+    self.ammo_siege_right = Minigun.ammo_siege_right --200
+
+    self.time_ammo_left_updated = 0
+    self.time_ammo_right_updated = 0
+    self.time_ammo_siege_left_updated = 0
+    self.time_ammo_siege_right_updated = 0
+
+    self.is_near_an_armoury = false
+
+    self.time_armoury_check_now = 0
+
+    self.ammo_given = false
+
+    self.closest_target = nil
+
+    self.missile_fired_at = 0
+    self.missile_check_time = 0
+
+    self.checked_for_alien_players_at = 0
+    self.alien_player_check_time = 0
     
 end
 
@@ -564,8 +601,11 @@ function Exo:GetArmorAmount(armorLevels)
         end
     
     end
-    
-    return kExosuitArmor + armorLevels * kExosuitArmorPerUpgradeLevel
+    if self:GetHasMinigun() then
+        return kExosuitArmor - 60 + armorLevels * kExosuitArmorPerUpgradeLevel
+    else
+        return kExosuitArmor + armorLevels * kExosuitArmorPerUpgradeLevel
+    end
     
 end
 
@@ -1081,7 +1121,25 @@ function Exo:GetCanJump()
     return false
 end
 
+local function compare(a,b)
+    return a[1] < b[1]
+end
+
 function Exo:HandleButtons(input)
+
+    -- if self.closest_target then
+    --     if not self.closest_target[2]:GetIsAlive() then
+    --         self.closest_target = nil
+    --     end
+    -- end
+
+    -- if self.closest_target and not self.closest_target[2]:GetIsAlive() then
+
+    --     self.closest_target = nil
+
+    -- end
+
+    -- self.alien_player_check_time = Shared.GetTime()
 
     if self.ejecting or self.creationTime + kExoDeployDuration > Shared.GetTime() then
 
@@ -1094,23 +1152,39 @@ function Exo:HandleButtons(input)
     
     end
 
-    -- if Server then
+    self.siege_mode_timer_now = Shared.GetTime()
 
-    --     if bit.band(input.commands, Move.Reload) ~= 0 then
-    --         self.time_now = Shared.GetTime()
-    --         if self.time_now >= self.last_scan + 5 and self:GetFuel() > 0 then
-    --             self.last_scan = Shared.GetTime() + 5
-    --             self:SetFuel(0)
-    --             CreateEntity(Scan.kMapName, self:GetOrigin(), self:GetTeamNumber())
-    --         end
-            
-    --     end
+    -- if self.siege_mode then
 
+    --     input.move:Scale(0.5)
+    
     -- end
 
-    if not self:GetHasRailgun() then
+    if self:GetHasMinigun() then
 
-        self.siege_mode_timer_now = Shared.GetTime()
+        -- if bit.band(input.commands, Move.PrimaryAttack) ~= 0 then
+        --     if self.siege_mode then
+        --         if Minigun.ammo_siege_left == 0 then
+        --             input.commands = bit.band(input.commands, bit.bnot(Move.PrimaryAttack))
+        --         end
+        --     else
+        --         if Minigun.ammo_left == 0 then
+        --             input.commands = bit.band(input.commands, bit.bnot(Move.PrimaryAttack))
+        --         end
+        --     end
+        -- end
+
+        -- if bit.band(input.commands, Move.SecondaryAttack) ~= 0 then
+        --     if self.siege_mode then
+        --         if Minigun.ammo_siege_right == 0 then
+        --             input.commands = bit.band(input.commands, bit.bnot(Move.SecondaryAttack))
+        --         end
+        --     else
+        --         if Minigun.ammo_right == 0 then
+        --             input.commands = bit.band(input.commands, bit.bnot(Move.SecondaryAttack))
+        --         end
+        --     end
+        -- end
 
         if bit.band(input.commands, Move.Reload) ~= 0 then
             
@@ -1131,35 +1205,164 @@ function Exo:HandleButtons(input)
 
         end
 
-        if self.siege_mode then
-            input.move:Scale(0)
+        -- if bit.band(input.commands, Move.Weapon4) ~= 0 and self.alien_player_check_time >= self.checked_for_alien_players_at then
+        --     self.checked_for_alien_players_at = Shared.GetTime() + 0.25
+        --     skulks = GetEntitiesForTeamWithinRange("Skulk", kTeam2Index, self:GetOrigin(), 20)
+        --     gorges = GetEntitiesForTeamWithinRange("Gorge", kTeam2Index, self:GetOrigin(), 20)
+        --     lerks = GetEntitiesForTeamWithinRange("Lerk", kTeam2Index, self:GetOrigin(), 20)
+        --     fades = GetEntitiesForTeamWithinRange("Fade", kTeam2Index, self:GetOrigin(), 20)
+        --     oni = GetEntitiesForTeamWithinRange("Onos", kTeam2Index, self:GetOrigin(), 20)
+        --     enemies_nearby = {}
+
+        --     if #skulks > 0 then
+        --         for skulk = 1, #skulks do
+        --             table.insert(enemies_nearby, skulks[skulk])
+        --         end
+        --     elseif #gorges > 0 then
+        --         for gorge = 1, #gorges do
+        --             table.insert(enemies_nearby, gorges[gorge])
+        --         end
+        --     elseif #lerks > 0 then
+        --         for lerk = 1, #lerks do
+        --             table.insert(enemies_nearby, lerks[lerk])
+        --         end
+        --     elseif #fades > 0 then
+        --         for fade = 1, #fades do
+        --             table.insert(enemies_nearby, fades[fade])
+        --         end
+        --     elseif #oni > 0 then
+        --         for onos = 1, #oni do
+        --             table.insert(enemies_nearby, oni[onos])
+        --         end
+        --     end
+
+        --     if #enemies_nearby > 0 then
+        --         distances_and_enemies = {}
+        --         for enemy = 1, #enemies_nearby do
+        --             distance_to_enemy = (enemies_nearby[enemy]:GetOrigin() - self:GetOrigin()):GetLength()
+        --             distance_and_enemy_pair = {}
+        --             table.insert(distance_and_enemy_pair, distance_to_enemy)
+        --             table.insert(distance_and_enemy_pair, enemies_nearby[enemy])
+        --             table.insert(distances_and_enemies, distance_and_enemy_pair)
+        --         end
+        --         table.sort(distances_and_enemies, compare)
+        --         -- for _, data_pair in ipairs(distances_and_enemies) do
+        --         --     Log(distances_and_enemies[_][1])
+        --         -- end
+        --         self.closest_target = distances_and_enemies[1]
+        --         if Server then
+        --             StartSoundEffectOnEntity(missile_lock_sound, self, 0.7)
+        --         end
+        --     else
+        --         self.closest_target = nil
+        --     end
+
+        -- end
+
+        if bit.band(input.commands, Move.Weapon4) ~= 0 and self:GetFuel() == 1 then
+
+            self.missile_check_time = Shared.GetTime()
+
+            --Shared.Message("missile check time is: " .. self.missile_check_time .. " and missile fired at: " .. self.missile_fired_at)
+            
+            if self.missile_check_time >= self.missile_fired_at then
+
+                self:SetFuel(0)
+
+                self.missile_fired_at = Shared.GetTime() + 2
+
+                if Server then
+                    CreateEntity(Exo_Missile.kMapName, self:GetOrigin() + (-0.85) * GetNormalizedVector(self:GetViewCoords().xAxis), self:GetTeamNumber()) --+ Vector(-0.75, 2.75, 0.1), self:GetTeamNumber())
+                    CreateEntity(Exo_Missile.kMapName, self:GetOrigin() + 0.85 * GetNormalizedVector(self:GetViewCoords().xAxis), self:GetTeamNumber()) --+ Vector(-0.75, 2.75, 0.1), self:GetTeamNumber())
+                    StartSoundEffectOnEntity(missile_launch_sound, self, 0.35)
+                end
+                
+            end
+
         end
+
+        -- if bit.band(input.commands, Move.Use) ~= 0 then
+
+        --     self.time_now = Shared.GetTime()
+
+        --     if self.time_now >= self.time_armoury_check_now then
+
+        --         self.time_armoury_check_now = Shared.GetTime() + 1.5
+
+        --         self.armouries_nearby = GetEntitiesForTeamWithinRange("Armory", kTeam1Index, self:GetOrigin(), 2.5)
+
+        --         local viewVec
+        --         local toArmoryVec
+                
+        --         if #self.armouries_nearby > 0 then
+
+        --             for armory = 1, #self.armouries_nearby do
+
+        --                 viewVec = self:GetViewAngles():GetCoords().zAxis
+
+        --                 toArmoryVec = self.armouries_nearby[armory]:GetOrigin() - self:GetOrigin()
+                        
+        --                 if(GetNormalizedVector(viewVec):DotProduct(GetNormalizedVector(toArmoryVec)) > .75) and self.armouries_nearby[armory]:GetIsBuilt() then
+                        
+        --                     self.is_near_an_armoury = true
+
+        --                     break
+                            
+        --                 end
+
+        --             end
+                
+        --         else
+
+        --             self.is_near_an_armoury = false
+
+        --         end
+
+        --         if self.is_near_an_armoury then
+
+        --             if Minigun.ammo_left < 1000 or Minigun.ammo_right < 1000 or Minigun.ammo_siege_left < 200 or Minigun.ammo_siege_right < 200 then
+
+        --                 Minigun.ammo_left = math.min(1000, Minigun.ammo_left + 200)
+        --                 Minigun.ammo_right = math.min(1000, Minigun.ammo_right + 200)
+        --                 Minigun.ammo_siege_left = math.min(200, Minigun.ammo_siege_left + 40)
+        --                 Minigun.ammo_siege_right = math.min(200, Minigun.ammo_siege_right + 40)
+        --                 self.ammo_given = true
+                        
+        --             end
+                    
+        --         end
+
+        --     end
+
+        --     if self.ammo_given then
+
+        --         self:TriggerEffects("ammopack_pickup")
+
+        --         self.ammo_given = false
+
+        --     end
+
+        --     local nearby_ammopacks = GetEntitiesForTeamWithinRange("AmmoPack", kTeam1Index, self:GetOrigin(), 2)
+        --     if #nearby_ammopacks > 0 then
+        --         for ammopack = 1, #nearby_ammopacks do
+                    
+        --             if Minigun.ammo_left < 1000 or Minigun.ammo_right < 1000 or Minigun.ammo_siege_left < 200 or Minigun.ammo_siege_right < 200 then
+        --                 Minigun.ammo_left = 1000
+        --                 Minigun.ammo_right = 1000
+        --                 Minigun.ammo_siege_left = 200
+        --                 Minigun.ammo_siege_right = 200
+        --                 if Server then
+        --                     DestroyEntity(nearby_ammopacks[ammopack])
+        --                 end
+        --                 self:TriggerEffects("ammopack_pickup")
+        --             end
+
+        --         end
+        --     end
+
+        -- end
     
     end
-
-    -- if bit.band(input.commands, Move.Weapon1) ~= 0 then
-
-    --     if self.hoi4_playing then
-    --         self:StopSound(kHOI4)
-    --         self.hoi4_playing = false
-    --     end
-
-    --     if self.mozart_playing then
-    --         self:StopSound(kMozart)
-    --         self.mozart_playing = false
-    --     end
-
-    -- end
-
-    -- if bit.band(input.commands, Move.Weapon2) ~= 0 then
-    --     StartSoundEffectOnEntity(kHOI4, self)
-    --     self.hoi4_playing = true
-    -- end
-
-    -- if bit.band(input.commands, Move.Weapon3) ~= 0 then
-    --     StartSoundEffectOnEntity(kMozart, self)
-    --     self.mozart_playing = true
-    -- end
 
     Player.HandleButtons(self, input)
     

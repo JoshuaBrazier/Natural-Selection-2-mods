@@ -243,9 +243,55 @@ function Player:OnKill(killer, doer, point, direction)
             Log("%s: killed by %s", self, self.killedBy)
 
             -- Joshua-Boo-Boos mod functionality:
-            if Server then
-                realKiller:GetTeam():SetTeamResources(math.min(realKiller:GetTeamResources() + 0.5, 200))
+
+            local self_team_info = GetEntitiesForTeam("TeamInfo", self:GetTeamNumber())
+            if table.icount(self_team_info) > 0 then
+                self_num_towers = self_team_info[1]:GetNumResourceTowers()
             end
+
+            local enemy_team_info = GetEntitiesForTeam("TeamInfo", realKiller:GetTeamNumber())
+            if table.icount(enemy_team_info) > 0 then
+                enemy_num_towers = enemy_team_info[1]:GetNumResourceTowers()
+            end
+
+            if not (self_num_towers == 0 or enemy_num_towers == 0) then
+
+                fraction_self_to_enemy = self_num_towers / enemy_num_towers
+
+            elseif self_num_towers == 0 and enemy_num_towers ~= 0 then
+
+                fraction_self_to_enemy = 0
+
+            elseif self_num_towers ~= 0 and enemy_num_towers == 0 then
+
+                fraction_self_to_enemy = enemy_num_towers
+
+            elseif self_num_towers == 0 and enemy_num_towers == 0 then
+
+                fraction_self_to_enemy = 1
+
+            end
+
+            num_tres_to_give_enemy = 0.1 * fraction_self_to_enemy
+
+            random_number = math.random()
+
+            -- This is an attempt to stop commanders working out how many RTs the enemy team has based on how knowing how many RTs the commander has and the team res gained after a kill of an enemy player
+            
+            random_res = 0.0
+
+            if random_number <= 0.333 and random_number < 0.666 then
+
+                random_res = 0.05
+
+            elseif random_number <= 0.666 and random_number <= 1 then
+
+                random_res = 0.1
+
+            end
+
+            realKiller:GetTeam():SetTeamResources(math.min(realKiller:GetTeamResources() + num_tres_to_give_enemy + random_res, 200))
+            
             -- End of Joshua-Boo-Boos mod functionality
         end
     end

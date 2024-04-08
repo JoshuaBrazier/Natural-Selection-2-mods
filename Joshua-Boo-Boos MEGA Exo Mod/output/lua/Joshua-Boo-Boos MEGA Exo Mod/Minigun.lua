@@ -52,6 +52,11 @@ local kMinigunSiegeModeSpread = Math.Radians(1.4)
 
 local kBulletSize = 0.03
 
+-- Minigun.ammo_left = 1000
+-- Minigun.ammo_right = 1000
+-- Minigun.ammo_siege_left = 200
+-- Minigun.ammo_siege_right = 200
+
 Minigun.kHeatUpRate = 0.3
 Minigun.kCoolDownRate = 0.4
 
@@ -63,8 +68,6 @@ local kOverheatSpeed = Minigun.kOverheatAnimationBaseLength / Minigun.kOverheatD
 -- generate miplevels, we need to be careful about how high we set the resolution of these things.
 local heatUIScaleFactor = 0.25
 
-local damage_multiplier = 1
-
 local networkVars =
 {
     minigunAttacking = "private boolean",
@@ -72,6 +75,9 @@ local networkVars =
     heatAmount = "float (0 to 1 by 0.01)",
     overheated = "private boolean",
     spinSoundId = "entityid",
+    damage_multiplier = "float",
+    -- l_i = "compensated integer",
+    -- r_i = "compensated integer",
     --heatUISoundId = "private entityid"
 }
 
@@ -103,6 +109,7 @@ function Minigun:OnCreate()
     
     self.l_i = 0
     self.r_i = 0
+    self.damage_multiplier = 1
 
 end
 
@@ -341,9 +348,9 @@ local function Shoot(self, leftSide)
             local hitPoint = hitPoints[i]
 
             if player.siege_mode then
-                self:ApplyBulletGameplayEffects(player, target, hitPoint - hitOffset, direction, damage_multiplier * 4 * kMinigunDamage, "", showTracer and i == numTargets, kBotAccWeaponGroup.ExoMinigun)
+                self:ApplyBulletGameplayEffects(player, target, hitPoint - hitOffset, direction, self.damage_multiplier * 4 * kMinigunDamage, "", showTracer and i == numTargets, kBotAccWeaponGroup.ExoMinigun)
             else
-                self:ApplyBulletGameplayEffects(player, target, hitPoint - hitOffset, direction, damage_multiplier * kMinigunDamage, "", showTracer and i == numTargets, kBotAccWeaponGroup.ExoMinigun)
+                self:ApplyBulletGameplayEffects(player, target, hitPoint - hitOffset, direction, self.damage_multiplier * kMinigunDamage, "", showTracer and i == numTargets, kBotAccWeaponGroup.ExoMinigun)
             end
             local client = Server and player:GetClient() or Client
             if not Shared.GetIsRunningPrediction() and client.hitRegEnabled then
@@ -470,25 +477,47 @@ function Minigun:OnTag(tagName)
     PROFILE("Minigun:OnTag")
     local parent = self:GetParent()
     if parent.siege_mode then
-        damage_multiplier = 1.1
+
+        self.damage_multiplier = 1.1
+
         if self:GetIsLeftSlot() and tagName == "l_shoot" then
-            self.l_i = self.l_i + 1
-            if self.l_i % 4 == 0 then
+
+            if self.l_i % 4 == 0 then -- and Minigun.ammo_siege_left > 0 then
                 Shoot(self, true)
+                -- Minigun.ammo_siege_left = Minigun.ammo_siege_left - 1
             end
+            self.l_i = self.l_i + 1
+
         elseif not self:GetIsLeftSlot() and tagName == "r_shoot" then
-            self.r_i = self.r_i + 1
-            if self.r_i % 4 == 0 then
+
+            if self.r_i % 4 == 0 then -- and Minigun.ammo_siege_right > 0 then
                 Shoot(self, false)
+                -- Minigun.ammo_siege_right = Minigun.ammo_siege_right - 1
             end
+            self.r_i = self.r_i + 1
+
         end
+
     else
-        damage_multiplier = 1
+
+        self.damage_multiplier = 1
+
         if self:GetIsLeftSlot() and tagName == "l_shoot" then
-            Shoot(self, true)
+            
+            -- if Minigun.ammo_left > 0 then
+                Shoot(self, true)
+                -- Minigun.ammo_left = Minigun.ammo_left - 1
+            -- end
+            
         elseif not self:GetIsLeftSlot() and tagName == "r_shoot" then
-            Shoot(self, false)
+
+            -- if Minigun.ammo_right > 0 then
+                Shoot(self, false)
+                -- Minigun.ammo_right = Minigun.ammo_right - 1
+            -- end
+
         end
+
     end
     
     -- Play spin-up sound.
@@ -503,8 +532,10 @@ function Minigun:OnTag(tagName)
     -- Play spin-down sound.
     if Server then
         if self:GetIsLeftSlot() and tagName == "left_minigun_attack_end" then
+            self.l_i = 0
             StartSoundEffectOnEntity(kSpinDownSoundNames[ExoWeaponHolder.kSlotNames.Left], self)
         elseif self:GetIsRightSlot() and tagName == "right_minigun_attack_end" then
+            self.r_i = 0
             StartSoundEffectOnEntity(kSpinDownSoundNames[ExoWeaponHolder.kSlotNames.Right], self)
         end
     end

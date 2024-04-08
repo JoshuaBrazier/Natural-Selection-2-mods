@@ -36,6 +36,7 @@ end
 local time_now = 0
 local time_to_scan = 5
 local bool_text = "OFF"
+GUIExoHUD.current_target = nil
 
 class 'GUIExoHUD' (GUIAnimatedScript)
 
@@ -131,39 +132,6 @@ function GUIExoHUD:Initialize()
     self.siege_mode_display:SetText("EXO SIEGE MODE TEXT INITIALIZE")
     self.background:AddChild(self.siege_mode_display)
 
-    -- self.stop_music = self:CreateAnimatedTextItem()
-    -- self.stop_music:SetFontName(GUIMarineHUD.kTextFontName)
-    -- self.stop_music:SetTextAlignmentX(GUIItem.Align_Min)
-    -- self.stop_music:SetTextAlignmentY(GUIItem.Align_Min)
-    -- self.stop_music:SetLayer(kGUILayerPlayerHUDForeground2)
-    -- self.stop_music:SetFontName(GUIMarineHUD.kCommanderFontName)
-    -- self.stop_music:SetColor(Color(0,1,0,1))
-    -- self.stop_music:SetFontIsBold(true)
-    -- self.stop_music:SetText("EXO STOP MUSIC TEXT INITIALIZE")
-    -- self.background:AddChild(self.stop_music)
-
-    -- self.hoi4_music = self:CreateAnimatedTextItem()
-    -- self.hoi4_music:SetFontName(GUIMarineHUD.kTextFontName)
-    -- self.hoi4_music:SetTextAlignmentX(GUIItem.Align_Min)
-    -- self.hoi4_music:SetTextAlignmentY(GUIItem.Align_Min)
-    -- self.hoi4_music:SetLayer(kGUILayerPlayerHUDForeground2)
-    -- self.hoi4_music:SetFontName(GUIMarineHUD.kCommanderFontName)
-    -- self.hoi4_music:SetColor(Color(0,1,0,1))
-    -- self.hoi4_music:SetFontIsBold(true)
-    -- self.hoi4_music:SetText("EXO HOI4 TEXT INITIALIZE")
-    -- self.background:AddChild(self.hoi4_music)
-
-    -- self.mozart_music = self:CreateAnimatedTextItem()
-    -- self.mozart_music:SetFontName(GUIMarineHUD.kTextFontName)
-    -- self.mozart_music:SetTextAlignmentX(GUIItem.Align_Min)
-    -- self.mozart_music:SetTextAlignmentY(GUIItem.Align_Min)
-    -- self.mozart_music:SetLayer(kGUILayerPlayerHUDForeground2)
-    -- self.mozart_music:SetFontName(GUIMarineHUD.kCommanderFontName)
-    -- self.mozart_music:SetColor(Color(0,1,0,1))
-    -- self.mozart_music:SetFontIsBold(true)
-    -- self.mozart_music:SetText("EXO MOZART TEXT INITIALIZE")
-    -- self.background:AddChild(self.mozart_music)
-
     self.enemies_text_credits = self:CreateAnimatedTextItem()
     self.enemies_text_credits:SetFontName(GUIMarineHUD.kTextFontName)
     self.enemies_text_credits:SetTextAlignmentX(GUIItem.Align_Min)
@@ -229,6 +197,66 @@ function GUIExoHUD:Initialize()
     self.enemies_text_onos:SetFontIsBold(true)
     self.enemies_text_onos:SetText("ONOS:   REQUIRES DATA")
     self.background:AddChild(self.enemies_text_onos)
+
+    -- self.ammo_left = Minigun.ammo_left
+    -- self.ammo_right = Minigun.ammo_right
+    -- self.ammo_siege_left = Minigun.ammo_siege_left
+    -- self.ammo_siege_right = Minigun.ammo_siege_right
+
+    -- self.ammo_left_text = self:CreateAnimatedTextItem()
+    -- self.ammo_left_text:SetFontName(GUIMarineHUD.kTextFontName)
+    -- self.ammo_left_text:SetTextAlignmentX(GUIItem.Align_Min)
+    -- self.ammo_left_text:SetTextAlignmentY(GUIItem.Align_Min)
+    -- self.ammo_left_text:SetLayer(kGUILayerPlayerHUDForeground2)
+    -- self.ammo_left_text:SetFontName(GUIMarineHUD.kCommanderFontName)
+    -- self.ammo_left_text:SetColor(kBrightColor)
+    -- self.ammo_left_text:SetFontIsBold(true)
+    -- self.ammo_left_text:SetText("AMMO LEFT: " .. self.ammo_left)
+    -- self.background:AddChild(self.ammo_left_text)
+
+    -- self.ammo_right_text = self:CreateAnimatedTextItem()
+    -- self.ammo_right_text:SetFontName(GUIMarineHUD.kTextFontName)
+    -- self.ammo_right_text:SetTextAlignmentX(GUIItem.Align_Min)
+    -- self.ammo_right_text:SetTextAlignmentY(GUIItem.Align_Min)
+    -- self.ammo_right_text:SetLayer(kGUILayerPlayerHUDForeground2)
+    -- self.ammo_right_text:SetFontName(GUIMarineHUD.kCommanderFontName)
+    -- self.ammo_right_text:SetColor(kBrightColor)
+    -- self.ammo_right_text:SetFontIsBold(true)
+    -- self.ammo_right_text:SetText("AMMO RIGHT: " .. self.ammo_right)
+    -- self.background:AddChild(self.ammo_right_text)
+
+    -- self.ammo_siege_left_text = self:CreateAnimatedTextItem()
+    -- self.ammo_siege_left_text:SetFontName(GUIMarineHUD.kTextFontName)
+    -- self.ammo_siege_left_text:SetTextAlignmentX(GUIItem.Align_Min)
+    -- self.ammo_siege_left_text:SetTextAlignmentY(GUIItem.Align_Min)
+    -- self.ammo_siege_left_text:SetLayer(kGUILayerPlayerHUDForeground2)
+    -- self.ammo_siege_left_text:SetFontName(GUIMarineHUD.kCommanderFontName)
+    -- self.ammo_siege_left_text:SetColor(kBrightColor)
+    -- self.ammo_siege_left_text:SetFontIsBold(true)
+    -- self.ammo_siege_left_text:SetText("SIEGE AMMO LEFT: " .. self.ammo_siege_left)
+    -- self.background:AddChild(self.ammo_siege_left_text)
+
+    -- self.ammo_siege_right_text = self:CreateAnimatedTextItem()
+    -- self.ammo_siege_right_text:SetFontName(GUIMarineHUD.kTextFontName)
+    -- self.ammo_siege_right_text:SetTextAlignmentX(GUIItem.Align_Min)
+    -- self.ammo_siege_right_text:SetTextAlignmentY(GUIItem.Align_Min)
+    -- self.ammo_siege_right_text:SetLayer(kGUILayerPlayerHUDForeground2)
+    -- self.ammo_siege_right_text:SetFontName(GUIMarineHUD.kCommanderFontName)
+    -- self.ammo_siege_right_text:SetColor(kBrightColor)
+    -- self.ammo_siege_right_text:SetFontIsBold(true)
+    -- self.ammo_siege_right_text:SetText("SIEGE AMMO RIGHT: " .. self.ammo_siege_right)
+    -- self.background:AddChild(self.ammo_siege_right_text)
+
+    self.missile_help_text = self:CreateAnimatedTextItem()
+    self.missile_help_text:SetFontName(GUIMarineHUD.kTextFontName)
+    self.missile_help_text:SetTextAlignmentX(GUIItem.Align_Min)
+    self.missile_help_text:SetTextAlignmentY(GUIItem.Align_Min)
+    self.missile_help_text:SetLayer(kGUILayerPlayerHUDForeground2)
+    self.missile_help_text:SetFontName(GUIMarineHUD.kCommanderFontName)
+    self.missile_help_text:SetColor(kBrightColor)
+    self.missile_help_text:SetFontIsBold(true)
+    self.missile_help_text:SetText("Press 4 to fire two missiles!")
+    self.background:AddChild(self.missile_help_text)
 
     self.playerStatusIcons = CreatePlayerStatusDisplay(self, kGUILayerPlayerHUDForeground1, self.background, kTeam1Index)
 
@@ -383,6 +411,14 @@ function GUIExoHUD:Update(deltaTime)
 
     PROFILE("GUIExoHUD:Update")
 
+    local parent = Client.GetLocalPlayer()
+    -- if parent:GetHasMinigun() then
+    --     self.ammo_left = Minigun.ammo_left
+    --     self.ammo_right = Minigun.ammo_right
+    --     self.ammo_siege_left = Minigun.ammo_siege_left
+    --     self.ammo_siege_right = Minigun.ammo_siege_right
+    -- end
+
     local exo_player = Client.GetLocalPlayer()
     self.siege_mode = exo_player.siege_mode
 
@@ -435,16 +471,46 @@ function GUIExoHUD:Update(deltaTime)
     GUIAnimatedScript.Update(self, deltaTime)
     self.playerStatusIcons:Update(deltaTime, playerStatusIcons, fullMode)
 
-    -- self.stop_music:SetText("Stop: 1")
-    -- self.hoi4_music:SetText("HOI4 MD: 2")
-    -- self.mozart_music:SetText("Mozart: 3")
+    if exo_player:GetHasMinigun() then
 
-    if not exo_player:GetHasRailgun() then
+        -- exo_player.closest_target = exo_player.closest_target -- Try to update the closest target value to stop the error of entity no longer existing when the entity dies
+
+        -- if exo_player.closest_target then
+
+        --     if exo_player.closest_target[2]:isa("Skulk") then
+        --         self.missile_help_text:SetText("Locked Target: Skulk")
+        --     elseif exo_player.closest_target[2]:isa("Gorge") then
+        --         self.missile_help_text:SetText("Locked Target: Gorge")
+        --     elseif exo_player.closest_target[2]:isa("Lerk") then
+        --         self.missile_help_text:SetText("Locked Target: Lerk")
+        --     elseif exo_player.closest_target[2]:isa("Fade") then
+        --         self.missile_help_text:SetText("Locked Target: Fade")
+        --     elseif exo_player.closest_target[2]:isa("Onos") then
+        --         self.missile_help_text:SetText("Locked Target: Onos")
+        --     end
+
+        -- else
+
+            self.missile_help_text:SetText("Press 4 to fire two missiles!")
+
+        -- end
 
         if self.siege_mode then
             bool_text = "ON"
+            -- self.ammo_left_text:SetIsVisible(false)
+            -- self.ammo_right_text:SetIsVisible(false)
+            -- self.ammo_siege_left_text:SetText("SIEGE AMMO LEFT: " .. self.ammo_siege_left)
+            -- self.ammo_siege_right_text:SetText("SIEGE AMMO RIGHT: " .. self.ammo_siege_right)
+            -- self.ammo_siege_left_text:SetIsVisible(true)
+            -- self.ammo_siege_right_text:SetIsVisible(true)
         else
             bool_text = "OFF"
+            -- self.ammo_siege_left_text:SetIsVisible(false)
+            -- self.ammo_siege_right_text:SetIsVisible(false)
+            -- self.ammo_left_text:SetText("AMMO LEFT: " .. self.ammo_left)
+            -- self.ammo_right_text:SetText("AMMO RIGHT: " .. self.ammo_right)
+            -- self.ammo_left_text:SetIsVisible(true)
+            -- self.ammo_right_text:SetIsVisible(true)
         end
 
         if exo_player.siege_mode_timer_now > exo_player.siege_mode_timer then
@@ -554,36 +620,60 @@ end
 function GUIExoHUD:Reset()
     self.playerStatusIcons:Reset(self.scale)
 
-    -- self.stop_music:SetText("Stop: 1")
-    -- self.hoi4_music:SetText("HOI4 MD: 2")
-    -- self.mozart_music:SetText("Mozart: 3")
-
     local exo_player = Client.GetLocalPlayer()
     self.siege_mode_display:SetText("SIEGE MODE (R):   " .. bool_text)
-    
-    self.siege_mode_display:SetPosition(Vector(Client.GetScreenWidth() - ((1920 - 100) * self.scale), Client.GetScreenHeight() - (325 * self.scale), 0) * (1/self.scale))
-    self.siege_mode_display:SetScale(GetScaledVector())
-    self.siege_mode_display:SetFontIsBold(true)
-    if exo_player:GetHasRailgun() then
-        self.siege_mode_display:SetIsVisible(false)
-    else
-        self.siege_mode_display:SetIsVisible(true)
+
+    if exo_player:GetHasMinigun() then
+        self.siege_mode_display:SetPosition(Vector(Client.GetScreenWidth() - ((1920 - 100) * self.scale), Client.GetScreenHeight() - (325 * self.scale), 0) * (1/self.scale))
+        self.siege_mode_display:SetScale(GetScaledVector())
+        self.siege_mode_display:SetFontIsBold(true)
+
+        -- self.ammo_left_text:SetPosition(Vector(Client.GetScreenWidth() - ((1920 - 674) * self.scale), Client.GetScreenHeight() - (325 * self.scale), 0) * (1/self.scale))
+        -- self.ammo_left_text:SetScale(GetScaledVector())
+        -- self.ammo_left_text:SetFontIsBold(true)
+
+        -- self.ammo_right_text:SetPosition(Vector(Client.GetScreenWidth() - ((1920 - 1074) * self.scale), Client.GetScreenHeight() - (325 * self.scale), 0) * (1/self.scale))
+        -- self.ammo_right_text:SetScale(GetScaledVector())
+        -- self.ammo_right_text:SetFontIsBold(true)
+
+        -- self.ammo_siege_left_text:SetPosition(Vector(Client.GetScreenWidth() - ((1920 - 660) * self.scale), Client.GetScreenHeight() - (325 * self.scale), 0) * (1/self.scale))
+        -- self.ammo_siege_left_text:SetScale(GetScaledVector())
+        -- self.ammo_siege_left_text:SetFontIsBold(true)
+
+        -- self.ammo_siege_right_text:SetPosition(Vector(Client.GetScreenWidth() - ((1920 - 1060) * self.scale), Client.GetScreenHeight() - (325 * self.scale), 0) * (1/self.scale))
+        -- self.ammo_siege_right_text:SetScale(GetScaledVector())
+        -- self.ammo_siege_right_text:SetFontIsBold(true)
+
+        self.missile_help_text:SetPosition(Vector(Client.GetScreenWidth() - ((1920 - 822) * self.scale), Client.GetScreenHeight() - (280 * self.scale), 0) * (1/self.scale))
+        self.missile_help_text:SetScale(GetScaledVector())
+        self.missile_help_text:SetFontIsBold(true)
     end
 
-    -- self.stop_music:SetPosition(Vector(Client.GetScreenWidth() - ((1920 - 100) * self.scale), Client.GetScreenHeight() - (270 * self.scale), 0) * (1/self.scale))
-    -- self.stop_music:SetScale(GetScaledVector())
-    -- self.stop_music:SetFontIsBold(true)
-    -- self.stop_music:SetIsVisible(true)
+    if exo_player:GetHasRailgun() then
+        self.siege_mode_display:SetIsVisible(false)
+        -- self.ammo_left_text:SetIsVisible(false)
+        -- self.ammo_right_text:SetIsVisible(false)
+        -- self.ammo_siege_left_text:SetIsVisible(false)
+        -- self.ammo_siege_right_text:SetIsVisible(false)
+        self.missile_help_text:SetIsVisible(false)
+    elseif exo_player:GetHasMinigun() then
 
-    -- self.hoi4_music:SetPosition(Vector(Client.GetScreenWidth() - ((1920 - 225) * self.scale), Client.GetScreenHeight() - (270 * self.scale), 0) * (1/self.scale))
-    -- self.hoi4_music:SetScale(GetScaledVector())
-    -- self.hoi4_music:SetFontIsBold(true)
-    -- self.hoi4_music:SetIsVisible(true)
+        if exo_player.siege_mode then
+            -- self.ammo_left_text:SetIsVisible(false)
+            -- self.ammo_right_text:SetIsVisible(false)
+            -- self.ammo_siege_left_text:SetIsVisible(true)
+            -- self.ammo_siege_right_text:SetIsVisible(true)
+        else
+            -- self.ammo_siege_left_text:SetIsVisible(false)
+            -- self.ammo_siege_right_text:SetIsVisible(false)
+            -- self.ammo_left_text:SetIsVisible(true)
+            -- self.ammo_right_text:SetIsVisible(true)
+        end
 
-    -- self.mozart_music:SetPosition(Vector(Client.GetScreenWidth() - ((1920 - 350) * self.scale), Client.GetScreenHeight() - (270 * self.scale), 0) * (1/self.scale))
-    -- self.mozart_music:SetScale(GetScaledVector())
-    -- self.mozart_music:SetFontIsBold(true)
-    -- self.mozart_music:SetIsVisible(true)
+        self.siege_mode_display:SetIsVisible(true)
+        self.missile_help_text:SetIsVisible(true)
+
+    end
 
     self.enemies_text_credits:SetPosition(Vector(Client.GetScreenWidth() - ((1920 - 115) * self.scale), Client.GetScreenHeight() - (545 * self.scale), 0) * (1/self.scale))
     self.enemies_text_credits:SetScale(GetScaledVector())
