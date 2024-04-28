@@ -31,6 +31,8 @@ Script.Load("lua/AutoWeldMixin.lua")
 Script.Load("lua/Hud/GUINotificationMixin.lua")
 Script.Load("lua/PlayerStatusMixin.lua")
 Script.Load("lua/Joshua-Boo-Boos MEGA Exo Mod/Exo_Missile.lua")
+-- Script.Load("lua/Joshua-Boo-Boos MEGA Exo Mod/Exo_Missile_Non_Tracking.lua")
+Script.Load("lua/Joshua-Boo-Boos MEGA Exo Mod/Exo_Mine.lua")
 Script.Load("lua/DamageTypes.lua")
 
 if Client then
@@ -294,6 +296,8 @@ function Exo:OnCreate()
 
     self.checked_for_alien_players_at = 0
     self.alien_player_check_time = 0
+
+    self.mines_deployed = {}
     
 end
 
@@ -1272,11 +1276,50 @@ function Exo:HandleButtons(input)
                 self.missile_fired_at = Shared.GetTime() + 2
 
                 if Server then
-                    CreateEntity(Exo_Missile.kMapName, self:GetOrigin() + (-0.85) * GetNormalizedVector(self:GetViewCoords().xAxis), self:GetTeamNumber()) --+ Vector(-0.75, 2.75, 0.1), self:GetTeamNumber())
+                    -- CreateEntity(Exo_Missile.kMapName, self:GetOrigin() + (-0.85) * GetNormalizedVector(self:GetViewCoords().xAxis), self:GetTeamNumber()) --+ Vector(-0.75, 2.75, 0.1), self:GetTeamNumber())
                     CreateEntity(Exo_Missile.kMapName, self:GetOrigin() + 0.85 * GetNormalizedVector(self:GetViewCoords().xAxis), self:GetTeamNumber()) --+ Vector(-0.75, 2.75, 0.1), self:GetTeamNumber())
                     StartSoundEffectOnEntity(missile_launch_sound, self, 0.35)
                 end
                 
+            end
+
+        end
+
+        if bit.band(input.commands, Move.Weapon5) ~= 0 and self:GetFuel() == 1 then
+
+            self.missile_check_time = Shared.GetTime()
+
+            if self.missile_check_time >= self.missile_fired_at then
+
+                self:SetFuel(0)
+
+                self.missile_fired_at = Shared.GetTime() + 2
+
+                if Server then
+                    -- CreateEntity(Exo_Missile_Non_Tracking.kMapName, self:GetOrigin() + (-0.85) * GetNormalizedVector(self:GetViewCoords().xAxis) + Vector(0, 0.35, 0), self:GetTeamNumber()) --+ Vector(-0.75, 2.75, 0.1), self:GetTeamNumber())
+                    -- CreateEntity(Exo_Missile_Non_Tracking.kMapName, self:GetOrigin() + 0.85 * GetNormalizedVector(self:GetViewCoords().xAxis) + Vector(0, 0.35, 0), self:GetTeamNumber()) --+ Vector(-0.75, 2.75, 0.1), self:GetTeamNumber())
+                    -- CreateEntity(Exo_Missile_Non_Tracking.kMapName, self:GetOrigin() + (-0.85) * GetNormalizedVector(self:GetViewCoords().xAxis) + Vector(0, -0.35, 0), self:GetTeamNumber()) --+ Vector(-0.75, 2.75, 0.1), self:GetTeamNumber())
+                    -- CreateEntity(Exo_Missile_Non_Tracking.kMapName, self:GetOrigin() + 0.85 * GetNormalizedVector(self:GetViewCoords().xAxis) + Vector(0, -0.35, 0), self:GetTeamNumber()) --+ Vector(-0.75, 2.75, 0.1), self:GetTeamNumber())
+
+                    StartSoundEffectOnEntity(missile_launch_sound, self, 0.35)
+
+                    local deployed_mines = EntityListToTable(Shared.GetEntitiesWithClassname("Exo_Mine"))
+                    if #deployed_mines > 0 then
+                        local name = self:GetName()
+                        local check = false
+                        for i = 1, #deployed_mines do
+                            if deployed_mines[i].parent == name then
+                                check = true
+                                deployed_mines[i]:Destroy()
+                            end
+                        end
+
+                    end
+
+                    CreateEntity(Exo_Mine.kMapName, self:GetOrigin() - 0.85 * GetNormalizedVector(self:GetViewCoords().xAxis), self:GetTeamNumber()) --+ Vector(-0.75, 2.75, 0.1), self:GetTeamNumber())
+
+                end
+
             end
 
         end
@@ -1369,6 +1412,7 @@ function Exo:HandleButtons(input)
     self:UpdateThrusters(input)
 
     if bit.band(input.commands, Move.Drop) ~= 0 and not self.siege_mode then
+        
         self:EjectExo()
     end
 

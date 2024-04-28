@@ -1,7 +1,25 @@
 name        = "Joshua-Boo-Boos MEGA Exo Mod"
 source_dir  = "source"
 output_dir  = "output"
-description = [=[Exos now have a periodically activated short-range scanner which detects alien players. Alien players with a cloaking value of 0.5 or more are not detected by the periodic scan. The minigun exo has in addition to the scan received a new mode called "Siege Mode". Siege Mode decreases the rate of fire of the minigun to 25% of the base value but increases the damage first by a factor of 4 and is then increased by 10%. Minigun exos cannot move while in Siege Mode and have their fuel set to zero. Siege Mode can be activated and deactivated once every five seconds. The price of exos are now 62 player resources per minigun exo and 60 player resources per railgun exo. The minigun sound has been changed and is played differently based on whether the minigun exo is in Siege Mode or not. Press your reload key to enter and leave Siege Mode!]=]
+description = [=[Exos now have a periodically activated short-range scanner which detects alien players. 
+
+Alien players with a cloaking value of 0.5 or more are not detected by the periodic scan. 
+
+The minigun exo has in addition to the scan received a new mode called "Siege Mode" which decreases the rate of fire of the minigun to 25% of the base value but increases the damage by a factor of 4 and is then increased by 10%.
+
+Minigun exos cannot move while in Siege Mode and have their fuel set to zero.
+
+Siege Mode can be activated and deactivated once every five seconds.
+
+Marine players cannot leave a minigun exo while Siege Mode is activated.
+
+The minigun sound has been changed and is played differently based on whether the minigun exo is in Siege Mode or not.
+
+Press your reload key to enter and leave Siege Mode.
+
+Furthermore, missiles have been added to the minigun exo which require 100% fuel to use.
+
+Press 4 to fire two tracking missiles which can track structures and deal 50 damage per missile to structures only and press 5 to fire four non-tracking missiles which deal 25 damage per missile to alien players only.]=]
 image       = "joshua-boo-boos mega exo mod.jpg"
 tag_modtype = "Gameplay Tweak"
 tag_support = "Must be run on Server"

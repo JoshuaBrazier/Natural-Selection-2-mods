@@ -140,12 +140,12 @@ function Exo_Missile:OnUpdate(deltaTime)
             end
         end
     end
-    if self.locked_target and not self.locked_target:GetIsAlive() then
+    if self.locked_target and self.locked_target == Entity.invalidId then
         self.locked_target = nil
     elseif not self.locked_target then
         if Server then
             SetAnglesFromVector(self, self.final_direction_vector)
-            self:SetOrigin(self:GetOrigin() + 0.32 * self.final_direction_vector)
+            self:SetOrigin(self:GetOrigin() + 0.48 * self.final_direction_vector)
         end
         local nearby_targets = {}
         local check_for_targets = GetEntitiesForTeamWithinRange("Player", kTeam2Index, self:GetOrigin(), 10)
@@ -169,7 +169,7 @@ function Exo_Missile:OnUpdate(deltaTime)
             table.sort(distance_and_target_pair_table, compare)
             self.locked_target = distance_and_target_pair_table[1][2]
         end
-    elseif self.locked_target and self.locked_target:GetIsAlive() then
+    elseif self.locked_target and self.locked_target ~= Entity.invalidId then
         if self.locked_target:GetCloakFraction() < 0.5 then
             local vector_difference_to_target = self.locked_target:GetOrigin() - self:GetOrigin()
             self.final_direction_vector = GetNormalizedVector(vector_difference_to_target)
@@ -191,7 +191,7 @@ function Exo_Missile:OnUpdate(deltaTime)
             if Server then
                 SetAnglesFromVector(self, self.final_direction_vector)
             end
-            self:SetOrigin(self:GetOrigin() + 0.32 * self.final_direction_vector)
+            self:SetOrigin(self:GetOrigin() + 0.48 * self.final_direction_vector)
         else
             self.locked_target = nil
             self.final_direction_vector = self.initial_look_vector

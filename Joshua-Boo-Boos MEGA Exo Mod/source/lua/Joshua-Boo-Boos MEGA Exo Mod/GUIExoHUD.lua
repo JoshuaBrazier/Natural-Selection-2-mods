@@ -255,7 +255,7 @@ function GUIExoHUD:Initialize()
     self.missile_help_text:SetFontName(GUIMarineHUD.kCommanderFontName)
     self.missile_help_text:SetColor(kBrightColor)
     self.missile_help_text:SetFontIsBold(true)
-    self.missile_help_text:SetText("Press 4 to fire two missiles!")
+    self.missile_help_text:SetText("4: Anti-Personnel Tracking Missile / 5: Anti-Personnel Mine")
     self.background:AddChild(self.missile_help_text)
 
     self.playerStatusIcons = CreatePlayerStatusDisplay(self, kGUILayerPlayerHUDForeground1, self.background, kTeam1Index)
@@ -491,7 +491,7 @@ function GUIExoHUD:Update(deltaTime)
 
         -- else
 
-            self.missile_help_text:SetText("Press 4 to fire two missiles!")
+            self.missile_help_text:SetText("4: Anti-Personnel Tracking Missile / 5: Anti-Personnel Mine")
 
         -- end
 
@@ -644,7 +644,7 @@ function GUIExoHUD:Reset()
         -- self.ammo_siege_right_text:SetScale(GetScaledVector())
         -- self.ammo_siege_right_text:SetFontIsBold(true)
 
-        self.missile_help_text:SetPosition(Vector(Client.GetScreenWidth() - ((1920 - 822) * self.scale), Client.GetScreenHeight() - (280 * self.scale), 0) * (1/self.scale))
+        self.missile_help_text:SetPosition(Vector(Client.GetScreenWidth() - ((1920 - 686) * self.scale), Client.GetScreenHeight() - (280 * self.scale), 0) * (1/self.scale))
         self.missile_help_text:SetScale(GetScaledVector())
         self.missile_help_text:SetFontIsBold(true)
     end
