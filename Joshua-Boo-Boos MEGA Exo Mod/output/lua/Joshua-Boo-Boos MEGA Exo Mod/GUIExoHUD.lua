@@ -255,7 +255,7 @@ function GUIExoHUD:Initialize()
     self.missile_help_text:SetFontName(GUIMarineHUD.kCommanderFontName)
     self.missile_help_text:SetColor(kBrightColor)
     self.missile_help_text:SetFontIsBold(true)
-    self.missile_help_text:SetText("4: Anti-Personnel Tracking Missile / 5: Anti-Personnel Mine")
+    -- self.missile_help_text:SetText("4: Anti-Personnel Tracking Missile / 5: Anti-Personnel Mine / Ctrl: Nano-Shield Friendly Non-Exos")
     self.background:AddChild(self.missile_help_text)
 
     self.playerStatusIcons = CreatePlayerStatusDisplay(self, kGUILayerPlayerHUDForeground1, self.background, kTeam1Index)
@@ -491,7 +491,27 @@ function GUIExoHUD:Update(deltaTime)
 
         -- else
 
-            self.missile_help_text:SetText("4: Anti-Personnel Tracking Missile / 5: Anti-Personnel Mine")
+        self.activity_time_check = Shared.GetTime()
+        
+        if exo_player.functionality == "missile" then
+            if exo_player.missile_fired_at <= self.activity_time_check and exo_player:GetFuel() == 1 then
+                self.missile_help_text:SetText("Functionality: Anti-Personnel Tracking Missile - Ready: Yes")
+            else
+                self.missile_help_text:SetText("Functionality: Anti-Personnel Tracking Missile - Ready: No (" .. string.format("%.1f", math.max(0, exo_player.missile_fired_at - self.activity_time_check)) .. ")")
+            end
+        elseif exo_player.functionality == "mine" then
+            if exo_player.mine_fired_at <= self.activity_time_check and exo_player:GetFuel() == 1 then
+                self.missile_help_text:SetText("Functionality: Anti-Personnel Mine - Ready: Yes")
+            else
+                self.missile_help_text:SetText("Functionality: Anti-Personnel Mine - Ready: No (" .. string.format("%.1f", math.max(0, exo_player.mine_fired_at - self.activity_time_check)) .. ")")
+            end
+        elseif exo_player.functionality == "nanoshield" then
+            if exo_player.nanoshield_activated_at <= self.activity_time_check and exo_player:GetFuel() == 1 then
+                self.missile_help_text:SetText("Functionality: Nano-Shield Non-Exo Players - Ready: Yes")
+            else
+                self.missile_help_text:SetText("Functionality: Nano-Shield Non-Exo Players - Ready: No (" .. string.format("%.1f", math.max(0, exo_player.nanoshield_activated_at - self.activity_time_check)) .. ")")
+            end
+        end
 
         -- end
 
@@ -644,7 +664,7 @@ function GUIExoHUD:Reset()
         -- self.ammo_siege_right_text:SetScale(GetScaledVector())
         -- self.ammo_siege_right_text:SetFontIsBold(true)
 
-        self.missile_help_text:SetPosition(Vector(Client.GetScreenWidth() - ((1920 - 686) * self.scale), Client.GetScreenHeight() - (280 * self.scale), 0) * (1/self.scale))
+        self.missile_help_text:SetPosition(Vector(Client.GetScreenWidth() - ((1920 - 700) * self.scale), Client.GetScreenHeight() - (280 * self.scale), 0) * (1/self.scale))
         self.missile_help_text:SetScale(GetScaledVector())
         self.missile_help_text:SetFontIsBold(true)
     end

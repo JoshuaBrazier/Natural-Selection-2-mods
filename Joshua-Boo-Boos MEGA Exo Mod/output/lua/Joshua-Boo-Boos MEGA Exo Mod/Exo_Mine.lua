@@ -96,7 +96,7 @@ function Exo_Mine:OnUpdate(deltaTime)
     ScriptActor.OnUpdate(self, deltaTime)
 
     if self.parent_exo == nil then
-        local nearby_exos = GetEntitiesForTeamWithinRange("Exo", kTeam1Index, self:GetOrigin(), 3)
+        local nearby_exos = GetEntitiesForTeamWithinRange("Exo", kTeam1Index, self:GetOrigin(), 5)
         local exo_info_data_pairs = {}
         if #nearby_exos > 0 then
             for i = 1, #nearby_exos do
@@ -114,6 +114,16 @@ function Exo_Mine:OnUpdate(deltaTime)
             self.final_direction_vector = GetNormalizedVector(self.parent_exo:GetViewCoords().zAxis)
             self.initial_look_vector = self.final_direction_vector
             self.parent = self.parent_exo:GetName()
+        end
+    elseif self.parent_exo and not self.final_direction_vector then
+        self.should_explode = true
+
+        local enemies_within_explosion_range = GetEntitiesForTeamWithinRange("Player", kTeam2Index, self:GetOrigin(), 5)
+
+        for i = 1, #enemies_within_explosion_range do
+            if Server then
+                self:DoDamage(100, enemies_within_explosion_range[i], enemies_within_explosion_range[i]:GetOrigin(), nil)
+            end
         end
     end
 

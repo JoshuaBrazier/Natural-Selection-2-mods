@@ -19,7 +19,11 @@ Press your reload key to enter and leave Siege Mode.
 
 Furthermore, missiles have been added to the minigun exo which require 100% fuel to use.
 
-Press 4 to fire two tracking missiles which can track structures and deal 50 damage per missile to structures only and press 5 to fire four non-tracking missiles which deal 25 damage per missile to alien players only.]=]
+Press 4 to fire a tracking missile which tracks alien players and deals 50 damage to alien players only and press 5 to fire a proximity mine which deals 100 damage to alien players only.
+
+The minigun exo is able to nano-shield friendly non-exos (e.g. rifles, jetpack hmgs etc) by pressing one's crouch key.
+
+Missiles, mines and nano-shields require 100% fuel and the cooldown is two seconds, two seconds and ten seconds respectively with the cooldown being shared between all three abilities.]=]
 image       = "joshua-boo-boos mega exo mod.jpg"
 tag_modtype = "Gameplay Tweak"
 tag_support = "Must be run on Server"

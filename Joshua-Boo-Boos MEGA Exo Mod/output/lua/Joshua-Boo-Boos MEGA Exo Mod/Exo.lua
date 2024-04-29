@@ -291,8 +291,14 @@ function Exo:OnCreate()
 
     self.closest_target = nil
 
+    self.functionality = "missile"
+
     self.missile_fired_at = 0
     self.missile_check_time = 0
+    self.mine_fired_at = 0
+    self.mine_check_time = 0
+    self.nanoshield_activated_at = 0
+    self.nanoshield_check_time = 0
 
     self.checked_for_alien_players_at = 0
     self.alien_player_check_time = 0
@@ -1265,61 +1271,119 @@ function Exo:HandleButtons(input)
 
         if bit.band(input.commands, Move.Weapon4) ~= 0 and self:GetFuel() == 1 then
 
-            self.missile_check_time = Shared.GetTime()
+            if self.functionality == "missile" then
 
-            --Shared.Message("missile check time is: " .. self.missile_check_time .. " and missile fired at: " .. self.missile_fired_at)
-            
-            if self.missile_check_time >= self.missile_fired_at then
+                self.missile_check_time = Shared.GetTime()
 
-                self:SetFuel(0)
+                --Shared.Message("missile check time is: " .. self.missile_check_time .. " and missile fired at: " .. self.missile_fired_at)
+                
+                if self.missile_check_time >= self.missile_fired_at then
 
-                self.missile_fired_at = Shared.GetTime() + 2
+                    self:SetFuel(0)
 
-                if Server then
-                    -- CreateEntity(Exo_Missile.kMapName, self:GetOrigin() + (-0.85) * GetNormalizedVector(self:GetViewCoords().xAxis), self:GetTeamNumber()) --+ Vector(-0.75, 2.75, 0.1), self:GetTeamNumber())
-                    CreateEntity(Exo_Missile.kMapName, self:GetOrigin() + 0.85 * GetNormalizedVector(self:GetViewCoords().xAxis), self:GetTeamNumber()) --+ Vector(-0.75, 2.75, 0.1), self:GetTeamNumber())
-                    StartSoundEffectOnEntity(missile_launch_sound, self, 0.35)
+                    self.missile_fired_at = Shared.GetTime() + 2
+
+                    if Server then
+                        -- CreateEntity(Exo_Missile.kMapName, self:GetOrigin() + (-0.85) * GetNormalizedVector(self:GetViewCoords().xAxis), self:GetTeamNumber()) --+ Vector(-0.75, 2.75, 0.1), self:GetTeamNumber())
+                        CreateEntity(Exo_Missile.kMapName, self:GetOrigin() + 0.85 * GetNormalizedVector(self:GetViewCoords().xAxis), self:GetTeamNumber()) --+ Vector(-0.75, 2.75, 0.1), self:GetTeamNumber())
+                        StartSoundEffectOnEntity(missile_launch_sound, self, 0.35)
+                    end
+                    
+                end
+
+            elseif self.functionality == "mine" then
+
+                self.mine_check_time = Shared.GetTime()
+
+                if self.mine_check_time >= self.mine_fired_at then
+
+                    self:SetFuel(0)
+
+                    self.mine_fired_at = Shared.GetTime() + 2
+
+                    if Server then
+                        -- CreateEntity(Exo_Missile_Non_Tracking.kMapName, self:GetOrigin() + (-0.85) * GetNormalizedVector(self:GetViewCoords().xAxis) + Vector(0, 0.35, 0), self:GetTeamNumber()) --+ Vector(-0.75, 2.75, 0.1), self:GetTeamNumber())
+                        -- CreateEntity(Exo_Missile_Non_Tracking.kMapName, self:GetOrigin() + 0.85 * GetNormalizedVector(self:GetViewCoords().xAxis) + Vector(0, 0.35, 0), self:GetTeamNumber()) --+ Vector(-0.75, 2.75, 0.1), self:GetTeamNumber())
+                        -- CreateEntity(Exo_Missile_Non_Tracking.kMapName, self:GetOrigin() + (-0.85) * GetNormalizedVector(self:GetViewCoords().xAxis) + Vector(0, -0.35, 0), self:GetTeamNumber()) --+ Vector(-0.75, 2.75, 0.1), self:GetTeamNumber())
+                        -- CreateEntity(Exo_Missile_Non_Tracking.kMapName, self:GetOrigin() + 0.85 * GetNormalizedVector(self:GetViewCoords().xAxis) + Vector(0, -0.35, 0), self:GetTeamNumber()) --+ Vector(-0.75, 2.75, 0.1), self:GetTeamNumber())
+
+                        StartSoundEffectOnEntity(missile_launch_sound, self, 0.35)
+
+                        local deployed_mines = EntityListToTable(Shared.GetEntitiesWithClassname("Exo_Mine"))
+                        if #deployed_mines > 0 then
+                            local name = self:GetName()
+                            local check = false
+                            for i = 1, #deployed_mines do
+                                if deployed_mines[i].parent == name then
+                                    check = true
+                                    deployed_mines[i]:Destroy()
+                                end
+                            end
+
+                        end
+
+                        CreateEntity(Exo_Mine.kMapName, self:GetOrigin() - 0.85 * GetNormalizedVector(self:GetViewCoords().xAxis), self:GetTeamNumber()) --+ Vector(-0.75, 2.75, 0.1), self:GetTeamNumber())
+
+                    end
+
+                end
+
+            elseif self.functionality == "nanoshield" then
+
+                self.nanoshield_check_time = Shared.GetTime()
+
+                if self.nanoshield_check_time >= self.nanoshield_activated_at then
+
+                    self:SetFuel(0)
+
+                    self.nanoshield_activated_at = Shared.GetTime() + 10
+
+                    if Server then
+
+                        local players = GetEntitiesForTeamWithinRange("Player", kTeam1Index, self:GetOrigin(), 11)
+
+                        if #players > 0 then
+
+                            for i = 1, #players do
+
+                                if not players[i]:isa("Exo") then
+
+                                    players[i]:ActivateNanoShield()
+
+                                end
+
+                            end
+                        
+                        end
+
+                    end
+
                 end
                 
             end
 
         end
 
-        if bit.band(input.commands, Move.Weapon5) ~= 0 and self:GetFuel() == 1 then
+        if bit.band(input.commands, Move.Weapon5) ~= 0 then
 
-            self.missile_check_time = Shared.GetTime()
+            if self.functionality == "missile" then
 
-            if self.missile_check_time >= self.missile_fired_at then
+                Shared.Message("functionality was missile is now mine")
 
-                self:SetFuel(0)
+                self.functionality = "mine"
 
-                self.missile_fired_at = Shared.GetTime() + 2
+            elseif self.functionality == "mine" then
 
-                if Server then
-                    -- CreateEntity(Exo_Missile_Non_Tracking.kMapName, self:GetOrigin() + (-0.85) * GetNormalizedVector(self:GetViewCoords().xAxis) + Vector(0, 0.35, 0), self:GetTeamNumber()) --+ Vector(-0.75, 2.75, 0.1), self:GetTeamNumber())
-                    -- CreateEntity(Exo_Missile_Non_Tracking.kMapName, self:GetOrigin() + 0.85 * GetNormalizedVector(self:GetViewCoords().xAxis) + Vector(0, 0.35, 0), self:GetTeamNumber()) --+ Vector(-0.75, 2.75, 0.1), self:GetTeamNumber())
-                    -- CreateEntity(Exo_Missile_Non_Tracking.kMapName, self:GetOrigin() + (-0.85) * GetNormalizedVector(self:GetViewCoords().xAxis) + Vector(0, -0.35, 0), self:GetTeamNumber()) --+ Vector(-0.75, 2.75, 0.1), self:GetTeamNumber())
-                    -- CreateEntity(Exo_Missile_Non_Tracking.kMapName, self:GetOrigin() + 0.85 * GetNormalizedVector(self:GetViewCoords().xAxis) + Vector(0, -0.35, 0), self:GetTeamNumber()) --+ Vector(-0.75, 2.75, 0.1), self:GetTeamNumber())
+                Shared.Message("functionality was mine is now nanoshield")
 
-                    StartSoundEffectOnEntity(missile_launch_sound, self, 0.35)
+                self.functionality = "nanoshield"
+            
+            elseif self.functionality == "nanoshield" then
 
-                    local deployed_mines = EntityListToTable(Shared.GetEntitiesWithClassname("Exo_Mine"))
-                    if #deployed_mines > 0 then
-                        local name = self:GetName()
-                        local check = false
-                        for i = 1, #deployed_mines do
-                            if deployed_mines[i].parent == name then
-                                check = true
-                                deployed_mines[i]:Destroy()
-                            end
-                        end
+                Shared.Message("functionality was nanoshield is now missile")
 
-                    end
-
-                    CreateEntity(Exo_Mine.kMapName, self:GetOrigin() - 0.85 * GetNormalizedVector(self:GetViewCoords().xAxis), self:GetTeamNumber()) --+ Vector(-0.75, 2.75, 0.1), self:GetTeamNumber())
-
-                end
-
+                self.functionality = "missile"
+            
             end
 
         end
