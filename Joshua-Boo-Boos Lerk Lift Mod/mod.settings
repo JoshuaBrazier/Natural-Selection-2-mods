@@ -1,0 +1,16 @@
+name        = "Joshua-Boo-Boos Lerk Lift Mod"
+source_dir  = "source"
+output_dir  = "output"
+description = [=[Gorges can hold their reload key when both close to and aiming at a lerk to attach themselves to the lerk assuming there are no other gorges nearby.
+
+A gorge attached to a lerk can detach from the lerk by letting go of their reload key.
+
+Gorges are not able to primary or secondary attack while attached to a lerk.
+
+Be careful as an attached gorge to only release your reload key when you are not intersecting a collidable (so, do not detach from a lerk when you are in the middle of a wall).
+
+Have fun!]=]
+image       = "preview.jpg"
+tag_modtype = "Gameplay Tweak"
+tag_support = "Must be run on Server"
+publish_id = 3236404635

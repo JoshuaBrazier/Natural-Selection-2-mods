@@ -1,0 +1,1 @@
+ModLoader.SetupFileHook( "lua/Alien.lua", "lua/Joshua-Boo-Boos Lerk Lift Mod/Joshua-Boo-Boos Lerk Lift.lua", "replace" )
