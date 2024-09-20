@@ -1,0 +1,1 @@
+ModLoader.SetupFileHook( "lua/PhaseGate.lua", "lua/Joshua-Boo-Boos Phase Gate Mod/PhaseGate.lua", "post")

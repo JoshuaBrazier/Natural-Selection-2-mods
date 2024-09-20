@@ -1,0 +1,2 @@
+ModLoader.SetupFileHook( "lua/Armory.lua", "lua/Joshua-Boo-Boos AA Limit Mod/Armory.lua", "post")
+ModLoader.SetupFileHook( "lua/MarineBuy_Client.lua", "lua/Joshua-Boo-Boos AA Limit Mod/MarineBuy_Client.lua", "post")

@@ -1,0 +1,8 @@
+name        = "Joshua-Boo-Boos Mac-10 Mod"
+source_dir  = "source"
+output_dir  = "output"
+description = [=[This mod changes the pistol into a suppressed Mac-10. The Mac-10 has 20 round magazines and does 5 damage per shot.]=]
+image       = "preview.jpg"
+tag_modtype = "Gameplay Tweak"
+tag_support = "Must be run on Server"
+publish_id = 3317151892

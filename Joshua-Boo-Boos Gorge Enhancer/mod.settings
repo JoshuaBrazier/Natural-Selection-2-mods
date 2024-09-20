@@ -1,0 +1,10 @@
+name        = "Joshua-Boo-Boos Gorge Enhancer"
+source_dir  = "source"
+output_dir  = "output"
+description = [=[Gorge spit now heals players and structures for a base amount of 20 and each veil if the gorge has focus increases the heal amount by 2 (AddHealth(20), AddHealth(22), AddHealth(24), AddHealth(26)).
+
+Clogs can now be bitten by skulks and lerks to heal (AddHealth(2) and AddHealth(4) respectively per bite).]=]
+image       = "preview.jpg"
+tag_modtype = "Custom Game Mode"
+tag_support = "Must be run on Server"
+publish_id = 3297917654

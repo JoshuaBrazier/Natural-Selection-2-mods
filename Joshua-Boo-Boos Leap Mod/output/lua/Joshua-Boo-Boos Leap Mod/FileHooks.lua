@@ -1,0 +1,2 @@
+ModLoader.SetupFileHook( "lua/Player_Client.lua", "lua/Joshua-Boo-Boos Leap Mod/Player_Client.lua", "post" )
+ModLoader.SetupFileHook( "lua/Player_Server.lua", "lua/Joshua-Boo-Boos Leap Mod/Player_Server.lua", "post" )

@@ -3,6 +3,8 @@ Script.Load("lua/Mixins/BaseModelMixin.lua")
 Script.Load("lua/Mixins/ClientModelMixin.lua")
 Script.Load("lua/Utility.lua")
 Script.Load("lua/DamageMixin.lua")
+Script.Load("lua/LiveMixin.lua")
+Script.Load("lua/Mine.lua")
 
 if Server then
     Script.Load("lua/OwnerMixin.lua")
@@ -20,7 +22,7 @@ local missile_flight_sound = PrecacheAsset("sound/NS2_Exo_Mod_Sounds.fev/Exo_Mod
 local missile_explode_sound = PrecacheAsset("sound/NS2.fev/marine/structures/arc/fire")
 local mine_deploy_sound = PrecacheAsset("sound/NS2.fev/marine/common/mine_warmup")
 
-local networkVars = {parent = "string (25)"} -- final_direction_vector = "Vector"}
+local networkVars = {parent = "string (25)", health = "float", alive = "boolean"} -- final_direction_vector = "Vector"}
 
 AddMixinNetworkVars(BaseModelMixin, networkVars)
 AddMixinNetworkVars(ClientModelMixin, networkVars)
@@ -41,6 +43,7 @@ function Exo_Mine:OnCreate()
     InitMixin(self, BaseModelMixin, { kTriggeringEnabledDefault = true })
     InitMixin(self, ClientModelMixin)
     InitMixin(self, DamageMixin)
+    InitMixin(self, LiveMixin)
     if Server then
         InitMixin(self, OwnerMixin)
     end
@@ -59,6 +62,11 @@ function Exo_Mine:OnCreate()
     self.final_direction_vector = nil
     self.initial_look_vector = nil
     self.parent_exo = nil
+    self.alive = true
+    self:SetMaxHealth(60)
+    self:SetHealth(60)
+    self:SetMaxArmor(0)
+    self:SetArmor(0)
 
     -- if Client then
     --     self.exhaustCinematic = Client.CreateCinematic(RenderScene.Zone_Default)
@@ -89,11 +97,33 @@ function Exo_Mine:OnInitialized()
     
 end
 
+function Exo_Mine:GetIsAlive()
+    return self.health > 0
+end
+
 function Exo_Mine:OnUpdate(deltaTime)
 
     PROFILE("ARC:OnUpdate")
     
     ScriptActor.OnUpdate(self, deltaTime)
+
+    if self:GetHealth() <= 0 then
+        self.alive = false
+        self.should_explode = true
+
+        local enemies_within_explosion_range = GetEntitiesForTeamWithinRange("Player", kTeam2Index, self:GetOrigin(), 5)
+
+        for i = 1, #enemies_within_explosion_range do
+            if Server then
+                self:DoDamage(100, enemies_within_explosion_range[i], enemies_within_explosion_range[i]:GetOrigin(), nil)
+            end
+        end
+
+        if Server then
+            StartSoundEffectAtOrigin(missile_explode_sound, self:GetOrigin())
+            DestroyEntity(self)
+        end
+    end
 
     if self.parent_exo == nil then
         local nearby_exos = GetEntitiesForTeamWithinRange("Exo", kTeam1Index, self:GetOrigin(), 5)
@@ -115,7 +145,9 @@ function Exo_Mine:OnUpdate(deltaTime)
             self.initial_look_vector = self.final_direction_vector
             self.parent = self.parent_exo:GetName()
         end
-    elseif self.parent_exo and not self.final_direction_vector then
+    end
+
+    if self.parent_exo == nil or self.final_direction_vector == nil then
         self.should_explode = true
 
         local enemies_within_explosion_range = GetEntitiesForTeamWithinRange("Player", kTeam2Index, self:GetOrigin(), 5)
@@ -124,6 +156,11 @@ function Exo_Mine:OnUpdate(deltaTime)
             if Server then
                 self:DoDamage(100, enemies_within_explosion_range[i], enemies_within_explosion_range[i]:GetOrigin(), nil)
             end
+        end
+
+        if Server then
+            StartSoundEffectAtOrigin(missile_explode_sound, self:GetOrigin())
+            DestroyEntity(self)
         end
     end
 
@@ -159,12 +196,26 @@ function Exo_Mine:OnUpdate(deltaTime)
     
     -- else
 
-    local trace = Shared.TraceCapsule(self:GetOrigin(), self:GetOrigin() + 0.1 * self.final_direction_vector, 0.05, 0.05, CollisionRep.Damage, PhysicsMask.Bullets, EntityFilterTwo(self, self.parent_exo)) -- "Exo"
-    --local trace = Shared.TraceRay(self:GetOrigin(), self:GetOrigin() + 0.05 * self.final_direction_vector, CollisionRep.LOS, PhysicsMask.All, EntityFilterAll())
-    if trace.fraction ~= 1 then
-        self.should_move = false
+    if self.final_direction_vector then
+        local trace = Shared.TraceCapsule(self:GetOrigin(), self:GetOrigin() + 0.1 * self.final_direction_vector, 0.05, 0.05, CollisionRep.Damage, PhysicsMask.Bullets, EntityFilterTwo(self, self.parent_exo)) -- "Exo"
+        --local trace = Shared.TraceRay(self:GetOrigin(), self:GetOrigin() + 0.05 * self.final_direction_vector, CollisionRep.LOS, PhysicsMask.All, EntityFilterAll())
+        if trace.fraction ~= 1 then
+            self.should_move = false
+            if Server then
+                StartSoundEffectAtOrigin(mine_deploy_sound, self:GetOrigin())
+            end
+        end
+    else
+        self.should_explode = true
+        local enemies_within_explosion_range = GetEntitiesForTeamWithinRange("Player", kTeam2Index, self:GetOrigin(), 5)
+        for i = 1, #enemies_within_explosion_range do
+            if Server then
+                self:DoDamage(100, enemies_within_explosion_range[i], enemies_within_explosion_range[i]:GetOrigin(), nil)
+            end
+        end
         if Server then
-            StartSoundEffectAtOrigin(mine_deploy_sound, self:GetOrigin())
+            StartSoundEffectAtOrigin(missile_explode_sound, self:GetOrigin())
+            DestroyEntity(self)
         end
     end
 
@@ -182,13 +233,12 @@ function Exo_Mine:OnUpdate(deltaTime)
             end
         end
 
-    end
-    if Server and self.should_explode then
-        StartSoundEffectAtOrigin(missile_explode_sound, self:GetOrigin())
-        DestroyEntity(self)
-    end
+        if Server then
+            StartSoundEffectAtOrigin(missile_explode_sound, self:GetOrigin())
+            DestroyEntity(self)
+        end
 
-    -- end
+    end
 
     if Server and self.should_move then
         SetAnglesFromVector(self, self.final_direction_vector)
@@ -199,6 +249,10 @@ end
 
 function Exo_Mine:GetTeamType()
     return kMarineTeamType
+end
+
+function Exo_Mine:GetTeamNumber()
+    return kTeam1Index
 end
 
 Shared.LinkClassToMap("Exo_Mine", Exo_Mine.kMapName, networkVars, true)

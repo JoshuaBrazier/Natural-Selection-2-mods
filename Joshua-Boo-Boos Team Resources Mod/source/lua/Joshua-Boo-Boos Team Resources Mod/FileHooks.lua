@@ -1,1 +1,0 @@
-ModLoader.SetupFileHook( "lua/Player_Server.lua", "lua/Joshua-Boo-Boos Team Resources Mod/Player_Server.lua", "replace" ) -- Player_Server changes

@@ -1,5 +1,5 @@
 shader = "models/marine/marine.surface_shader"
-albedoMap = "models/marine/shotgun/shotgun_chroma.dds"
-specularMap = "models/marine/shotgun/shotgun_spec_chroma.dds"
+albedoMap = "models/marine/shotgun/shotgun_forge.dds"
+specularMap = "models/marine/shotgun/shotgun_spec_forge.dds"
 normalMap = "models/marine/shotgun/shotgun_normal.dds"
-emissiveMap = "models/marine/shotgun/shotgun_illum_chroma.dds"
+emissiveMap = "models/marine/shotgun/shotgun_illum_forge.dds"

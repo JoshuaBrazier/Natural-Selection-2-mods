@@ -1,0 +1,2 @@
+ModLoader.SetupFileHook( "lua/Onos.lua", "lua/Joshua-Boo-Boos Onocide Mod/Onos.lua", "post" )
+-- ModLoader.SetupFileHook( "lua/GUIAlienHUD.lua", "lua/Joshua-Boo-Boos Onocide Mod/GUIAlienHUD.lua", "replace" )

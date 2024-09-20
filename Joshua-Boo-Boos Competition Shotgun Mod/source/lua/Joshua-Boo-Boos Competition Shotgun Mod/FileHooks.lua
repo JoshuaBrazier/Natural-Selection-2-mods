@@ -1,0 +1,1 @@
+ModLoader.SetupFileHook( "lua/Weapons/Marine/Shotgun.lua", "lua/Joshua-Boo-Boos Competition Shotgun Mod/Competition Shotgun.lua", "replace")

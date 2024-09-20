@@ -1,0 +1,5 @@
+shader = "models/marine/marine.surface_shader"
+albedoMap = "models/underlever/carbon_fibre_texture.jpg"
+specularMap = "models/underlever/carbon_fibre_texture.jpg"
+normalMap = "models/underlever/carbon_fibre_texture.jpg"
+emissiveMap = "models/underlever/carbon_fibre_texture.jpg"

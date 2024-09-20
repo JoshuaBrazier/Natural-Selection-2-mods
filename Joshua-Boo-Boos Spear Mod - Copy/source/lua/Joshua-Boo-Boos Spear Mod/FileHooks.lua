@@ -1,0 +1,1 @@
+ModLoader.SetupFileHook( "lua/Weapons/Marine/Axe.lua", "lua/Joshua-Boo-Boos Spear Mod/Axe.lua", "post" )

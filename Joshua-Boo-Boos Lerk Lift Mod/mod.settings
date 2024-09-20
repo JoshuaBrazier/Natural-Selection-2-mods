@@ -1,16 +1,14 @@
 name        = "Joshua-Boo-Boos Lerk Lift Mod"
 source_dir  = "source"
 output_dir  = "output"
-description = [=[Gorges can hold their reload key when both close to and aiming at a lerk to attach themselves to the lerk assuming there are no other gorges nearby.
+description = [=[A lerk pressing 4 will forcibly attach a gorge or a marine to the lerk and the gorge can forcibly detach by pressing 5.
 
-A gorge attached to a lerk can detach from the lerk by letting go of their reload key.
+Attached entities can only be let go by the lerk if the lerk presses 5 while there is space for the entity to be detached or if the lerk dies.
 
-Gorges are not able to primary or secondary attack while attached to a lerk.
+Lerks will have their energy reduced continuously while lifting a gorge or marine and the gorge or marine will be forcibly detached when the energy of the lerk is less than 5% of the max energy of the lerk.
 
-Be careful as an attached gorge to only release your reload key when you are not intersecting a collidable (so, do not detach from a lerk when you are in the middle of a wall).
-
-Have fun!]=]
+Text is added to the screen of the alien player which provides usage information and also when a marine or a gorge is being lifted by the lerk.]=]
 image       = "preview.jpg"
 tag_modtype = "Gameplay Tweak"
 tag_support = "Must be run on Server"
-publish_id = 3236404635
+publish_id = 3273134979

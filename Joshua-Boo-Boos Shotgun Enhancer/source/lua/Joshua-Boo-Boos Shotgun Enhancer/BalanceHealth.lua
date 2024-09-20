@@ -1,1 +1,1 @@
-kShotgunPointValue = 18
+kShotgunPointValue = 16

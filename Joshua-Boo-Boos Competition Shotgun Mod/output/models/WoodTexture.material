@@ -1,0 +1,5 @@
+shader = "models/marine/marine.surface_shader"
+albedoMap = "modelsrc/woodtexture.jpg"
+specularMap = "modelsrc/woodtexture.jpg"
+normalMap = "modelsrc/woodtexture.jpg"
+emissiveMap = "modelsrc/woodtexture.jpg"

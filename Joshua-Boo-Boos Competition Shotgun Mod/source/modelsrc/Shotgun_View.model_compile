@@ -1,0 +1,13 @@
+geometry "Shotgun_View.fbx"
+animation "idle" "Shotgun_View.fbx" loop from 0 to 0
+animation "shoot" "Shotgun_View.fbx" from 10 to 30
+animation "pump" "Shotgun_View.fbx" from 40 to 50
+animation "draw" "Shotgun_View.fbx" from 60 to 70
+animation "holster" "Shotgun_View.fbx" from 70 to 80
+animation "sprint" "Shotgun_View.fbx" loop from 90 to 110
+animation "reload_begin" "Shotgun_View.fbx" from 110 to 120
+animation "reload_cartridge" "Shotgun_View.fbx" from 120 to 140
+animation "reload_end" "Shotgun_View.fbx" from 140 to 150
+frame_tag "end_of_begin_load" "Shotgun_View.fbx" 120
+frame_tag "end_of_cartridge_load" "Shotgun_View.fbx" 140
+frame_tag "end_of_end_load" "Shotgun_View.fbx" 150

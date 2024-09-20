@@ -1,3 +1,3 @@
-kShotgunCost = 25
-kShotgunDropCost = 25
-kShotgunTechResearchCost = 25
+kShotgunCost = 24
+kShotgunDropCost = 24
+kShotgunTechResearchCost = 24

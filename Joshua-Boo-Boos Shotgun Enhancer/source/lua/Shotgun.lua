@@ -16,6 +16,141 @@ Script.Load("lua/AchievementGiverMixin.lua")
 Script.Load("lua/Hitreg.lua")
 Script.Load("lua/ShotgunVariantMixin.lua")
 
+local BuckshotClusterFragmentDamage = 13
+kClusterGrenadeFragmentDamageType = kDamageType.ClusterFlameFragment
+
+function BuckshotRadiusDamage(entities, centerOrigin, radius, fullDamage, doer, ignoreLOS, fallOffFunc, useXZDistance)
+
+    assert(HasMixin(doer, "Damage"))
+
+    local radiusSquared = radius * radius
+
+    -- Do damage to every target in range
+    for _, target in ipairs(entities) do
+
+        if not target:isa("Player") then
+    
+            -- Find most representative point to hit
+            local targetOrigin = GetTargetOrigin(target)
+
+            local distanceVector = targetOrigin - centerOrigin
+
+            -- Trace line to each target to make sure it's not blocked by a wall
+            local wallBetween = false
+            local distanceFromTarget
+            if useXZDistance then
+                distanceFromTarget = distanceVector:GetLengthSquaredXZ()
+            else
+                distanceFromTarget = distanceVector:GetLengthSquared()
+            end
+
+            if not ignoreLOS then
+                wallBetween = GetWallBetween(centerOrigin, targetOrigin, target)
+            end
+            
+            if (ignoreLOS or not wallBetween) and (distanceFromTarget <= radiusSquared) then
+            
+                -- Damage falloff
+                local distanceFraction = distanceFromTarget / radiusSquared
+                if fallOffFunc then
+                    distanceFraction = fallOffFunc(distanceFraction)
+                end
+                distanceFraction = Clamp(distanceFraction, 0, 1)
+
+                local damage = fullDamage * (1 - distanceFraction)
+
+                local damageDirection = distanceVector
+                damageDirection:Normalize()
+                
+                -- we can't hit world geometry, so don't pass any surface params and let DamageMixin decide
+                doer:DoDamage(damage, target, target:GetOrigin(), damageDirection, "none")
+
+            end
+
+        end
+        
+    end
+    
+end
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+class 'BuckshotClusterFragment' (Projectile)
+
+BuckshotClusterFragment.kMapName = "buckshotclusterfragment"
+
+function BuckshotClusterFragment:OnCreate()
+
+    Projectile.OnCreate(self)
+
+    InitMixin(self, BaseModelMixin)
+    InitMixin(self, ModelMixin)
+    InitMixin(self, DamageMixin)
+
+    if Server then
+        self:AddTimedCallback(BuckshotClusterFragment.TimedDetonateCallback, math.random() * 1 + 0.5)
+    elseif Client then
+        self:AddTimedCallback(BuckshotClusterFragment.CreateResidue, 0.06)
+    end
+
+end
+
+function BuckshotClusterFragment:GetProjectileModel()
+    return ClusterFragment.kModelName
+end
+
+function BuckshotClusterFragment:GetDeathIconIndex()
+    return kDeathMessageIcon.ClusterGrenade
+end
+
+if Server then
+
+    function BuckshotClusterFragment:TimedDetonateCallback()
+        self:Detonate()
+    end
+
+    function BuckshotClusterFragment:Detonate(targetHit)
+
+        local hitEntities = GetEntitiesWithMixinWithinRange("Live", self:GetOrigin(), kClusterFragmentDamageRadius)
+        table.removevalue(hitEntities, self)
+
+        if targetHit then
+            table.removevalue(hitEntities, targetHit)
+            self:DoDamage(BuckshotClusterFragmentDamage, targetHit, targetHit:GetOrigin(), GetNormalizedVector(targetHit:GetOrigin() - self:GetOrigin()), "none")
+        end
+
+        BuckshotRadiusDamage(hitEntities, self:GetOrigin(), kClusterFragmentDamageRadius, BuckshotClusterFragmentDamage, self)
+
+        local surface = GetSurfaceFromEntity(targetHit)
+
+        local params = { surface = surface }
+        if not targetHit then
+            params[kEffectHostCoords] = Coords.GetLookIn( self:GetOrigin(), self:GetCoords().zAxis)
+        end
+
+        if GetDebugGrenadeDamage() then
+            DebugWireSphere( self:GetOrigin(), kClusterFragmentDamageRadius, 0.5, 1, 0.498, 0, 1 )
+        end
+
+        self:TriggerEffects("cluster_fragment_explode", params)
+        CreateExplosionDecals(self)
+        DestroyEntity(self)
+
+    end
+
+end
+
+function BuckshotClusterFragment:CreateResidue()
+
+    self:TriggerEffects("clusterfragment_residue")
+    return true
+
+end
+
+Shared.LinkClassToMap("BuckshotClusterFragment", BuckshotClusterFragment.kMapName, networkVars)
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 class 'Shotgun' (ClipWeapon)
 
 Shotgun.kMapName = "shotgun"
@@ -29,6 +164,9 @@ local networkVars =
     is_incendiary = "boolean",
     --sound_played_at = "float",
     --distance = "integer",
+    tracked_target = 'entityid',
+    time_now = 'time',
+    hit_tracker_target_at = 'time',
 }
 
 AddMixinNetworkVars(LiveMixin, networkVars)
@@ -45,7 +183,7 @@ local danger_sound = PrecacheAsset("sound/shotgun_sounds.fev/shotgun sounds/dang
 local enemy_nearby_sound = PrecacheAsset("sound/shotgun_sounds.fev/shotgun sounds/enemy_nearby")
 local enemy_detected_sound = PrecacheAsset("sound/shotgun_sounds.fev/shotgun sounds/enemy_detected")
 
-local kSlugDamageMultiplier = 0.7
+-- local kSlugDamageMultiplier = 0.7
 
 -- higher numbers reduces the spread
 Shotgun.kStartOffset = 0.1
@@ -171,6 +309,11 @@ function Shotgun:OnCreate()
 
     self.distance = 0
 
+    self.tracked_target = 0
+
+    self.time_now = 0
+    self.hit_tracker_target_at = 0
+
 end
 
 if Client then
@@ -271,28 +414,35 @@ end
 
 local function LoadBullet(self)
 
-    local parent = self:GetParent()
-
     if self.ammo > 0 and self.clip < self:GetClipSize() then
-        if self.ammo == 1 then
-            self.clip = self.clip + 1
-            self.ammo = self.ammo - 1
-        elseif self.ammo > 1 then
-            if self.clip == 5 then
-                self.clip = self.clip + 1
-                self.ammo = self.ammo - 1
-            elseif self.clip < 5 then
-                local chance_roll = math.random()
-                if chance_roll <= 0.5 then
-                    self.clip = self.clip + math.max(1, parent.weaponUpgradeLevel-1)
-                    self.ammo = self.ammo - math.max(1, parent.weaponUpgradeLevel-1)
-                else
-                    self.clip = self.clip + 1
-                    self.ammo = self.ammo - 1
-                end
-            end
-        end
+
+        self.clip = self.clip + 1
+        self.ammo = self.ammo - 1
+
     end
+
+    -- local parent = self:GetParent()
+
+    -- if self.ammo > 0 and self.clip < self:GetClipSize() then
+    --     if self.ammo == 1 then
+    --         self.clip = self.clip + 1
+    --         self.ammo = self.ammo - 1
+    --     elseif self.ammo > 1 then
+    --         if self.clip == 5 then
+    --             self.clip = self.clip + 1
+    --             self.ammo = self.ammo - 1
+    --         elseif self.clip < 5 then
+    --             local chance_roll = math.random()
+    --             if chance_roll <= 0.5 then
+    --                 self.clip = self.clip + math.max(1, parent.weaponUpgradeLevel-1)
+    --                 self.ammo = self.ammo - math.max(1, parent.weaponUpgradeLevel-1)
+    --             else
+    --                 self.clip = self.clip + 1
+    --                 self.ammo = self.ammo - 1
+    --             end
+    --         end
+    --     end
+    -- end
 
 end
 
@@ -352,10 +502,10 @@ function Shotgun:FirePrimary(player)
     elseif self.shotgun_cartridge == "buckshot" then
         Shotgun.kShotgunRings =
         {
-            { pelletCount = 1, distance = 0.0000, pelletSize = 0.016, pelletDamage = 24.29, thetaOffset = 0},
-            { pelletCount = 2, distance = 0.65, pelletSize = 0.016, pelletDamage = 24.29, thetaOffset = 0},
-            { pelletCount = 2, distance = 0.65, pelletSize = 0.016, pelletDamage = 24.29, thetaOffset = math.pi * 0.66},
-            { pelletCount = 2, distance = 0.65, pelletSize = 0.016, pelletDamage = 24.29, thetaOffset = math.pi * 1.33},
+            { pelletCount = 1, distance = 0.0000, pelletSize = 0.016, pelletDamage = 18.5, thetaOffset = 0},
+            { pelletCount = 2, distance = 0.65, pelletSize = 0.016, pelletDamage = 18.5, thetaOffset = 0},
+            { pelletCount = 2, distance = 0.65, pelletSize = 0.016, pelletDamage = 18.5, thetaOffset = math.pi * 0.66},
+            { pelletCount = 2, distance = 0.65, pelletSize = 0.016, pelletDamage = 18.5, thetaOffset = math.pi * 1.33},
         }
         
     elseif self.shotgun_cartridge == "incendiary" then
@@ -370,7 +520,7 @@ function Shotgun:FirePrimary(player)
     elseif self.shotgun_cartridge == "slug" then
         Shotgun.kShotgunRings =
         {
-            { pelletCount = 1, distance = 0.0000, pelletSize = 0.016, pelletDamage = 170 * kSlugDamageMultiplier, thetaOffset = 0}
+            { pelletCount = 1, distance = 0.0000, pelletSize = 0.016, pelletDamage = 135, thetaOffset = 0}
         }
     end
 
@@ -451,6 +601,14 @@ function Shotgun:FirePrimary(player)
 
             self:ApplyBulletGameplayEffects(player, target, hitPoint - hitOffset, direction, thisTargetDamage, "", showTracer and i == numTargets)
 
+            if self.shotgun_cartridge == "slug" then
+                if not target:isa("Marine") and not target:isa("Exo") and not target:isa("Egg") and not target:isa("Embryo") and target:isa("Player") then
+                    self.tracked_target = target:GetId()
+                    self.hit_tracker_target_at = Shared.GetTime()
+                end
+                -- Shared.Message("Hit target" .. Shared.GetEntity(self.tracked_target):GetName() .. "using tracker - self.tracked_target is:" .. string.format("%s", self.tracked_target))
+            end
+
             local client = Server and player:GetClient() or Client
             if not Shared.GetIsRunningPrediction() and client.hitRegEnabled then
                 RegisterHitEvent(player, bullet, startPoint, trace, thisTargetDamage)
@@ -477,6 +635,8 @@ function Shotgun:OnSecondaryAttack(player)
                 self.shotgun_cartridge = "buckshot"
             elseif self.shotgun_cartridge == "buckshot" then
                 self.shotgun_cartridge = "standard"
+            else
+                self.shotgun_cartridge = "standard"
             end
         elseif player.weaponUpgradeLevel == 2 then
             if self.shotgun_cartridge == "standard" then
@@ -484,6 +644,8 @@ function Shotgun:OnSecondaryAttack(player)
             elseif self.shotgun_cartridge == "buckshot" then
                 self.shotgun_cartridge = "incendiary"
             elseif self.shotgun_cartridge == "incendiary" then
+                self.shotgun_cartridge = "standard"
+            else
                 self.shotgun_cartridge = "standard"
             end
         elseif player.weaponUpgradeLevel == 3 then
@@ -495,17 +657,21 @@ function Shotgun:OnSecondaryAttack(player)
                 self.shotgun_cartridge = "slug"
             elseif self.shotgun_cartridge == "slug" then
                 self.shotgun_cartridge = "standard"
+            else
+                self.shotgun_cartridge = "standard"
             end
         end
 
-        if self.shotgun_cartridge == "standard" then
-            StartSoundEffectForPlayer(standard_sound, player, 0.75)
-        elseif self.shotgun_cartridge == "buckshot" then
-            StartSoundEffectForPlayer(buckshot_sound, player, 0.75)
-        elseif self.shotgun_cartridge == "incendiary" then
-            StartSoundEffectForPlayer(incendiary_sound, player, 0.75)
-        elseif self.shotgun_cartridge == "slug" then
-            StartSoundEffectForPlayer(slug_sound, player, 0.75)
+        if Client then
+            if self.shotgun_cartridge == "standard" then
+                StartSoundEffectOnEntity(standard_sound, self:GetParent(), 0.75)
+            elseif self.shotgun_cartridge == "buckshot" then
+                StartSoundEffectOnEntity(buckshot_sound, self:GetParent(), 0.75)
+            elseif self.shotgun_cartridge == "incendiary" then
+                StartSoundEffectOnEntity(incendiary_sound, self:GetParent(), 0.75)
+            elseif self.shotgun_cartridge == "slug" then
+                StartSoundEffectOnEntity(slug_sound, self:GetParent(), 0.75)
+            end
         end
     
     end
@@ -531,6 +697,12 @@ end
 function Shotgun:ApplyBulletGameplayEffects(player, hitEnt, impactPoint, direction, damage, surface, showTracer)
     if HasMixin(hitEnt, "Fire") and self.shotgun_cartridge == "incendiary" and not hitEnt:isa("Marine") and not hitEnt:isa("Hive") then
         hitEnt:SetOnFire(player, self)
+    elseif self.shotgun_cartridge == "buckshot" then
+        if Server then
+            fragment = CreateEntity(BuckshotClusterFragment.kMapName, impactPoint, kTeam1Index)
+            fragment:SetOwner(self:GetParent())
+            fragment:Detonate()
+        end
     end
 end
 

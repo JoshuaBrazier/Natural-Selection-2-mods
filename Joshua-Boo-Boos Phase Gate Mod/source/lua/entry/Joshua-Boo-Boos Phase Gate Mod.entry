@@ -1,0 +1,4 @@
+modEntry = {
+    FileHooks = "lua/Joshua-Boo-Boos Phase Gate Mod/FileHooks.lua",
+    Priority = 10
+}

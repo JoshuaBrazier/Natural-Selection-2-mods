@@ -1,0 +1,2 @@
+ModLoader.SetupFileHook( "lua/Weapons/Marine/Axe.lua", "lua/Joshua-Boo-Boos DMD Combat Mod/Axe.lua", "post" )
+-- ModLoader.SetupFileHook( "lua/Weapons/Marine/Shotgun.lua", "lua/Joshua-Boo-Boos DMD Combat Mod/Competition Shotgun.lua", "replace")

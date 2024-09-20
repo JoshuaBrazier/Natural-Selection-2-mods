@@ -1,0 +1,8 @@
+name        = "Joshua-Boo-Boos DMD Combat Mod"
+source_dir  = "source"
+output_dir  = "output"
+description = [=[Joshua-Boo-Boos DMD Combat Mod]=]
+image       = "preview.jpg"
+tag_modtype = "Gameplay Tweak"
+tag_support = "Must be run on Server"
+publish_id = 3278391899

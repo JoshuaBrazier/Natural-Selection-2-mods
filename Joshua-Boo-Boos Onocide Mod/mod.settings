@@ -1,0 +1,8 @@
+name        = "Joshua-Boo-Boos Onocide Mod"
+source_dir  = "source"
+output_dir  = "output"
+description = [=[Oni onocide on death at biomass 8 in ns2 maps and once the second biomass upgrade has been purchased in co maps (requiring 11 points in total to obtain like stomp and devour including the cost of evolving into an onos).]=]
+image       = "preview.jpg"
+tag_modtype = "Gameplay Tweak"
+tag_support = "Must be run on Server"
+publish_id = 3241740866

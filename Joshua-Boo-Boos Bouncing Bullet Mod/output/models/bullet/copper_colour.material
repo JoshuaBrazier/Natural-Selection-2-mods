@@ -1,0 +1,5 @@
+shader = "models/marine/marine.surface_shader"
+albedoMap = "models/bullet/copper_colour.jpg"
+specularMap = "models/bullet/copper_colour.jpg"
+normalMap = "models/bullet/copper_colour.jpg"
+emissiveMap = "models/bullet/copper_colour.jpg"

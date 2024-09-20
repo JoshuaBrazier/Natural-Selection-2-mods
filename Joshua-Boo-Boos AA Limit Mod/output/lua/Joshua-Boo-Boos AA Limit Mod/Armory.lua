@@ -1,0 +1,6 @@
+w3_sound = PrecacheAsset("sound/AA_Limit_Sounds.fev/AA_Limit_Sounds/W3")
+w2_sound = PrecacheAsset("sound/AA_Limit_Sounds.fev/AA_Limit_Sounds/W2")
+w1_sound = PrecacheAsset("sound/AA_Limit_Sounds.fev/AA_Limit_Sounds/W1")
+max_ft_sound = PrecacheAsset("sound/AA_Limit_Sounds.fev/AA_Limit_Sounds/Max_FT")
+max_gl_sound = PrecacheAsset("sound/AA_Limit_Sounds.fev/AA_Limit_Sounds/Max_GL")
+max_hmg_sound = PrecacheAsset("sound/AA_Limit_Sounds.fev/AA_Limit_Sounds/Max_HMG")

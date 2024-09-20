@@ -1,1 +1,0 @@
-ModLoader.SetupFileHook( "lua/Lerk.lua", "lua/Joshua-Boo-Boos Lerkwaffe Upgrade/Lerk.lua", "replace" ) -- Lerk changes / Lerk.lua

@@ -1,1 +1,0 @@
-kSentryPointValue = 7

@@ -1,0 +1,17 @@
+name        = "Joshua-Boo-Boos Redemption Mod"
+source_dir  = "source"
+output_dir  = "output"
+description = [=[Regular NS2:
+
+Aliens with the shift hive upgrade have a random chance roll of being teleported to the nearest hive based on biomass level (0 -> 25% with (25/12)% chance per biomass level).
+
+Aliens must have <= math.min(28.5, 0.15 * max HP) and they must have taken damage within the last 1 second.
+
+Combat:
+
+Tier 2 upgrade purchased: 15% chance of being saved.
+Tier 3 upgrade purchased: 30% chance of being saved.]=]
+image       = "preview.jpg"
+tag_modtype = "Gameplay Tweak"
+tag_support = "Must be run on Server"
+publish_id = 3262964804

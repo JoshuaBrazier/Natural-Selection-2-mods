@@ -1,0 +1,9 @@
+geometry "spear_view.fbx"
+animation "none" "spear_view.fbx" loop from 0 to 0
+animation "draw" "spear_view.fbx" from 10 to 20
+animation "sheath" "spear_view.fbx" from 30 to 40
+animation "sprint" "spear_view.fbx" loop from 50 to 70
+animation "throw" "spear_view.fbx" from 80 to 100
+animation "slash" "spear_view.fbx" from 110 to 140
+frame_tag "throw" "spear_view.fbx" 100
+frame_tag "hit" "spear_view.fbx" 125

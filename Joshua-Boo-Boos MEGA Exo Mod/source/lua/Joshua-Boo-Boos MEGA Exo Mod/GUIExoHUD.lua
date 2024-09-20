@@ -258,6 +258,16 @@ function GUIExoHUD:Initialize()
     -- self.missile_help_text:SetText("4: Anti-Personnel Tracking Missile / 5: Anti-Personnel Mine / Ctrl: Nano-Shield Friendly Non-Exos")
     self.background:AddChild(self.missile_help_text)
 
+    self.missile_help_text_2 = self:CreateAnimatedTextItem()
+    self.missile_help_text_2:SetFontName(GUIMarineHUD.kTextFontName)
+    self.missile_help_text_2:SetTextAlignmentX(GUIItem.Align_Min)
+    self.missile_help_text_2:SetTextAlignmentY(GUIItem.Align_Min)
+    self.missile_help_text_2:SetLayer(kGUILayerPlayerHUDForeground2)
+    self.missile_help_text_2:SetFontName(GUIMarineHUD.kCommanderFontName)
+    self.missile_help_text_2:SetColor(kBrightColor)
+    self.missile_help_text_2:SetFontIsBold(true)
+    self.background:AddChild(self.missile_help_text_2)
+
     self.playerStatusIcons = CreatePlayerStatusDisplay(self, kGUILayerPlayerHUDForeground1, self.background, kTeam1Index)
 
     self.visible = true
@@ -513,6 +523,8 @@ function GUIExoHUD:Update(deltaTime)
             end
         end
 
+        self.missile_help_text_2:SetText("4: Switch Ability - 5: Use Ability")
+
         -- end
 
         if self.siege_mode then
@@ -667,6 +679,10 @@ function GUIExoHUD:Reset()
         self.missile_help_text:SetPosition(Vector(Client.GetScreenWidth() - ((1920 - 700) * self.scale), Client.GetScreenHeight() - (280 * self.scale), 0) * (1/self.scale))
         self.missile_help_text:SetScale(GetScaledVector())
         self.missile_help_text:SetFontIsBold(true)
+
+        self.missile_help_text_2:SetPosition(Vector(Client.GetScreenWidth() - ((1920 - 820) * self.scale), Client.GetScreenHeight() - (230 * self.scale), 0) * (1/self.scale))
+        self.missile_help_text_2:SetScale(GetScaledVector())
+        self.missile_help_text_2:SetFontIsBold(true)
     end
 
     if exo_player:GetHasRailgun() then
@@ -676,6 +692,7 @@ function GUIExoHUD:Reset()
         -- self.ammo_siege_left_text:SetIsVisible(false)
         -- self.ammo_siege_right_text:SetIsVisible(false)
         self.missile_help_text:SetIsVisible(false)
+        self.missile_help_text_2:SetIsVisible(false)
     elseif exo_player:GetHasMinigun() then
 
         if exo_player.siege_mode then
@@ -692,6 +709,7 @@ function GUIExoHUD:Reset()
 
         self.siege_mode_display:SetIsVisible(true)
         self.missile_help_text:SetIsVisible(true)
+        self.missile_help_text_2:SetIsVisible(true)
 
     end
 

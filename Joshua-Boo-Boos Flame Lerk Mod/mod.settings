@@ -1,0 +1,7 @@
+name        = "Joshua-Boo-Boos Flame Lerk Mod"
+source_dir  = "source"
+output_dir  = "output"
+description = [=[Lerks can breath fire using a weapon provided at a customisable biomass number in ns2 rounds and upon purchasing tier three upgrades in co rounds.]=]
+image       = "preview.jpg"
+tag_modtype = "Gameplay Tweak"
+tag_support = "Must be run on Server"

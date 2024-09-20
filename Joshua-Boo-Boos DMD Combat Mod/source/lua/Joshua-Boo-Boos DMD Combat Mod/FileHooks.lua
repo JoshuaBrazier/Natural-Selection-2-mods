@@ -1,0 +1,1 @@
+ModLoader.SetupFileHook( "lua/Weapons/Marine/Pistol.lua", "lua/Joshua-Boo-Boos DMD Combat Mod/Mac-10.lua", "replace")

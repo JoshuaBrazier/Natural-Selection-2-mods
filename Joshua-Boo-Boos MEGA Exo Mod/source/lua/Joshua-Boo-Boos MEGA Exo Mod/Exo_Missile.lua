@@ -14,6 +14,7 @@ Exo_Missile.kMapName = "exo_missile"
 Exo_Missile.kModelName = PrecacheAsset("models/marine/exo_missile/exo_missile.model")
 
 local kExhaustCinematic = PrecacheAsset("cinematics/marine/exo/thruster.cinematic")
+local newExhaustCinematic = PrecacheAsset("cinematics/marine/flamethrower/flame_trail_1p_part1.cinematic")
 local kRocketExhaust = "Exhaust"
 
 local missile_flight_sound = PrecacheAsset("sound/NS2_Exo_Mod_Sounds.fev/Exo_Mod_Sounds/Missile_Flight")
@@ -48,7 +49,7 @@ function Exo_Missile:OnCreate()
     self:SetUpdates(true, kRealTimeUpdateRate)
 
     if Server then
-        StartSoundEffectOnEntity(missile_flight_sound, self, 0.6)
+        StartSoundEffectOnEntity(missile_flight_sound, self, 0.15)
     end
 
     self.time_created = Shared.GetTime()
@@ -57,15 +58,14 @@ function Exo_Missile:OnCreate()
     self.final_direction_vector = nil
     self.initial_look_vector = nil
 
-    -- if Client then
-    --     self.exhaustCinematic = Client.CreateCinematic(RenderScene.Zone_Default)
-    --     self.exhaustCinematic:SetCinematic(kExhaustCinematic)
-    --     self.exhaustCinematic:SetRepeatStyle(Cinematic.Repeat_Endless)
-    --     self.exhaustCinematic:SetParent(self)
-    --     self.exhaustCinematic:SetCoords(Coords.GetIdentity())
-    --     self.exhaustCinematic:SetAttachPoint(self:GetAttachPointIndex(kRocketExhaust))
-    --     self.exhaustCinematic:SetIsVisible(true)
-    -- end
+    if Client then
+        self.exhaustCinematic = Client.CreateCinematic(RenderScene.Zone_Default)
+        self.exhaustCinematic:SetCinematic(newExhaustCinematic)
+        self.exhaustCinematic:SetRepeatStyle(Cinematic.Repeat_Endless)
+        self.exhaustCinematic:SetParent(self)
+        self.exhaustCinematic:SetCoords(Coords.GetIdentity())
+        self.exhaustCinematic:SetAttachPoint(self:GetAttachPointIndex(kRocketExhaust))
+    end
 
 end
 
@@ -82,9 +82,31 @@ end
 
 function Exo_Missile:OnUpdate(deltaTime)
 
-    PROFILE("ARC:OnUpdate")
+    PROFILE("Exo_Missile:OnUpdate")
     
     ScriptActor.OnUpdate(self, deltaTime)
+
+    if self.locked_target and not debug.isvalid(self.locked_target) then
+        local enemies_within_range = GetEntitiesForTeamWithinRange("Player", kTeam2Index, self:GetOrigin(), 4)
+        if #enemies_within_range > 0 then
+            for i = 1, #enemies_within_range do
+                if Server then
+                    self:DoDamage(50, enemies_within_range[i], enemies_within_range[i]:GetOrigin(), nil)
+                end
+            end
+        end
+        -- if Server then
+        --     StartSoundEffectAtOrigin(missile_explode_sound, self:GetOrigin())
+        --     DestroyEntity(self)
+        -- end
+        if Server then
+            StartSoundEffectAtOrigin(missile_explode_sound, self:GetOrigin())
+            self:TriggerEffects("pulse_grenade_explode", {kEffectHostCoords = Coords.GetTranslation( self:GetOrigin() )})
+            CreateExplosionDecals(self)
+            DestroyEntity(self)
+        end
+    end
+
 
     if self.parent_exo == nil then
         local nearby_exos = GetEntitiesForTeamWithinRange("Exo", kTeam1Index, self:GetOrigin(), 2)
@@ -118,15 +140,20 @@ function Exo_Missile:OnUpdate(deltaTime)
                     end
                 end
             end
+            -- if Server then
+            --     StartSoundEffectAtOrigin(missile_explode_sound, self:GetOrigin())
+            --     DestroyEntity(self)
+            -- end
             if Server then
                 StartSoundEffectAtOrigin(missile_explode_sound, self:GetOrigin())
+                self:TriggerEffects("pulse_grenade_explode", {kEffectHostCoords = Coords.GetTranslation( self:GetOrigin() )})
+                CreateExplosionDecals(self)
                 DestroyEntity(self)
             end
         end
     end
     self.time_now = Shared.GetTime() -- Continuously update the time on the missile
     if self.time_now >= self.time_created + 5 then -- If the missile has existed for five seconds or longer
-        CreateExplosionDecals(self, "grenade_explode")
         local enemies_within_range = GetEntitiesForTeamWithinRange("Player", kTeam2Index, self:GetOrigin(), 4)
         if #enemies_within_range > 0 then
             for i = 1, #enemies_within_range do
@@ -134,14 +161,34 @@ function Exo_Missile:OnUpdate(deltaTime)
                     self:DoDamage(50, enemies_within_range[i], enemies_within_range[i]:GetOrigin(), nil)
                 end
             end
+            -- if Server then
+            --     StartSoundEffectAtOrigin(missile_explode_sound, self:GetOrigin())
+            --     DestroyEntity(self)
+            -- end
             if Server then
                 StartSoundEffectAtOrigin(missile_explode_sound, self:GetOrigin())
+                self:TriggerEffects("pulse_grenade_explode", {kEffectHostCoords = Coords.GetTranslation( self:GetOrigin() )})
+                CreateExplosionDecals(self)
                 DestroyEntity(self)
             end
         end
     end
-    if self.locked_target and self.locked_target == Entity.invalidId then
+    if self.locked_target and not debug.isvalid(self.locked_target) then
         self.locked_target = nil
+        local enemies_within_range = GetEntitiesForTeamWithinRange("Player", kTeam2Index, self:GetOrigin(), 4)
+        if #enemies_within_range > 0 then
+            for i = 1, #enemies_within_range do
+                if Server then
+                    self:DoDamage(50, enemies_within_range[i], enemies_within_range[i]:GetOrigin(), nil)
+                end
+            end
+        end
+        if Server then
+            StartSoundEffectAtOrigin(missile_explode_sound, self:GetOrigin())
+            self:TriggerEffects("pulse_grenade_explode", {kEffectHostCoords = Coords.GetTranslation( self:GetOrigin() )})
+            CreateExplosionDecals(self)
+            DestroyEntity(self)
+        end
     elseif not self.locked_target then
         if Server then
             SetAnglesFromVector(self, self.final_direction_vector)
@@ -169,7 +216,7 @@ function Exo_Missile:OnUpdate(deltaTime)
             table.sort(distance_and_target_pair_table, compare)
             self.locked_target = distance_and_target_pair_table[1][2]
         end
-    elseif self.locked_target and self.locked_target ~= Entity.invalidId then
+    elseif self.locked_target and debug.isvalid(self.locked_target) then
         if self.locked_target:GetCloakFraction() < 0.5 then
             local vector_difference_to_target = self.locked_target:GetOrigin() - self:GetOrigin()
             self.final_direction_vector = GetNormalizedVector(vector_difference_to_target)
@@ -182,8 +229,14 @@ function Exo_Missile:OnUpdate(deltaTime)
                             self:DoDamage(50, enemies_within_range[i], enemies_within_range[i]:GetOrigin(), nil)
                         end
                     end
+                    -- if Server then
+                    --     StartSoundEffectAtOrigin(missile_explode_sound, self:GetOrigin())
+                    --     DestroyEntity(self)
+                    -- end
                     if Server then
                         StartSoundEffectAtOrigin(missile_explode_sound, self:GetOrigin())
+                        self:TriggerEffects("pulse_grenade_explode", {kEffectHostCoords = Coords.GetTranslation( self:GetOrigin() )})
+                        CreateExplosionDecals(self)
                         DestroyEntity(self)
                     end
                 end

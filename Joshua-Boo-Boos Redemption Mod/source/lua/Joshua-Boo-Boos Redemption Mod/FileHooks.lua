@@ -1,0 +1,1 @@
+ModLoader.SetupFileHook( "lua/Player_Server.lua", "lua/Joshua-Boo-Boos Redemption Mod/Player_Server.lua", "post" )

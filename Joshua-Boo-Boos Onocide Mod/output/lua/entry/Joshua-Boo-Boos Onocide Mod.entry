@@ -1,0 +1,4 @@
+modEntry = {
+    FileHooks = "lua/Joshua-Boo-Boos Onocide Mod/FileHooks.lua",
+    Priority = 10
+}

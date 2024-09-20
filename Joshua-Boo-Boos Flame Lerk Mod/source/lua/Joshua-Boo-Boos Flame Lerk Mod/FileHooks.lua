@@ -1,0 +1,1 @@
+ModLoader.SetupFileHook( "lua/Lerk.lua", "lua/Joshua-Boo-Boos Flame Lerk Mod/Lerk.lua", "post")

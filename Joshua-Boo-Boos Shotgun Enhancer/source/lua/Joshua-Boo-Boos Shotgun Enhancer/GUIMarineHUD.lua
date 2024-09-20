@@ -219,8 +219,37 @@ function GUIMarineHUD:Initialize()
     self.sg_text:SetFontName(GUIMarineHUD.kCommanderFontName)
     self.sg_text:SetColor(kBrightColor)
     self.sg_text:SetFontIsBold(true)
-    self.sg_text:SetText("SG TEXT INITIALIZE")
     self.background:AddChild(self.sg_text)
+
+    self.sg_tracker_text = self:CreateAnimatedTextItem()
+    self.sg_tracker_text:SetFontName(GUIMarineHUD.kTextFontName)
+    self.sg_tracker_text:SetTextAlignmentX(GUIItem.Align_Min)
+    self.sg_tracker_text:SetTextAlignmentY(GUIItem.Align_Min)
+    self.sg_tracker_text:SetLayer(kGUILayerPlayerHUDForeground2)
+    self.sg_tracker_text:SetFontName(GUIMarineHUD.kCommanderFontName)
+    self.sg_tracker_text:SetColor(kBrightColor)
+    self.sg_tracker_text:SetFontIsBold(true)
+    self.background:AddChild(self.sg_tracker_text)
+
+    self.sg_tracker_text_details = self:CreateAnimatedTextItem()
+    self.sg_tracker_text_details:SetFontName(GUIMarineHUD.kTextFontName)
+    self.sg_tracker_text_details:SetTextAlignmentX(GUIItem.Align_Min)
+    self.sg_tracker_text_details:SetTextAlignmentY(GUIItem.Align_Min)
+    self.sg_tracker_text_details:SetLayer(kGUILayerPlayerHUDForeground2)
+    self.sg_tracker_text_details:SetFontName(GUIMarineHUD.kCommanderFontName)
+    self.sg_tracker_text_details:SetColor(kBrightColor)
+    self.sg_tracker_text_details:SetFontIsBold(true)
+    self.background:AddChild(self.sg_tracker_text_details)
+
+    self.sg_tracker_text_details_location = self:CreateAnimatedTextItem()
+    self.sg_tracker_text_details_location:SetFontName(GUIMarineHUD.kTextFontName)
+    self.sg_tracker_text_details_location:SetTextAlignmentX(GUIItem.Align_Min)
+    self.sg_tracker_text_details_location:SetTextAlignmentY(GUIItem.Align_Min)
+    self.sg_tracker_text_details_location:SetLayer(kGUILayerPlayerHUDForeground2)
+    self.sg_tracker_text_details_location:SetFontName(GUIMarineHUD.kCommanderFontName)
+    self.sg_tracker_text_details_location:SetColor(kBrightColor)
+    self.sg_tracker_text_details_location:SetFontIsBold(true)
+    self.background:AddChild(self.sg_tracker_text_details_location)
     
     self.scanLeft = self:CreateAnimatedGraphicItem()    
     self.scanLeft:SetTexture(GUIMarineHUD.kScanTexture)
@@ -535,10 +564,25 @@ function GUIMarineHUD:Reset()
     GUIMakeFontScale(self.locationText)
     self.locationText:SetIsVisible(true)
 
-    self.sg_text:SetPosition(Vector(Client.GetScreenWidth() - (212 * self.scale), Client.GetScreenHeight() - (180 * self.scale), 0) * (1/self.scale))
+    self.sg_text:SetPosition(Vector(Client.GetScreenWidth() - (212 * self.scale), Client.GetScreenHeight() - (295 * self.scale), 0) * (1/self.scale))
     self.sg_text:SetScale(GetScaledVector())
     self.sg_text:SetFontIsBold(true)
     self.sg_text:SetIsVisible(true)
+
+    self.sg_tracker_text:SetPosition(Vector(Client.GetScreenWidth() - (212 * self.scale), Client.GetScreenHeight() - (255 * self.scale), 0) * (1/self.scale))
+    self.sg_tracker_text:SetScale(GetScaledVector())
+    self.sg_tracker_text:SetFontIsBold(true)
+    self.sg_tracker_text:SetIsVisible(true)
+
+    self.sg_tracker_text_details:SetPosition(Vector(Client.GetScreenWidth() - (212 * self.scale), Client.GetScreenHeight() - (215 * self.scale), 0) * (1/self.scale))
+    self.sg_tracker_text_details:SetScale(GetScaledVector())
+    self.sg_tracker_text_details:SetFontIsBold(true)
+    self.sg_tracker_text_details:SetIsVisible(true)
+
+    self.sg_tracker_text_details_location:SetPosition(Vector(Client.GetScreenWidth() - (212 * self.scale), Client.GetScreenHeight() - (175 * self.scale), 0) * (1/self.scale))
+    self.sg_tracker_text_details_location:SetScale(GetScaledVector())
+    self.sg_tracker_text_details_location:SetFontIsBold(true)
+    self.sg_tracker_text_details_location:SetIsVisible(true)
 
     local y = GUIMarineHUD.kMinimapPowerPos.y + ConditionalValue(minimap, 283, 33)
 
@@ -800,6 +844,7 @@ function GUIMarineHUD:Update(deltaTime)
     if weapon and weapon:isa("Shotgun") then
 
         local result
+
         if weapon.shotgun_cartridge == "standard" then
             result = "STANDARD"
         elseif weapon.shotgun_cartridge == "buckshot" then
@@ -809,10 +854,41 @@ function GUIMarineHUD:Update(deltaTime)
         elseif weapon.shotgun_cartridge == "slug" then
             result = "SLUG"
         end
+        
         self.sg_text:SetText(result)
         self.sg_text:SetIsVisible(true)
+
+        -- Shared.Message("weapon.tracked_target:" .. string.format("%s", weapon.tracked_target))
+
+        if weapon.tracked_target ~= 0 then
+
+            if IsValid(Shared.GetEntity(weapon.tracked_target)) and Shared.GetEntity(weapon.tracked_target):GetHealth() > 0 then
+                self.sg_tracker_text:SetText(string.format("%s", Shared.GetEntity(weapon.tracked_target):GetName()))
+                self.sg_tracker_text_details:SetText(string.format("HP: %i AP: %i", Shared.GetEntity(weapon.tracked_target):GetHealth(), Shared.GetEntity(weapon.tracked_target):GetArmor()))
+                self.sg_tracker_text_details_location:SetText(string.format("%s", Shared.GetEntity(weapon.tracked_target):GetLocationName()))
+            else
+                self.sg_tracker_text:SetText("")
+                self.sg_tracker_text_details:SetText("")
+                self.sg_tracker_text_details_location:SetText("")
+            end
+
+        else
+
+            self.sg_tracker_text:SetText("")
+            self.sg_tracker_text_details:SetText("")
+            self.sg_tracker_text_details_location:SetText("")
+
+        end
+
+        self.sg_tracker_text:SetIsVisible(true)
+        self.sg_tracker_text_details:SetIsVisible(true)
+        self.sg_tracker_text_details_location:SetIsVisible(true)
+
     elseif weapon and not weapon:isa("Shotgun") then
         self.sg_text:SetIsVisible(false)
+        self.sg_tracker_text:SetIsVisible(false)
+        self.sg_tracker_text_details:SetIsVisible(false)
+        self.sg_tracker_text_details_location:SetIsVisible(false)
     end
 
     if self.commanderName:GetIsVisible() then

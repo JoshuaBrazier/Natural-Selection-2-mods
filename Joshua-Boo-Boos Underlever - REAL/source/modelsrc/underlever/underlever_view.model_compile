@@ -1,0 +1,7 @@
+geometry "underlever_view.fbx"
+animation "idle" "underlever_view.fbx" from 0 to 0
+animation "holster" "underlever_view.fbx" from 10 to 20
+animation "draw" "underlever_view.fbx" from 20 to 30
+animation "shoot" "underlever_view.fbx" from 40 to 60
+animation "sprint" "underlever_view.fbx" loop from 60 to 80
+frame_tag "shot" "underlever_view.fbx" 50

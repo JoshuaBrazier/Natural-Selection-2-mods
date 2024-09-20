@@ -1269,7 +1269,7 @@ function Exo:HandleButtons(input)
 
         -- end
 
-        if bit.band(input.commands, Move.Weapon4) ~= 0 and self:GetFuel() == 1 then
+        if bit.band(input.commands, Move.Weapon5) ~= 0 and self:GetFuel() == 1 then
 
             if self.functionality == "missile" then
 
@@ -1286,7 +1286,7 @@ function Exo:HandleButtons(input)
                     if Server then
                         -- CreateEntity(Exo_Missile.kMapName, self:GetOrigin() + (-0.85) * GetNormalizedVector(self:GetViewCoords().xAxis), self:GetTeamNumber()) --+ Vector(-0.75, 2.75, 0.1), self:GetTeamNumber())
                         CreateEntity(Exo_Missile.kMapName, self:GetOrigin() + 0.85 * GetNormalizedVector(self:GetViewCoords().xAxis), self:GetTeamNumber()) --+ Vector(-0.75, 2.75, 0.1), self:GetTeamNumber())
-                        StartSoundEffectOnEntity(missile_launch_sound, self, 0.35)
+                        StartSoundEffectOnEntity(missile_launch_sound, self, 0.1)
                     end
                     
                 end
@@ -1307,7 +1307,7 @@ function Exo:HandleButtons(input)
                         -- CreateEntity(Exo_Missile_Non_Tracking.kMapName, self:GetOrigin() + (-0.85) * GetNormalizedVector(self:GetViewCoords().xAxis) + Vector(0, -0.35, 0), self:GetTeamNumber()) --+ Vector(-0.75, 2.75, 0.1), self:GetTeamNumber())
                         -- CreateEntity(Exo_Missile_Non_Tracking.kMapName, self:GetOrigin() + 0.85 * GetNormalizedVector(self:GetViewCoords().xAxis) + Vector(0, -0.35, 0), self:GetTeamNumber()) --+ Vector(-0.75, 2.75, 0.1), self:GetTeamNumber())
 
-                        StartSoundEffectOnEntity(missile_launch_sound, self, 0.35)
+                        StartSoundEffectOnEntity(missile_launch_sound, self, 0.1)
 
                         local deployed_mines = EntityListToTable(Shared.GetEntitiesWithClassname("Exo_Mine"))
                         if #deployed_mines > 0 then
@@ -1346,7 +1346,7 @@ function Exo:HandleButtons(input)
 
                             for i = 1, #players do
 
-                                if not players[i]:isa("Exo") then
+                                if not players[i]:isa("MarineSpectator") and not players[i]:isa("Exo") then
 
                                     players[i]:ActivateNanoShield()
 
@@ -1364,23 +1364,23 @@ function Exo:HandleButtons(input)
 
         end
 
-        if bit.band(input.commands, Move.Weapon5) ~= 0 then
+        if bit.band(input.commands, Move.Weapon4) ~= 0 then
 
             if self.functionality == "missile" then
 
-                Shared.Message("functionality was missile is now mine")
+                -- Shared.Message("functionality was missile is now mine")
 
                 self.functionality = "mine"
 
             elseif self.functionality == "mine" then
 
-                Shared.Message("functionality was mine is now nanoshield")
+                -- Shared.Message("functionality was mine is now nanoshield")
 
                 self.functionality = "nanoshield"
             
             elseif self.functionality == "nanoshield" then
 
-                Shared.Message("functionality was nanoshield is now missile")
+                -- Shared.Message("functionality was nanoshield is now missile")
 
                 self.functionality = "missile"
             

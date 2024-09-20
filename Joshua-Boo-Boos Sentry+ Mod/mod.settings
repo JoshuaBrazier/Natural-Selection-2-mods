@@ -1,0 +1,16 @@
+name        = "Joshua-Boo-Boos Sentry+ Mod"
+source_dir  = "source"
+output_dir  = "output"
+description = [=[Sentries have been made great.
+
+A sentry now has two fire modes: Bullet & Flame.
+
+Weapons 0-2: Bullet
+
+Weapons 3: Flame
+
+The supply cost for a sentry and its corresponding battery have been reduced and the team resources cost for a sentry battery has also been reduced.]=]
+image       = "preview.jpg"
+tag_modtype = "Gameplay Tweak"
+tag_support = "Must be run on Server"
+publish_id = 3265197825

@@ -1,0 +1,2 @@
+ModLoader.SetupFileHook( "lua/Fade.lua", "lua/Joshua-Boo-Boos Fade Mod/Fade.lua", "post")
+ModLoader.SetupFileHook( "lua/Weapons/Alien/SwipeBlink.lua", "lua/Joshua-Boo-Boos Fade Mod/SwipeBlink.lua", "post")
