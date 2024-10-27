@@ -1,5 +1,5 @@
 if not EnumUtils then
-    Script.Load("lua/Joshua-Boo-Boos Mac-10 Mod/EnumUtils.lua")
+    Script.Load("lua/Joshua-Boo-Boos DMD Combat Mod/EnumUtils.lua")
 end
 
 local newTechIds = {

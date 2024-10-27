@@ -167,6 +167,7 @@ local networkVars =
     tracked_target = 'entityid',
     time_now = 'time',
     hit_tracker_target_at = 'time',
+    equipped_at = 'time',
 }
 
 AddMixinNetworkVars(LiveMixin, networkVars)
@@ -183,7 +184,7 @@ local danger_sound = PrecacheAsset("sound/shotgun_sounds.fev/shotgun sounds/dang
 local enemy_nearby_sound = PrecacheAsset("sound/shotgun_sounds.fev/shotgun sounds/enemy_nearby")
 local enemy_detected_sound = PrecacheAsset("sound/shotgun_sounds.fev/shotgun sounds/enemy_detected")
 
--- local kSlugDamageMultiplier = 0.7
+local kSlugDamageMultiplier = 0.7
 
 -- higher numbers reduces the spread
 Shotgun.kStartOffset = 0.1
@@ -313,6 +314,8 @@ function Shotgun:OnCreate()
 
     self.time_now = 0
     self.hit_tracker_target_at = 0
+
+    self.equipped_at = 0
 
 end
 
@@ -599,7 +602,11 @@ function Shotgun:FirePrimary(player)
                 thisTargetDamage = nearDamage * (1.0 - falloffFactor) + farDamage * falloffFactor
             end
 
-            self:ApplyBulletGameplayEffects(player, target, hitPoint - hitOffset, direction, thisTargetDamage, "", showTracer and i == numTargets)
+            if self.shotgun_cartridge == "slug" then
+                self:ApplyBulletGameplayEffects(player, target, hitPoint - hitOffset, direction, kSlugDamageMultiplier * thisTargetDamage, "", showTracer and i == numTargets)
+            else
+                self:ApplyBulletGameplayEffects(player, target, hitPoint - hitOffset, direction, thisTargetDamage, "", showTracer and i == numTargets)
+            end
 
             if self.shotgun_cartridge == "slug" then
                 if not target:isa("Marine") and not target:isa("Exo") and not target:isa("Egg") and not target:isa("Embryo") and target:isa("Player") then
@@ -690,6 +697,34 @@ function Shotgun:OnDraw(player, previousWeaponMapName)
         StartSoundEffectForPlayer(incendiary_sound, player, 0.75)
     elseif self.shotgun_cartridge == "slug" then
         StartSoundEffectForPlayer(slug_sound, player, 0.75)
+    end
+
+    self.current_time = Shared.GetTime()
+
+    if self.current_time - self.equipped_at >= 5 then
+
+        local player = self:GetParent()
+
+        if player then
+
+            if Server then
+
+                if player.SendDirectMessage then
+
+                    player:SendDirectMessage('Secondary Attack: Switches between cartridges -> Standard (PVPVE) / W0, Buckshot (PVE) / W1, Incendiary (PVE) / W2, Slug (PVP) / W3')
+                    player:SendDirectMessage('Standard: Base NS2')
+                    player:SendDirectMessage('Buckshot: ~85% PDmg and ~115% SDmg')
+                    player:SendDirectMessage('Incendiary: ~90% PDmg and Fire DOT')
+                    player:SendDirectMessage('Slug: 70% PDmg via 1 Pellet & 5 sec data.')
+
+                end
+
+            end
+
+        end
+
+        self.equipped_at = Shared.GetTime()
+
     end
 
 end

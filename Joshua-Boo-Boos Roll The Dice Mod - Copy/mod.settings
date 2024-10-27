@@ -1,0 +1,8 @@
+name        = "Joshua-Boo-Boos Roll The Dice Mod"
+source_dir  = "source"
+output_dir  = "output"
+description = [=[Joshua-Boo-Boos Roll The Dice Mod]=]
+image       = "preview.jpg"
+tag_modtype = "Gameplay Tweak"
+tag_support = "Must be run on Server"
+publish_id = 3352175493

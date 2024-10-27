@@ -109,7 +109,13 @@ function BoneWall:OnCreate()
         InitMixin(self, MapBlipMixin)
     end
 
-    self.comm_entity_id = GetCommander(kTeam2Index):GetId()
+    if not kCombatVersion then
+        self.comm_entity_id = GetCommander(kTeam2Index):GetId()
+    else
+        if Server then
+            self.comm_entity_id = self:GetOwner()
+        end
+    end
     
 end
 
@@ -133,81 +139,144 @@ function BoneWall:OnInitialized()
         --     end
         -- end
 
-        local hives = GetEntitiesForTeam("Hive", kTeam2Index)
-        local bio_num = 0
-        for i = 1, #hives do
-            bio_num = bio_num + hives[i].bioMassLevel
-        end
+        if not kCombatVersion then
 
-        local techtree = GetTechTree(kTeam2Index)
-
-        if techtree then
-            if bio_num >= bio_num_required_for_spores_and_umbra then
-                if techtree:GetHasTech(kTechId.Spores) and can_create_spores then
-                    local spores = CreateEntity( SporeCloud.kMapName, self:GetOrigin() + Vector(0, 0.5, 0), kTeam2Index )
-                    spores:SetTravelDestination( self:GetOrigin() + Vector(0, 2, 0) )
-                    spores:SetOwner(Shared.GetEntity(self.comm_entity_id))
-                end
-                if techtree:GetHasTech(kTechId.Umbra) and can_create_umbra then
-                    local umbraCloud = CreateEntity( CragUmbra.kMapName, self:GetOrigin() + Vector(0, 0.5, 0), kTeam2Index )
-                    umbraCloud:SetTravelDestination( self:GetOrigin() + Vector(0, 2, 0) )
-                end
-            end
-        end
-
-        local bonewalls = GetEntitiesForTeam("BoneWall", kTeam2Index)
-
-        if #bonewalls == 1 then
-
-            local bonewall_count = 1
-
-            local marines = GetEntitiesForTeamWithinRange("Player", kTeam1Index, self:GetOrigin(), 8)
-
-            local alive_marines = {}
-
-            for i = 1, #marines do
-
-                if marines[i]:GetIsAlive() then
-
-                    table.insert(alive_marines, marines[i])
-                
-                end
-
+            local hives = GetEntitiesForTeam("Hive", kTeam2Index)
+            local bio_num = 0
+            for i = 1, #hives do
+                bio_num = bio_num + hives[i].bioMassLevel
             end
 
-            local on_ground_and_infestation_and_alive_marines = {}
+            local techtree = GetTechTree(kTeam2Index)
 
-            for i = 1, #alive_marines do
+            if techtree then
+                if bio_num >= bio_num_required_for_spores_and_umbra then
+                    if techtree:GetHasTech(kTechId.Spores) and can_create_spores then
+                        local spores = CreateEntity( SporeCloud.kMapName, self:GetOrigin() + Vector(0, 0.5, 0), kTeam2Index )
+                        spores:SetTravelDestination( self:GetOrigin() + Vector(0, 2, 0) )
+                        spores:SetOwner(Shared.GetEntity(self.comm_entity_id))
+                    end
+                    if techtree:GetHasTech(kTechId.Umbra) and can_create_umbra then
+                        local umbraCloud = CreateEntity( CragUmbra.kMapName, self:GetOrigin() + Vector(0, 0.5, 0), kTeam2Index )
+                        umbraCloud:SetTravelDestination( self:GetOrigin() + Vector(0, 2, 0) )
+                    end
+                end
+            end
 
-                -- if alive_marines[i]:GetIsOnGround() == true and alive_marines[i]:GetGameEffectMask(kGameEffect.OnInfestation) == true then
-                if alive_marines[i]:GetIsOnGround() == true then
+            local bonewalls = GetEntitiesForTeam("BoneWall", kTeam2Index)
 
+            if #bonewalls == 1 then
 
-                    table.insert(on_ground_and_infestation_and_alive_marines, alive_marines[i])
+                local bonewall_count = 1
+
+                local marines = GetEntitiesForTeamWithinRange("Player", kTeam1Index, self:GetOrigin(), 8)
+
+                local alive_marines = {}
+
+                for i = 1, #marines do
+
+                    if marines[i]:GetIsAlive() then
+
+                        table.insert(alive_marines, marines[i])
+                    
+                    end
+
+                end
+
+                local on_ground_and_infestation_and_alive_marines = {}
+
+                for i = 1, #alive_marines do
+
+                    -- if alive_marines[i]:GetIsOnGround() == true and alive_marines[i]:GetGameEffectMask(kGameEffect.OnInfestation) == true then
+                    if alive_marines[i]:GetIsOnGround() == true then
+
+                        table.insert(on_ground_and_infestation_and_alive_marines, alive_marines[i])
+
+                    end
+
+                end
+
+                for i = 1, #on_ground_and_infestation_and_alive_marines do
+
+                    if bonewall_count < max_bonewall_count and (i-1) % bonewall_per_this_number_of_on_ground_and_infestation_and_alive_marines == 0 then
+
+                        CreateEntity(BoneWall.kMapName, on_ground_and_infestation_and_alive_marines[i]:GetOrigin(), kTeam2Index)
+                        bonewall_count = bonewall_count + 1
+
+                        -- if techtree then
+                        --     if bio_num >= bio_num_required_for_spores_and_umbra then
+                        --         if techtree:GetHasTech(kTechId.Spores) and can_create_spores then
+                        --             local spores = CreateEntity( SporeCloud.kMapName, on_ground_and_infestation_and_alive_marines[i]:GetOrigin() + Vector(0, 0.5, 0), kTeam2Index )
+                        --             spores:SetTravelDestination( self:GetOrigin() + Vector(0, 2, 0) )
+                        --             spores:SetOwner(Shared.GetEntity(self.comm_entity_id))
+                        --         end
+                        --         if techtree:GetHasTech(kTechId.Umbra) and can_create_umbra then
+                        --             local umbraCloud = CreateEntity( CragUmbra.kMapName, on_ground_and_infestation_and_alive_marines[i]:GetOrigin() + Vector(0, 0.5, 0), kTeam2Index )
+                        --             umbraCloud:SetTravelDestination( self:GetOrigin() + Vector(0, 2, 0) )
+                        --         end
+                        --     end
+                        -- end
+
+                    end
 
                 end
 
             end
 
-            for i = 1, #on_ground_and_infestation_and_alive_marines do
+        else
+            
+            local spores = CreateEntity( SporeCloud.kMapName, self:GetOrigin() + Vector(0, 0.5, 0), kTeam2Index )
+            spores:SetTravelDestination( self:GetOrigin() + Vector(0, 2, 0) )
+            spores:SetOwner(Shared.GetEntity(self.comm_entity_id))
+            local umbraCloud = CreateEntity( CragUmbra.kMapName, self:GetOrigin() + Vector(0, 0.5, 0), kTeam2Index )
+            umbraCloud:SetTravelDestination( self:GetOrigin() + Vector(0, 2, 0) )
 
-                if bonewall_count < max_bonewall_count and (i-1) % bonewall_per_this_number_of_on_ground_and_infestation_and_alive_marines == 0 then
+            local bonewalls = GetEntitiesForTeam("BoneWall", kTeam2Index)
 
-                    CreateEntity(BoneWall.kMapName, on_ground_and_infestation_and_alive_marines[i]:GetOrigin(), kTeam2Index)
-                    bonewall_count = bonewall_count + 1
+            if #bonewalls == 1 then
 
-                    if techtree then
-                        if bio_num >= bio_num_required_for_spores_and_umbra then
-                            if techtree:GetHasTech(kTechId.Spores) and can_create_spores then
-                                local spores = CreateEntity( SporeCloud.kMapName, on_ground_and_infestation_and_alive_marines[i]:GetOrigin() + Vector(0, 0.5, 0), kTeam2Index )
-                                spores:SetTravelDestination( self:GetOrigin() + Vector(0, 2, 0) )
-                                spores:SetOwner(Shared.GetEntity(self.comm_entity_id))
-                            end
-                            if techtree:GetHasTech(kTechId.Umbra) and can_create_umbra then
-                                local umbraCloud = CreateEntity( CragUmbra.kMapName, on_ground_and_infestation_and_alive_marines[i]:GetOrigin() + Vector(0, 0.5, 0), kTeam2Index )
-                                umbraCloud:SetTravelDestination( self:GetOrigin() + Vector(0, 2, 0) )
-                            end
-                        end
+                local bonewall_count = 1
+
+                local marines = GetEntitiesForTeamWithinRange("Player", kTeam1Index, self:GetOrigin(), 8)
+
+                local alive_marines = {}
+
+                for i = 1, #marines do
+
+                    if marines[i]:GetIsAlive() then
+
+                        table.insert(alive_marines, marines[i])
+                    
+                    end
+
+                end
+
+                local on_ground_and_infestation_and_alive_marines = {}
+
+                for i = 1, #alive_marines do
+
+                    -- if alive_marines[i]:GetIsOnGround() == true and alive_marines[i]:GetGameEffectMask(kGameEffect.OnInfestation) == true then
+                    if alive_marines[i]:GetIsOnGround() == true then
+
+                        table.insert(on_ground_and_infestation_and_alive_marines, alive_marines[i])
+
+                    end
+
+                end
+
+                for i = 1, #on_ground_and_infestation_and_alive_marines do
+
+                    if bonewall_count < max_bonewall_count and (i-1) % bonewall_per_this_number_of_on_ground_and_infestation_and_alive_marines == 0 then
+
+                        CreateEntity(BoneWall.kMapName, on_ground_and_infestation_and_alive_marines[i]:GetOrigin(), kTeam2Index)
+                        bonewall_count = bonewall_count + 1
+                        
+                        -- local spores = CreateEntity( SporeCloud.kMapName, on_ground_and_infestation_and_alive_marines[i]:GetOrigin() + Vector(0, 0.5, 0), kTeam2Index )
+                        -- spores:SetTravelDestination( self:GetOrigin() + Vector(0, 2, 0) )
+                        -- spores:SetOwner(Shared.GetEntity(self.comm_entity_id))
+                        -- local umbraCloud = CreateEntity( CragUmbra.kMapName, on_ground_and_infestation_and_alive_marines[i]:GetOrigin() + Vector(0, 0.5, 0), kTeam2Index )
+                        -- umbraCloud:SetTravelDestination( self:GetOrigin() + Vector(0, 2, 0) )
+
                     end
 
                 end
@@ -216,8 +285,13 @@ function BoneWall:OnInitialized()
 
         end
 
-        self:SetMaxHealth(250 + ((bio_num - 3) * 50))
-        self:SetHealth(250 + ((bio_num - 3) * 50))
+        if not kCombatVersion then
+            self:SetMaxHealth(250 + ((bio_num - 3) * 50))
+            self:SetHealth(250 + ((bio_num - 3) * 50))
+        else
+            self:SetMaxHealth(300)
+            self:SetHealth(300)
+        end
 
     end
     

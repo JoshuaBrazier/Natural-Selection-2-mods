@@ -1,0 +1,7 @@
+name        = "Joshua-Boo-Boos Hades Device Mod"
+source_dir  = "source/"
+output_dir  = "output/"
+description = [=[Joshua-Boo-Boos Hades Device Mod]=]
+image       = "preview.jpg"
+tag_modtype = "Gameplay Tweak"
+tag_support = "Must be run on Server"

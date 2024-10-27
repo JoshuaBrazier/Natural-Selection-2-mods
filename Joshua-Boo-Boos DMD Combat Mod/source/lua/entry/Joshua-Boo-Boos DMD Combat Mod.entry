@@ -1,4 +1,4 @@
 modEntry = {
     FileHooks = "lua/Joshua-Boo-Boos DMD Combat Mod/FileHooks.lua",
-    Priority = 10
+    Priority = 100
 }

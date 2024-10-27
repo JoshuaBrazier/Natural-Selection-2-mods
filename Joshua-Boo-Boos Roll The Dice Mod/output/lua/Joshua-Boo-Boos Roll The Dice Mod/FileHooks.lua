@@ -1,0 +1,2 @@
+ModLoader.SetupFileHook( "lua/Player_Server.lua", "lua/Joshua-Boo-Boos Roll The Dice Mod/Player_Server.lua", "post" )
+ModLoader.SetupFileHook( "lua/NetworkMessages.lua", "lua/Joshua-Boo-Boos Roll The Dice Mod/NetworkMessages.lua", "post" )

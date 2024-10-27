@@ -1,0 +1,1 @@
+kSentryHealth = 3000    kSentryArmor = 1000    kSentryPointValue = 50

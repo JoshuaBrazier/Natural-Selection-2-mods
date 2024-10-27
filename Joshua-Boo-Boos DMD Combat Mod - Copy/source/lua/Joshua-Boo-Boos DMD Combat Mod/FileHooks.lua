@@ -39,3 +39,4 @@ ModLoader.SetupFileHook( "lua/Combat/ExperienceEnums.lua", "lua/Joshua-Boo-Boos 
 ModLoader.SetupFileHook( "lua/Combat/MarineBuyFuncs.lua", "lua/Joshua-Boo-Boos DMD Combat Mod/Combat data/MarineBuyFuncs.lua", "post" )
 ModLoader.SetupFileHook( "lua/Combat/Player_Upgrades.lua", "lua/Joshua-Boo-Boos DMD Combat Mod/Combat data/Player_Upgrades.lua", "post" )
 ModLoader.SetupFileHook( "lua/Combat/CombatMarineUpgrade.lua", "lua/Joshua-Boo-Boos DMD Combat Mod/Combat data/CombatMarineUpgrade.lua", "post" )
+ModLoader.SetupFileHook( "lua/Combat/FileHooks/Replace/bots/MarineBrain_Data.lua", "lua/Joshua-Boo-Boos DMD Combat Mod/MarineBrain_Data.lua", "replace")

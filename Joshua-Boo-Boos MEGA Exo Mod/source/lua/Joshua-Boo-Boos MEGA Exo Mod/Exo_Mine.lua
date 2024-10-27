@@ -103,7 +103,7 @@ end
 
 function Exo_Mine:OnUpdate(deltaTime)
 
-    PROFILE("ARC:OnUpdate")
+    PROFILE("Exo_Mine:OnUpdate")
     
     ScriptActor.OnUpdate(self, deltaTime)
 
