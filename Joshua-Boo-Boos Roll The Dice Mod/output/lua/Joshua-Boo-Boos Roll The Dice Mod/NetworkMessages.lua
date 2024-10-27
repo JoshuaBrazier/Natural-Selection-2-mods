@@ -72,10 +72,16 @@ if Server then
                     end
                 elseif playerEntity:GetTeamNumber() == 2 then
                     if playerEntity:isa("Onos") then
-                        playerEntity:SetMaxArmor(playerEntity:GetMaxArmor() + 400)
-                        playerEntity:SetArmor(playerEntity:GetMaxArmor())
+                        local umbraCloud = CreateEntity( CragUmbra.kMapName, playerEntity:GetOrigin() + Vector(0, 0.5, 0), kTeam2Index )
+                        umbraCloud:SetTravelDestination( playerEntity:GetOrigin() + Vector(0, 1.5, 0) )
+                        for i = 1, 5 do
+                            playerEntity:AddTimedCallback(function(playerEntity)   
+                                                                local umbraCloud = CreateEntity( CragUmbra.kMapName, playerEntity:GetOrigin() + Vector(0, 0.5, 0), kTeam2Index )
+                                                                umbraCloud:SetTravelDestination( playerEntity:GetOrigin() + Vector(0, 1.5, 0) )
+                                                            end, i * 3.5)
+                        end
                         for i = 1, #players do
-                            players[i]:SendDirectMessage(string.format("Player %s rolled a %i and got 400 extra AP!", playerEntity:GetName(), rolled_value))
+                            players[i]:SendDirectMessage(string.format("Player %s rolled a %i and is spawning umbra!", playerEntity:GetName(), rolled_value))
                         end
                     else
                         table.removevalue(players, playerEntity)
@@ -343,10 +349,16 @@ if Server then
                         end
                     elseif playerEntity:GetTeamNumber() == 2 then
                         if playerEntity:isa("Onos") then
-                            playerEntity:SetMaxArmor(playerEntity:GetMaxArmor() + 400)
-                            playerEntity:SetArmor(playerEntity:GetMaxArmor())
+                            local umbraCloud = CreateEntity( CragUmbra.kMapName, playerEntity:GetOrigin() + Vector(0, 0.5, 0), kTeam2Index )
+                            umbraCloud:SetTravelDestination( playerEntity:GetOrigin() + Vector(0, 1.5, 0) )
+                            for i = 1, 5 do
+                                playerEntity:AddTimedCallback(function(playerEntity)   
+                                                                    local umbraCloud = CreateEntity( CragUmbra.kMapName, playerEntity:GetOrigin() + Vector(0, 0.5, 0), kTeam2Index )
+                                                                    umbraCloud:SetTravelDestination( playerEntity:GetOrigin() + Vector(0, 1.5, 0) )
+                                                                end, i * 3.5)
+                            end
                             for i = 1, #players do
-                                players[i]:SendDirectMessage(string.format("Player %s rolled a %i and got 400 extra AP!", playerEntity:GetName(), rolled_value))
+                                players[i]:SendDirectMessage(string.format("Player %s rolled a %i and is spawning umbra!", playerEntity:GetName(), rolled_value))
                             end
                         else
                             table.removevalue(players, playerEntity)
