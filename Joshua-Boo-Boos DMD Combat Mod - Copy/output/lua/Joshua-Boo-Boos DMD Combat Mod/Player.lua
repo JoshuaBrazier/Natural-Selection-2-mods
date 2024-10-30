@@ -7,4 +7,3 @@ if Client then
 		return origGetCrosshairY(self)
 	end
 end
-	

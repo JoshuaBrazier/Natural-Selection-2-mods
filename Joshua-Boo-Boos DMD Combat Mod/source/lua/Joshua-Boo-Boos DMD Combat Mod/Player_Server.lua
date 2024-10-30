@@ -55,13 +55,3 @@ function Player:OnUpdatePlayer(deltaTime)
     end
     
 end
-
-local oldPlayerOnKill = Player.OnKill
-
-function Player:OnKill(killer, doer, point, direction)
-
-    self:SendDirectMessage("ROLL THE DICE: M -> Client Config -> Plugins -> ENABLE Joshua-Boo-Boos Roll The Dice Plugin -> Press F9")
-
-    oldPlayerOnKill(self, killer, doer, point, direction)
-    
-end

@@ -10,3 +10,5 @@ function Marine:GetPlayerStatusDesc()
 		
 	return oldGetStatusDesc(self)
 end
+
+Shared.LinkClassToMap("Marine", Marine.kMapName, networkVars, true)

@@ -39,4 +39,20 @@ ModLoader.SetupFileHook( "lua/Combat/ExperienceEnums.lua", "lua/Joshua-Boo-Boos 
 ModLoader.SetupFileHook( "lua/Combat/MarineBuyFuncs.lua", "lua/Joshua-Boo-Boos DMD Combat Mod/Combat data/MarineBuyFuncs.lua", "post" )
 ModLoader.SetupFileHook( "lua/Combat/Player_Upgrades.lua", "lua/Joshua-Boo-Boos DMD Combat Mod/Combat data/Player_Upgrades.lua", "post" )
 ModLoader.SetupFileHook( "lua/Combat/CombatMarineUpgrade.lua", "lua/Joshua-Boo-Boos DMD Combat Mod/Combat data/CombatMarineUpgrade.lua", "post" )
-ModLoader.SetupFileHook( "lua/Combat/FileHooks/Replace/bots/MarineBrain_Data.lua", "lua/Joshua-Boo-Boos DMD Combat Mod/MarineBrain_Data.lua", "replace")
+
+--SHOTGUN MOD
+ModLoader.SetupFileHook( "lua/Hud/Marine/GUIMarineHUD.lua", "lua/Joshua-Boo-Boos DMD Combat Mod/GUIMarineHUD.lua", "replace" ) -- Shotgun changes / GUIShotgunDisplay.lua
+ModLoader.SetupFileHook( "lua/GUIShotgunDisplay.lua", "lua/Joshua-Boo-Boos DMD Combat Mod/GUIShotgunDisplay.lua", "replace" ) -- Shotgun changes / GUIShotgunDisplay.lua
+ModLoader.SetupFileHook( "lua/Weapons/Marine/Shotgun.lua", "lua/Joshua-Boo-Boos DMD Combat Mod/Shotgun.lua", "replace" ) -- Shotgun changes / Shotgun.lua
+ModLoader.SetupFileHook( "lua/Player_Client.lua", "lua/Joshua-Boo-Boos DMD Combat Mod/Player_Client.lua", "post" ) -- Shotgun changes / Player_Client.lua
+ModLoader.SetupFileHook( "lua/Player_Server.lua", "lua/Joshua-Boo-Boos DMD Combat Mod/Player_Server.lua", "post" ) -- Shotgun changes / Player_Server.lua
+
+--BONEWALL MOD
+ModLoader.SetupFileHook( "lua/CommAbilities/Alien/BoneWall.lua", "lua/Joshua-Boo-Boos DMD Combat Mod/BoneWall.lua", "replace" )
+ModLoader.SetupFileHook( "lua/Onos.lua", "lua/Joshua-Boo-Boos DMD Combat Mod/Onos_BoneWall.lua", "post" )
+
+--RTD MOD
+if not Shine then
+    ModLoader.SetupFileHook( "lua/Chat.lua", "lua/Joshua-Boo-Boos DMD Combat Mod/Chat.lua", "post" )
+    ModLoader.SetupFileHook( "lua/NetworkMessages.lua", "lua/Joshua-Boo-Boos DMD Combat Mod/NetworkMessages.lua", "post" )
+end
