@@ -137,7 +137,7 @@ if Server then
                                                                                         players = GetEntities("Player")
                                                                                         for i = 1, #nearbyEnemies do
                                                                                             if not nearbyEnemies[i]:isa("MarineSpectator") and not nearbyEnemies[i]:isa("AlienSpectator") and nearbyEnemies[i].GetIsAlive and nearbyEnemies[i]:GetIsAlive() and nearbyEnemies[i].GetHealth and nearbyEnemies[i]:GetHealth() > 0 then
-                                                                                                table.insert(nearbyAliveEnemies nearbyEnemies[i])
+                                                                                                table.insert(nearbyAliveEnemies, nearbyEnemies[i])
                                                                                             end
                                                                                         end
                                                                                         if nearbyAliveEnemies ~= nil then
