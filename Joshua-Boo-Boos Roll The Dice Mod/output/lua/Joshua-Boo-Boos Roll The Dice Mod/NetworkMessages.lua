@@ -128,22 +128,32 @@ if Server then
                                                     playerEntity:AddTimedCallback(function(playerEntity)
                                                                                     if playerEntity.GetHealth and playerEntity:GetHealth() > 0 and not playerEntity:isa("MarineSpectator") and not playerEntity:isa("AlienSpectator") then
                                                                                         local nearbyEnemies = nil
+                                                                                        local nearbyAliveEnemies = nil
                                                                                         if playerEntity:GetTeamNumber() == 1 then
                                                                                             nearbyEnemies = GetEntitiesForTeamWithinRange("Player", kTeam2Index, playerEntity:GetOrigin(), 15)
                                                                                         elseif playerEntity:GetTeamNumber() == 2 then
                                                                                             nearbyEnemies = GetEntitiesForTeamWithinRange("Player", kTeam1Index, playerEntity:GetOrigin(), 15)
                                                                                         end
                                                                                         players = GetEntities("Player")
-                                                                                        if nearbyEnemies ~= nil then
-                                                                                            if #nearbyEnemies > 0 then
+                                                                                        for i = 1, #nearbyEnemies do
+                                                                                            if not nearbyEnemies[i]:isa("MarineSpectator") and not nearbyEnemies[i]:isa("AlienSpectator") and nearbyEnemies[i].GetIsAlive and nearbyEnemies[i]:GetIsAlive and nearbyEnemies[i].GetHealth and nearbyEnemies[i]:GetHealth() > 0 then
+                                                                                                table.insert(nearbyAliveEnemies nearbyEnemies[i])
+                                                                                            end
+                                                                                        end
+                                                                                        if nearbyAliveEnemies ~= nil then
+                                                                                            if #nearbyAliveEnemies > 0 then
                                                                                                 for i = 1, #players do
                                                                                                     if IsValid(players[i]) then
-                                                                                                        players[i]:SendDirectMessage(string.format("Player %s nuked an enemy / enemies!", playerEntity:GetName(), #nearbyEnemies))
+                                                                                                        if #nearbyAliveEnemies == 1 then
+                                                                                                            players[i]:SendDirectMessage(string.format("Player %s nuked 1 enemy!", playerEntity:GetName()))
+                                                                                                        elseif #nearbyAliveEnemies > 1 then
+                                                                                                            players[i]:SendDirectMessage(string.format("Player %s nuked %i enemies!", playerEntity:GetName(), #nearbyEnemies))
+                                                                                                        end
                                                                                                     end
                                                                                                 end
-                                                                                                for i = 1, #nearbyEnemies do
-                                                                                                    if IsValid(nearbyEnemies[i]) then
-                                                                                                        nearbyEnemies[i]:Kill()
+                                                                                                for i = 1, #nearbyAliveEnemies do
+                                                                                                    if IsValid(nearbyAliveEnemies[i]) then
+                                                                                                        nearbyAliveEnemies[i]:Kill()
                                                                                                     end
                                                                                                 end
                                                                                             else
