@@ -160,9 +160,6 @@ if Server then
                                             end, 5)
             elseif rolled_value >= 25 and rolled_value < 40 then
                 if playerEntity:GetTeamNumber() == 1 then
-                    if IsValid(playerEntity) and playerEntity.GetHealth and playerEntity:GetHealth() > 0 and not playerEntity:isa("MarineSpectator") and not playerEntity:isa("AlienSpectator") then
-                        CreateEntity(CatPack.kMapName, playerEntity:GetOrigin() + Vector(0, 0.4, 0), kTeam1Index)
-                    end
                     for i = 1, 10 do
                         playerEntity:AddTimedCallback(function(playerEntity)
                                                             if Server then
