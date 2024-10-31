@@ -4,7 +4,7 @@ local function RTD()
     local player = Client.GetLocalPlayer()
     if player and player.GetIsAlive then
         if Client.GetIsControllingPlayer() then
-            if (player:GetTeamNumber() == kTeam1Index or player:GetTeamNumber() == kTeam2Index) and player:GetIsAlive() and player.GetHealth and player:GetHealth() > 0 then
+            if (player:GetTeamNumber() == kTeam1Index or player:GetTeamNumber() == kTeam2Index) and player:GetIsAlive() and player.GetHealth and player:GetHealth() > 0 and not player:isa("MarineSpectator") and not player:isa("AlienSpectator") then
                 local id = player:GetId()
                 local RTD_Data = { entId = tostring(id) }
                 if not player.lastCalledRTDTime then

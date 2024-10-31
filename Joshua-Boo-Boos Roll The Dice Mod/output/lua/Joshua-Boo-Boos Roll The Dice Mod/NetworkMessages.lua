@@ -4,12 +4,19 @@ local RTD_Table = {
 
 Shared.RegisterNetworkMessage("RTD", RTD_Table)
 
+local bulletsSound = PrecacheAsset("sound/RollTheDice.fev/RollTheDice/Bullets")
+local nukeSound = PrecacheAsset("sound/RollTheDice.fev/RollTheDice/Nuke")
+local omaewamoushindeiruSound = PrecacheAsset("sound/RollTheDice.fev/RollTheDice/OMaeWaMouShindeiru")
+local slapSound = PrecacheAsset("sound/RollTheDice.fev/RollTheDice/Slap")
+local slayteamSound = PrecacheAsset("sound/RollTheDice.fev/RollTheDice/SlayTeam")
+local statdownSound = PrecacheAsset("sound/RollTheDice.fev/RollTheDice/StatDown")
+local statupSound = PrecacheAsset("sound/RollTheDice.fev/RollTheDice/StatUp")
+local slashSound = PrecacheAsset("sound/RollTheDice.fev/RollTheDice/Slash")
+
 if Server then
 
     Server.HookNetworkMessage("RTD",
     function(client, msg)
-            
-        -- Shared.Message("SERVER REGISTERED RTD REQUEST")
 
         ::reroll::
 
@@ -35,6 +42,7 @@ if Server then
                 end
                 if #enemies > 0 then
                     for k = 1, #players do
+                        StartSoundEffectOnEntity(slayteamSound, players[k])
                         players[k]:SendDirectMessage(string.format("Player %s luckily rolled a 1 and slayed the whole enemy team!", playerEntity:GetName()))
                     end
                     for l = 1, #enemies do
@@ -92,6 +100,7 @@ if Server then
                     end
                 end
             elseif rolled_value >= 15 and rolled_value < 25 then
+                StartSoundEffectOnEntity(nukeSound, playerEntity)
                 for i = 1, #players do
                     players[i]:SendDirectMessage(string.format("Player %s rolled a %i and became a nuke!", playerEntity:GetName(), rolled_value))
                 end
@@ -143,11 +152,13 @@ if Server then
                     end
                 end
             elseif rolled_value >= 40 and rolled_value < 45 then
+                StartSoundEffectOnEntity(slashSound, playerEntity)
                 playerEntity:Kill()
                 for i = 1, #players do
                     players[i]:SendDirectMessage(string.format("Player %s rolled a %i and was slayed!", playerEntity:GetName(), rolled_value))
                 end
             elseif rolled_value >= 45 and rolled_value < 55 then
+                StartSoundEffectOnEntity(statdownSound, playerEntity)
                 if playerEntity:isa("Exo") then
                     playerEntity:SetArmor(1)
                     playerEntity:SetMaxArmor(1)
@@ -163,18 +174,19 @@ if Server then
                 end
             elseif rolled_value >= 55 and rolled_value < 70 then
                 if playerEntity:isa("Exo") then
-                    local bonewall = CreateEntity(BoneWall.kMapName, playerEntity:GetOrigin(), kTeam2Index)
-                    bonewall:SetOwner(playerEntity)
-                    for i = 1, 2 do
+                    StartSoundEffectOnEntity(statdownSound, playerEntity)
+                    local currentAPMax = playerEntity:GetMaxArmor()
+                    playerEntity:SetArmor(math.max(0, playerEntity:GetArmor() - 0.2 * currentAPMax))
+                    for i = 1, 4 do
                         playerEntity:AddTimedCallback(function(playerEntity)
-                                                        local bonewall = CreateEntity(BoneWall.kMapName, playerEntity:GetOrigin(), kTeam2Index)
-                                                        bonewall:SetOwner(playerEntity)
-                                                    end, i)
+                                                        playerEntity:SetArmor(math.max(0, playerEntity:GetArmor() - 0.2 * currentAPMax))
+                                                    end, 1.25 * i)
                     end
                     for i = 1, #players do
-                        players[i]:SendDirectMessage(string.format("Player %s rolled a %i and will be bonewalled 3 times!", playerEntity:GetName(), rolled_value))
+                        players[i]:SendDirectMessage(string.format("Player %s rolled a %i and is being slapped (%.1f AP per slap)!", playerEntity:GetName(), rolled_value, 0.2 * currentAPMax))
                     end
                 else
+                    StartSoundEffectOnEntity(slapSound, playerEntity)
                     playerEntity:SetHealth(math.max(0, playerEntity:GetHealth() - 0.25 * playerEntity:GetMaxHealth()))
                     if playerEntity:GetHealth() == 0 then
                         if playerEntity:GetIsAlive() then
@@ -196,6 +208,7 @@ if Server then
                         end
                     end
                     if #enemies > 0 then
+                        StartSoundEffectOnEntity(slashSound, playerEntity)
                         local randomRollEnemies = math.random(1, #enemies)
                         enemyToSlay = enemies[randomRollEnemies]
                         for i = 1, #players do
@@ -207,7 +220,14 @@ if Server then
                         end
                     end
                     if enemyToSlay ~= nil then
-                        enemyToSlay:Kill()
+                        if enemyToSlay.GetHealth and enemyToSlay:GetHealth() > 0 and not enemyToSlay:isa("MarineSpectator") and not enemyToSlay:isa("AlienSpectator") then
+                            StartSoundEffectAtOrigin(slashSound, enemyToSlay:GetOrigin())
+                        end
+                        enemyToSlay:AddTimedCallback(function(enemyToSlay)
+                                                        if enemyToSlay.GetHealth and enemyToSlay:GetHealth() > 0 and not enemyToSlay:isa("MarineSpectator") and not enemyToSlay:isa("AlienSpectator") then
+                                                            enemyToSlay:Kill()
+                                                        end
+                                                    end, 0.35)
                     end
                 elseif playerEntity:GetTeamNumber() == 2 then
                     local playersToCheck = GetEntitiesForTeam("Player", kTeam1Index)
@@ -218,6 +238,7 @@ if Server then
                         end
                     end
                     if #enemies > 0 then
+                        StartSoundEffectOnEntity(slashSound, playerEntity)
                         local randomRollEnemies = math.random(1, #enemies)
                         enemyToSlay = enemies[randomRollEnemies]
                         for i = 1, #players do
@@ -229,12 +250,14 @@ if Server then
                         end
                     end
                     if enemyToSlay ~= nil then
+                        StartSoundEffectAtOrigin(slashSound, enemyToSlay:GetOrigin())
                         enemyToSlay:Kill()
                     end
                 end
             elseif rolled_value >= 85 and rolled_value <= 99 then
                 if playerEntity:GetTeamNumber() == 1 then
                     if not playerEntity:isa("Exo") then
+                        StartSoundEffectOnEntity(bulletsSound, playerEntity)
                         local weapons = playerEntity:GetWeapons()
                         for i = 1, #weapons do
                             if weapons[i]:isa("ClipWeapon") then
@@ -246,6 +269,7 @@ if Server then
                             players[i]:SendDirectMessage(string.format("Player %s rolled a %i and their clip-weapons have ten clips of ammo in one and no spare ammo!", playerEntity:GetName(), rolled_value))
                         end
                     else
+                        StartSoundEffectOnEntity(statupSound, playerEntity)
                         playerEntity:SetMaxArmor(playerEntity:GetMaxArmor() * 2.5)
                         playerEntity:SetArmor(playerEntity:GetMaxArmor())
                         for i = 1, #players do
@@ -254,6 +278,7 @@ if Server then
                     end
                     
                 elseif playerEntity:GetTeamNumber() == 2 then
+                    StartSoundEffectOnEntity(statupSound, playerEntity)
                     playerEntity:SetMaxHealth(playerEntity:GetMaxHealth() * 2.5)
                     playerEntity:SetHealth(playerEntity:GetMaxHealth())
                     for i = 1, #players do
@@ -278,6 +303,7 @@ if Server then
                         friendlies[k]:Kill()
                     end
                     for i = 1, #players do
+                        StartSoundEffectOnEntity(slayteamSound, players[k])
                         players[i]:SendDirectMessage(string.format("Player %s rolled a 100 and slayed their whole team!", playerEntity:GetName()))
                     end
                 else
