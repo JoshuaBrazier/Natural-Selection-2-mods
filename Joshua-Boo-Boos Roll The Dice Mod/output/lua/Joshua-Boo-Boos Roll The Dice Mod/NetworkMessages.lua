@@ -36,21 +36,27 @@ if Server then
                     end
                 elseif playerEntity:GetTeamNumber() == 2 then
                     local enemyMarines = GetEntitiesForTeam("Player", kTeam1Index)
-                    for j = 1, #enemyMarines do
-                        table.insert(enemies, enemyAliens[j])
+                    for i = 1, #enemyMarines do
+                        table.insert(enemies, enemyAliens[i])
                     end
                 end
                 if #enemies > 0 then
-                    for k = 1, #players do
-                        StartSoundEffectOnEntity(slayteamSound, players[k])
-                        players[k]:SendDirectMessage(string.format("Player %s luckily rolled a 1 and slayed the whole enemy team!", playerEntity:GetName()))
+                    for i = 1, #players do
+                        if IsValid(players[i]) then
+                            StartSoundEffectOnEntity(slayteamSound, players[k])
+                            players[i]:SendDirectMessage(string.format("Player %s luckily rolled a 1 and slayed the whole enemy team!", playerEntity:GetName()))
+                        end
                     end
-                    for l = 1, #enemies do
-                        enemies[l]:Kill()
+                    for i = 1, #enemies do
+                        if IsValid(players[i]) then
+                            enemies[l]:Kill()
+                        end
                     end
                 else
-                    for m = 1, #players do
-                        players[m]:SendDirectMessage(string.format("Player %s luckily rolled a 1 but there are no enemy players!", playerEntity:GetName()))
+                    for i = 1, #players do
+                        if IsValid(players[i]) then
+                            players[i]:SendDirectMessage(string.format("Player %s luckily rolled a 1 but there are no enemy players!", playerEntity:GetName()))
+                        end
                     end
                 end
             elseif rolled_value >= 2 and rolled_value < 15 then
@@ -67,14 +73,18 @@ if Server then
                             end
                         end
                         for i = 1, #players do
-                            players[i]:SendDirectMessage(string.format("Player %s rolled a %i and was perma-nanoshielded!", playerEntity:GetName(), rolled_value))
+                            if IsValid(players[i]) then
+                                players[i]:SendDirectMessage(string.format("Player %s rolled a %i and was perma-nanoshielded!", playerEntity:GetName(), rolled_value))
+                            end
                         end
                     else
                         table.removevalue(players, playerEntity)
                         local newPlayerEntity = playerEntity:Replace(Exo.kMapName, playerEntity:GetTeamNumber(), false, playerEntity:GetOrigin(), { layout = "MinigunMinigun" })
                         table.insert(players, newPlayerEntity)
                         for i = 1, #players do
-                            players[i]:SendDirectMessage(string.format("Player %s rolled a %i and became a dual minigun Exo!", playerEntity:GetName(), rolled_value))
+                            if IsValid(players[i]) then
+                                players[i]:SendDirectMessage(string.format("Player %s rolled a %i and became a dual minigun Exo!", playerEntity:GetName(), rolled_value))
+                            end
                         end
                     end
                 elseif playerEntity:GetTeamNumber() == 2 then
@@ -88,21 +98,27 @@ if Server then
                                                             end, i * 3.5)
                         end
                         for i = 1, #players do
-                            players[i]:SendDirectMessage(string.format("Player %s rolled a %i and is spawning umbra!", playerEntity:GetName(), rolled_value))
+                            if IsValid(players[i]) then
+                                players[i]:SendDirectMessage(string.format("Player %s rolled a %i and is spawning umbra!", playerEntity:GetName(), rolled_value))
+                            end
                         end
                     else
                         table.removevalue(players, playerEntity)
                         local newPlayerEntity = playerEntity:Replace(Onos.kMapName, playerEntity:GetTeamNumber(), nil, nil, nil)
                         table.insert(players, newPlayerEntity)
                         for i = 1, #players do
-                            players[i]:SendDirectMessage(string.format("Player %s rolled a %i and became an Onos!", playerEntity:GetName(), rolled_value))
+                            if IsValid(players[i]) then
+                                players[i]:SendDirectMessage(string.format("Player %s rolled a %i and became an Onos!", playerEntity:GetName(), rolled_value))
+                            end
                         end
                     end
                 end
             elseif rolled_value >= 15 and rolled_value < 25 then
                 StartSoundEffectOnEntity(nukeSound, playerEntity)
                 for i = 1, #players do
-                    players[i]:SendDirectMessage(string.format("Player %s rolled a %i and became a nuke!", playerEntity:GetName(), rolled_value))
+                    if IsValid(players[i]) then
+                        players[i]:SendDirectMessage(string.format("Player %s rolled a %i and became a nuke!", playerEntity:GetName(), rolled_value))
+                    end
                 end
                 playerEntity:AddTimedCallback(function(playerEntity)
                                                 local nearbyEnemies = nil
@@ -115,19 +131,27 @@ if Server then
                                                 if nearbyEnemies ~= nil then
                                                     if #nearbyEnemies > 0 then
                                                         for i = 1, #players do
-                                                            players[i]:SendDirectMessage(string.format("Player %s nuked an enemy / enemies!", playerEntity:GetName(), #nearbyEnemies))
+                                                            if IsValid(players[i]) then
+                                                                players[i]:SendDirectMessage(string.format("Player %s nuked an enemy / enemies!", playerEntity:GetName(), #nearbyEnemies))
+                                                            end
                                                         end
                                                         for i = 1, #nearbyEnemies do
-                                                            nearbyEnemies[i]:Kill()
+                                                            if IsValid(nearbyEnemies[i]) then
+                                                                nearbyEnemies[i]:Kill()
+                                                            end
                                                         end
                                                     else
                                                         for i = 1, #players do
-                                                            players[i]:SendDirectMessage(string.format("Player %s nuked no enemies!", playerEntity:GetName(), #nearbyEnemies))
+                                                            if IsValid(players[i]) then
+                                                                players[i]:SendDirectMessage(string.format("Player %s nuked no enemies!", playerEntity:GetName(), #nearbyEnemies))
+                                                            end
                                                         end
                                                     end
                                                 else
                                                     for i = 1, #players do
-                                                        players[i]:SendDirectMessage(string.format("Player %s nuked no enemies!", playerEntity:GetName(), #nearbyEnemies))
+                                                        if IsValid(players[i]) then
+                                                            players[i]:SendDirectMessage(string.format("Player %s nuked no enemies!", playerEntity:GetName(), #nearbyEnemies))
+                                                        end
                                                     end
                                                 end
                                                 playerEntity:Kill()
@@ -148,14 +172,18 @@ if Server then
                 elseif playerEntity:GetTeamNumber() == 2 then
                     playerEntity:TriggerEnzyme(30)
                     for i = 1, #players do
-                        players[i]:SendDirectMessage(string.format("Player %s rolled a %i and is enzymed for 30 seconds!", playerEntity:GetName(), rolled_value))
+                        if IsValid(players[i]) then
+                            players[i]:SendDirectMessage(string.format("Player %s rolled a %i and is enzymed for 30 seconds!", playerEntity:GetName(), rolled_value))
+                        end
                     end
                 end
             elseif rolled_value >= 40 and rolled_value < 45 then
                 StartSoundEffectOnEntity(slashSound, playerEntity)
                 playerEntity:Kill()
                 for i = 1, #players do
-                    players[i]:SendDirectMessage(string.format("Player %s rolled a %i and was slayed!", playerEntity:GetName(), rolled_value))
+                    if IsValid(players[i]) then
+                        players[i]:SendDirectMessage(string.format("Player %s rolled a %i and was slayed!", playerEntity:GetName(), rolled_value))
+                    end
                 end
             elseif rolled_value >= 45 and rolled_value < 55 then
                 StartSoundEffectOnEntity(statdownSound, playerEntity)
@@ -163,13 +191,17 @@ if Server then
                     playerEntity:SetArmor(1)
                     playerEntity:SetMaxArmor(1)
                     for i = 1, #players do
-                        players[i]:SendDirectMessage(string.format("Player %s rolled a %i and now has max AP = 1!", playerEntity:GetName(), rolled_value))
+                        if IsValid(players[i]) then
+                            players[i]:SendDirectMessage(string.format("Player %s rolled a %i and now has max AP = 1!", playerEntity:GetName(), rolled_value))
+                        end
                     end
                 else
                     playerEntity:SetHealth(1)
                     playerEntity:SetMaxHealth(1)
                     for i = 1, #players do
-                        players[i]:SendDirectMessage(string.format("Player %s rolled a %i and now has max HP = 1!", playerEntity:GetName(), rolled_value))
+                        if IsValid(players[i]) then
+                            players[i]:SendDirectMessage(string.format("Player %s rolled a %i and now has max HP = 1!", playerEntity:GetName(), rolled_value))
+                        end
                     end
                 end
             elseif rolled_value >= 55 and rolled_value < 70 then
@@ -183,7 +215,9 @@ if Server then
                                                     end, 1.25 * i)
                     end
                     for i = 1, #players do
-                        players[i]:SendDirectMessage(string.format("Player %s rolled a %i and is being slapped (%.1f AP per slap)!", playerEntity:GetName(), rolled_value, 0.2 * currentAPMax))
+                        if IsValid(players[i]) then
+                            players[i]:SendDirectMessage(string.format("Player %s rolled a %i and is being slapped (%.1f AP per slap)!", playerEntity:GetName(), rolled_value, 0.2 * currentAPMax))
+                        end
                     end
                 else
                     StartSoundEffectOnEntity(slapSound, playerEntity)
@@ -194,7 +228,9 @@ if Server then
                         end
                     end
                     for i = 1, #players do
-                        players[i]:SendDirectMessage(string.format("Player %s rolled a %i and was slapped for %.1f HP damage!", playerEntity:GetName(), rolled_value, 0.25 * playerEntity:GetMaxHealth()))
+                        if IsValid(players[i]) then
+                            players[i]:SendDirectMessage(string.format("Player %s rolled a %i and was slapped for %.1f HP damage!", playerEntity:GetName(), rolled_value, 0.25 * playerEntity:GetMaxHealth()))
+                        end
                     end
                 end
             elseif rolled_value >= 70 and rolled_value < 85 then
@@ -212,11 +248,15 @@ if Server then
                         local randomRollEnemies = math.random(1, #enemies)
                         enemyToSlay = enemies[randomRollEnemies]
                         for i = 1, #players do
-                            players[i]:SendDirectMessage(string.format("Player %s rolled a %i and caused %s to be slayed!", playerEntity:GetName(), rolled_value, enemyToSlay:GetName()))
+                            if IsValid(players[i]) then
+                                players[i]:SendDirectMessage(string.format("Player %s rolled a %i and caused %s to be slayed!", playerEntity:GetName(), rolled_value, enemyToSlay:GetName()))
+                            end
                         end
                     else
                         for i = 1, #players do
-                            players[i]:SendDirectMessage(string.format("Player %s rolled a %i and there are no alive enemies to slay!", playerEntity:GetName(), rolled_value))
+                            if IsValid(players[i]) then
+                                players[i]:SendDirectMessage(string.format("Player %s rolled a %i and there are no alive enemies to slay!", playerEntity:GetName(), rolled_value))
+                            end
                         end
                     end
                     if enemyToSlay ~= nil then
@@ -242,11 +282,15 @@ if Server then
                         local randomRollEnemies = math.random(1, #enemies)
                         enemyToSlay = enemies[randomRollEnemies]
                         for i = 1, #players do
-                            players[i]:SendDirectMessage(string.format("Player %s rolled a %i and caused %s to be slayed!", playerEntity:GetName(), rolled_value, enemyToSlay:GetName()))
+                            if IsValid(players[i]) then
+                                players[i]:SendDirectMessage(string.format("Player %s rolled a %i and caused %s to be slayed!", playerEntity:GetName(), rolled_value, enemyToSlay:GetName()))
+                            end
                         end
                     else
                         for i = 1, #players do
-                            players[i]:SendDirectMessage(string.format("Player %s rolled a %i and there are no alive enemies to slay!", playerEntity:GetName(), rolled_value))
+                            if IsValid(players[i]) then
+                                players[i]:SendDirectMessage(string.format("Player %s rolled a %i and there are no alive enemies to slay!", playerEntity:GetName(), rolled_value))
+                            end
                         end
                     end
                     if enemyToSlay ~= nil then
@@ -266,14 +310,18 @@ if Server then
                             end
                         end
                         for i = 1, #players do
-                            players[i]:SendDirectMessage(string.format("Player %s rolled a %i and their clip-weapons have ten clips of ammo in one and no spare ammo!", playerEntity:GetName(), rolled_value))
+                            if IsValid(players[i]) then
+                                players[i]:SendDirectMessage(string.format("Player %s rolled a %i and their clip-weapons have ten clips of ammo in one and no spare ammo!", playerEntity:GetName(), rolled_value))
+                            end
                         end
                     else
                         StartSoundEffectOnEntity(statupSound, playerEntity)
                         playerEntity:SetMaxArmor(playerEntity:GetMaxArmor() * 2.5)
                         playerEntity:SetArmor(playerEntity:GetMaxArmor())
                         for i = 1, #players do
-                            players[i]:SendDirectMessage(string.format("Player %s rolled a %i and their AP and max AP was set to %.1f!", playerEntity:GetName(), rolled_value, playerEntity:GetMaxArmor()))
+                            if IsValid(players[i]) then
+                                players[i]:SendDirectMessage(string.format("Player %s rolled a %i and their AP and max AP was set to %.1f!", playerEntity:GetName(), rolled_value, playerEntity:GetMaxArmor()))
+                            end
                         end
                     end
                     
@@ -282,7 +330,9 @@ if Server then
                     playerEntity:SetMaxHealth(playerEntity:GetMaxHealth() * 2.5)
                     playerEntity:SetHealth(playerEntity:GetMaxHealth())
                     for i = 1, #players do
-                        players[i]:SendDirectMessage(string.format("Player %s rolled a %i and their HP and max HP was set to %.1f!", playerEntity:GetName(), rolled_value, playerEntity:GetMaxHealth()))
+                        if IsValid(players[i]) then
+                            players[i]:SendDirectMessage(string.format("Player %s rolled a %i and their HP and max HP was set to %.1f!", playerEntity:GetName(), rolled_value, playerEntity:GetMaxHealth()))
+                        end
                     end
                 end
             elseif rolled_value == 100 then
@@ -303,12 +353,16 @@ if Server then
                         friendlies[k]:Kill()
                     end
                     for i = 1, #players do
-                        StartSoundEffectOnEntity(slayteamSound, players[k])
-                        players[i]:SendDirectMessage(string.format("Player %s rolled a 100 and slayed their whole team!", playerEntity:GetName()))
+                        if IsValid(players[i]) then
+                            StartSoundEffectOnEntity(slayteamSound, players[k])
+                            players[i]:SendDirectMessage(string.format("Player %s rolled a 100 and slayed their whole team!", playerEntity:GetName()))
+                        end
                     end
                 else
                     for i = 1, #players do
-                        players[i]:SendDirectMessage(string.format("Player %s rolled a 100 and there are no enemies to slay!", playerEntity:GetName()))
+                        if IsValid(players[i]) then
+                            players[i]:SendDirectMessage(string.format("Player %s rolled a 100 and there are no enemies to slay!", playerEntity:GetName()))
+                        end
                     end
                 end
             end
