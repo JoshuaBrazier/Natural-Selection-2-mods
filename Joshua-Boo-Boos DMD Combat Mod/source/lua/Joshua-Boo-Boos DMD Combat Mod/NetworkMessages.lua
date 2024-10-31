@@ -219,7 +219,7 @@ if Server then
                                                     if playerEntity:isa("Exo") then
                                                         StartSoundEffectOnEntity(statdownSound, playerEntity)
                                                         local currentAPMax = playerEntity:GetMaxArmor()
-                                                        playerEntity:SetArmor(math.max(0, playerEntity:GetArmor() - 0.2 * currentAPMax))
+                                                        playerEntity:SetArmor(math.max(0, playerEntity:GetArmor() - 0.1666666666 * currentAPMax))
                                                         for i = 1, 2 do
                                                             playerEntity:AddTimedCallback(function(playerEntity)
                                                                                             playerEntity:SetArmor(playerEntity:GetArmor() - 0.1666666666 * currentAPMax)
@@ -227,7 +227,7 @@ if Server then
                                                         end
                                                         for i = 1, #players do
                                                             if IsValid(players[i]) then
-                                                                players[i]:SendDirectMessage(string.format("Player %s rolled a %i and is being slapped (%.1f AP per slap)!", playerEntity:GetName(), rolled_value, 0.2 * currentAPMax))
+                                                                players[i]:SendDirectMessage(string.format("Player %s rolled a %i and is being slapped (%.1f AP per slap)!", playerEntity:GetName(), rolled_value, 0.1666666666 * currentAPMax))
                                                             end
                                                         end
                                                     else
