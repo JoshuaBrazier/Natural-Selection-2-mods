@@ -121,23 +121,31 @@ if Server then
                     end
                 end
                 playerEntity:AddTimedCallback(function(playerEntity)
-                                                local nearbyEnemies = nil
-                                                if playerEntity:GetTeamNumber() == 1 then
-                                                    nearbyEnemies = GetEntitiesForTeamWithinRange("Player", kTeam2Index, playerEntity:GetOrigin(), 15)
-                                                elseif playerEntity:GetTeamNumber() == 2 then
-                                                    nearbyEnemies = GetEntitiesForTeamWithinRange("Player", kTeam1Index, playerEntity:GetOrigin(), 15)
-                                                end
-                                                players = GetEntities("Player")
-                                                if nearbyEnemies ~= nil then
-                                                    if #nearbyEnemies > 0 then
-                                                        for i = 1, #players do
-                                                            if IsValid(players[i]) then
-                                                                players[i]:SendDirectMessage(string.format("Player %s nuked an enemy / enemies!", playerEntity:GetName(), #nearbyEnemies))
+                                                if playerEntity.GetHealth and playerEntity:GetHealth() > 0 and not playerEntity:isa("MarineSpectator") and not playerEntity:isa("AlienSpectator") then
+                                                    local nearbyEnemies = nil
+                                                    if playerEntity:GetTeamNumber() == 1 then
+                                                        nearbyEnemies = GetEntitiesForTeamWithinRange("Player", kTeam2Index, playerEntity:GetOrigin(), 15)
+                                                    elseif playerEntity:GetTeamNumber() == 2 then
+                                                        nearbyEnemies = GetEntitiesForTeamWithinRange("Player", kTeam1Index, playerEntity:GetOrigin(), 15)
+                                                    end
+                                                    players = GetEntities("Player")
+                                                    if nearbyEnemies ~= nil then
+                                                        if #nearbyEnemies > 0 then
+                                                            for i = 1, #players do
+                                                                if IsValid(players[i]) then
+                                                                    players[i]:SendDirectMessage(string.format("Player %s nuked an enemy / enemies!", playerEntity:GetName(), #nearbyEnemies))
+                                                                end
                                                             end
-                                                        end
-                                                        for i = 1, #nearbyEnemies do
-                                                            if IsValid(nearbyEnemies[i]) then
-                                                                nearbyEnemies[i]:Kill()
+                                                            for i = 1, #nearbyEnemies do
+                                                                if IsValid(nearbyEnemies[i]) then
+                                                                    nearbyEnemies[i]:Kill()
+                                                                end
+                                                            end
+                                                        else
+                                                            for i = 1, #players do
+                                                                if IsValid(players[i]) then
+                                                                    players[i]:SendDirectMessage(string.format("Player %s nuked no enemies!", playerEntity:GetName(), #nearbyEnemies))
+                                                                end
                                                             end
                                                         end
                                                     else
@@ -147,22 +155,20 @@ if Server then
                                                             end
                                                         end
                                                     end
-                                                else
-                                                    for i = 1, #players do
-                                                        if IsValid(players[i]) then
-                                                            players[i]:SendDirectMessage(string.format("Player %s nuked no enemies!", playerEntity:GetName(), #nearbyEnemies))
-                                                        end
-                                                    end
+                                                    playerEntity:Kill()
                                                 end
-                                                playerEntity:Kill()
                                             end, 5)
             elseif rolled_value >= 25 and rolled_value < 40 then
                 if playerEntity:GetTeamNumber() == 1 then
-                    CreateEntity(CatPack.kMapName, playerEntity:GetOrigin() + Vector(0, 0.4, 0), kTeam1Index)
+                    if IsValid(playerEntity) and playerEntity.GetHealth and playerEntity:GetHealth() > 0 and not playerEntity:isa("MarineSpectator") and not playerEntity:isa("AlienSpectator") then
+                        CreateEntity(CatPack.kMapName, playerEntity:GetOrigin() + Vector(0, 0.4, 0), kTeam1Index)
+                    end
                     for i = 1, 10 do
                         playerEntity:AddTimedCallback(function(playerEntity)
                                                             if Server then
-                                                                CreateEntity(CatPack.kMapName, playerEntity:GetOrigin() + Vector(0, 0.5, 0), kTeam1Index)
+                                                                if IsValid(playerEntity) and playerEntity.GetHealth and playerEntity:GetHealth() > 0 and not playerEntity:isa("MarineSpectator") and not playerEntity:isa("AlienSpectator") then
+                                                                    CreateEntity(CatPack.kMapName, playerEntity:GetOrigin() + Vector(0, 0.5, 0), kTeam1Index)
+                                                                end
                                                             end
                                                         end, i * 3.75)
                     end
