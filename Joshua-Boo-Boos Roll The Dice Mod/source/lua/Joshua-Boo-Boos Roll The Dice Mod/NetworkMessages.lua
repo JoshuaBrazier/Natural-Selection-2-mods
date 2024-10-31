@@ -136,7 +136,7 @@ if Server then
                                                                                         end
                                                                                         players = GetEntities("Player")
                                                                                         for i = 1, #nearbyEnemies do
-                                                                                            if not nearbyEnemies[i]:isa("MarineSpectator") and not nearbyEnemies[i]:isa("AlienSpectator") and nearbyEnemies[i].GetIsAlive and nearbyEnemies[i]:GetIsAlive and nearbyEnemies[i].GetHealth and nearbyEnemies[i]:GetHealth() > 0 then
+                                                                                            if not nearbyEnemies[i]:isa("MarineSpectator") and not nearbyEnemies[i]:isa("AlienSpectator") and nearbyEnemies[i].GetIsAlive and nearbyEnemies[i]:GetIsAlive() and nearbyEnemies[i].GetHealth and nearbyEnemies[i]:GetHealth() > 0 then
                                                                                                 table.insert(nearbyAliveEnemies nearbyEnemies[i])
                                                                                             end
                                                                                         end
@@ -147,7 +147,7 @@ if Server then
                                                                                                         if #nearbyAliveEnemies == 1 then
                                                                                                             players[i]:SendDirectMessage(string.format("Player %s nuked 1 enemy!", playerEntity:GetName()))
                                                                                                         elseif #nearbyAliveEnemies > 1 then
-                                                                                                            players[i]:SendDirectMessage(string.format("Player %s nuked %i enemies!", playerEntity:GetName(), #nearbyEnemies))
+                                                                                                            players[i]:SendDirectMessage(string.format("Player %s nuked %i enemies!", playerEntity:GetName(), #nearbyAliveEnemies))
                                                                                                         end
                                                                                                     end
                                                                                                 end
@@ -159,14 +159,14 @@ if Server then
                                                                                             else
                                                                                                 for i = 1, #players do
                                                                                                     if IsValid(players[i]) then
-                                                                                                        players[i]:SendDirectMessage(string.format("Player %s nuked no enemies!", playerEntity:GetName(), #nearbyEnemies))
+                                                                                                        players[i]:SendDirectMessage(string.format("Player %s nuked no enemies!", playerEntity:GetName()))
                                                                                                     end
                                                                                                 end
                                                                                             end
                                                                                         else
                                                                                             for i = 1, #players do
                                                                                                 if IsValid(players[i]) then
-                                                                                                    players[i]:SendDirectMessage(string.format("Player %s nuked no enemies!", playerEntity:GetName(), #nearbyEnemies))
+                                                                                                    players[i]:SendDirectMessage(string.format("Player %s nuked no enemies!", playerEntity:GetName()))
                                                                                                 end
                                                                                             end
                                                                                         end
