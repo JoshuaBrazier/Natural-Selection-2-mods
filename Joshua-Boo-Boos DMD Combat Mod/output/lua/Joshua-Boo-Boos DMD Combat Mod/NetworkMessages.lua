@@ -327,7 +327,7 @@ if Server then
                                                             end
                                                         else
                                                             StartSoundEffectOnEntity(statupSound, playerEntity)
-                                                            playerEntity:SetMaxArmor(playerEntity:GetMaxArmor() * 2.5)
+                                                            playerEntity:SetMaxArmor(math.min(playerEntity:GetMaxArmor() * 2.5, 2044))
                                                             playerEntity:SetArmor(playerEntity:GetMaxArmor())
                                                             for i = 1, #players do
                                                                 if IsValid(players[i]) then
@@ -338,7 +338,7 @@ if Server then
                                                         
                                                     elseif playerEntity:GetTeamNumber() == 2 then
                                                         StartSoundEffectOnEntity(statupSound, playerEntity)
-                                                        playerEntity:SetMaxHealth(playerEntity:GetMaxHealth() * 2.5)
+                                                        playerEntity:SetMaxHealth(math.min(playerEntity:GetMaxHealth() * 2.5, 8190))
                                                         playerEntity:SetHealth(playerEntity:GetMaxHealth())
                                                         for i = 1, #players do
                                                             if IsValid(players[i]) then
@@ -380,7 +380,7 @@ if Server then
                                     
                                             end
 
-                                    end, 1.5)
+                                    end, 1)
 
     end)
 
