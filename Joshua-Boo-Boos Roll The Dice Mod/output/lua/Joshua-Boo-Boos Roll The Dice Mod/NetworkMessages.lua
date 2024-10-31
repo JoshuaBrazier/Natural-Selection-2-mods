@@ -219,11 +219,23 @@ if Server then
                                                     if playerEntity:isa("Exo") then
                                                         StartSoundEffectOnEntity(statdownSound, playerEntity)
                                                         local currentAPMax = playerEntity:GetMaxArmor()
-                                                        playerEntity:SetArmor(math.max(0, playerEntity:GetArmor() - 0.1666666666 * currentAPMax))
-                                                        for i = 1, 2 do
-                                                            playerEntity:AddTimedCallback(function(playerEntity)
-                                                                                            playerEntity:SetArmor(playerEntity:GetArmor() - 0.1666666666 * currentAPMax)
-                                                                                        end, 1.25 * i)
+                                                        if playerEntity.GetArmor then
+                                                            if playerEntity:GetArmor() - 0.1666666666 * currentAPMax <= 0 then
+                                                                playerEntity:Kill()
+                                                            else
+                                                                playerEntity:SetArmor(playerEntity:GetArmor() - 0.1666666666 * currentAPMax)
+                                                                for i = 1, 2 do
+                                                                    playerEntity:AddTimedCallback(function(playerEntity)
+                                                                                                    if playerEntity.GetArmor then
+                                                                                                        if playerEntity:GetArmor() - 0.1666666666 * currentAPMax <= 0 then
+                                                                                                            playerEntity:Kill()
+                                                                                                        else
+                                                                                                            playerEntity:SetArmor(playerEntity:GetArmor() - 0.1666666666 * currentAPMax)
+                                                                                                        end
+                                                                                                    end
+                                                                                                end, 1.25 * i)
+                                                                end
+                                                            end
                                                         end
                                                         for i = 1, #players do
                                                             if IsValid(players[i]) then
