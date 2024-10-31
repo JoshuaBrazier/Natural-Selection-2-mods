@@ -165,14 +165,17 @@ if Server then
                                                                                 end, 5)
                                                 elseif rolled_value >= 25 and rolled_value < 40 then
                                                     if playerEntity:GetTeamNumber() == 1 then
-                                                        for i = 1, 10 do
+                                                        if not playerEntity:isa("MarineSpectator") and not playerEntity:isa("AlienSpectator") then
+                                                            CreateEntity(CatPack.kMapName, playerEntity:GetOrigin() + Vector(0, 0.5, 0), kTeam1Index)
+                                                        end
+                                                        for i = 1, 7 do
                                                             playerEntity:AddTimedCallback(function(playerEntity)
                                                                                                 if Server then
                                                                                                     if not playerEntity:isa("MarineSpectator") and not playerEntity:isa("AlienSpectator") then
                                                                                                         CreateEntity(CatPack.kMapName, playerEntity:GetOrigin() + Vector(0, 0.5, 0), kTeam1Index)
                                                                                                     end
                                                                                                 end
-                                                                                            end, i * 3.75)
+                                                                                            end, i * 3.5)
                                                         end
                                                         for i = 1, #players do
                                                             players[i]:SendDirectMessage(string.format("Player %s rolled a %i and is receiving some catalyst packs!", playerEntity:GetName(), rolled_value))
@@ -217,9 +220,9 @@ if Server then
                                                         StartSoundEffectOnEntity(statdownSound, playerEntity)
                                                         local currentAPMax = playerEntity:GetMaxArmor()
                                                         playerEntity:SetArmor(math.max(0, playerEntity:GetArmor() - 0.2 * currentAPMax))
-                                                        for i = 1, 4 do
+                                                        for i = 1, 2 do
                                                             playerEntity:AddTimedCallback(function(playerEntity)
-                                                                                            playerEntity:SetArmor(math.max(0, playerEntity:GetArmor() - 0.2 * currentAPMax))
+                                                                                            playerEntity:SetArmor(playerEntity:GetArmor() - 0.1666666666 * currentAPMax)
                                                                                         end, 1.25 * i)
                                                         end
                                                         for i = 1, #players do
