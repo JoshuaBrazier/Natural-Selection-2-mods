@@ -26,7 +26,8 @@ if Server then
     
         local playerEntity = Shared.GetEntity(tonumber(msg.entId))
 
-        playerEntity:AddTimedCallback(function(playerEntity)
+        if IsValid(playerEntity) and playerEntity.GetIsAlive and playerEntity:GetIsAlive() and playerEntity.GetHealth() and playerEntity:GetHealth() > 0 and not playerEntity:isa("MarineSpectator") and not playerEntity:isa("AlienSpectator") then
+
             if rolled_value == 1 then
                 local enemies = {}
                 if playerEntity:GetTeamNumber() == 1 then
@@ -369,7 +370,8 @@ if Server then
                     end
                 end
             end
-        end, 0.5)
+
+        end
 
     end)
 
