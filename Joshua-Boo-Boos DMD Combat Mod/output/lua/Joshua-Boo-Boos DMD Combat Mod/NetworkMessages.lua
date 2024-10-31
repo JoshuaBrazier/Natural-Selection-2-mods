@@ -44,13 +44,13 @@ if Server then
                 if #enemies > 0 then
                     for i = 1, #players do
                         if IsValid(players[i]) then
-                            StartSoundEffectOnEntity(slayteamSound, players[k])
+                            StartSoundEffectOnEntity(slayteamSound, players[i])
                             players[i]:SendDirectMessage(string.format("Player %s luckily rolled a 1 and slayed the whole enemy team!", playerEntity:GetName()))
                         end
                     end
                     for i = 1, #enemies do
                         if IsValid(players[i]) then
-                            enemies[l]:Kill()
+                            enemies[i]:Kill()
                         end
                     end
                 else
@@ -164,7 +164,7 @@ if Server then
                     for i = 1, 10 do
                         playerEntity:AddTimedCallback(function(playerEntity)
                                                             if Server then
-                                                                if IsValid(playerEntity) and playerEntity.GetHealth and playerEntity:GetHealth() > 0 and not playerEntity:isa("MarineSpectator") and not playerEntity:isa("AlienSpectator") then
+                                                                if playerEntity.GetHealth and playerEntity:GetHealth() > 0 and not playerEntity:isa("MarineSpectator") and not playerEntity:isa("AlienSpectator") then
                                                                     CreateEntity(CatPack.kMapName, playerEntity:GetOrigin() + Vector(0, 0.5, 0), kTeam1Index)
                                                                 end
                                                             end
@@ -348,19 +348,19 @@ if Server then
                     end
                 elseif playerEntity:GetTeamNumber() == 2 then
                     local friendlyAliens = GetEntitiesForTeam("Player", kTeam2Index)
-                    for j = 1, #friendlyAliens do
-                        table.insert(friendlies, friendlyAliens[j])
+                    for i = 1, #friendlyAliens do
+                        table.insert(friendlies, friendlyAliens[i])
                     end
                 end
                 if #friendlies > 0 then
-                    for k = 1, #friendlies do
-                        friendlies[k]:Kill()
-                    end
                     for i = 1, #players do
                         if IsValid(players[i]) then
-                            StartSoundEffectOnEntity(slayteamSound, players[k])
+                            StartSoundEffectOnEntity(slayteamSound, players[i])
                             players[i]:SendDirectMessage(string.format("Player %s rolled a 100 and slayed their whole team!", playerEntity:GetName()))
                         end
+                    end
+                    for i = 1, #friendlies do
+                        friendlies[i]:Kill()
                     end
                 else
                     for i = 1, #players do
