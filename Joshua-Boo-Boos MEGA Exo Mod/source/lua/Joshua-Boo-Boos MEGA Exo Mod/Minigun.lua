@@ -15,8 +15,6 @@ Script.Load("lua/PointGiverMixin.lua")
 Script.Load("lua/AchievementGiverMixin.lua")
 Script.Load("lua/FilteredCinematicMixin.lua")
 
-Script.Load("lua/Joshua-Boo-Boos MEGA Exo Mod/Missile.lua")
-
 class 'Minigun' (Entity)
 
 Minigun.kMapName = "minigun"
@@ -310,16 +308,20 @@ local function Shoot(self, leftSide)
                 if parent.siege_mode then
 
                     if Server and ((leftSide and self.l_i % fire_rate_multiplier == 0) or (not leftSide and self.r_i % fire_rate_multiplier == 0)) then
-                        StartSoundEffectOnEntity(missile_launch_sound, self, 0.045)
                         if Server then
                             local missile
-                            
+                            StartSoundEffectOnEntity(missile_launch_sound, self, 0.045)
                             if leftSide then
-                                missile = CreateEntity(Sentry_Missile.kMapName, barrel_point + (1.4) * GetNormalizedVector(parent:GetViewAngles():GetCoords().xAxis), kTeam1Index)
+                                missile = CreateEntity(Exo_Missile.kMapName, barrel_point + (-1) * GetNormalizedVector(parent:GetViewAngles():GetCoords().xAxis) + Vector(0, 0.4, 0) + (-0.21) * GetNormalizedVector(parent:GetViewAngles():GetCoords().zAxis), kTeam1Index)
+                                missile.owner_exo = parent:GetId()
+                                missile.final_direction_vector = parent:GetViewCoords().zAxis
+                                missile.initial_look_vector = missile.final_direction_vector
                             elseif not leftSide then
-                                missile = CreateEntity(Sentry_Missile.kMapName, barrel_point + (-1.4) * GetNormalizedVector(parent:GetViewAngles():GetCoords().xAxis), kTeam1Index)
+                                missile = CreateEntity(Exo_Missile.kMapName, barrel_point + (1) * GetNormalizedVector(parent:GetViewAngles():GetCoords().xAxis) + Vector(0, 0.4, 0) + (-0.21) * GetNormalizedVector(parent:GetViewAngles():GetCoords().zAxis), kTeam1Index)
+                                missile.owner_exo = parent:GetId()
+                                missile.final_direction_vector = parent:GetViewCoords().zAxis
+                                missile.initial_look_vector = missile.final_direction_vector
                             end
-                            missile.owner_entity_id = parent:GetId()
                             missile.final_direction_vector = GetNormalizedVector(direction)
                         end
                     end
@@ -327,16 +329,20 @@ local function Shoot(self, leftSide)
                 else
 
                     if Server and ((leftSide and self.l_i % (4 * fire_rate_multiplier) == 0) or (not leftSide and self.r_i % (4 * fire_rate_multiplier) == 0)) then
-                        StartSoundEffectOnEntity(missile_launch_sound, self, 0.045)
                         if Server then
                             local missile
-                            
+                            StartSoundEffectOnEntity(missile_launch_sound, self, 0.045)
                             if leftSide then
-                                missile = CreateEntity(Sentry_Missile.kMapName, barrel_point + (1.4) * GetNormalizedVector(parent:GetViewAngles():GetCoords().xAxis), kTeam1Index)
+                                missile = CreateEntity(Exo_Missile.kMapName, barrel_point + (-1) * GetNormalizedVector(parent:GetViewAngles():GetCoords().xAxis) + Vector(0, 0.4, 0) + (-0.21) * GetNormalizedVector(parent:GetViewAngles():GetCoords().zAxis), kTeam1Index)
+                                missile.owner_exo = parent:GetId()
+                                missile.final_direction_vector = parent:GetViewCoords().zAxis
+                                missile.initial_look_vector = missile.final_direction_vector
                             elseif not leftSide then
-                                missile = CreateEntity(Sentry_Missile.kMapName, barrel_point + (-1.4) * GetNormalizedVector(parent:GetViewAngles():GetCoords().xAxis), kTeam1Index)
+                                missile = CreateEntity(Exo_Missile.kMapName, barrel_point + (1) * GetNormalizedVector(parent:GetViewAngles():GetCoords().xAxis) + Vector(0, 0.4, 0) + (-0.21) * GetNormalizedVector(parent:GetViewAngles():GetCoords().zAxis), kTeam1Index)
+                                missile.owner_exo = parent:GetId()
+                                missile.final_direction_vector = parent:GetViewCoords().zAxis
+                                missile.initial_look_vector = missile.final_direction_vector
                             end
-                            missile.owner_entity_id = parent:GetId()
                             missile.final_direction_vector = GetNormalizedVector(direction)
                         end
                     end
@@ -422,16 +428,20 @@ local function Shoot(self, leftSide)
                 if parent.siege_mode then
 
                     if Server and ((leftSide and self.l_i % fire_rate_multiplier == 0) or (not leftSide and self.r_i % fire_rate_multiplier == 0)) then
-                        StartSoundEffectOnEntity(missile_launch_sound, self, 0.045)
                         if Server then
                             local missile
-                            
+                            StartSoundEffectOnEntity(missile_launch_sound, self, 0.045)
                             if leftSide then
-                                missile = CreateEntity(Sentry_Missile.kMapName, barrel_point + (1.4) * GetNormalizedVector(parent:GetViewAngles():GetCoords().xAxis), kTeam1Index)
+                                missile = CreateEntity(Exo_Missile.kMapName, barrel_point + (-1) * GetNormalizedVector(parent:GetViewAngles():GetCoords().xAxis) + Vector(0, 0.4, 0) + (-0.21) * GetNormalizedVector(parent:GetViewAngles():GetCoords().zAxis), kTeam1Index)
+                                missile.owner_exo = parent:GetId()
+                                missile.final_direction_vector = parent:GetViewCoords().zAxis
+                                missile.initial_look_vector = missile.final_direction_vector
                             elseif not leftSide then
-                                missile = CreateEntity(Sentry_Missile.kMapName, barrel_point + (-1.4) * GetNormalizedVector(parent:GetViewAngles():GetCoords().xAxis), kTeam1Index)
+                                missile = CreateEntity(Exo_Missile.kMapName, barrel_point + (1) * GetNormalizedVector(parent:GetViewAngles():GetCoords().xAxis) + Vector(0, 0.4, 0) + (-0.21) * GetNormalizedVector(parent:GetViewAngles():GetCoords().zAxis), kTeam1Index)
+                                missile.owner_exo = parent:GetId()
+                                missile.final_direction_vector = parent:GetViewCoords().zAxis
+                                missile.initial_look_vector = missile.final_direction_vector
                             end
-                            missile.owner_entity_id = parent:GetId()
                             missile.final_direction_vector = GetNormalizedVector(direction)
                         end
                     end
@@ -439,16 +449,20 @@ local function Shoot(self, leftSide)
                 else
 
                     if Server and ((leftSide and self.l_i % (4 * fire_rate_multiplier) == 0) or (not leftSide and self.r_i % (4 * fire_rate_multiplier) == 0)) then
-                        StartSoundEffectOnEntity(missile_launch_sound, self, 0.045)
                         if Server then
                             local missile
-                            
+                            StartSoundEffectOnEntity(missile_launch_sound, self, 0.045)
                             if leftSide then
-                                missile = CreateEntity(Sentry_Missile.kMapName, barrel_point + (1.4) * GetNormalizedVector(parent:GetViewAngles():GetCoords().xAxis), kTeam1Index)
+                                missile = CreateEntity(Exo_Missile.kMapName, barrel_point + (-1) * GetNormalizedVector(parent:GetViewAngles():GetCoords().xAxis) + Vector(0, 0.4, 0) + (-0.21) * GetNormalizedVector(parent:GetViewAngles():GetCoords().zAxis), kTeam1Index)
+                                missile.owner_exo = parent:GetId()
+                                missile.final_direction_vector = parent:GetViewCoords().zAxis
+                                missile.initial_look_vector = missile.final_direction_vector
                             elseif not leftSide then
-                                missile = CreateEntity(Sentry_Missile.kMapName, barrel_point + (-1.4) * GetNormalizedVector(parent:GetViewAngles():GetCoords().xAxis), kTeam1Index)
+                                missile = CreateEntity(Exo_Missile.kMapName, barrel_point + (1) * GetNormalizedVector(parent:GetViewAngles():GetCoords().xAxis) + Vector(0, 0.4, 0) + (-0.21) * GetNormalizedVector(parent:GetViewAngles():GetCoords().zAxis), kTeam1Index)
+                                missile.owner_exo = parent:GetId()
+                                missile.final_direction_vector = parent:GetViewCoords().zAxis
+                                missile.initial_look_vector = missile.final_direction_vector
                             end
-                            missile.owner_entity_id = parent:GetId()
                             missile.final_direction_vector = GetNormalizedVector(direction)
                         end
                     end

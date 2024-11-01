@@ -1,7 +1,0 @@
-name        = "Joshua-Boo-Boos Minigun Exo Missile Mod"
-source_dir  = "source"
-output_dir  = "output"
-description = [=[Minigun exos now shoot missiles that deal AOE damage to enemies near the explosion of a missile.]=]
-image       = "preview.jpg"
-tag_modtype = "Gameplay Tweak"
-tag_support = "Must be run on Server"

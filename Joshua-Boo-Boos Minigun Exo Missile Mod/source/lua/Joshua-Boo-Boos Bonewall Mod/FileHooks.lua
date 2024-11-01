@@ -1,1 +1,0 @@
-ModLoader.SetupFileHook( "lua/Weapons/Marine/Minigun.lua", "lua/Joshua-Boo-Boos Bonewall Mod/Minigun.lua", "replace")
