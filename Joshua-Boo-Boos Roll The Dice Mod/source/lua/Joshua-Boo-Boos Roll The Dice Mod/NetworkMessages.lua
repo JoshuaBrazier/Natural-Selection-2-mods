@@ -28,7 +28,7 @@ if Server then
     
         local playerEntity = Shared.GetEntity(tonumber(msg.entId))
 
-        StartSoundEffectOnEntity(dicerollSound, playerEntity:GetOrigin())
+        StartSoundEffectOnEntity(dicerollSound, playerEntity)
 
         playerEntity:AddTimedCallback(function(playerEntity)
         
