@@ -4,6 +4,8 @@ local RTD_Table = {
 
 Shared.RegisterNetworkMessage("RTD", RTD_Table)
 
+local dicerollSound = PrecacheAsset("sound/RollTheDice.fev/RollTheDice/DiceRoll")
+local enzymeSound = PrecacheAsset("sound/RollTheDice.fev/RollTheDice/EnzymeSound")
 local bulletsSound = PrecacheAsset("sound/RollTheDice.fev/RollTheDice/Bullets")
 local nukeSound = PrecacheAsset("sound/RollTheDice.fev/RollTheDice/Nuke")
 local omaewamoushindeiruSound = PrecacheAsset("sound/RollTheDice.fev/RollTheDice/OMaeWaMouShindeiru")
@@ -26,6 +28,8 @@ if Server then
     
         local playerEntity = Shared.GetEntity(tonumber(msg.entId))
 
+        StartSoundEffectOnEntity(dicerollSound, playerEntity:GetOrigin())
+
         playerEntity:AddTimedCallback(function(playerEntity)
         
                                             if not playerEntity:isa("MarineSpectator") and not playerEntity:isa("AlienSpectator") then
@@ -33,37 +37,39 @@ if Server then
                                                 players = GetEntities("Player")
 
                                                 if rolled_value == 1 then
-                                                    local enemies = {}
-                                                    if playerEntity:GetTeamNumber() == 1 then
-                                                        local enemyAliens = GetEntitiesForTeam("Player", kTeam2Index)
-                                                        for i = 1, #enemyAliens do
-                                                            table.insert(enemies, enemyAliens[i])
-                                                        end
-                                                    elseif playerEntity:GetTeamNumber() == 2 then
-                                                        local enemyMarines = GetEntitiesForTeam("Player", kTeam1Index)
-                                                        for i = 1, #enemyMarines do
-                                                            table.insert(enemies, enemyAliens[i])
+
+                                                    for i = 1, #players do
+                                                        if IsValid(players[i]) then
+                                                            StartSoundEffectOnEntity(slayteamSound, players[i])
+                                                            players[i]:SendDirectMessage(string.format("Player %s luckily rolled a 1 and will slay the whole enemy team!", playerEntity:GetName()))
                                                         end
                                                     end
-                                                    if #enemies > 0 then
-                                                        for i = 1, #players do
-                                                            if IsValid(players[i]) then
-                                                                StartSoundEffectOnEntity(slayteamSound, players[i])
-                                                                players[i]:SendDirectMessage(string.format("Player %s luckily rolled a 1 and slayed the whole enemy team!", playerEntity:GetName()))
-                                                            end
-                                                        end
-                                                        for i = 1, #enemies do
-                                                            if IsValid(players[i]) then
-                                                                enemies[i]:Kill()
-                                                            end
-                                                        end
-                                                    else
-                                                        for i = 1, #players do
-                                                            if IsValid(players[i]) then
-                                                                players[i]:SendDirectMessage(string.format("Player %s luckily rolled a 1 but there are no enemy players!", playerEntity:GetName()))
-                                                            end
-                                                        end
-                                                    end
+
+                                                    playerEntity:AddTimedCallback(function(playerEntity)
+                                                                                        local enemies = {}
+                                                                                        if playerEntity:GetTeamNumber() == 1 then
+                                                                                            local enemyAliens = GetEntitiesForTeam("Player", kTeam2Index)
+                                                                                            for i = 1, #enemyAliens do
+                                                                                                table.insert(enemies, enemyAliens[i])
+                                                                                            end
+                                                                                        elseif playerEntity:GetTeamNumber() == 2 then
+                                                                                            local enemyMarines = GetEntitiesForTeam("Player", kTeam1Index)
+                                                                                            for i = 1, #enemyMarines do
+                                                                                                table.insert(enemies, enemyAliens[i])
+                                                                                            end
+                                                                                        end
+
+                                                                                        if #enemies > 0 then
+                                                        
+                                                                                            for i = 1, #enemies do
+                                                                                                if IsValid(players[i]) then
+                                                                                                    enemies[i]:Kill()
+                                                                                                end
+                                                                                            end
+
+                                                                                        end
+                                                                                end, 5)
+
                                                 elseif rolled_value >= 2 and rolled_value < 15 then
                                                     if playerEntity:GetTeamNumber() == 1 then
                                                         if playerEntity:isa("Exo") then
@@ -184,6 +190,7 @@ if Server then
                                                         end
                                                     elseif playerEntity:GetTeamNumber() == 2 then
                                                         playerEntity:TriggerEnzyme(30)
+                                                        StartSoundEffectOnEntity(enzymeSound, playerEntity)
                                                         for i = 1, #players do
                                                             if IsValid(players[i]) then
                                                                 players[i]:SendDirectMessage(string.format("Player %s rolled a %i and is enzymed for 30 seconds!", playerEntity:GetName(), rolled_value))
@@ -201,19 +208,31 @@ if Server then
                                                 elseif rolled_value >= 45 and rolled_value < 55 then
                                                     StartSoundEffectOnEntity(statdownSound, playerEntity)
                                                     if playerEntity:isa("Exo") then
+                                                        local currentMaxAPBeforeCallback = playerEntity:GetMaxArmor()
+                                                        local currentAPBeforeCallback = playerEntity:GetArmor()
                                                         playerEntity:SetArmor(1)
                                                         playerEntity:SetMaxArmor(1)
+                                                        playerEntity:AddTimedCallback(function(playerEntity)
+                                                                                            playerEntity:SetMaxArmor(currentMaxAPBeforeCallback)
+                                                                                            playerEntity:SetArmor(currentAPBeforeCallback)
+                                                                                    end, 5)
                                                         for i = 1, #players do
                                                             if IsValid(players[i]) then
-                                                                players[i]:SendDirectMessage(string.format("Player %s rolled a %i and now has max AP = 1!", playerEntity:GetName(), rolled_value))
+                                                                players[i]:SendDirectMessage(string.format("Player %s rolled a %i and now has max AP = 1 for 15 seconds!", playerEntity:GetName(), rolled_value))
                                                             end
                                                         end
                                                     else
+                                                        local currentMaxHPBeforeCallback = playerEntity:GetMaxHealth()
+                                                        local currentHPBeforeCallback = playerEntity:GetHealth()
                                                         playerEntity:SetHealth(1)
                                                         playerEntity:SetMaxHealth(1)
+                                                        playerEntity:AddTimedCallback(function(playerEntity)
+                                                                                            playerEntity:SetMaxHealth(currentMaxHPBeforeCallback)
+                                                                                            playerEntity:SetHealth(currentHPBeforeCallback)
+                                                                                    end, 5)
                                                         for i = 1, #players do
                                                             if IsValid(players[i]) then
-                                                                players[i]:SendDirectMessage(string.format("Player %s rolled a %i and now has max HP = 1!", playerEntity:GetName(), rolled_value))
+                                                                players[i]:SendDirectMessage(string.format("Player %s rolled a %i and now has max HP = 1 for 15 seconds!", playerEntity:GetName(), rolled_value))
                                                             end
                                                         end
                                                     end
@@ -341,55 +360,67 @@ if Server then
                                                             end
                                                         else
                                                             StartSoundEffectOnEntity(statupSound, playerEntity)
-                                                            playerEntity:SetMaxArmor(math.min(playerEntity:GetMaxArmor() * 2.5, 2044))
+                                                            local oldMaxAP = playerEntity:GetMaxArmor()
+                                                            local oldAP = playerEntity:GetArmor()
+                                                            playerEntity:SetMaxArmor(math.min(playerEntity:GetMaxArmor() * 2.5, 900))
                                                             playerEntity:SetArmor(playerEntity:GetMaxArmor())
+                                                            playerEntity:AddTimedCallback(function(playerEntity)
+                                                                                                playerEntity:SetArmor(oldAP)
+                                                                                                playerEntity:SetMaxArmor(oldMaxAP)
+                                                                                        end, 15)
                                                             for i = 1, #players do
                                                                 if IsValid(players[i]) then
-                                                                    players[i]:SendDirectMessage(string.format("Player %s rolled a %i and their AP and max AP was set to %.1f!", playerEntity:GetName(), rolled_value, playerEntity:GetMaxArmor()))
+                                                                    players[i]:SendDirectMessage(string.format("Player %s rolled a %i and their AP and max AP was set to %.1f for 15 seconds!", playerEntity:GetName(), rolled_value, playerEntity:GetMaxArmor()))
                                                                 end
                                                             end
                                                         end
                                                         
                                                     elseif playerEntity:GetTeamNumber() == 2 then
                                                         StartSoundEffectOnEntity(statupSound, playerEntity)
-                                                        playerEntity:SetMaxHealth(math.min(playerEntity:GetMaxHealth() * 2.5, 8190))
+                                                        local oldMaxHP = playerEntity:GetMaxHealth()
+                                                        local oldHP = playerEntity:GetHealth()
+                                                        playerEntity:SetMaxHealth(math.min(playerEntity:GetMaxHealth() * 2.5, 2750))
                                                         playerEntity:SetHealth(playerEntity:GetMaxHealth())
+                                                        playerEntity:AddTimedCallback(function(playerEntity)
+                                                                                            playerEntity:SetHealth(oldHP)
+                                                                                            playerEntity:SetMaxHealth(oldMaxHP)
+                                                                                    end, 15)
                                                         for i = 1, #players do
                                                             if IsValid(players[i]) then
-                                                                players[i]:SendDirectMessage(string.format("Player %s rolled a %i and their HP and max HP was set to %.1f!", playerEntity:GetName(), rolled_value, playerEntity:GetMaxHealth()))
+                                                                players[i]:SendDirectMessage(string.format("Player %s rolled a %i and their HP and max HP was set to %.1f for 15 seconds!", playerEntity:GetName(), rolled_value, playerEntity:GetMaxHealth()))
                                                             end
                                                         end
                                                     end
                                                 elseif rolled_value == 100 then
-                                                    local friendlies = {}
-                                                    if playerEntity:GetTeamNumber() == 1 then
-                                                        local friendlyMarines = GetEntitiesForTeam("Player", kTeam1Index)
-                                                        for i = 1, #friendlyMarines do
-                                                            table.insert(friendlies, friendlyMarines[i])
-                                                        end
-                                                    elseif playerEntity:GetTeamNumber() == 2 then
-                                                        local friendlyAliens = GetEntitiesForTeam("Player", kTeam2Index)
-                                                        for i = 1, #friendlyAliens do
-                                                            table.insert(friendlies, friendlyAliens[i])
+                                                    
+                                                    for i = 1, #players do
+                                                        if IsValid(players[i]) then
+                                                            StartSoundEffectOnEntity(slayteamSound, players[i])
+                                                            players[i]:SendDirectMessage(string.format("Player %s unluckily rolled a 100 and will slay their whole team!", playerEntity:GetName()))
                                                         end
                                                     end
-                                                    if #friendlies > 0 then
-                                                        for i = 1, #players do
-                                                            if IsValid(players[i]) then
-                                                                StartSoundEffectOnEntity(slayteamSound, players[i])
-                                                                players[i]:SendDirectMessage(string.format("Player %s rolled a 100 and slayed their whole team!", playerEntity:GetName()))
-                                                            end
-                                                        end
-                                                        for i = 1, #friendlies do
-                                                            friendlies[i]:Kill()
-                                                        end
-                                                    else
-                                                        for i = 1, #players do
-                                                            if IsValid(players[i]) then
-                                                                players[i]:SendDirectMessage(string.format("Player %s rolled a 100 and there are no enemies to slay!", playerEntity:GetName()))
-                                                            end
-                                                        end
-                                                    end
+                                                    playerEntity:AddTimedCallback(function(playerEntity)
+                                                                                        local friendlies = {}
+                                                                                        if playerEntity:GetTeamNumber() == 1 then
+                                                                                            local friendlyMarines = GetEntitiesForTeam("Player", kTeam1Index)
+                                                                                            for i = 1, #friendlyMarines do
+                                                                                                table.insert(friendlies, friendlyMarines[i])
+                                                                                            end
+                                                                                        elseif playerEntity:GetTeamNumber() == 2 then
+                                                                                            local friendlyAliens = GetEntitiesForTeam("Player", kTeam2Index)
+                                                                                            for i = 1, #friendlyAliens do
+                                                                                                table.insert(friendlies, friendlyAliens[i])
+                                                                                            end
+                                                                                        end
+                                                                                    
+                                                                                        if #friendlies > 0 then
+                                                        
+                                                                                            for i = 1, #friendlies do
+                                                                                                friendlies[i]:Kill()
+                                                                                            end
+
+                                                                                        end
+                                                                                end, 5)
                                                 end
                                     
                                             end

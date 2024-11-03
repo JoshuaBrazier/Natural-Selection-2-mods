@@ -1151,6 +1151,12 @@ function Exo:HandleButtons(input)
 
     if self:GetHasMinigun() then
 
+        if self.siege_mode then
+
+            input.move:Scale(0)
+        
+        end
+
         if bit.band(input.commands, Move.Reload) ~= 0 then
             
             if self.siege_mode_timer_now >= self.siege_mode_timer then
