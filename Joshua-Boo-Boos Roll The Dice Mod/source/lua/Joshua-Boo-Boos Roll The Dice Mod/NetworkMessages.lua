@@ -774,13 +774,25 @@ if Server then
                                                                             enemyToSlap = enemies[randomRollEnemies]
                                                                             for i = 1, 5 do
                                                                                 enemyToSlap:AddTimedCallback(function(enemyToSlap)
-                                                                                                                if enemyToSlap.GetIsAlive and enemyToSlap:GetIsAlive() and enemyToSlap.GetHealth then
-                                                                                                                    if enemyToSlap:GetHealth() <= 0.198 * enemyToSlap:GetMaxHealth() then
-                                                                                                                        StartSoundEffectOnEntity(slapSound, enemyToSlap)
-                                                                                                                        enemyToSlap:Kill()
-                                                                                                                    else
-                                                                                                                        StartSoundEffectOnEntity(slapSound, enemyToSlap)
-                                                                                                                        enemyToSlap:SetHealth(enemyToSlap:GetHealth() - 0.198 * enemyToSlap:GetMaxHealth())
+                                                                                                                if not enemyToSlap:isa("Exo")
+                                                                                                                    if enemyToSlap.GetIsAlive and enemyToSlap:GetIsAlive() and enemyToSlap.GetHealth then
+                                                                                                                        if enemyToSlap:GetHealth() <= 0.198 * enemyToSlap:GetMaxHealth() then
+                                                                                                                            StartSoundEffectOnEntity(slapSound, enemyToSlap)
+                                                                                                                            enemyToSlap:Kill()
+                                                                                                                        else
+                                                                                                                            StartSoundEffectOnEntity(slapSound, enemyToSlap)
+                                                                                                                            enemyToSlap:SetHealth(enemyToSlap:GetHealth() - 0.198 * enemyToSlap:GetMaxHealth())
+                                                                                                                        end
+                                                                                                                    end
+                                                                                                                else
+                                                                                                                    if enemyToSlap.GetIsAlive and enemyToSlap:GetIsAlive() and enemyToSlap.GetArmor then
+                                                                                                                        if enemyToSlap:GetArmor() <= 0.198 * enemyToSlap:GetMaxArmor() then
+                                                                                                                            StartSoundEffectOnEntity(slapSound, enemyToSlap)
+                                                                                                                            enemyToSlap:Kill()
+                                                                                                                        else
+                                                                                                                            StartSoundEffectOnEntity(slapSound, enemyToSlap)
+                                                                                                                            enemyToSlap:SetHealth(enemyToSlap:GetArmor() - 0.198 * enemyToSlap:GetMaxArmor())
+                                                                                                                        end
                                                                                                                     end
                                                                                                                 end
                                                                                                             end, 0.80 * i)
@@ -810,13 +822,25 @@ if Server then
                                                                             enemyToSlap = enemies[randomRollEnemies]
                                                                             for i = 1, 5 do
                                                                                 enemyToSlap:AddTimedCallback(function(enemyToSlap)
-                                                                                                                if enemyToSlap.GetIsAlive and enemyToSlap:GetIsAlive() and enemyToSlap.GetHealth then
-                                                                                                                    if enemyToSlap:GetHealth() <= 0.198 * enemyToSlap:GetMaxHealth() then
-                                                                                                                        StartSoundEffectOnEntity(slapSound, enemyToSlap)
-                                                                                                                        enemyToSlap:Kill()
-                                                                                                                    else
-                                                                                                                        StartSoundEffectOnEntity(slapSound, enemyToSlap)
-                                                                                                                        enemyToSlap:SetHealth(enemyToSlap:GetHealth() - 0.198 * enemyToSlap:GetMaxHealth())
+                                                                                                                if not enemyToSlap:isa("Exo")
+                                                                                                                    if enemyToSlap.GetIsAlive and enemyToSlap:GetIsAlive() and enemyToSlap.GetHealth then
+                                                                                                                        if enemyToSlap:GetHealth() <= 0.198 * enemyToSlap:GetMaxHealth() then
+                                                                                                                            StartSoundEffectOnEntity(slapSound, enemyToSlap)
+                                                                                                                            enemyToSlap:Kill()
+                                                                                                                        else
+                                                                                                                            StartSoundEffectOnEntity(slapSound, enemyToSlap)
+                                                                                                                            enemyToSlap:SetHealth(enemyToSlap:GetHealth() - 0.198 * enemyToSlap:GetMaxHealth())
+                                                                                                                        end
+                                                                                                                    end
+                                                                                                                else
+                                                                                                                    if enemyToSlap.GetIsAlive and enemyToSlap:GetIsAlive() and enemyToSlap.GetArmor then
+                                                                                                                        if enemyToSlap:GetArmor() <= 0.198 * enemyToSlap:GetMaxArmor() then
+                                                                                                                            StartSoundEffectOnEntity(slapSound, enemyToSlap)
+                                                                                                                            enemyToSlap:Kill()
+                                                                                                                        else
+                                                                                                                            StartSoundEffectOnEntity(slapSound, enemyToSlap)
+                                                                                                                            enemyToSlap:SetHealth(enemyToSlap:GetArmor() - 0.198 * enemyToSlap:GetMaxArmor())
+                                                                                                                        end
                                                                                                                     end
                                                                                                                 end
                                                                                                             end, 0.80 * i)

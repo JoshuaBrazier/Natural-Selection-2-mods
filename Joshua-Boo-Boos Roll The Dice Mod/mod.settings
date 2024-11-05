@@ -1,7 +1,57 @@
 name        = "Joshua-Boo-Boos Roll The Dice Mod"
 source_dir  = "source"
 output_dir  = "output"
-description = [=[Joshua-Boo-Boos Roll The Dice Mod]=]
+description = [=[This mod adds a roll the dice functionality intended for co maps only!
+
+Go to:
+
+(Options ->) Mods -> Roll The Dice -> Set a keybind -> Press that key in-game while both alive and on a team.
+
+Based on the roll that a player makes that player receives a random buff or debuff.
+
+Players can only roll once every 10 seconds and bots cannot roll.
+
+There are current the following effects:
+
+Outcome 1:
+
+Random roll on every player resulting in either a slay or no slay.
+
+Outcome 2:
+
+Go Exo or receive nano-shields / Go Onos or receive umbra.
+
+Outcome 3:
+
+Nuke all enemy players within range after 5 seconds.
+
+Outcome 4:
+
+10 catalyst packs over time / 30 seconds of enzyme
+
+Outcome 5:
+
+Slay self
+
+Outcome 6:
+
+1 HP or AP for 10 seconds.
+
+Outcome 7:
+
+Slap self (multiple slaps for Exo).
+
+Outcome 8:
+
+Slap enemy to near death (5 slaps over time with each slap dealing nearly 20% HP or AP per slap).
+
+Outcome 9:
+
+Non-Exo marines get the ammo count of the magazine of each of their 'ClipWeapon's (rifle, pistol, flamethrower etcetera) set to 10 times the clip size of the corresponding weapon.
+
+Exos get their AP and max AP set to 2.5 times their previous values for 10 seconds
+
+Aliens get their HP and max HP set to 2.5 times their previous values for 10 seconds.]=]
 image       = "preview.jpg"
 tag_modtype = "Gameplay Tweak"
 tag_support = "Must be run on Server"
