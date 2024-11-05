@@ -774,7 +774,7 @@ if Server then
                                                                             enemyToSlap = enemies[randomRollEnemies]
                                                                             for i = 1, 5 do
                                                                                 enemyToSlap:AddTimedCallback(function(enemyToSlap)
-                                                                                                                if not enemyToSlap:isa("Exo")
+                                                                                                                if not enemyToSlap:isa("Exo") then
                                                                                                                     if enemyToSlap.GetIsAlive and enemyToSlap:GetIsAlive() and enemyToSlap.GetHealth then
                                                                                                                         if enemyToSlap:GetHealth() <= 0.198 * enemyToSlap:GetMaxHealth() then
                                                                                                                             StartSoundEffectOnEntity(slapSound, enemyToSlap)
