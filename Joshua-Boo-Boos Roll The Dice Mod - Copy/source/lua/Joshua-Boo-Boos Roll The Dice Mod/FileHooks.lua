@@ -1,2 +1,5 @@
-ModLoader.SetupFileHook( "lua/Player_Server.lua", "lua/Joshua-Boo-Boos Roll The Dice Mod/Player_Server.lua", "post" )
 ModLoader.SetupFileHook( "lua/NetworkMessages.lua", "lua/Joshua-Boo-Boos Roll The Dice Mod/NetworkMessages.lua", "post" )
+ModLoader.SetupFileHook("lua/InputHandler.lua", "lua/Joshua-Boo-Boos Roll The Dice Mod/InputHandler.lua", "post")
+ModLoader.SetupFileHook("lua/BindingsDialog.lua", "lua/Joshua-Boo-Boos Roll The Dice Mod/BindingsDialog.lua", "post")
+ModLoader.SetupFileHook("lua/menu2/NavBar/Screens/Options/Mods/ModsMenuData.lua", "lua/Joshua-Boo-Boos Roll The Dice Mod/ModsMenuData.lua", "post")
+ModLoader.SetupFileHook("lua/Player_Client.lua", "lua/Joshua-Boo-Boos Roll The Dice Mod/Player_Client.lua", "post")
