@@ -1151,22 +1151,35 @@ function Exo:HandleButtons(input)
 
     if self:GetHasMinigun() then
 
-        if self.siege_mode then
+        -- if self.siege_mode then
 
-            input.move:Scale(0)
+        --     input.move:Scale(0)
         
-        end
+        -- end
 
         if bit.band(input.commands, Move.Reload) ~= 0 then
             
             if self.siege_mode_timer_now >= self.siege_mode_timer then
                 self.siege_mode_timer = Shared.GetTime() + 5
                 if self.siege_mode then
+                    -- if kCombatVersion then
+                    --     if Server then
+                    --         self:SetMaxArmor(self:GetMaxArmor() + 100)
+                    --     end
+                    -- end
                     self.siege_mode = false
                     if Server then
                         StartSoundEffectOnEntity(siege_deactivated_sound, self, 0.7)
                     end
                 else
+                    -- if kCombatVersion then
+                    --     if Server then
+                    --         self:SetMaxArmor(self:GetMaxArmor() - 100)
+                    --         if self:GetArmor() > self:GetMaxArmor() then
+                    --             self:SetArmor(self:GetMaxArmor())
+                    --         end
+                    --     end
+                    -- end
                     self.siege_mode = true
                     if Server then
                         StartSoundEffectOnEntity(siege_activated_sound, self, 0.7)

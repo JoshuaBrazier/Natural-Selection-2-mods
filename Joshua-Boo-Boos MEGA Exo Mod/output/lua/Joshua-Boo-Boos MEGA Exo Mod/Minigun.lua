@@ -290,7 +290,7 @@ function Minigun:GetWeight()
 end
 
 local missile_count_siege_mode_defense = 3
-local missile_count_siege_mode_combat = 2
+-- local missile_count_siege_mode_combat = 2
 
 -- TODO: we should use clip weapons provided functionality here (or create a more general solution which distincts between melee, hitscan and projectile only)!
 local function Shoot(self, leftSide)
@@ -327,16 +327,6 @@ local function Shoot(self, leftSide)
                                                                     missile.initial_look_vector = missile.final_direction_vector
                                                                 end, i * 0.15)
                                     end
-                                elseif kCombatVersion then
-                                    for i = 1, missile_count_siege_mode_combat do
-                                        parent:AddTimedCallback(function(parent)
-                                                                    local missile
-                                                                    missile = CreateEntity(Exo_Missile.kMapName, barrel_point + (-1) * GetNormalizedVector(parent:GetViewAngles():GetCoords().xAxis) + Vector(0, 0.4, 0) + (-0.21) * GetNormalizedVector(parent:GetViewAngles():GetCoords().zAxis), kTeam1Index)
-                                                                    missile.owner_exo = parent:GetId()
-                                                                    missile.final_direction_vector = parent:GetViewCoords().zAxis
-                                                                    missile.initial_look_vector = missile.final_direction_vector
-                                                                end, i * 0.15)
-                                    end
                                 else
                                     local missile
                                     missile = CreateEntity(Exo_Missile.kMapName, barrel_point + (-1) * GetNormalizedVector(parent:GetViewAngles():GetCoords().xAxis) + Vector(0, 0.4, 0) + (-0.21) * GetNormalizedVector(parent:GetViewAngles():GetCoords().zAxis), kTeam1Index)
@@ -347,16 +337,6 @@ local function Shoot(self, leftSide)
                             elseif not leftSide then
                                 if self.defenseMod then
                                     for i = 1, missile_count_siege_mode_defense do
-                                        parent:AddTimedCallback(function(parent)
-                                                                    local missile
-                                                                    missile = CreateEntity(Exo_Missile.kMapName, barrel_point + (1) * GetNormalizedVector(parent:GetViewAngles():GetCoords().xAxis) + Vector(0, 0.4, 0) + (-0.21) * GetNormalizedVector(parent:GetViewAngles():GetCoords().zAxis), kTeam1Index)
-                                                                    missile.owner_exo = parent:GetId()
-                                                                    missile.final_direction_vector = parent:GetViewCoords().zAxis
-                                                                    missile.initial_look_vector = missile.final_direction_vector
-                                                                end, i * 0.15)
-                                    end
-                                elseif kCombatVersion then
-                                    for i = 1, missile_count_siege_mode_combat do
                                         parent:AddTimedCallback(function(parent)
                                                                     local missile
                                                                     missile = CreateEntity(Exo_Missile.kMapName, barrel_point + (1) * GetNormalizedVector(parent:GetViewAngles():GetCoords().xAxis) + Vector(0, 0.4, 0) + (-0.21) * GetNormalizedVector(parent:GetViewAngles():GetCoords().zAxis), kTeam1Index)
@@ -492,16 +472,6 @@ local function Shoot(self, leftSide)
                                                                     missile.initial_look_vector = missile.final_direction_vector
                                                                 end, i * 0.15)
                                     end
-                                elseif kCombatVersion then
-                                    for i = 1, missile_count_siege_mode_combat do
-                                        parent:AddTimedCallback(function(parent)
-                                                                    local missile
-                                                                    missile = CreateEntity(Exo_Missile.kMapName, barrel_point + (-1) * GetNormalizedVector(parent:GetViewAngles():GetCoords().xAxis) + Vector(0, 0.4, 0) + (-0.21) * GetNormalizedVector(parent:GetViewAngles():GetCoords().zAxis), kTeam1Index)
-                                                                    missile.owner_exo = parent:GetId()
-                                                                    missile.final_direction_vector = parent:GetViewCoords().zAxis
-                                                                    missile.initial_look_vector = missile.final_direction_vector
-                                                                end, i * 0.15)
-                                    end
                                 else
                                     local missile
                                     missile = CreateEntity(Exo_Missile.kMapName, barrel_point + (-1) * GetNormalizedVector(parent:GetViewAngles():GetCoords().xAxis) + Vector(0, 0.4, 0) + (-0.21) * GetNormalizedVector(parent:GetViewAngles():GetCoords().zAxis), kTeam1Index)
@@ -512,16 +482,6 @@ local function Shoot(self, leftSide)
                             elseif not leftSide then
                                 if self.defenseMod then
                                     for i = 1, missile_count_siege_mode_defense do
-                                        parent:AddTimedCallback(function(parent)
-                                                                    local missile
-                                                                    missile = CreateEntity(Exo_Missile.kMapName, barrel_point + (1) * GetNormalizedVector(parent:GetViewAngles():GetCoords().xAxis) + Vector(0, 0.4, 0) + (-0.21) * GetNormalizedVector(parent:GetViewAngles():GetCoords().zAxis), kTeam1Index)
-                                                                    missile.owner_exo = parent:GetId()
-                                                                    missile.final_direction_vector = parent:GetViewCoords().zAxis
-                                                                    missile.initial_look_vector = missile.final_direction_vector
-                                                                end, i * 0.15)
-                                    end
-                                elseif kCombatVersion then
-                                    for i = 1, missile_count_siege_mode_combat do
                                         parent:AddTimedCallback(function(parent)
                                                                     local missile
                                                                     missile = CreateEntity(Exo_Missile.kMapName, barrel_point + (1) * GetNormalizedVector(parent:GetViewAngles():GetCoords().xAxis) + Vector(0, 0.4, 0) + (-0.21) * GetNormalizedVector(parent:GetViewAngles():GetCoords().zAxis), kTeam1Index)
