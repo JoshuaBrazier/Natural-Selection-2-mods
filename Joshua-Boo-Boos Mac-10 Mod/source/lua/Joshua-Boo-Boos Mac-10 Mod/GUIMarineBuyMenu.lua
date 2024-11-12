@@ -76,22 +76,22 @@ if not kCombatVersion then
 
 
 
-    function GUIMarineBuyMenu:SetHostStructure(hostStructure)
+    -- function GUIMarineBuyMenu:SetHostStructure(hostStructure)
 
-        assert(hostStructure)
+    --     assert(hostStructure)
 
-        self.hostStructure = hostStructure
+    --     self.hostStructure = hostStructure
 
-        if self.hostStructure:isa("Armory") then
-            self:CreateArmoryUI()
-            self:CreateExtraButton()
-        elseif self.hostStructure:isa("PrototypeLab") then
-            self:CreatePrototypeLabUI()
-        else
-            Log(string.format("ERROR: No generator found for class: %s", self.hostStructure:GetClassName()))
-        end
+    --     if self.hostStructure:isa("Armory") then
+    --         self:CreateArmoryUI()
+    --         self:CreateExtraButton()
+    --     elseif self.hostStructure:isa("PrototypeLab") then
+    --         self:CreatePrototypeLabUI()
+    --     else
+    --         Log(string.format("ERROR: No generator found for class: %s", self.hostStructure:GetClassName()))
+    --     end
 
-    end
+    -- end
 
     local kTechIdInfo = debug.getupvaluex(GUIMarineBuyMenu._GetButtonPixelCoordinatesForTechID, "kTechIdInfo")
 

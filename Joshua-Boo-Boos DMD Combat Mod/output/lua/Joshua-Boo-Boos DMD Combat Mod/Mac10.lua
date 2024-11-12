@@ -52,6 +52,12 @@ function Mac10:OnCreate()
     self.last_attack_time = 0
     self.can_shoot = false
 
+    if Server then
+
+        self.pistolVariant = 1.0
+
+    end
+
 end
 
 if Client then
@@ -210,6 +216,10 @@ function Mac10:GetHUDSlot()
     return 2
 end
 
+-- function Mac10:GetIsDroppable()
+--     return false
+-- end
+
 function Mac10:GetPrimaryMinFireDelay()
     return kPistolRateOfFire    
 end
@@ -258,7 +268,9 @@ function Mac10:OnTag(tagName)
     elseif tagName == "Reload_Start" then
         self.can_shoot = false
         -- StartSoundEffectForPlayer(reload_sound, player, 0.55)
-        StartSoundEffectOnEntity(reload_sound, player, 1)
+        if Server then
+            StartSoundEffectOnEntity(reload_sound, player, 1)
+        end
     elseif tagName == "Reload_End" then
         self.required_ammo = 20 - self.clip
         if self.ammo >= self.required_ammo then
@@ -275,7 +287,9 @@ function Mac10:OnTag(tagName)
         self.clip = self.clip - 1
         -- self:TriggerEffects("pistol_attack")
         -- StartSoundEffectForPlayer(shoot_sound, player, 0.25)
-        StartSoundEffectOnEntity(shoot_sound, player, 0.4)
+        if Server then
+            StartSoundEffectOnEntity(shoot_sound, player, 0.4)
+        end
     elseif tagName == "Sprint_Start" then
         self.can_shoot = false
     elseif tagName == "Sprint_End" then

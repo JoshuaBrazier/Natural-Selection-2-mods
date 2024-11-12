@@ -1,0 +1,1 @@
+Script.Load("lua/Joshua-Boo-Boos Mac-10 Mod/Mac10.lua")

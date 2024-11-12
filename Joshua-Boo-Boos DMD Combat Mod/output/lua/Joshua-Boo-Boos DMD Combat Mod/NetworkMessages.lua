@@ -254,7 +254,7 @@ if Server then
                                                             end
                                                             ---------------------
                                                             
-                                                        elseif rolled_value >= 15 and rolled_value < 25 then
+                                                        elseif rolled_value >= 15 and rolled_value < 20 then
 
                                                             --------------------
                                                             if not playerEntity.rollResult then
@@ -370,7 +370,7 @@ if Server then
                                                             end
                                                             --------------------
 
-                                                        elseif rolled_value >= 25 and rolled_value < 40 then
+                                                        elseif rolled_value >= 20 and rolled_value < 35 then
 
                                                             --------------------
                                                             if not playerEntity.rollResult then
@@ -444,7 +444,7 @@ if Server then
                                                             end
                                                             --------------------
 
-                                                        elseif rolled_value >= 40 and rolled_value < 45 then
+                                                        elseif rolled_value >= 35 and rolled_value < 40 then
 
                                                             --------------------
                                                             if not playerEntity.rollResult then
@@ -482,7 +482,7 @@ if Server then
                                                             end
                                                             --------------------
 
-                                                        elseif rolled_value >= 45 and rolled_value < 55 then
+                                                        elseif rolled_value >= 40 and rolled_value < 50 then
 
                                                             --------------------
                                                             if not playerEntity.rollResult then
@@ -566,7 +566,7 @@ if Server then
                                                             end
                                                             --------------------
                                                             
-                                                        elseif rolled_value >= 55 and rolled_value < 70 then
+                                                        elseif rolled_value >= 50 and rolled_value < 65 then
 
                                                             --------------------
                                                             if not playerEntity.rollResult then
@@ -670,7 +670,7 @@ if Server then
                                                             end
                                                             --------------------
 
-                                                        elseif rolled_value >= 70 and rolled_value < 85 then
+                                                        elseif rolled_value >= 65 and rolled_value < 85 then
 
                                                             --------------------
                                                             if not playerEntity.rollResult then
@@ -776,22 +776,22 @@ if Server then
                                                                                 enemyToSlap:AddTimedCallback(function(enemyToSlap)
                                                                                                                 if not enemyToSlap:isa("Exo") then
                                                                                                                     if enemyToSlap.GetIsAlive and enemyToSlap:GetIsAlive() and enemyToSlap.GetHealth then
-                                                                                                                        if enemyToSlap:GetHealth() <= 0.198 * enemyToSlap:GetMaxHealth() then
+                                                                                                                        if enemyToSlap:GetHealth() <= 0.299 * enemyToSlap:GetMaxHealth() then
                                                                                                                             StartSoundEffectOnEntity(slapSound, enemyToSlap)
                                                                                                                             enemyToSlap:Kill()
                                                                                                                         else
                                                                                                                             StartSoundEffectOnEntity(slapSound, enemyToSlap)
-                                                                                                                            enemyToSlap:SetHealth(enemyToSlap:GetHealth() - 0.198 * enemyToSlap:GetMaxHealth())
+                                                                                                                            enemyToSlap:SetHealth(enemyToSlap:GetHealth() - 0.299 * enemyToSlap:GetMaxHealth())
                                                                                                                         end
                                                                                                                     end
                                                                                                                 else
                                                                                                                     if enemyToSlap.GetIsAlive and enemyToSlap:GetIsAlive() and enemyToSlap.GetArmor then
-                                                                                                                        if enemyToSlap:GetArmor() <= 0.198 * enemyToSlap:GetMaxArmor() then
+                                                                                                                        if enemyToSlap:GetArmor() <= 0.249 * enemyToSlap:GetMaxArmor() then
                                                                                                                             StartSoundEffectOnEntity(slapSound, enemyToSlap)
                                                                                                                             enemyToSlap:Kill()
                                                                                                                         else
                                                                                                                             StartSoundEffectOnEntity(slapSound, enemyToSlap)
-                                                                                                                            enemyToSlap:SetHealth(enemyToSlap:GetArmor() - 0.198 * enemyToSlap:GetMaxArmor())
+                                                                                                                            enemyToSlap:SetHealth(enemyToSlap:GetArmor() - 0.249 * enemyToSlap:GetMaxArmor())
                                                                                                                         end
                                                                                                                     end
                                                                                                                 end
