@@ -729,22 +729,22 @@ if Server then
                                                                             enemyToSlap:AddTimedCallback(function(enemyToSlap)
                                                                                                             if not enemyToSlap:isa("Exo") then
                                                                                                                 if enemyToSlap.GetIsAlive and enemyToSlap:GetIsAlive() and enemyToSlap.GetHealth then
-                                                                                                                    if enemyToSlap:GetHealth() <= 0.249 * enemyToSlap:GetMaxHealth() then
+                                                                                                                    if enemyToSlap:GetHealth() <= 0.251 * enemyToSlap:GetMaxHealth() then
                                                                                                                         StartSoundEffectOnEntity(slapSound, enemyToSlap)
                                                                                                                         enemyToSlap:Kill()
                                                                                                                     else
                                                                                                                         StartSoundEffectOnEntity(slapSound, enemyToSlap)
-                                                                                                                        enemyToSlap:SetHealth(enemyToSlap:GetHealth() - 0.198 * enemyToSlap:GetMaxHealth())
+                                                                                                                        enemyToSlap:SetHealth(enemyToSlap:GetHealth() - 0.251 * enemyToSlap:GetMaxHealth())
                                                                                                                     end
                                                                                                                 end
                                                                                                             else
                                                                                                                 if enemyToSlap.GetIsAlive and enemyToSlap:GetIsAlive() and enemyToSlap.GetArmor then
-                                                                                                                    if enemyToSlap:GetArmor() <= 0.249 * enemyToSlap:GetMaxArmor() then
+                                                                                                                    if enemyToSlap:GetArmor() <= 0.251 * enemyToSlap:GetMaxArmor() then
                                                                                                                         StartSoundEffectOnEntity(slapSound, enemyToSlap)
                                                                                                                         enemyToSlap:Kill()
                                                                                                                     else
                                                                                                                         StartSoundEffectOnEntity(slapSound, enemyToSlap)
-                                                                                                                        enemyToSlap:SetHealth(enemyToSlap:GetArmor() - 0.198 * enemyToSlap:GetMaxArmor())
+                                                                                                                        enemyToSlap:SetHealth(enemyToSlap:GetArmor() - 0.251 * enemyToSlap:GetMaxArmor())
                                                                                                                     end
                                                                                                                 end
                                                                                                             end
@@ -826,22 +826,22 @@ if Server then
                                                                                 enemyToSlap:AddTimedCallback(function(enemyToSlap)
                                                                                                                 if not enemyToSlap:isa("Exo") then
                                                                                                                     if enemyToSlap.GetIsAlive and enemyToSlap:GetIsAlive() and enemyToSlap.GetHealth then
-                                                                                                                        if enemyToSlap:GetHealth() <= 0.249 * enemyToSlap:GetMaxHealth() then
+                                                                                                                        if enemyToSlap:GetHealth() <= 0.251 * enemyToSlap:GetMaxHealth() then
                                                                                                                             StartSoundEffectOnEntity(slapSound, enemyToSlap)
                                                                                                                             enemyToSlap:Kill()
                                                                                                                         else
                                                                                                                             StartSoundEffectOnEntity(slapSound, enemyToSlap)
-                                                                                                                            enemyToSlap:SetHealth(enemyToSlap:GetHealth() - 0.198 * enemyToSlap:GetMaxHealth())
+                                                                                                                            enemyToSlap:SetHealth(enemyToSlap:GetHealth() - 0.251 * enemyToSlap:GetMaxHealth())
                                                                                                                         end
                                                                                                                     end
                                                                                                                 else
                                                                                                                     if enemyToSlap.GetIsAlive and enemyToSlap:GetIsAlive() and enemyToSlap.GetArmor then
-                                                                                                                        if enemyToSlap:GetArmor() <= 0.249 * enemyToSlap:GetMaxArmor() then
+                                                                                                                        if enemyToSlap:GetArmor() <= 0.251 * enemyToSlap:GetMaxArmor() then
                                                                                                                             StartSoundEffectOnEntity(slapSound, enemyToSlap)
                                                                                                                             enemyToSlap:Kill()
                                                                                                                         else
                                                                                                                             StartSoundEffectOnEntity(slapSound, enemyToSlap)
-                                                                                                                            enemyToSlap:SetHealth(enemyToSlap:GetArmor() - 0.198 * enemyToSlap:GetMaxArmor())
+                                                                                                                            enemyToSlap:SetHealth(enemyToSlap:GetArmor() - 0.251 * enemyToSlap:GetMaxArmor())
                                                                                                                         end
                                                                                                                     end
                                                                                                                 end
