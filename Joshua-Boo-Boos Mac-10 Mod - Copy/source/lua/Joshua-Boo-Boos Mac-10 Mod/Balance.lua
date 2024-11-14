@@ -1,4 +1,4 @@
-kMac10Damage = 10
+kMac10Damage = 12.5
 kMac10DamageType = kDamageType.Normal
 -- not used yet
 kMac10DropCost = 3
