@@ -1,0 +1,1 @@
+ModLoader.SetupFileHook( "lua/NS2Gamerules.lua", "lua/Joshua-Boo-Boos Commander Stats Mod/NS2Gamerules.lua", "post" )
