@@ -341,8 +341,8 @@ function Mac10:OnUpdateAnimationInput(modelMixin)
 
     modelMixin:SetAnimationInput("activity", activity)
     modelMixin:SetAnimationInput("movement", movement)
-    Log("setanimationinput activity = " .. activity)
-    Log("setanimationinput movement = " .. movement)
+    -- Log("setanimationinput activity = " .. activity)
+    -- Log("setanimationinput movement = " .. movement)
     
 end
 
