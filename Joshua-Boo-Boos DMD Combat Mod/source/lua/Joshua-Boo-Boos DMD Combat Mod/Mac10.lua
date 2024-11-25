@@ -53,9 +53,7 @@ function Mac10:OnCreate()
     self.can_shoot = false
 
     if Server then
-
         self.pistolVariant = 1.0
-
     end
 
 end
@@ -216,10 +214,6 @@ function Mac10:GetHUDSlot()
     return 2
 end
 
--- function Mac10:GetIsDroppable()
---     return false
--- end
-
 function Mac10:GetPrimaryMinFireDelay()
     return kPistolRateOfFire    
 end
@@ -306,19 +300,28 @@ function Mac10:OnUpdateAnimationInput(modelMixin)
     local player = self:GetParent()
     
     local activity = "draw"
+    local movement = "idle"
+    
+    if player then
+        if not player:GetIsIdle() then
 
+            if player:GetIsSprinting() then
+                movement = "sprint"
+            else
+                movement = "run"
+            end
+        
+        end
+    end
+    
     if not self.drawing then
         activity = "none"
     end
     
     if player then
-        if player:GetIsSprinting() then
-            activity = "sprint"
+        if not player:GetIsSprinting() and self.primaryAttacking and self.clip > 0 and not self.reloading and self.can_shoot then
+            activity = "primary"
         end
-    end
-    
-    if self.primaryAttacking and self.clip > 0 and not self.reloading and self.can_shoot then
-        activity = "primary"
     end
 
     if self.reloading then -- not activity == "reload" and
@@ -337,7 +340,9 @@ function Mac10:OnUpdateAnimationInput(modelMixin)
     end
 
     modelMixin:SetAnimationInput("activity", activity)
-    -- Log("setanimationinput activity = " .. activity)
+    modelMixin:SetAnimationInput("movement", movement)
+    Log("setanimationinput activity = " .. activity)
+    Log("setanimationinput movement = " .. movement)
     
 end
 
