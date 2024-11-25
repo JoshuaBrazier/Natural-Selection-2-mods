@@ -5,3 +5,4 @@ animation "draw" "Mac-10_View.fbx" from 20 to 30
 animation "shoot" "Mac-10_View.fbx" loop from 30 to 50
 animation "reload" "Mac-10_View.fbx" from 60 to 90
 animation "sprint" "Mac-10_View.fbx" loop from 100 to 120
+animation "run" "Mac-10_View.fbx" loop from 130 to 140
