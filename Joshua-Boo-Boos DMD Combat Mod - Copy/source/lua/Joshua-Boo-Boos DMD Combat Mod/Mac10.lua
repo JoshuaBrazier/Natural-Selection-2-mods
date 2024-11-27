@@ -52,6 +52,10 @@ function Mac10:OnCreate()
     self.last_attack_time = 0
     self.can_shoot = false
 
+    if Server then
+        self.pistolVariant = 1.0
+    end
+
 end
 
 if Client then
@@ -258,7 +262,9 @@ function Mac10:OnTag(tagName)
     elseif tagName == "Reload_Start" then
         self.can_shoot = false
         -- StartSoundEffectForPlayer(reload_sound, player, 0.55)
-        StartSoundEffectOnEntity(reload_sound, player, 1)
+        if Server then
+            StartSoundEffectOnEntity(reload_sound, player, 1)
+        end
     elseif tagName == "Reload_End" then
         self.required_ammo = 20 - self.clip
         if self.ammo >= self.required_ammo then
@@ -275,7 +281,9 @@ function Mac10:OnTag(tagName)
         self.clip = self.clip - 1
         -- self:TriggerEffects("pistol_attack")
         -- StartSoundEffectForPlayer(shoot_sound, player, 0.25)
-        StartSoundEffectOnEntity(shoot_sound, player, 0.4)
+        if Server then
+            StartSoundEffectOnEntity(shoot_sound, player, 0.4)
+        end
     elseif tagName == "Sprint_Start" then
         self.can_shoot = false
     elseif tagName == "Sprint_End" then
@@ -292,19 +300,28 @@ function Mac10:OnUpdateAnimationInput(modelMixin)
     local player = self:GetParent()
     
     local activity = "draw"
+    local movement = "idle"
+    
+    if player then
+        if not player:GetIsIdle() then
 
+            if player:GetIsSprinting() then
+                movement = "sprint"
+            else
+                movement = "run"
+            end
+        
+        end
+    end
+    
     if not self.drawing then
         activity = "none"
     end
     
     if player then
-        if player:GetIsSprinting() then
-            activity = "sprint"
+        if not player:GetIsSprinting() and self.primaryAttacking and self.clip > 0 and not self.reloading and self.can_shoot then
+            activity = "primary"
         end
-    end
-    
-    if self.primaryAttacking and self.clip > 0 and not self.reloading and self.can_shoot then
-        activity = "primary"
     end
 
     if self.reloading then -- not activity == "reload" and
@@ -323,7 +340,9 @@ function Mac10:OnUpdateAnimationInput(modelMixin)
     end
 
     modelMixin:SetAnimationInput("activity", activity)
+    modelMixin:SetAnimationInput("movement", movement)
     -- Log("setanimationinput activity = " .. activity)
+    -- Log("setanimationinput movement = " .. movement)
     
 end
 

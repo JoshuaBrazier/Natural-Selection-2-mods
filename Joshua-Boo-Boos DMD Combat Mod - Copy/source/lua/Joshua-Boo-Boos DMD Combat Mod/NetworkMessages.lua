@@ -19,6 +19,51 @@ local tacticalNukeRollProbabilityModifier = 25
 
 if Server then
 
+    local function RTD_Unstuck(playerEntity)
+        local PlayerFits = not Shared.CollideBox(playerEntity:GetExtents(), playerEntity:GetOrigin() + Vector(0, 0.1, 0), CollisionRep.Move, PhysicsMask.All, EntityFilterOne(playerEntity))
+        if not PlayerFits then
+            local TechNodeTable = nil
+            if playerEntity:GetTeamNumber() == 1 then
+                TechNodeTable = GetEntities("CommandStation")
+            elseif playerEntity:GetTeamNumber() == 2 then
+                TechNodeTable = GetEntities("Hive")
+            end
+            if TechNodeTable ~= nil then
+                if #TechNodeTable and #TechNodeTable > 0 then
+                    if TechNodeTable[1].GetIsAlive then
+                        if TechNodeTable[1]:GetIsAlive() then
+                            if TechNodeTable[1].GetHealth then
+                                if TechNodeTable[1]:GetHealth() > 0 then
+                                    playerEntity:SetOrigin(TechNodeTable[1]:GetOrigin())
+                                    local techId = playerEntity:GetTechId()
+                                    local bounds = GetExtents(techId)
+                                    local spawn
+                                    local height, radius = GetTraceCapsuleFromExtents( bounds )
+                                    local resourceNear
+                                    local i = 1
+            
+                                    repeat
+                                        spawn = GetRandomSpawnForCapsule( height, radius, playerEntity:GetOrigin(), 0.1, 10, EntityFilterAll() )
+            
+                                        if spawn then
+                                            resourceNear = #GetEntitiesWithinRange( "ResourcePoint", spawn, 2 ) > 0
+                                        end
+            
+                                        i = i + 1
+                                    until not resourceNear or i > 100
+            
+                                    if spawn then
+                                        playerEntity:SetOrigin(spawn)
+                                    end
+                                end
+                            end
+                        end
+                    end
+                end
+            end
+        end
+    end
+
     Server.HookNetworkMessage("RTD",
         function(client, msg)
 
@@ -151,6 +196,7 @@ if Server then
                                                                     else
                                                                         table.removevalue(players, playerEntity)
                                                                         local newPlayerEntity = playerEntity:Replace(Exo.kMapName, playerEntity:GetTeamNumber(), false, playerEntity:GetOrigin(), { layout = "MinigunMinigun" })
+                                                                        RTD_Unstuck(newPlayerEntity)
                                                                         table.insert(players, newPlayerEntity)
                                                                         for i = 1, #players do
                                                                             if IsValid(players[i]) then
@@ -176,6 +222,7 @@ if Server then
                                                                     else
                                                                         table.removevalue(players, playerEntity)
                                                                         local newPlayerEntity = playerEntity:Replace(Onos.kMapName, playerEntity:GetTeamNumber(), nil, nil, nil)
+                                                                        RTD_Unstuck(newPlayerEntity)
                                                                         table.insert(players, newPlayerEntity)
                                                                         for i = 1, #players do
                                                                             if IsValid(players[i]) then
@@ -198,7 +245,7 @@ if Server then
                                                                     if playerEntity:GetTeamNumber() == 1 then
                                                                         if playerEntity:isa("Exo") then
                                                                             playerEntity:ActivateNanoShield()
-                                                                            for i = 1, 50 do
+                                                                            for i = 1, 5 do
                                                                                 if IsValid(playerEntity) and playerEntity.GetIsAlive and playerEntity:GetIsAlive() then
                                                                                     playerEntity:AddTimedCallback(function(playerEntity)
                                                                                                                     playerEntity:ActivateNanoShield()
@@ -215,6 +262,7 @@ if Server then
                                                                         else
                                                                             table.removevalue(players, playerEntity)
                                                                             local newPlayerEntity = playerEntity:Replace(Exo.kMapName, playerEntity:GetTeamNumber(), false, playerEntity:GetOrigin(), { layout = "MinigunMinigun" })
+                                                                            RTD_Unstuck(newPlayerEntity)
                                                                             table.insert(players, newPlayerEntity)
                                                                             for i = 1, #players do
                                                                                 if IsValid(players[i]) then
@@ -240,6 +288,7 @@ if Server then
                                                                         else
                                                                             table.removevalue(players, playerEntity)
                                                                             local newPlayerEntity = playerEntity:Replace(Onos.kMapName, playerEntity:GetTeamNumber(), nil, nil, nil)
+                                                                            RTD_Unstuck(newPlayerEntity)
                                                                             table.insert(players, newPlayerEntity)
                                                                             for i = 1, #players do
                                                                                 if IsValid(players[i]) then
@@ -254,7 +303,7 @@ if Server then
                                                             end
                                                             ---------------------
                                                             
-                                                        elseif rolled_value >= 15 and rolled_value < 25 then
+                                                        elseif rolled_value >= 15 and rolled_value < 20 then
 
                                                             --------------------
                                                             if not playerEntity.rollResult then
@@ -262,51 +311,51 @@ if Server then
                                                                 playerEntity.rollResult = "nukeRoll"
 
                                                                 StartSoundEffectOnEntity(nukeSound, playerEntity)
-                                                                                                                        for i = 1, #players do
-                                                                                                                            if IsValid(players[i]) then
-                                                                                                                                players[i]:SendDirectMessage(string.format("Player %s rolled a %i and became a nuke!", playerEntity:GetName(), rolled_value))
-                                                                                                                            end
-                                                                                                                        end
-                                                                                                                        playerEntity:AddTimedCallback(function(playerEntity)
-                                                                                                                                                        if playerEntity.GetHealth and playerEntity:GetHealth() > 0 and not playerEntity:isa("MarineSpectator") and not playerEntity:isa("AlienSpectator") then
-                                                                                                                                                            local nearbyEnemies = nil
-                                                                                                                                                            local nearbyAliveEnemies = {}
-                                                                                                                                                            if playerEntity:GetTeamNumber() == 1 then
-                                                                                                                                                                nearbyEnemies = GetEntitiesForTeamWithinRange("Player", kTeam2Index, playerEntity:GetOrigin(), 15)
-                                                                                                                                                            elseif playerEntity:GetTeamNumber() == 2 then
-                                                                                                                                                                nearbyEnemies = GetEntitiesForTeamWithinRange("Player", kTeam1Index, playerEntity:GetOrigin(), 15)
-                                                                                                                                                            end
-                                                                                                                                                            players = GetEntities("Player")
-                                                                                                                                                            for i = 1, #nearbyEnemies do
-                                                                                                                                                                if not nearbyEnemies[i]:isa("MarineSpectator") and not nearbyEnemies[i]:isa("AlienSpectator") and nearbyEnemies[i].GetIsAlive and nearbyEnemies[i]:GetIsAlive() and nearbyEnemies[i].GetHealth and nearbyEnemies[i]:GetHealth() > 0 then
-                                                                                                                                                                    table.insert(nearbyAliveEnemies, nearbyEnemies[i])
-                                                                                                                                                                end
-                                                                                                                                                            end
-                                                                                                                                                            if #nearbyAliveEnemies > 0 then
-                                                                                                                                                                for i = 1, #players do
-                                                                                                                                                                    if IsValid(players[i]) then
-                                                                                                                                                                        if #nearbyAliveEnemies == 1 then
-                                                                                                                                                                            players[i]:SendDirectMessage(string.format("Player %s nuked 1 enemy!", playerEntity:GetName()))
-                                                                                                                                                                        elseif #nearbyAliveEnemies > 1 then
-                                                                                                                                                                            players[i]:SendDirectMessage(string.format("Player %s nuked %i enemies!", playerEntity:GetName(), #nearbyAliveEnemies))
-                                                                                                                                                                        end
-                                                                                                                                                                    end
-                                                                                                                                                                end
-                                                                                                                                                                for i = 1, #nearbyAliveEnemies do
-                                                                                                                                                                    if IsValid(nearbyAliveEnemies[i]) then
-                                                                                                                                                                        nearbyAliveEnemies[i]:Kill()
-                                                                                                                                                                    end
-                                                                                                                                                                end
-                                                                                                                                                            else
-                                                                                                                                                                for i = 1, #players do
-                                                                                                                                                                    if IsValid(players[i]) then
-                                                                                                                                                                        players[i]:SendDirectMessage(string.format("Player %s nuked no enemies!", playerEntity:GetName()))
-                                                                                                                                                                    end
-                                                                                                                                                                end
-                                                                                                                                                            end
-                                                                                                                                                            playerEntity:Kill()
-                                                                                                                                                        end
-                                                                                                                                                    end, 5)
+                                                                for i = 1, #players do
+                                                                    if IsValid(players[i]) then
+                                                                        players[i]:SendDirectMessage(string.format("Player %s rolled a %i and became a nuke!", playerEntity:GetName(), rolled_value))
+                                                                    end
+                                                                end
+                                                                playerEntity:AddTimedCallback(function(playerEntity)
+                                                                                                if playerEntity.GetHealth and playerEntity:GetHealth() > 0 and not playerEntity:isa("MarineSpectator") and not playerEntity:isa("AlienSpectator") then
+                                                                                                    local nearbyEnemies = nil
+                                                                                                    local nearbyAliveEnemies = {}
+                                                                                                    if playerEntity:GetTeamNumber() == 1 then
+                                                                                                        nearbyEnemies = GetEntitiesForTeamWithinRange("Player", kTeam2Index, playerEntity:GetOrigin(), 15)
+                                                                                                    elseif playerEntity:GetTeamNumber() == 2 then
+                                                                                                        nearbyEnemies = GetEntitiesForTeamWithinRange("Player", kTeam1Index, playerEntity:GetOrigin(), 15)
+                                                                                                    end
+                                                                                                    players = GetEntities("Player")
+                                                                                                    for i = 1, #nearbyEnemies do
+                                                                                                        if not nearbyEnemies[i]:isa("MarineSpectator") and not nearbyEnemies[i]:isa("AlienSpectator") and nearbyEnemies[i].GetIsAlive and nearbyEnemies[i]:GetIsAlive() and nearbyEnemies[i].GetHealth and nearbyEnemies[i]:GetHealth() > 0 then
+                                                                                                            table.insert(nearbyAliveEnemies, nearbyEnemies[i])
+                                                                                                        end
+                                                                                                    end
+                                                                                                    if #nearbyAliveEnemies > 0 then
+                                                                                                        for i = 1, #players do
+                                                                                                            if IsValid(players[i]) then
+                                                                                                                if #nearbyAliveEnemies == 1 then
+                                                                                                                    players[i]:SendDirectMessage(string.format("Player %s nuked 1 enemy!", playerEntity:GetName()))
+                                                                                                                elseif #nearbyAliveEnemies > 1 then
+                                                                                                                    players[i]:SendDirectMessage(string.format("Player %s nuked %i enemies!", playerEntity:GetName(), #nearbyAliveEnemies))
+                                                                                                                end
+                                                                                                            end
+                                                                                                        end
+                                                                                                        for i = 1, #nearbyAliveEnemies do
+                                                                                                            if IsValid(nearbyAliveEnemies[i]) then
+                                                                                                                nearbyAliveEnemies[i]:Kill()
+                                                                                                            end
+                                                                                                        end
+                                                                                                    else
+                                                                                                        for i = 1, #players do
+                                                                                                            if IsValid(players[i]) then
+                                                                                                                players[i]:SendDirectMessage(string.format("Player %s nuked no enemies!", playerEntity:GetName()))
+                                                                                                            end
+                                                                                                        end
+                                                                                                    end
+                                                                                                    playerEntity:Kill()
+                                                                                                end
+                                                                                            end, 5)
 
                                                             else
 
@@ -319,58 +368,58 @@ if Server then
                                                                     playerEntity.rollResult = "nukeRoll"
 
                                                                     StartSoundEffectOnEntity(nukeSound, playerEntity)
-                                                                                                                        for i = 1, #players do
-                                                                                                                            if IsValid(players[i]) then
-                                                                                                                                players[i]:SendDirectMessage(string.format("Player %s rolled a %i and became a nuke!", playerEntity:GetName(), rolled_value))
-                                                                                                                            end
-                                                                                                                        end
-                                                                                                                        playerEntity:AddTimedCallback(function(playerEntity)
-                                                                                                                                                        if playerEntity.GetHealth and playerEntity:GetHealth() > 0 and not playerEntity:isa("MarineSpectator") and not playerEntity:isa("AlienSpectator") then
-                                                                                                                                                            local nearbyEnemies = nil
-                                                                                                                                                            local nearbyAliveEnemies = {}
-                                                                                                                                                            if playerEntity:GetTeamNumber() == 1 then
-                                                                                                                                                                nearbyEnemies = GetEntitiesForTeamWithinRange("Player", kTeam2Index, playerEntity:GetOrigin(), 15)
-                                                                                                                                                            elseif playerEntity:GetTeamNumber() == 2 then
-                                                                                                                                                                nearbyEnemies = GetEntitiesForTeamWithinRange("Player", kTeam1Index, playerEntity:GetOrigin(), 15)
-                                                                                                                                                            end
-                                                                                                                                                            players = GetEntities("Player")
-                                                                                                                                                            for i = 1, #nearbyEnemies do
-                                                                                                                                                                if not nearbyEnemies[i]:isa("MarineSpectator") and not nearbyEnemies[i]:isa("AlienSpectator") and nearbyEnemies[i].GetIsAlive and nearbyEnemies[i]:GetIsAlive() and nearbyEnemies[i].GetHealth and nearbyEnemies[i]:GetHealth() > 0 then
-                                                                                                                                                                    table.insert(nearbyAliveEnemies, nearbyEnemies[i])
-                                                                                                                                                                end
-                                                                                                                                                            end
-                                                                                                                                                            if #nearbyAliveEnemies > 0 then
-                                                                                                                                                                for i = 1, #players do
-                                                                                                                                                                    if IsValid(players[i]) then
-                                                                                                                                                                        if #nearbyAliveEnemies == 1 then
-                                                                                                                                                                            players[i]:SendDirectMessage(string.format("Player %s nuked 1 enemy!", playerEntity:GetName()))
-                                                                                                                                                                        elseif #nearbyAliveEnemies > 1 then
-                                                                                                                                                                            players[i]:SendDirectMessage(string.format("Player %s nuked %i enemies!", playerEntity:GetName(), #nearbyAliveEnemies))
-                                                                                                                                                                        end
-                                                                                                                                                                    end
-                                                                                                                                                                end
-                                                                                                                                                                for i = 1, #nearbyAliveEnemies do
-                                                                                                                                                                    if IsValid(nearbyAliveEnemies[i]) then
-                                                                                                                                                                        nearbyAliveEnemies[i]:Kill()
-                                                                                                                                                                    end
-                                                                                                                                                                end
-                                                                                                                                                            else
-                                                                                                                                                                for i = 1, #players do
-                                                                                                                                                                    if IsValid(players[i]) then
-                                                                                                                                                                        players[i]:SendDirectMessage(string.format("Player %s nuked no enemies!", playerEntity:GetName()))
-                                                                                                                                                                    end
-                                                                                                                                                                end
-                                                                                                                                                            end
-                                                                                                                                                            playerEntity:Kill()
-                                                                                                                                                        end
-                                                                                                                                                    end, 5)
+                                                                    for i = 1, #players do
+                                                                        if IsValid(players[i]) then
+                                                                            players[i]:SendDirectMessage(string.format("Player %s rolled a %i and became a nuke!", playerEntity:GetName(), rolled_value))
+                                                                        end
+                                                                    end
+                                                                    playerEntity:AddTimedCallback(function(playerEntity)
+                                                                                                    if playerEntity.GetHealth and playerEntity:GetHealth() > 0 and not playerEntity:isa("MarineSpectator") and not playerEntity:isa("AlienSpectator") then
+                                                                                                        local nearbyEnemies = nil
+                                                                                                        local nearbyAliveEnemies = {}
+                                                                                                        if playerEntity:GetTeamNumber() == 1 then
+                                                                                                            nearbyEnemies = GetEntitiesForTeamWithinRange("Player", kTeam2Index, playerEntity:GetOrigin(), 15)
+                                                                                                        elseif playerEntity:GetTeamNumber() == 2 then
+                                                                                                            nearbyEnemies = GetEntitiesForTeamWithinRange("Player", kTeam1Index, playerEntity:GetOrigin(), 15)
+                                                                                                        end
+                                                                                                        players = GetEntities("Player")
+                                                                                                        for i = 1, #nearbyEnemies do
+                                                                                                            if not nearbyEnemies[i]:isa("MarineSpectator") and not nearbyEnemies[i]:isa("AlienSpectator") and nearbyEnemies[i].GetIsAlive and nearbyEnemies[i]:GetIsAlive() and nearbyEnemies[i].GetHealth and nearbyEnemies[i]:GetHealth() > 0 then
+                                                                                                                table.insert(nearbyAliveEnemies, nearbyEnemies[i])
+                                                                                                            end
+                                                                                                        end
+                                                                                                        if #nearbyAliveEnemies > 0 then
+                                                                                                            for i = 1, #players do
+                                                                                                                if IsValid(players[i]) then
+                                                                                                                    if #nearbyAliveEnemies == 1 then
+                                                                                                                        players[i]:SendDirectMessage(string.format("Player %s nuked 1 enemy!", playerEntity:GetName()))
+                                                                                                                    elseif #nearbyAliveEnemies > 1 then
+                                                                                                                        players[i]:SendDirectMessage(string.format("Player %s nuked %i enemies!", playerEntity:GetName(), #nearbyAliveEnemies))
+                                                                                                                    end
+                                                                                                                end
+                                                                                                            end
+                                                                                                            for i = 1, #nearbyAliveEnemies do
+                                                                                                                if IsValid(nearbyAliveEnemies[i]) then
+                                                                                                                    nearbyAliveEnemies[i]:Kill()
+                                                                                                                end
+                                                                                                            end
+                                                                                                        else
+                                                                                                            for i = 1, #players do
+                                                                                                                if IsValid(players[i]) then
+                                                                                                                    players[i]:SendDirectMessage(string.format("Player %s nuked no enemies!", playerEntity:GetName()))
+                                                                                                                end
+                                                                                                            end
+                                                                                                        end
+                                                                                                        playerEntity:Kill()
+                                                                                                    end
+                                                                                                end, 5)
 
                                                                 end
 
                                                             end
                                                             --------------------
 
-                                                        elseif rolled_value >= 25 and rolled_value < 40 then
+                                                        elseif rolled_value >= 20 and rolled_value < 35 then
 
                                                             --------------------
                                                             if not playerEntity.rollResult then
@@ -444,7 +493,7 @@ if Server then
                                                             end
                                                             --------------------
 
-                                                        elseif rolled_value >= 40 and rolled_value < 45 then
+                                                        elseif rolled_value >= 35 and rolled_value < 40 then
 
                                                             --------------------
                                                             if not playerEntity.rollResult then
@@ -482,7 +531,7 @@ if Server then
                                                             end
                                                             --------------------
 
-                                                        elseif rolled_value >= 45 and rolled_value < 55 then
+                                                        elseif rolled_value >= 40 and rolled_value < 50 then
 
                                                             --------------------
                                                             if not playerEntity.rollResult then
@@ -490,35 +539,35 @@ if Server then
                                                                 playerEntity.rollResult = "lowHPOrAPRoll"
 
                                                                 StartSoundEffectOnEntity(statdownSound, playerEntity)
-                                                                                                                        if playerEntity:isa("Exo") then
-                                                                                                                            local currentMaxAPBeforeCallback = playerEntity:GetMaxArmor()
-                                                                                                                            local currentAPBeforeCallback = playerEntity:GetArmor()
-                                                                                                                            playerEntity:SetArmor(1)
-                                                                                                                            playerEntity:SetMaxArmor(1)
-                                                                                                                            playerEntity:AddTimedCallback(function(playerEntity)
-                                                                                                                                                                playerEntity:SetMaxArmor(currentMaxAPBeforeCallback)
-                                                                                                                                                                playerEntity:SetArmor(currentAPBeforeCallback)
-                                                                                                                                                        end, 9.5)
-                                                                                                                            for i = 1, #players do
-                                                                                                                                if IsValid(players[i]) then
-                                                                                                                                    players[i]:SendDirectMessage(string.format("Player %s rolled a %i and now has max AP = 1 for 10 seconds!", playerEntity:GetName(), rolled_value))
-                                                                                                                                end
-                                                                                                                            end
-                                                                                                                        else
-                                                                                                                            local currentMaxHPBeforeCallback = playerEntity:GetMaxHealth()
-                                                                                                                            local currentHPBeforeCallback = playerEntity:GetHealth()
-                                                                                                                            playerEntity:SetHealth(1)
-                                                                                                                            playerEntity:SetMaxHealth(1)
-                                                                                                                            playerEntity:AddTimedCallback(function(playerEntity)
-                                                                                                                                                                playerEntity:SetMaxHealth(currentMaxHPBeforeCallback)
-                                                                                                                                                                playerEntity:SetHealth(currentHPBeforeCallback)
-                                                                                                                                                        end, 9.5)
-                                                                                                                            for i = 1, #players do
-                                                                                                                                if IsValid(players[i]) then
-                                                                                                                                    players[i]:SendDirectMessage(string.format("Player %s rolled a %i and now has max HP = 1 for 10 seconds!", playerEntity:GetName(), rolled_value))
-                                                                                                                                end
-                                                                                                                            end
-                                                                                                                        end
+                                                                if playerEntity:isa("Exo") then
+                                                                    local currentMaxAPBeforeCallback = playerEntity:GetMaxArmor()
+                                                                    local currentAPBeforeCallback = playerEntity:GetArmor()
+                                                                    playerEntity:SetArmor(1)
+                                                                    playerEntity:SetMaxArmor(1)
+                                                                    playerEntity:AddTimedCallback(function(playerEntity)
+                                                                                                        playerEntity:SetMaxArmor(currentMaxAPBeforeCallback)
+                                                                                                        playerEntity:SetArmor(currentAPBeforeCallback)
+                                                                                                end, 9.5)
+                                                                    for i = 1, #players do
+                                                                        if IsValid(players[i]) then
+                                                                            players[i]:SendDirectMessage(string.format("Player %s rolled a %i and now has max AP = 1 for 10 seconds!", playerEntity:GetName(), rolled_value))
+                                                                        end
+                                                                    end
+                                                                else
+                                                                    local currentMaxHPBeforeCallback = playerEntity:GetMaxHealth()
+                                                                    local currentHPBeforeCallback = playerEntity:GetHealth()
+                                                                    playerEntity:SetHealth(1)
+                                                                    playerEntity:SetMaxHealth(1)
+                                                                    playerEntity:AddTimedCallback(function(playerEntity)
+                                                                                                        playerEntity:SetMaxHealth(currentMaxHPBeforeCallback)
+                                                                                                        playerEntity:SetHealth(currentHPBeforeCallback)
+                                                                                                end, 9.5)
+                                                                    for i = 1, #players do
+                                                                        if IsValid(players[i]) then
+                                                                            players[i]:SendDirectMessage(string.format("Player %s rolled a %i and now has max HP = 1 for 10 seconds!", playerEntity:GetName(), rolled_value))
+                                                                        end
+                                                                    end
+                                                                end
 
                                                             else
 
@@ -531,42 +580,42 @@ if Server then
                                                                     playerEntity.rollResult = "lowHPOrAPRoll"
 
                                                                     StartSoundEffectOnEntity(statdownSound, playerEntity)
-                                                                                                                        if playerEntity:isa("Exo") then
-                                                                                                                            local currentMaxAPBeforeCallback = playerEntity:GetMaxArmor()
-                                                                                                                            local currentAPBeforeCallback = playerEntity:GetArmor()
-                                                                                                                            playerEntity:SetArmor(1)
-                                                                                                                            playerEntity:SetMaxArmor(1)
-                                                                                                                            playerEntity:AddTimedCallback(function(playerEntity)
-                                                                                                                                                                playerEntity:SetMaxArmor(currentMaxAPBeforeCallback)
-                                                                                                                                                                playerEntity:SetArmor(currentAPBeforeCallback)
-                                                                                                                                                        end, 9.5)
-                                                                                                                            for i = 1, #players do
-                                                                                                                                if IsValid(players[i]) then
-                                                                                                                                    players[i]:SendDirectMessage(string.format("Player %s rolled a %i and now has max AP = 1 for 10 seconds!", playerEntity:GetName(), rolled_value))
-                                                                                                                                end
-                                                                                                                            end
-                                                                                                                        else
-                                                                                                                            local currentMaxHPBeforeCallback = playerEntity:GetMaxHealth()
-                                                                                                                            local currentHPBeforeCallback = playerEntity:GetHealth()
-                                                                                                                            playerEntity:SetHealth(1)
-                                                                                                                            playerEntity:SetMaxHealth(1)
-                                                                                                                            playerEntity:AddTimedCallback(function(playerEntity)
-                                                                                                                                                                playerEntity:SetMaxHealth(currentMaxHPBeforeCallback)
-                                                                                                                                                                playerEntity:SetHealth(currentHPBeforeCallback)
-                                                                                                                                                        end, 9.5)
-                                                                                                                            for i = 1, #players do
-                                                                                                                                if IsValid(players[i]) then
-                                                                                                                                    players[i]:SendDirectMessage(string.format("Player %s rolled a %i and now has max HP = 1 for 10 seconds!", playerEntity:GetName(), rolled_value))
-                                                                                                                                end
-                                                                                                                            end
-                                                                                                                        end
+                                                                    if playerEntity:isa("Exo") then
+                                                                        local currentMaxAPBeforeCallback = playerEntity:GetMaxArmor()
+                                                                        local currentAPBeforeCallback = playerEntity:GetArmor()
+                                                                        playerEntity:SetArmor(1)
+                                                                        playerEntity:SetMaxArmor(1)
+                                                                        playerEntity:AddTimedCallback(function(playerEntity)
+                                                                                                            playerEntity:SetMaxArmor(currentMaxAPBeforeCallback)
+                                                                                                            playerEntity:SetArmor(currentAPBeforeCallback)
+                                                                                                    end, 9.5)
+                                                                        for i = 1, #players do
+                                                                            if IsValid(players[i]) then
+                                                                                players[i]:SendDirectMessage(string.format("Player %s rolled a %i and now has max AP = 1 for 10 seconds!", playerEntity:GetName(), rolled_value))
+                                                                            end
+                                                                        end
+                                                                    else
+                                                                        local currentMaxHPBeforeCallback = playerEntity:GetMaxHealth()
+                                                                        local currentHPBeforeCallback = playerEntity:GetHealth()
+                                                                        playerEntity:SetHealth(1)
+                                                                        playerEntity:SetMaxHealth(1)
+                                                                        playerEntity:AddTimedCallback(function(playerEntity)
+                                                                                                            playerEntity:SetMaxHealth(currentMaxHPBeforeCallback)
+                                                                                                            playerEntity:SetHealth(currentHPBeforeCallback)
+                                                                                                    end, 9.5)
+                                                                        for i = 1, #players do
+                                                                            if IsValid(players[i]) then
+                                                                                players[i]:SendDirectMessage(string.format("Player %s rolled a %i and now has max HP = 1 for 10 seconds!", playerEntity:GetName(), rolled_value))
+                                                                            end
+                                                                        end
+                                                                    end
 
                                                                 end
 
                                                             end
                                                             --------------------
                                                             
-                                                        elseif rolled_value >= 55 and rolled_value < 70 then
+                                                        elseif rolled_value >= 50 and rolled_value < 65 then
 
                                                             --------------------
                                                             if not playerEntity.rollResult then
@@ -574,20 +623,21 @@ if Server then
                                                                 playerEntity.rollResult = "slapSelfRoll"
 
                                                                 if playerEntity:isa("Exo") then
-                                                                    StartSoundEffectOnEntity(statdownSound, playerEntity)
                                                                     local currentAPMax = playerEntity:GetMaxArmor()
                                                                     if playerEntity.GetArmor then
-                                                                        if playerEntity:GetArmor() - 0.1666666666 * currentAPMax <= 0 then
+                                                                        StartSoundEffectOnEntity(slapSound, playerEntity)
+                                                                        if playerEntity:GetArmor() - 0.11 * currentAPMax <= 0 then
                                                                             playerEntity:Kill()
                                                                         else
-                                                                            playerEntity:SetArmor(playerEntity:GetArmor() - 0.1666666666 * currentAPMax)
+                                                                            playerEntity:SetArmor(playerEntity:GetArmor() - 0.11 * currentAPMax)
                                                                             for i = 1, 2 do
                                                                                 playerEntity:AddTimedCallback(function(playerEntity)
                                                                                                                 if playerEntity.GetArmor then
-                                                                                                                    if playerEntity:GetArmor() - 0.1666666666 * currentAPMax <= 0 then
+                                                                                                                    StartSoundEffectOnEntity(slapSound, playerEntity)
+                                                                                                                    if playerEntity:GetArmor() - 0.11 * currentAPMax <= 0 then
                                                                                                                         playerEntity:Kill()
                                                                                                                     else
-                                                                                                                        playerEntity:SetArmor(playerEntity:GetArmor() - 0.1666666666 * currentAPMax)
+                                                                                                                        playerEntity:SetArmor(playerEntity:GetArmor() - 0.11 * currentAPMax)
                                                                                                                     end
                                                                                                                 end
                                                                                                             end, 1.25 * i)
@@ -625,20 +675,21 @@ if Server then
                                                                     playerEntity.rollResult = "slapSelfRoll"
 
                                                                     if playerEntity:isa("Exo") then
-                                                                        StartSoundEffectOnEntity(statdownSound, playerEntity)
                                                                         local currentAPMax = playerEntity:GetMaxArmor()
                                                                         if playerEntity.GetArmor then
-                                                                            if playerEntity:GetArmor() - 0.1666666666 * currentAPMax <= 0 then
+                                                                            StartSoundEffectOnEntity(slapSound, playerEntity)
+                                                                            if playerEntity:GetArmor() - 0.11 * currentAPMax <= 0 then
                                                                                 playerEntity:Kill()
                                                                             else
-                                                                                playerEntity:SetArmor(playerEntity:GetArmor() - 0.1666666666 * currentAPMax)
+                                                                                playerEntity:SetArmor(playerEntity:GetArmor() - 0.11 * currentAPMax)
                                                                                 for i = 1, 2 do
                                                                                     playerEntity:AddTimedCallback(function(playerEntity)
                                                                                                                     if playerEntity.GetArmor then
-                                                                                                                        if playerEntity:GetArmor() - 0.1666666666 * currentAPMax <= 0 then
+                                                                                                                        StartSoundEffectOnEntity(slapSound, playerEntity)
+                                                                                                                        if playerEntity:GetArmor() - 0.11 * currentAPMax <= 0 then
                                                                                                                             playerEntity:Kill()
                                                                                                                         else
-                                                                                                                            playerEntity:SetArmor(playerEntity:GetArmor() - 0.1666666666 * currentAPMax)
+                                                                                                                            playerEntity:SetArmor(playerEntity:GetArmor() - 0.11 * currentAPMax)
                                                                                                                         end
                                                                                                                     end
                                                                                                                 end, 1.25 * i)
@@ -670,7 +721,7 @@ if Server then
                                                             end
                                                             --------------------
 
-                                                        elseif rolled_value >= 70 and rolled_value < 85 then
+                                                        elseif rolled_value >= 65 and rolled_value < 85 then
 
                                                             --------------------
                                                             if not playerEntity.rollResult then
@@ -690,13 +741,14 @@ if Server then
                                                                         enemyToSlap = enemies[randomRollEnemies]
                                                                         for i = 1, 5 do
                                                                             enemyToSlap:AddTimedCallback(function(enemyToSlap)
+                                                                                                            
                                                                                                             if enemyToSlap.GetIsAlive and enemyToSlap:GetIsAlive() and enemyToSlap.GetHealth then
-                                                                                                                if enemyToSlap:GetHealth() <= 0.198 * enemyToSlap:GetMaxHealth() then
+                                                                                                                if enemyToSlap:GetHealth() <= 0.225 * enemyToSlap:GetMaxHealth() then
                                                                                                                     StartSoundEffectOnEntity(slapSound, enemyToSlap)
                                                                                                                     enemyToSlap:Kill()
                                                                                                                 else
                                                                                                                     StartSoundEffectOnEntity(slapSound, enemyToSlap)
-                                                                                                                    enemyToSlap:SetHealth(enemyToSlap:GetHealth() - 0.198 * enemyToSlap:GetMaxHealth())
+                                                                                                                    enemyToSlap:SetHealth(enemyToSlap:GetHealth() - 0.225 * enemyToSlap:GetMaxHealth())
                                                                                                                 end
                                                                                                             end
                                                                                                         end, 0.80 * i)
@@ -726,13 +778,25 @@ if Server then
                                                                         enemyToSlap = enemies[randomRollEnemies]
                                                                         for i = 1, 5 do
                                                                             enemyToSlap:AddTimedCallback(function(enemyToSlap)
-                                                                                                            if enemyToSlap.GetIsAlive and enemyToSlap:GetIsAlive() and enemyToSlap.GetHealth then
-                                                                                                                if enemyToSlap:GetHealth() <= 0.198 * enemyToSlap:GetMaxHealth() then
-                                                                                                                    StartSoundEffectOnEntity(slapSound, enemyToSlap)
-                                                                                                                    enemyToSlap:Kill()
-                                                                                                                else
-                                                                                                                    StartSoundEffectOnEntity(slapSound, enemyToSlap)
-                                                                                                                    enemyToSlap:SetHealth(enemyToSlap:GetHealth() - 0.198 * enemyToSlap:GetMaxHealth())
+                                                                                                            if not enemyToSlap:isa("Exo") then
+                                                                                                                if enemyToSlap.GetIsAlive and enemyToSlap:GetIsAlive() and enemyToSlap.GetHealth then
+                                                                                                                    if enemyToSlap:GetHealth() <= 0.251 * enemyToSlap:GetMaxHealth() then
+                                                                                                                        StartSoundEffectOnEntity(slapSound, enemyToSlap)
+                                                                                                                        enemyToSlap:Kill()
+                                                                                                                    else
+                                                                                                                        StartSoundEffectOnEntity(slapSound, enemyToSlap)
+                                                                                                                        enemyToSlap:SetHealth(enemyToSlap:GetHealth() - 0.251 * enemyToSlap:GetMaxHealth())
+                                                                                                                    end
+                                                                                                                end
+                                                                                                            else
+                                                                                                                if enemyToSlap.GetIsAlive and enemyToSlap:GetIsAlive() and enemyToSlap.GetArmor then
+                                                                                                                    if enemyToSlap:GetArmor() <= 0.251 * enemyToSlap:GetMaxArmor() then
+                                                                                                                        StartSoundEffectOnEntity(slapSound, enemyToSlap)
+                                                                                                                        enemyToSlap:Kill()
+                                                                                                                    else
+                                                                                                                        StartSoundEffectOnEntity(slapSound, enemyToSlap)
+                                                                                                                        enemyToSlap:SetArmor(enemyToSlap:GetArmor() - 0.251 * enemyToSlap:GetMaxArmor())
+                                                                                                                    end
                                                                                                                 end
                                                                                                             end
                                                                                                         end, 0.80 * i)
@@ -774,25 +838,14 @@ if Server then
                                                                             enemyToSlap = enemies[randomRollEnemies]
                                                                             for i = 1, 5 do
                                                                                 enemyToSlap:AddTimedCallback(function(enemyToSlap)
-                                                                                                                if not enemyToSlap:isa("Exo") then
-                                                                                                                    if enemyToSlap.GetIsAlive and enemyToSlap:GetIsAlive() and enemyToSlap.GetHealth then
-                                                                                                                        if enemyToSlap:GetHealth() <= 0.198 * enemyToSlap:GetMaxHealth() then
-                                                                                                                            StartSoundEffectOnEntity(slapSound, enemyToSlap)
-                                                                                                                            enemyToSlap:Kill()
-                                                                                                                        else
-                                                                                                                            StartSoundEffectOnEntity(slapSound, enemyToSlap)
-                                                                                                                            enemyToSlap:SetHealth(enemyToSlap:GetHealth() - 0.198 * enemyToSlap:GetMaxHealth())
-                                                                                                                        end
-                                                                                                                    end
-                                                                                                                else
-                                                                                                                    if enemyToSlap.GetIsAlive and enemyToSlap:GetIsAlive() and enemyToSlap.GetArmor then
-                                                                                                                        if enemyToSlap:GetArmor() <= 0.198 * enemyToSlap:GetMaxArmor() then
-                                                                                                                            StartSoundEffectOnEntity(slapSound, enemyToSlap)
-                                                                                                                            enemyToSlap:Kill()
-                                                                                                                        else
-                                                                                                                            StartSoundEffectOnEntity(slapSound, enemyToSlap)
-                                                                                                                            enemyToSlap:SetHealth(enemyToSlap:GetArmor() - 0.198 * enemyToSlap:GetMaxArmor())
-                                                                                                                        end
+                                                                                                                
+                                                                                                                if enemyToSlap.GetIsAlive and enemyToSlap:GetIsAlive() and enemyToSlap.GetHealth then
+                                                                                                                    if enemyToSlap:GetHealth() <= 0.225 * enemyToSlap:GetMaxHealth() then
+                                                                                                                        StartSoundEffectOnEntity(slapSound, enemyToSlap)
+                                                                                                                        enemyToSlap:Kill()
+                                                                                                                    else
+                                                                                                                        StartSoundEffectOnEntity(slapSound, enemyToSlap)
+                                                                                                                        enemyToSlap:SetHealth(enemyToSlap:GetHealth() - 0.225 * enemyToSlap:GetMaxHealth())
                                                                                                                     end
                                                                                                                 end
                                                                                                             end, 0.80 * i)
@@ -824,22 +877,22 @@ if Server then
                                                                                 enemyToSlap:AddTimedCallback(function(enemyToSlap)
                                                                                                                 if not enemyToSlap:isa("Exo") then
                                                                                                                     if enemyToSlap.GetIsAlive and enemyToSlap:GetIsAlive() and enemyToSlap.GetHealth then
-                                                                                                                        if enemyToSlap:GetHealth() <= 0.198 * enemyToSlap:GetMaxHealth() then
+                                                                                                                        if enemyToSlap:GetHealth() <= 0.251 * enemyToSlap:GetMaxHealth() then
                                                                                                                             StartSoundEffectOnEntity(slapSound, enemyToSlap)
                                                                                                                             enemyToSlap:Kill()
                                                                                                                         else
                                                                                                                             StartSoundEffectOnEntity(slapSound, enemyToSlap)
-                                                                                                                            enemyToSlap:SetHealth(enemyToSlap:GetHealth() - 0.198 * enemyToSlap:GetMaxHealth())
+                                                                                                                            enemyToSlap:SetHealth(enemyToSlap:GetHealth() - 0.251 * enemyToSlap:GetMaxHealth())
                                                                                                                         end
                                                                                                                     end
                                                                                                                 else
                                                                                                                     if enemyToSlap.GetIsAlive and enemyToSlap:GetIsAlive() and enemyToSlap.GetArmor then
-                                                                                                                        if enemyToSlap:GetArmor() <= 0.198 * enemyToSlap:GetMaxArmor() then
+                                                                                                                        if enemyToSlap:GetArmor() <= 0.251 * enemyToSlap:GetMaxArmor() then
                                                                                                                             StartSoundEffectOnEntity(slapSound, enemyToSlap)
                                                                                                                             enemyToSlap:Kill()
                                                                                                                         else
                                                                                                                             StartSoundEffectOnEntity(slapSound, enemyToSlap)
-                                                                                                                            enemyToSlap:SetHealth(enemyToSlap:GetArmor() - 0.198 * enemyToSlap:GetMaxArmor())
+                                                                                                                            enemyToSlap:SetArmor(enemyToSlap:GetArmor() - 0.251 * enemyToSlap:GetMaxArmor())
                                                                                                                         end
                                                                                                                     end
                                                                                                                 end
