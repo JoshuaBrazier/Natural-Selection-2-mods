@@ -24,7 +24,8 @@ local tracking_missile_damage = 25
 
 local networkVars = {owner_exo = 'entityid',
                     final_direction_vector = 'vector',
-                    initial_look_vector = 'vector'}
+                    initial_look_vector = 'vector',
+                    set_owner = 'boolean'}
 
 AddMixinNetworkVars(BaseModelMixin, networkVars)
 AddMixinNetworkVars(ClientModelMixin, networkVars)
@@ -63,6 +64,7 @@ function Exo_Missile:OnCreate()
     self.initial_look_vector = nil
 
     self.owner_exo = nil
+    self.set_owner = false
 
     if Client then
         self.exhaustCinematic = Client.CreateCinematic(RenderScene.Zone_Default)
@@ -90,18 +92,65 @@ function Exo_Missile:GetDeathIconIndex()
     return kDeathMessageIcon.ARC
 end
 
+local function CanHitTargetEntity(startPoint, endPoint, start_entity, targetEntity)
+    local trace = Shared.TraceRay(startPoint, endPoint, CollisionRep.Damage, PhysicsMask.Bullets, EntityFilterOne(start_entity))
+    local dist = (startPoint - endPoint):GetLength()
+    local hitWorld = false
+    local hitTargetEntity = false
+    -- Hit nothing?
+    if trace.fraction == 1 then
+        hitWorld = false
+        -- Hit the world?
+    elseif not trace.entity then
+        dist = (startPoint - trace.endPoint):GetLength()
+        hitWorld = true
+    elseif trace.entity == targetEntity then
+        hitTargetEntity = true
+        -- Hit target entity, return traced distance to it.
+        dist = (startPoint - trace.endPoint):GetLength()
+        hitWorld = false
+    end
+    return hitTargetEntity, hitWorld, dist
+end
+
+local kMaximumAngle = 70
+local kDistanceFromTargetToExplodeAt = 2.5
+local kExplosionRadius = 6
+local kTargetSeekingRange = 7.5
+local kMissileSpeed = 0.48
+local kCloakingValueForMissileLockLoss = 0.5
+
 function Exo_Missile:OnUpdate(deltaTime)
-
     PROFILE("Exo_Missile:OnUpdate")
-    
     ScriptActor.OnUpdate(self, deltaTime)
-
-    if self.locked_target and not debug.isvalid(self.locked_target) then
-        local enemies_within_range = GetEntitiesForTeamWithinRange("Player", kTeam2Index, self:GetOrigin(), 4)
-        if #enemies_within_range > 0 then
-            for i = 1, #enemies_within_range do
-                if Server then
-                    self:DoDamage(tracking_missile_damage, enemies_within_range[i], enemies_within_range[i]:GetOrigin(), nil)
+    self.time_now = Shared.GetTime()
+    if self.time_now > self.time_created + 5 then
+        local enemies_sphere = GetEntitiesForTeamWithinRange("Player", kTeam2Index, self:GetOrigin(), kExplosionRadius)
+        local visible_enemies = {}
+        if #enemies_sphere > 0 then
+            for i = 1, #enemies_sphere do
+                if CanHitTargetEntity(self:GetOrigin(), enemies_sphere[i]:GetOrigin(), self, enemies_sphere[i]) then
+                    if Server then
+                        self:DoDamage(tracking_missile_damage, enemies_sphere[i], enemies_sphere[i]:GetOrigin(), nil)
+                    end
+                end
+            end
+        end
+        if Server then
+            StartSoundEffectAtOrigin(missile_explode_sound, self:GetOrigin())
+            self:TriggerEffects("pulse_grenade_explode", {kEffectHostCoords = Coords.GetTranslation( self:GetOrigin() )})
+            CreateExplosionDecals(self)
+            DestroyEntity(self)
+        end
+    elseif self.locked_target and (self:GetOrigin() - self.locked_target:GetOrigin()):GetLength() < kDistanceFromTargetToExplodeAt then
+        local enemies_sphere = GetEntitiesForTeamWithinRange("Player", kTeam2Index, self:GetOrigin(), kExplosionRadius)
+        local visible_enemies = {}
+        if #enemies_sphere > 0 then
+            for i = 1, #enemies_sphere do
+                if CanHitTargetEntity(self:GetOrigin(), enemies_sphere[i]:GetOrigin(), self, enemies_sphere[i]) then
+                    if Server then
+                        self:DoDamage(tracking_missile_damage, enemies_sphere[i], enemies_sphere[i]:GetOrigin(), nil)
+                    end
                 end
             end
         end
@@ -112,61 +161,27 @@ function Exo_Missile:OnUpdate(deltaTime)
             DestroyEntity(self)
         end
     end
-
-    if self.parent_exo == nil then
-        if self.owner_exo ~= nil then
-            self.parent_exo = Shared.GetEntity(self.owner_exo)
-            if Server then
-                self:SetOwner(self.parent_exo)
+    if Server then
+        SetAnglesFromVector(self, self.final_direction_vector)
+    end
+    if not self.set_owner then
+        if Server then
+            if self.owner_exo then
+                self:SetOwner(Shared.GetEntity(self.owner_exo))
+                self.set_owner = true
             end
         end
-
     else
-
-        if self.final_direction_vector then
-            local trace = Shared.TraceCapsule(self:GetOrigin(), self:GetOrigin() + 0.3 * self.final_direction_vector, 0.1, 0.1, CollisionRep.Damage, PhysicsMask.Bullets, EntityFilterTwo(self, "Exo"))
-            if trace.fraction ~= 1 then
-                local enemies_within_range = GetEntitiesForTeamWithinRange("Player", kTeam2Index, self:GetOrigin(), 4)
-                if #enemies_within_range > 0 then
-                    for i = 1, #enemies_within_range do
+        local trace = Shared.TraceCapsule(self:GetOrigin(), self:GetOrigin() + 0.3 * self.final_direction_vector, 0.1, 0.1, CollisionRep.Damage, PhysicsMask.Bullets, EntityFilterTwo(self, "Exo"))
+        if trace.fraction ~= 1 then
+            local enemies_sphere = GetEntitiesForTeamWithinRange("Player", kTeam2Index, self:GetOrigin(), kExplosionRadius)
+            local visible_enemies = {}
+            if #enemies_sphere > 0 then
+                for i = 1, #enemies_sphere do
+                    if CanHitTargetEntity(self:GetOrigin(), enemies_sphere[i]:GetOrigin(), self, enemies_sphere[i]) then
                         if Server then
-                            self:DoDamage(tracking_missile_damage, enemies_within_range[i], enemies_within_range[i]:GetOrigin(), nil)
+                            self:DoDamage(tracking_missile_damage, enemies_sphere[i], enemies_sphere[i]:GetOrigin(), nil)
                         end
-                    end
-                end
-                if Server then
-                    StartSoundEffectAtOrigin(missile_explode_sound, self:GetOrigin())
-                    self:TriggerEffects("pulse_grenade_explode", {kEffectHostCoords = Coords.GetTranslation( self:GetOrigin() )})
-                    CreateExplosionDecals(self)
-                    DestroyEntity(self)
-                end
-            end
-        end
-        self.time_now = Shared.GetTime() -- Continuously update the time on the missile
-        if self.time_now >= self.time_created + 5 then -- If the missile has existed for five seconds or longer
-            local enemies_within_range = GetEntitiesForTeamWithinRange("Player", kTeam2Index, self:GetOrigin(), 4)
-            if #enemies_within_range > 0 then
-                for i = 1, #enemies_within_range do
-                    if Server then
-                        self:DoDamage(tracking_missile_damage, enemies_within_range[i], enemies_within_range[i]:GetOrigin(), nil)
-                    end
-                end
-
-                if Server then
-                    StartSoundEffectAtOrigin(missile_explode_sound, self:GetOrigin())
-                    self:TriggerEffects("pulse_grenade_explode", {kEffectHostCoords = Coords.GetTranslation( self:GetOrigin() )})
-                    CreateExplosionDecals(self)
-                    DestroyEntity(self)
-                end
-            end
-        end
-        if self.locked_target and not debug.isvalid(self.locked_target) then
-            self.locked_target = nil
-            local enemies_within_range = GetEntitiesForTeamWithinRange("Player", kTeam2Index, self:GetOrigin(), 4)
-            if #enemies_within_range > 0 then
-                for i = 1, #enemies_within_range do
-                    if Server then
-                        self:DoDamage(tracking_missile_damage, enemies_within_range[i], enemies_within_range[i]:GetOrigin(), nil)
                     end
                 end
             end
@@ -176,64 +191,28 @@ function Exo_Missile:OnUpdate(deltaTime)
                 CreateExplosionDecals(self)
                 DestroyEntity(self)
             end
-        elseif not self.locked_target then
-            if Server then
-                SetAnglesFromVector(self, self.final_direction_vector)
-                self:SetOrigin(self:GetOrigin() + 0.48 * self.final_direction_vector)
-            end
-            local nearby_targets = {}
-            local check_for_targets = GetEntitiesForTeamWithinRange("Player", kTeam2Index, self:GetOrigin(), 10)
-            local distance_and_target_pair_table = {}
-            if #check_for_targets > 0 then
-                for i = 1, #check_for_targets do
-                    if check_for_targets[i] and check_for_targets[i]:GetIsAlive() then
-                        if check_for_targets[i]:GetCloakFraction() < 0.5 then
-                            table.insert(nearby_targets, check_for_targets[i])
-                        end
+        end
+        local entity_sphere = GetEntitiesForTeamWithinRange("Player", kTeam2Index, self:GetOrigin(), kTargetSeekingRange)
+        local cone_of_targets = {}
+        if #entity_sphere > 0 then
+            for i = 1, #entity_sphere do
+                if CanHitTargetEntity(self:GetOrigin(), entity_sphere[i]:GetOrigin(), self, entity_sphere[i]) and entity_sphere[i]:GetCloakFraction() < kCloakingValueForMissileLockLoss then
+                    local vector_to_enemy = GetNormalizedVector(entity_sphere[i]:GetOrigin() - self:GetOrigin())
+                    local dotProductValue = vector_to_enemy:DotProduct(GetNormalizedVector(self.final_direction_vector))
+                    local angle = math.acos(dotProductValue) * (180 / 3.14159)
+                    local distance_to_target = vector_to_enemy:GetLength()
+                    if angle < kMaximumAngle then
+                        table.insert(cone_of_targets, {distance_to_target, entity_sphere[i]})
                     end
                 end
-            end
-            if #nearby_targets > 0 then
-                for i = 1, #nearby_targets do
-                    local distance = (self:GetOrigin() - nearby_targets[i]:GetOrigin()):GetLength()
-                    local target = nearby_targets[i]
-                    local data_pair = {distance, target}
-                    table.insert(distance_and_target_pair_table, data_pair)
-                end
-                table.sort(distance_and_target_pair_table, compare)
-                self.locked_target = distance_and_target_pair_table[1][2]
-            end
-        elseif self.locked_target and debug.isvalid(self.locked_target) then
-            if self.locked_target:GetCloakFraction() < 0.5 then
-                local vector_difference_to_target = self.locked_target:GetOrigin() - self:GetOrigin()
-                self.final_direction_vector = GetNormalizedVector(vector_difference_to_target)
-                local distance_to_target = vector_difference_to_target:GetLength()
-                if distance_to_target < 0.5 then
-                    local enemies_within_range = GetEntitiesForTeamWithinRange("Player", kTeam2Index, self:GetOrigin(), 4)
-                    if #enemies_within_range > 0 then
-                        for i = 1, #enemies_within_range do
-                            if Server then
-                                self:DoDamage(tracking_missile_damage, enemies_within_range[i], enemies_within_range[i]:GetOrigin(), nil)
-                            end
-                        end
-                        if Server then
-                            StartSoundEffectAtOrigin(missile_explode_sound, self:GetOrigin())
-                            self:TriggerEffects("pulse_grenade_explode", {kEffectHostCoords = Coords.GetTranslation( self:GetOrigin() )})
-                            CreateExplosionDecals(self)
-                            DestroyEntity(self)
-                        end
-                    end
-                end
-                if Server then
-                    SetAnglesFromVector(self, self.final_direction_vector)
-                end
-                self:SetOrigin(self:GetOrigin() + 0.48 * self.final_direction_vector)
-            else
-                self.locked_target = nil
-                self.final_direction_vector = self.initial_look_vector
             end
         end
-    
+        if #cone_of_targets > 0 then
+            table.sort(cone_of_targets, compare)
+            self.locked_target = Shared.GetEntity(cone_of_targets[1][2]:GetId())
+            self.final_direction_vector = GetNormalizedVector(self.locked_target:GetOrigin() - self:GetOrigin())
+        end
+        self:SetOrigin(self:GetOrigin() + kMissileSpeed * self.final_direction_vector)
     end
 end
 

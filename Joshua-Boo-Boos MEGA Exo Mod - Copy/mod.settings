@@ -5,21 +5,25 @@ description = [=[Exos now have a periodically activated short-range scanner whic
 
 Alien players with a cloaking value of 0.5 or more are not detected by the periodic scan. 
 
-The minigun exo has in addition to the scan received a new mode called "Siege Mode" which decreases the rate of fire of the minigun to 25% of the base value but increases the damage by a factor of 4 and is then increased by 10%.
+Minigun Exos receive Siege Mode which is activatable by pressing your reload key. When enabled Siege Mode makes miniguns fire more accurately and slower while dealing more damage.
 
-Minigun exos cannot move while in Siege Mode and have their fuel set to zero.
+In Defense rounds Minigun Exos when in Siege Mode spawn three missiles in a row per minigun.
+
+In Combat rounds Minigun Exos when in Siege Mode spawn two missiles in a row per minigun.
+
+Minigun exos while in Siege Mode have their fuel set to zero.
 
 Siege Mode can be activated and deactivated once every five seconds.
 
-Marine players cannot leave a minigun exo while Siege Mode is activated.
+Marine players cannot leave a minigun exo while Siege Mode is activate nor can the minigun exo be moved.
 
 The minigun sound has been changed and is played differently based on whether the minigun exo is in Siege Mode or not.
 
-Press your reload key to enter and leave Siege Mode.
+Missiles, mines and a nanoshield ability have been added to the minigun exo as explained below.
 
-Furthermore, missiles have been added to the minigun exo which require 100% fuel to use.
+Press 5 to cycle between: tracking missile, mine and nanoshield.
 
-Press 4 to fire a tracking missile which tracks alien players and deals 50 damage to alien players only and press 5 to fire a proximity mine which deals 100 damage to alien players only.]=]
+Press 4 to activate the above ability (each has an independant cooldown and requires 100% fuel to use).]=]
 image       = "joshua-boo-boos mega exo mod.jpg"
 tag_modtype = "Gameplay Tweak"
 tag_support = "Must be run on Server"

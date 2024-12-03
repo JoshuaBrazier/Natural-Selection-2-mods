@@ -15,8 +15,6 @@ Script.Load("lua/PointGiverMixin.lua")
 Script.Load("lua/AchievementGiverMixin.lua")
 Script.Load("lua/FilteredCinematicMixin.lua")
 
-Script.Load("lua/Joshua-Boo-Boos MEGA Exo Mod/Missile.lua")
-
 class 'Minigun' (Entity)
 
 Minigun.kMapName = "minigun"
@@ -54,7 +52,7 @@ local kMinigunRange = 400
 local kMinigunSpread = Math.Radians(5)
 local kMinigunSiegeModeSpread = Math.Radians(1.4)
 
-local fire_rate_multiplier = 7
+local fire_rate_multiplier = 10
 
 local kBulletSize = 0.03
 
@@ -138,6 +136,8 @@ function Minigun:OnInitialized()
         end
         
     end
+
+    self.defenseMod = ModLoader.GetModInfo("defense")
     
 end
 
@@ -289,6 +289,9 @@ function Minigun:GetWeight()
     return kMinigunWeight
 end
 
+local missile_count_siege_mode_defense = 3
+-- local missile_count_siege_mode_combat = 2
+
 -- TODO: we should use clip weapons provided functionality here (or create a more general solution which distincts between melee, hitscan and projectile only)!
 local function Shoot(self, leftSide)
 
@@ -300,183 +303,293 @@ local function Shoot(self, leftSide)
 
         if kWeapons4Enabled then
 
-            if GetHasTech(parent, kTechId.Weapons3) or GetHasTech(parent, kTechId.Weapons4) then
+            -- if GetHasTech(parent, kTechId.Weapons3) or GetHasTech(parent, kTechId.Weapons4) then
 
-                if Server and ((leftSide and self.l_i % fire_rate_multiplier == 0) or (not leftSide and self.r_i % fire_rate_multiplier == 0)) then
-                    StartSoundEffectOnEntity(missile_launch_sound, self, 0.045)
-                end
-            
                 local viewAngles = parent:GetViewAngles()
                 local shootCoords = viewAngles:GetCoords()
                 local direction = shootCoords.zAxis
                 local barrel_point = self:GetBarrelPoint()
-                
-                if Server then
-                    local missile = CreateEntity(Sentry_Missile.kMapName, barrel_point + 0.5 * GetNormalizedVector(parent:GetViewAngles():GetCoords().zAxis), kTeam1Index)
-                    missile.owner_entity_id = parent:GetId()
-                    missile.final_direction_vector = GetNormalizedVector(direction)
+
+                if parent.siege_mode then
+
+                    if Server and ((leftSide and self.l_i % 5 * fire_rate_multiplier == 0) or (not leftSide and self.r_i % 5 * fire_rate_multiplier == 0)) then
+                        if Server then
+                            StartSoundEffectOnEntity(missile_launch_sound, self, 0.045)
+                            
+                            if leftSide then
+                                if self.defenseMod then
+                                    for i = 1, missile_count_siege_mode_defense do
+                                        parent:AddTimedCallback(function(parent)
+                                                                    local missile
+                                                                    missile = CreateEntity(Exo_Missile.kMapName, barrel_point + (-1) * GetNormalizedVector(parent:GetViewAngles():GetCoords().xAxis) + Vector(0, 0.4, 0) + (-0.21) * GetNormalizedVector(parent:GetViewAngles():GetCoords().zAxis), kTeam1Index)
+                                                                    missile.owner_exo = parent:GetId()
+                                                                    missile.final_direction_vector = parent:GetViewCoords().zAxis
+                                                                    missile.initial_look_vector = missile.final_direction_vector
+                                                                end, i * 0.15)
+                                    end
+                                else
+                                    local missile
+                                    missile = CreateEntity(Exo_Missile.kMapName, barrel_point + (-1) * GetNormalizedVector(parent:GetViewAngles():GetCoords().xAxis) + Vector(0, 0.4, 0) + (-0.21) * GetNormalizedVector(parent:GetViewAngles():GetCoords().zAxis), kTeam1Index)
+                                    missile.owner_exo = parent:GetId()
+                                    missile.final_direction_vector = parent:GetViewCoords().zAxis
+                                    missile.initial_look_vector = missile.final_direction_vector
+                                end
+                            elseif not leftSide then
+                                if self.defenseMod then
+                                    for i = 1, missile_count_siege_mode_defense do
+                                        parent:AddTimedCallback(function(parent)
+                                                                    local missile
+                                                                    missile = CreateEntity(Exo_Missile.kMapName, barrel_point + (1) * GetNormalizedVector(parent:GetViewAngles():GetCoords().xAxis) + Vector(0, 0.4, 0) + (-0.21) * GetNormalizedVector(parent:GetViewAngles():GetCoords().zAxis), kTeam1Index)
+                                                                    missile.owner_exo = parent:GetId()
+                                                                    missile.final_direction_vector = parent:GetViewCoords().zAxis
+                                                                    missile.initial_look_vector = missile.final_direction_vector
+                                                                end, i * 0.15)
+                                    end
+                                else
+                                    local missile
+                                    missile = CreateEntity(Exo_Missile.kMapName, barrel_point + (1) * GetNormalizedVector(parent:GetViewAngles():GetCoords().xAxis) + Vector(0, 0.4, 0) + (-0.21) * GetNormalizedVector(parent:GetViewAngles():GetCoords().zAxis), kTeam1Index)
+                                    missile.owner_exo = parent:GetId()
+                                    missile.final_direction_vector = parent:GetViewCoords().zAxis
+                                    missile.initial_look_vector = missile.final_direction_vector
+                                end
+                            end
+                        end
+                    end
+
+                else
+
+                    if Server and ((leftSide and self.l_i % (5 * fire_rate_multiplier) == 0) or (not leftSide and self.r_i % (5 * fire_rate_multiplier) == 0)) then
+                        if Server then
+                            local missile
+                            StartSoundEffectOnEntity(missile_launch_sound, self, 0.045)
+                            if leftSide then
+                                missile = CreateEntity(Exo_Missile.kMapName, barrel_point + (-1) * GetNormalizedVector(parent:GetViewAngles():GetCoords().xAxis) + Vector(0, 0.4, 0) + (-0.21) * GetNormalizedVector(parent:GetViewAngles():GetCoords().zAxis), kTeam1Index)
+                                missile.owner_exo = parent:GetId()
+                                missile.final_direction_vector = parent:GetViewCoords().zAxis
+                                missile.initial_look_vector = missile.final_direction_vector
+                            elseif not leftSide then
+                                missile = CreateEntity(Exo_Missile.kMapName, barrel_point + (1) * GetNormalizedVector(parent:GetViewAngles():GetCoords().xAxis) + Vector(0, 0.4, 0) + (-0.21) * GetNormalizedVector(parent:GetViewAngles():GetCoords().zAxis), kTeam1Index)
+                                missile.owner_exo = parent:GetId()
+                                missile.final_direction_vector = parent:GetViewCoords().zAxis
+                                missile.initial_look_vector = missile.final_direction_vector
+                            end
+                            missile.final_direction_vector = GetNormalizedVector(direction)
+                        end
+                    end
+
                 end
                 
-                self.shooting = true
+            -- end
 
-            else
-
-                if Server then
-                    if parent.siege_mode then
-                        StartSoundEffectOnEntity(railgun_fire_sound, self, 0.75)
-                    else
-                        StartSoundEffectOnEntity(railgun_fire_sound, self, 0.28)
-                    end
+            if Server then
+                if parent.siege_mode then
+                    StartSoundEffectOnEntity(railgun_fire_sound, self, 0.75)
+                else
+                    StartSoundEffectOnEntity(railgun_fire_sound, self, 0.28)
+                end
+            end
+        
+            local viewAngles = parent:GetViewAngles()
+            local shootCoords = viewAngles:GetCoords()
+            
+            -- Filter ourself out of the trace so that we don't hit ourselves.
+            local filter = EntityFilterTwo(parent, self)
+            local startPoint = parent:GetEyePos()
+            
+            local spreadDirection = CalculateSpread(shootCoords, kMinigunSpread, NetworkRandom)
+            
+            if parent.siege_mode then
+    
+                spreadDirection = CalculateSpread(shootCoords, kMinigunSiegeModeSpread, NetworkRandom)
+    
+            end
+            
+            local range = kMinigunRange
+            
+            local endPoint = startPoint + spreadDirection * range
+            
+            local targets, trace, hitPoints = GetBulletTargets(startPoint, endPoint, spreadDirection, kBulletSize, filter) 
+            
+            local direction = (trace.endPoint - startPoint):GetUnit()
+            local hitOffset = direction * kHitEffectOffset
+            local impactPoint = trace.endPoint - hitOffset
+            local surfaceName = trace.surface
+            local effectFrequency = self:GetTracerEffectFrequency()
+            local showTracer = true --(math.random() < effectFrequency)
+            
+            local numTargets = #targets
+            
+            if numTargets == 0 then
+                self:ApplyBulletGameplayEffects(parent, nil, impactPoint, direction, 0, trace.surface, showTracer, kBotAccWeaponGroup.ExoMinigun)
+            end
+            
+            if Client and showTracer then
+                TriggerFirstPersonTracer(self, trace.endPoint)
+            end
+            
+            for i = 1, numTargets do
+    
+                local target = targets[i]
+                local hitPoint = hitPoints[i]
+    
+                if parent.siege_mode then
+                    self:ApplyBulletGameplayEffects(parent, target, hitPoint - hitOffset, direction, self.damage_multiplier * 4 * kMinigunDamage, "", showTracer and i == numTargets, kBotAccWeaponGroup.ExoMinigun)
+                else
+                    self:ApplyBulletGameplayEffects(parent, target, hitPoint - hitOffset, direction, self.damage_multiplier * kMinigunDamage, "", showTracer and i == numTargets, kBotAccWeaponGroup.ExoMinigun)
+                end
+                local client = Server and parent:GetClient() or Client
+                if not Shared.GetIsRunningPrediction() and client.hitRegEnabled then
+                    RegisterHitEvent(parent, bullet, startPoint, trace, damage)
                 end
             
-                local viewAngles = parent:GetViewAngles()
-                local shootCoords = viewAngles:GetCoords()
-                
-                -- Filter ourself out of the trace so that we don't hit ourselves.
-                local filter = EntityFilterTwo(parent, self)
-                local startPoint = parent:GetEyePos()
-                
-                local spreadDirection = CalculateSpread(shootCoords, kMinigunSpread, NetworkRandom)
-                
-                if parent.siege_mode then
-        
-                    spreadDirection = CalculateSpread(shootCoords, kMinigunSiegeModeSpread, NetworkRandom)
-        
-                end
-                
-                local range = kMinigunRange
-                
-                local endPoint = startPoint + spreadDirection * range
-                
-                local targets, trace, hitPoints = GetBulletTargets(startPoint, endPoint, spreadDirection, kBulletSize, filter) 
-                
-                local direction = (trace.endPoint - startPoint):GetUnit()
-                local hitOffset = direction * kHitEffectOffset
-                local impactPoint = trace.endPoint - hitOffset
-                local surfaceName = trace.surface
-                local effectFrequency = self:GetTracerEffectFrequency()
-                local showTracer = true --(math.random() < effectFrequency)
-                
-                local numTargets = #targets
-                
-                if numTargets == 0 then
-                    self:ApplyBulletGameplayEffects(parent, nil, impactPoint, direction, 0, trace.surface, showTracer, kBotAccWeaponGroup.ExoMinigun)
-                end
-                
-                if Client and showTracer then
-                    TriggerFirstPersonTracer(self, trace.endPoint)
-                end
-                
-                for i = 1, numTargets do
-        
-                    local target = targets[i]
-                    local hitPoint = hitPoints[i]
-        
-                    if parent.siege_mode then
-                        self:ApplyBulletGameplayEffects(parent, target, hitPoint - hitOffset, direction, self.damage_multiplier * 4 * kMinigunDamage, "", showTracer and i == numTargets, kBotAccWeaponGroup.ExoMinigun)
-                    else
-                        self:ApplyBulletGameplayEffects(parent, target, hitPoint - hitOffset, direction, self.damage_multiplier * kMinigunDamage, "", showTracer and i == numTargets, kBotAccWeaponGroup.ExoMinigun)
-                    end
-                    local client = Server and parent:GetClient() or Client
-                    if not Shared.GetIsRunningPrediction() and client.hitRegEnabled then
-                        RegisterHitEvent(parent, bullet, startPoint, trace, damage)
-                    end
-                
-                end
-                
-                self.shooting = true
-
             end
+            
+            self.shooting = true
 
         elseif not kWeapons4Enabled then
 
-            if GetHasTech(parent, kTechId.Weapons3) then
+            -- if GetHasTech(parent, kTechId.Weapons3) then
 
-                if Server and ((leftSide and self.l_i % fire_rate_multiplier == 0) or (not leftSide and self.r_i % fire_rate_multiplier == 0)) then
-                    StartSoundEffectOnEntity(missile_launch_sound, self, 0.045)
-                end
-            
                 local viewAngles = parent:GetViewAngles()
                 local shootCoords = viewAngles:GetCoords()
                 local direction = shootCoords.zAxis
                 local barrel_point = self:GetBarrelPoint()
-                
-                if Server then
-                    local missile = CreateEntity(Sentry_Missile.kMapName, barrel_point, kTeam1Index)
-                    missile.owner_entity_id = parent:GetId()
-                    missile.final_direction_vector = GetNormalizedVector(direction)
+
+                if parent.siege_mode then
+
+                    if Server and ((leftSide and self.l_i % 5 * fire_rate_multiplier == 0) or (not leftSide and self.r_i % 5 * fire_rate_multiplier == 0)) then
+                        if Server then
+                            StartSoundEffectOnEntity(missile_launch_sound, self, 0.045)
+                            
+                            if leftSide then
+                                if self.defenseMod then
+                                    for i = 1, missile_count_siege_mode_defense do
+                                        parent:AddTimedCallback(function(parent)
+                                                                    local missile
+                                                                    missile = CreateEntity(Exo_Missile.kMapName, barrel_point + (-1) * GetNormalizedVector(parent:GetViewAngles():GetCoords().xAxis) + Vector(0, 0.4, 0) + (-0.21) * GetNormalizedVector(parent:GetViewAngles():GetCoords().zAxis), kTeam1Index)
+                                                                    missile.owner_exo = parent:GetId()
+                                                                    missile.final_direction_vector = parent:GetViewCoords().zAxis
+                                                                    missile.initial_look_vector = missile.final_direction_vector
+                                                                end, i * 0.15)
+                                    end
+                                else
+                                    local missile
+                                    missile = CreateEntity(Exo_Missile.kMapName, barrel_point + (-1) * GetNormalizedVector(parent:GetViewAngles():GetCoords().xAxis) + Vector(0, 0.4, 0) + (-0.21) * GetNormalizedVector(parent:GetViewAngles():GetCoords().zAxis), kTeam1Index)
+                                    missile.owner_exo = parent:GetId()
+                                    missile.final_direction_vector = parent:GetViewCoords().zAxis
+                                    missile.initial_look_vector = missile.final_direction_vector
+                                end
+                            elseif not leftSide then
+                                if self.defenseMod then
+                                    for i = 1, missile_count_siege_mode_defense do
+                                        parent:AddTimedCallback(function(parent)
+                                                                    local missile
+                                                                    missile = CreateEntity(Exo_Missile.kMapName, barrel_point + (1) * GetNormalizedVector(parent:GetViewAngles():GetCoords().xAxis) + Vector(0, 0.4, 0) + (-0.21) * GetNormalizedVector(parent:GetViewAngles():GetCoords().zAxis), kTeam1Index)
+                                                                    missile.owner_exo = parent:GetId()
+                                                                    missile.final_direction_vector = parent:GetViewCoords().zAxis
+                                                                    missile.initial_look_vector = missile.final_direction_vector
+                                                                end, i * 0.15)
+                                    end
+                                else
+                                    local missile
+                                    missile = CreateEntity(Exo_Missile.kMapName, barrel_point + (1) * GetNormalizedVector(parent:GetViewAngles():GetCoords().xAxis) + Vector(0, 0.4, 0) + (-0.21) * GetNormalizedVector(parent:GetViewAngles():GetCoords().zAxis), kTeam1Index)
+                                    missile.owner_exo = parent:GetId()
+                                    missile.final_direction_vector = parent:GetViewCoords().zAxis
+                                    missile.initial_look_vector = missile.final_direction_vector
+                                end
+                            end
+                        end
+                    end
+
+                else
+
+                    if Server and ((leftSide and self.l_i % (5 * fire_rate_multiplier) == 0) or (not leftSide and self.r_i % (5 * fire_rate_multiplier) == 0)) then
+                        if Server then
+                            local missile
+                            StartSoundEffectOnEntity(missile_launch_sound, self, 0.045)
+                            if leftSide then
+                                missile = CreateEntity(Exo_Missile.kMapName, barrel_point + (-1) * GetNormalizedVector(parent:GetViewAngles():GetCoords().xAxis) + Vector(0, 0.4, 0) + (-0.21) * GetNormalizedVector(parent:GetViewAngles():GetCoords().zAxis), kTeam1Index)
+                                missile.owner_exo = parent:GetId()
+                                missile.final_direction_vector = parent:GetViewCoords().zAxis
+                                missile.initial_look_vector = missile.final_direction_vector
+                            elseif not leftSide then
+                                missile = CreateEntity(Exo_Missile.kMapName, barrel_point + (1) * GetNormalizedVector(parent:GetViewAngles():GetCoords().xAxis) + Vector(0, 0.4, 0) + (-0.21) * GetNormalizedVector(parent:GetViewAngles():GetCoords().zAxis), kTeam1Index)
+                                missile.owner_exo = parent:GetId()
+                                missile.final_direction_vector = parent:GetViewCoords().zAxis
+                                missile.initial_look_vector = missile.final_direction_vector
+                            end
+                            missile.final_direction_vector = GetNormalizedVector(direction)
+                        end
+                    end
+
                 end
                 
-                self.shooting = true
+            -- end
 
-            else
-
-                if Server then
-                    if parent.siege_mode then
-                        StartSoundEffectOnEntity(railgun_fire_sound, self, 0.75)
-                    else
-                        StartSoundEffectOnEntity(railgun_fire_sound, self, 0.28)
-                    end
+            if Server then
+                if parent.siege_mode then
+                    StartSoundEffectOnEntity(railgun_fire_sound, self, 0.75)
+                else
+                    StartSoundEffectOnEntity(railgun_fire_sound, self, 0.28)
+                end
+            end
+        
+            local viewAngles = parent:GetViewAngles()
+            local shootCoords = viewAngles:GetCoords()
+            
+            -- Filter ourself out of the trace so that we don't hit ourselves.
+            local filter = EntityFilterTwo(parent, self)
+            local startPoint = parent:GetEyePos()
+            
+            local spreadDirection = CalculateSpread(shootCoords, kMinigunSpread, NetworkRandom)
+            
+            if parent.siege_mode then
+    
+                spreadDirection = CalculateSpread(shootCoords, kMinigunSiegeModeSpread, NetworkRandom)
+    
+            end
+            
+            local range = kMinigunRange
+            
+            local endPoint = startPoint + spreadDirection * range
+            
+            local targets, trace, hitPoints = GetBulletTargets(startPoint, endPoint, spreadDirection, kBulletSize, filter) 
+            
+            local direction = (trace.endPoint - startPoint):GetUnit()
+            local hitOffset = direction * kHitEffectOffset
+            local impactPoint = trace.endPoint - hitOffset
+            local surfaceName = trace.surface
+            local effectFrequency = self:GetTracerEffectFrequency()
+            local showTracer = true --(math.random() < effectFrequency)
+            
+            local numTargets = #targets
+            
+            if numTargets == 0 then
+                self:ApplyBulletGameplayEffects(parent, nil, impactPoint, direction, 0, trace.surface, showTracer, kBotAccWeaponGroup.ExoMinigun)
+            end
+            
+            if Client and showTracer then
+                TriggerFirstPersonTracer(self, trace.endPoint)
+            end
+            
+            for i = 1, numTargets do
+    
+                local target = targets[i]
+                local hitPoint = hitPoints[i]
+    
+                if parent.siege_mode then
+                    self:ApplyBulletGameplayEffects(parent, target, hitPoint - hitOffset, direction, self.damage_multiplier * 1.85 * kMinigunDamage, "", showTracer and i == numTargets, kBotAccWeaponGroup.ExoMinigun)
+                else
+                    self:ApplyBulletGameplayEffects(parent, target, hitPoint - hitOffset, direction, self.damage_multiplier * kMinigunDamage, "", showTracer and i == numTargets, kBotAccWeaponGroup.ExoMinigun)
+                end
+                local client = Server and parent:GetClient() or Client
+                if not Shared.GetIsRunningPrediction() and client.hitRegEnabled then
+                    RegisterHitEvent(parent, bullet, startPoint, trace, damage)
                 end
             
-                local viewAngles = parent:GetViewAngles()
-                local shootCoords = viewAngles:GetCoords()
-                
-                -- Filter ourself out of the trace so that we don't hit ourselves.
-                local filter = EntityFilterTwo(parent, self)
-                local startPoint = parent:GetEyePos()
-                
-                local spreadDirection = CalculateSpread(shootCoords, kMinigunSpread, NetworkRandom)
-                
-                if parent.siege_mode then
-        
-                    spreadDirection = CalculateSpread(shootCoords, kMinigunSiegeModeSpread, NetworkRandom)
-        
-                end
-                
-                local range = kMinigunRange
-                
-                local endPoint = startPoint + spreadDirection * range
-                
-                local targets, trace, hitPoints = GetBulletTargets(startPoint, endPoint, spreadDirection, kBulletSize, filter) 
-                
-                local direction = (trace.endPoint - startPoint):GetUnit()
-                local hitOffset = direction * kHitEffectOffset
-                local impactPoint = trace.endPoint - hitOffset
-                local surfaceName = trace.surface
-                local effectFrequency = self:GetTracerEffectFrequency()
-                local showTracer = true --(math.random() < effectFrequency)
-                
-                local numTargets = #targets
-                
-                if numTargets == 0 then
-                    self:ApplyBulletGameplayEffects(parent, nil, impactPoint, direction, 0, trace.surface, showTracer, kBotAccWeaponGroup.ExoMinigun)
-                end
-                
-                if Client and showTracer then
-                    TriggerFirstPersonTracer(self, trace.endPoint)
-                end
-                
-                for i = 1, numTargets do
-        
-                    local target = targets[i]
-                    local hitPoint = hitPoints[i]
-        
-                    if parent.siege_mode then
-                        self:ApplyBulletGameplayEffects(parent, target, hitPoint - hitOffset, direction, self.damage_multiplier * 4 * kMinigunDamage, "", showTracer and i == numTargets, kBotAccWeaponGroup.ExoMinigun)
-                    else
-                        self:ApplyBulletGameplayEffects(parent, target, hitPoint - hitOffset, direction, self.damage_multiplier * kMinigunDamage, "", showTracer and i == numTargets, kBotAccWeaponGroup.ExoMinigun)
-                    end
-                    local client = Server and parent:GetClient() or Client
-                    if not Shared.GetIsRunningPrediction() and client.hitRegEnabled then
-                        RegisterHitEvent(parent, bullet, startPoint, trace, damage)
-                    end
-                
-                end
-                
-                self.shooting = true
-                
             end
+            
+            self.shooting = true
 
         end
 
@@ -597,141 +710,57 @@ function Minigun:OnTag(tagName)
 
     local parent = self:GetParent()
 
-    if kWeapons4Enabled then
+    if parent.siege_mode then
 
-        if GetHasTech(parent, kTechId.Weapons3) or GetHasTech(parent, kTechId.Weapons4) then
+        self.damage_multiplier = 1.1
 
-            if self:GetIsLeftSlot() and tagName == "l_shoot" then
+    else
 
-                if self.l_i % fire_rate_multiplier == 0 then
-                    Shoot(self, true)
-                end
-                self.l_i = self.l_i + 1
+        self.damage_multiplier = 1
+
+    end
+
+    if self:GetIsLeftSlot() and tagName == "l_shoot" then
+
+        if parent.siege_mode then
+
+            if self.l_i % 4 == 0 then
         
-            elseif not self:GetIsLeftSlot() and tagName == "r_shoot" then
-        
-                if self.r_i % fire_rate_multiplier == 0 then
-                    Shoot(self, false)
-                end
-                self.r_i = self.r_i + 1
-        
+        -- if Minigun.ammo_left > 0 then
+                Shoot(self, true)
+            -- Minigun.ammo_left = Minigun.ammo_left - 1
+        -- end
+                
             end
-
+        
         else
 
-            if parent.siege_mode then
-
-                self.damage_multiplier = 1.1
-
-                if self:GetIsLeftSlot() and tagName == "l_shoot" then
-
-                    if self.l_i % 4 == 0 then -- and Minigun.ammo_siege_left > 0 then
-                        Shoot(self, true)
-                        -- Minigun.ammo_siege_left = Minigun.ammo_siege_left - 1
-                    end
-                    self.l_i = self.l_i + 1
-
-                elseif not self:GetIsLeftSlot() and tagName == "r_shoot" then
-
-                    if self.r_i % 4 == 0 then -- and Minigun.ammo_siege_right > 0 then
-                        Shoot(self, false)
-                        -- Minigun.ammo_siege_right = Minigun.ammo_siege_right - 1
-                    end
-                    self.r_i = self.r_i + 1
-
-                end
-
-            else
-
-                self.damage_multiplier = 1
-
-                if self:GetIsLeftSlot() and tagName == "l_shoot" then
-                    
-                    -- if Minigun.ammo_left > 0 then
-                        Shoot(self, true)
-                        -- Minigun.ammo_left = Minigun.ammo_left - 1
-                    -- end
-                    
-                elseif not self:GetIsLeftSlot() and tagName == "r_shoot" then
-
-                    -- if Minigun.ammo_right > 0 then
-                        Shoot(self, false)
-                        -- Minigun.ammo_right = Minigun.ammo_right - 1
-                    -- end
-
-                end
-
-            end
+            Shoot(self, true)
 
         end
 
-    elseif not kWeapons4Enabled then
-
-        if GetHasTech(parent, kTechId.Weapons3) then
-
-            if self:GetIsLeftSlot() and tagName == "l_shoot" then
-
-                if self.l_i % fire_rate_multiplier == 0 then
-                    Shoot(self, true)
-                end
-                self.l_i = self.l_i + 1
+        self.l_i = self.l_i + 1
         
-            elseif not self:GetIsLeftSlot() and tagName == "r_shoot" then
+    elseif not self:GetIsLeftSlot() and tagName == "r_shoot" then
+
+        if parent.siege_mode then
+
+            if self.r_i % 4 == 0 then
         
-                if self.r_i % fire_rate_multiplier == 0 then
-                    Shoot(self, false)
-                end
-                self.r_i = self.r_i + 1
-        
+        -- if Minigun.ammo_right > 0 then
+                Shoot(self, false)
+            -- Minigun.ammo_right = Minigun.ammo_right - 1
+        -- end
+                
             end
-
+        
         else
 
-            if parent.siege_mode then
-
-                self.damage_multiplier = 1.1
-
-                if self:GetIsLeftSlot() and tagName == "l_shoot" then
-
-                    if self.l_i % 4 == 0 then -- and Minigun.ammo_siege_left > 0 then
-                        Shoot(self, true)
-                        -- Minigun.ammo_siege_left = Minigun.ammo_siege_left - 1
-                    end
-                    self.l_i = self.l_i + 1
-
-                elseif not self:GetIsLeftSlot() and tagName == "r_shoot" then
-
-                    if self.r_i % 4 == 0 then -- and Minigun.ammo_siege_right > 0 then
-                        Shoot(self, false)
-                        -- Minigun.ammo_siege_right = Minigun.ammo_siege_right - 1
-                    end
-                    self.r_i = self.r_i + 1
-
-                end
-
-            else
-
-                self.damage_multiplier = 1
-
-                if self:GetIsLeftSlot() and tagName == "l_shoot" then
-                    
-                    -- if Minigun.ammo_left > 0 then
-                        Shoot(self, true)
-                        -- Minigun.ammo_left = Minigun.ammo_left - 1
-                    -- end
-                    
-                elseif not self:GetIsLeftSlot() and tagName == "r_shoot" then
-
-                    -- if Minigun.ammo_right > 0 then
-                        Shoot(self, false)
-                        -- Minigun.ammo_right = Minigun.ammo_right - 1
-                    -- end
-
-                end
-
-            end
+            Shoot(self, false)
 
         end
+        
+        self.r_i = self.r_i + 1
 
     end
     
@@ -747,10 +776,14 @@ function Minigun:OnTag(tagName)
     -- Play spin-down sound.
     if Server then
         if self:GetIsLeftSlot() and tagName == "left_minigun_attack_end" then
-            self.l_i = 0
+            -- if not self.defenseMod then
+            --     self.l_i = 0
+            -- end
             StartSoundEffectOnEntity(kSpinDownSoundNames[ExoWeaponHolder.kSlotNames.Left], self)
         elseif self:GetIsRightSlot() and tagName == "right_minigun_attack_end" then
-            self.r_i = 0
+            -- if not self.defenseMod then
+            --     self.r_i = 0
+            -- end
             StartSoundEffectOnEntity(kSpinDownSoundNames[ExoWeaponHolder.kSlotNames.Right], self)
         end
     end
