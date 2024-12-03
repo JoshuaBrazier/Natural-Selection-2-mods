@@ -9,119 +9,53 @@ Warning: QPainter::setBrush: Painter not active
 Warning: QPainter::setRenderHint: Painter must be active to set rendering hints
 Warning: QPainter::setPen: Painter not active
 Warning: libpng warning: Interlace handling should be turned on when using png_read_image
-Warning: libpng warning: Interlace handling should be turned on when using png_read_image
-Warning: libpng warning: Interlace handling should be turned on when using png_read_image
-Debug: "14:24:00 c:\jk\workspace\build__4.44__designer_win\fmod4\tools\fmod_designer\src\eventform.ui.h:1983 CG: Paste Event" 
-Debug: "14:24:04 c:\jk\workspace\build__4.44__designer_win\fmod4\tools\fmod_designer\src\eventform.ui.h:1983 CG: Paste Event" 
-Debug: "14:24:08 c:\jk\workspace\build__4.44__designer_win\fmod4\tools\fmod_designer\src\eventform.ui.h:2202 CH: Delete Events/Event Groups/Event Categories" 
-Debug: "14:24:14 c:\jk\workspace\build__4.44__designer_win\fmod4\tools\fmod_designer\src\bankform.ui.h:1008 AB: Add Sound Bank" 
-Debug: "14:24:19 c:\jk\workspace\build__4.44__designer_win\fmod4\tools\fmod_designer\src\eventform.ui.h:1983 CG: Paste Event" 
-Debug: "14:24:32 c:\jk\workspace\build__4.44__designer_win\fmod4\tools\fmod_designer\src\builddialog.ui.h:274 AG: Find Missing Sound Files" 
-Debug: Error : Build failed : Couldn't cache details for 'Beep.mp3'.
 Debug: 
-Building project 'RollTheDice'...
-Debug: Building project C:\Users\Joshua-Boo-Boos\Desktop\New Desktop\Natural-Selection-2-mods - Testing\Joshua-Boo-Boos Roll The Dice Mod\source\soundsrc\RollTheDice.fev...
-Debug: Unique sound defs 1/9
-Debug: Retrieving sound file info...
-Debug: Error! Length wasn't cached for sound file Beep.mp3
-Debug: Error : Build failed : An error occurred while writing 'C:\Users\Joshua-Boo-Boos\Desktop\New Desktop\Natural-Selection-2-mods - Testing\Joshua-Boo-Boos Roll The Dice Mod\source\soundsrc\RollTheDice.fev'.
-Debug: 
-The following errors and warnings were detected:
-Error : Build failed : Couldn't cache details for 'Beep.mp3'.
-Error : Build failed : An error occurred while writing 'C:\Users\Joshua-Boo-Boos\Desktop\New Desktop\Natural-Selection-2-mods - Testing\Joshua-Boo-Boos Roll The Dice Mod\source\soundsrc\RollTheDice.fev'.
-Debug: 
-Summary of build:
-FAIL   : C:/Users/Joshua-Boo-Boos/Desktop/New Desktop/Natural-Selection-2-mods - Testing/Joshua-Boo-Boos Roll The Dice Mod/source/soundsrc/RollTheDice.fev
-Debug: "14:24:46 c:\jk\workspace\build__4.44__designer_win\fmod4\tools\fmod_designer\src\bankform.ui.h:1048 AC: Delete Soundbank" 
-Debug: "14:24:46 ..\..\src\simpleeventcontroller.cpp:1388 IL: Set Bank" 
-Debug: "14:24:53 c:\jk\workspace\build__4.44__designer_win\fmod4\tools\fmod_designer\src\eventform.ui.h:2202 CH: Delete Events/Event Groups/Event Categories" 
-Debug: 
-Cleaning project 'RollTheDice'...
-Debug: Deleting file C:\Users\Joshua-Boo-Boos\Desktop\New Desktop\Natural-Selection-2-mods - Testing\Joshua-Boo-Boos Roll The Dice Mod\source\soundsrc\RollTheDice.fev...
-Debug: Done.
-Debug: 
-Building project 'RollTheDice'...
-Debug: Building project C:\Users\Joshua-Boo-Boos\Desktop\New Desktop\Natural-Selection-2-mods - Testing\Joshua-Boo-Boos Roll The Dice Mod\source\soundsrc\RollTheDice.fev...
-Debug: Unique sound defs 1/8
+Building project 'Mac10'...
+Debug: Building project C:\Users\Joshua-Boo-Boos\Desktop\New Desktop\Natural-Selection-2-mods - Testing\Joshua-Boo-Boos DMD Combat Mod\source\soundsrc\Mac10.fev...
+Debug: Unique sound defs 1/2
 Debug: Retrieving sound file info...
 Debug: Retrieving reverb info...
 Debug: FEV file written ok
 Debug: Unique Envelope Points: 0 of 0
-Debug: Unique Strings: 381 characters of 381
+Debug: Unique Strings: 96 characters of 96
 Debug: Caching sound file details for ''...
-Debug: Bullets.mp3
-Debug: Nuke.mp3
-Debug: OMaeWaMouShindeiru.mp3
-Debug: Slap.mp3
-Debug: Slay Team.mp3
-Debug: Stat Down.mp3
-Debug: Stat Up.mp3
-Debug: Sword Slash.mp3
-Debug: Building 'RollTheDice_bank00.fsb'
-Debug: Warning for C:\Users\Joshua-Boo-Boos\Desktop\New Desktop\Natural-Selection-2-mods - Testing\Joshua-Boo-Boos Roll The Dice Mod\source\soundsrc\Bullets.mp3:
-Debug:     This source file was truncated.  Length reported 304128 bytes, length decoded = 294912 bytes.
+Debug: ..\..\output\sound\Reload.mp3
+Debug: ..\..\output\sound\Shoot.mp3
+Debug: Building 'Mac10_bank01.fsb'
+Debug: Warning for C:\Users\Joshua-Boo-Boos\Desktop\New Desktop\Natural-Selection-2-mods - Testing\Joshua-Boo-Boos DMD Combat Mod\source\soundsrc\..\..\output\sound\Shoot.mp3:
+Debug:     This source file was truncated.  Length reported 27648 bytes, length decoded = 17920 bytes.
 
-Debug: Encoded C:\Users\Joshua-Boo-Boos\Desktop\New Desktop\Natural-Selection-2-mods - Testing\Joshua-Boo-Boos Roll The Dice Mod\source\soundsrc\Bullets.mp3
-Debug: Encoded C:\Users\Joshua-Boo-Boos\Desktop\New Desktop\Natural-Selection-2-mods - Testing\Joshua-Boo-Boos Roll The Dice Mod\source\soundsrc\Nuke.mp3
-Debug: Encoded C:\Users\Joshua-Boo-Boos\Desktop\New Desktop\Natural-Selection-2-mods - Testing\Joshua-Boo-Boos Roll The Dice Mod\source\soundsrc\OMaeWaMouShindeiru.mp3
-Debug: Encoded C:\Users\Joshua-Boo-Boos\Desktop\New Desktop\Natural-Selection-2-mods - Testing\Joshua-Boo-Boos Roll The Dice Mod\source\soundsrc\Slap.mp3
-Debug: Warning for C:\Users\Joshua-Boo-Boos\Desktop\New Desktop\Natural-Selection-2-mods - Testing\Joshua-Boo-Boos Roll The Dice Mod\source\soundsrc\Stat Down.mp3:
-Debug:     This source file was truncated.  Length reported 207360 bytes, length decoded = 198656 bytes.
-
-Debug: Encoded C:\Users\Joshua-Boo-Boos\Desktop\New Desktop\Natural-Selection-2-mods - Testing\Joshua-Boo-Boos Roll The Dice Mod\source\soundsrc\Stat Down.mp3
-Debug: Warning for C:\Users\Joshua-Boo-Boos\Desktop\New Desktop\Natural-Selection-2-mods - Testing\Joshua-Boo-Boos Roll The Dice Mod\source\soundsrc\Stat Up.mp3:
-Debug:     This source file was truncated.  Length reported 207360 bytes, length decoded = 198656 bytes.
-
-Debug: Encoded C:\Users\Joshua-Boo-Boos\Desktop\New Desktop\Natural-Selection-2-mods - Testing\Joshua-Boo-Boos Roll The Dice Mod\source\soundsrc\Stat Up.mp3
-Debug: Encoded C:\Users\Joshua-Boo-Boos\Desktop\New Desktop\Natural-Selection-2-mods - Testing\Joshua-Boo-Boos Roll The Dice Mod\source\soundsrc\Slay Team.mp3
-Debug: Encoded C:\Users\Joshua-Boo-Boos\Desktop\New Desktop\Natural-Selection-2-mods - Testing\Joshua-Boo-Boos Roll The Dice Mod\source\soundsrc\Sword Slash.mp3
+Debug: Encoded C:\Users\Joshua-Boo-Boos\Desktop\New Desktop\Natural-Selection-2-mods - Testing\Joshua-Boo-Boos DMD Combat Mod\source\soundsrc\..\..\output\sound\Shoot.mp3
+Debug: Encoded C:\Users\Joshua-Boo-Boos\Desktop\New Desktop\Natural-Selection-2-mods - Testing\Joshua-Boo-Boos DMD Combat Mod\source\soundsrc\..\..\output\sound\Reload.mp3
 Debug: Writing FSB...
 Debug: Finished building FSB
 Debug: 
 Debug: 
 Summary of build:
-SUCCESS: C:/Users/Joshua-Boo-Boos/Desktop/New Desktop/Natural-Selection-2-mods - Testing/Joshua-Boo-Boos Roll The Dice Mod/source/soundsrc/RollTheDice.fev
-SUCCESS: RollTheDice_bank00.fsb
+SUCCESS: C:/Users/Joshua-Boo-Boos/Desktop/New Desktop/Natural-Selection-2-mods - Testing/Joshua-Boo-Boos DMD Combat Mod/source/soundsrc/Mac10.fev
+SUCCESS: Mac10_bank01.fsb
 Debug: 
-Building project 'RollTheDice'...
-Debug: Building project C:\Users\Joshua-Boo-Boos\Desktop\New Desktop\Natural-Selection-2-mods - Testing\Joshua-Boo-Boos Roll The Dice Mod\source\soundsrc\RollTheDice.fev...
-Debug: Unique sound defs 1/8
+Building project 'Mac10'...
+Debug: Building project C:\Users\Joshua-Boo-Boos\Desktop\New Desktop\Natural-Selection-2-mods - Testing\Joshua-Boo-Boos DMD Combat Mod\source\soundsrc\Mac10.fev...
+Debug: Unique sound defs 1/2
 Debug: Retrieving sound file info...
 Debug: Retrieving reverb info...
 Debug: FEV file written ok
 Debug: Unique Envelope Points: 0 of 0
-Debug: Unique Strings: 381 characters of 381
+Debug: Unique Strings: 96 characters of 96
 Debug: Caching sound file details for ''...
-Debug: Bullets.mp3
-Debug: Nuke.mp3
-Debug: OMaeWaMouShindeiru.mp3
-Debug: Slap.mp3
-Debug: Slay Team.mp3
-Debug: Stat Down.mp3
-Debug: Stat Up.mp3
-Debug: Sword Slash.mp3
-Debug: Building 'RollTheDice_bank00.fsb'
-Debug: Warning for C:\Users\Joshua-Boo-Boos\Desktop\New Desktop\Natural-Selection-2-mods - Testing\Joshua-Boo-Boos Roll The Dice Mod\source\soundsrc\Bullets.mp3:
-Debug:     This source file was truncated.  Length reported 304128 bytes, length decoded = 294912 bytes.
+Debug: ..\..\output\sound\Reload.mp3
+Debug: ..\..\output\sound\Shoot.mp3
+Debug: Building 'Mac10_bank01.fsb'
+Debug: Warning for C:\Users\Joshua-Boo-Boos\Desktop\New Desktop\Natural-Selection-2-mods - Testing\Joshua-Boo-Boos DMD Combat Mod\source\soundsrc\..\..\output\sound\Shoot.mp3:
+Debug:     This source file was truncated.  Length reported 27648 bytes, length decoded = 17920 bytes.
 
-Debug: Encoded C:\Users\Joshua-Boo-Boos\Desktop\New Desktop\Natural-Selection-2-mods - Testing\Joshua-Boo-Boos Roll The Dice Mod\source\soundsrc\Bullets.mp3
-Debug: Encoded C:\Users\Joshua-Boo-Boos\Desktop\New Desktop\Natural-Selection-2-mods - Testing\Joshua-Boo-Boos Roll The Dice Mod\source\soundsrc\Nuke.mp3
-Debug: Encoded C:\Users\Joshua-Boo-Boos\Desktop\New Desktop\Natural-Selection-2-mods - Testing\Joshua-Boo-Boos Roll The Dice Mod\source\soundsrc\Slap.mp3
-Debug: Encoded C:\Users\Joshua-Boo-Boos\Desktop\New Desktop\Natural-Selection-2-mods - Testing\Joshua-Boo-Boos Roll The Dice Mod\source\soundsrc\OMaeWaMouShindeiru.mp3
-Debug: Warning for C:\Users\Joshua-Boo-Boos\Desktop\New Desktop\Natural-Selection-2-mods - Testing\Joshua-Boo-Boos Roll The Dice Mod\source\soundsrc\Stat Down.mp3:
-Debug:     This source file was truncated.  Length reported 207360 bytes, length decoded = 198656 bytes.
-
-Debug: Encoded C:\Users\Joshua-Boo-Boos\Desktop\New Desktop\Natural-Selection-2-mods - Testing\Joshua-Boo-Boos Roll The Dice Mod\source\soundsrc\Stat Down.mp3
-Debug: Warning for C:\Users\Joshua-Boo-Boos\Desktop\New Desktop\Natural-Selection-2-mods - Testing\Joshua-Boo-Boos Roll The Dice Mod\source\soundsrc\Stat Up.mp3:
-Debug:     This source file was truncated.  Length reported 207360 bytes, length decoded = 198656 bytes.
-
-Debug: Encoded C:\Users\Joshua-Boo-Boos\Desktop\New Desktop\Natural-Selection-2-mods - Testing\Joshua-Boo-Boos Roll The Dice Mod\source\soundsrc\Stat Up.mp3
-Debug: Encoded C:\Users\Joshua-Boo-Boos\Desktop\New Desktop\Natural-Selection-2-mods - Testing\Joshua-Boo-Boos Roll The Dice Mod\source\soundsrc\Slay Team.mp3
-Debug: Encoded C:\Users\Joshua-Boo-Boos\Desktop\New Desktop\Natural-Selection-2-mods - Testing\Joshua-Boo-Boos Roll The Dice Mod\source\soundsrc\Sword Slash.mp3
+Debug: Encoded C:\Users\Joshua-Boo-Boos\Desktop\New Desktop\Natural-Selection-2-mods - Testing\Joshua-Boo-Boos DMD Combat Mod\source\soundsrc\..\..\output\sound\Shoot.mp3
+Debug: Encoded C:\Users\Joshua-Boo-Boos\Desktop\New Desktop\Natural-Selection-2-mods - Testing\Joshua-Boo-Boos DMD Combat Mod\source\soundsrc\..\..\output\sound\Reload.mp3
 Debug: Writing FSB...
 Debug: Finished building FSB
 Debug: 
 Debug: 
 Summary of build:
-SUCCESS: C:/Users/Joshua-Boo-Boos/Desktop/New Desktop/Natural-Selection-2-mods - Testing/Joshua-Boo-Boos Roll The Dice Mod/source/soundsrc/RollTheDice.fev
-SUCCESS: RollTheDice_bank00.fsb
+SUCCESS: C:/Users/Joshua-Boo-Boos/Desktop/New Desktop/Natural-Selection-2-mods - Testing/Joshua-Boo-Boos DMD Combat Mod/source/soundsrc/Mac10.fev
+SUCCESS: Mac10_bank01.fsb
