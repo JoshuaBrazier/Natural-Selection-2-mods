@@ -32,16 +32,8 @@ local function RTD()
         if Client.GetIsControllingPlayer() then
             if (player:GetTeamNumber() == kTeam1Index or player:GetTeamNumber() == kTeam2Index) and player.GetIsAlive and player:GetIsAlive() and player.GetHealth and player:GetHealth() > 0 and not player:isa("Embryo") and not player:isa("Egg") and not player:isa("MarineSpectator") and not player:isa("AlienSpectator") then
                 local id = player:GetId()
-                local RTD_Data = { entId = tostring(id) }
-                if not player.lastCalledRTDTime then
-                    player.lastCalledRTDTime = Shared.GetTime()
-                    Client.SendNetworkMessage("RTD", RTD_Data, true)
-                else
-                    if Shared.GetTime() >= player.lastCalledRTDTime + kTimePerRoll then
-                        player.lastCalledRTDTime = Shared.GetTime()
-                        Client.SendNetworkMessage("RTD", RTD_Data, true)
-                    end
-                end
+                local RTD_Data = { entId = tostring(id), rollTime = Shared.GetTime()} 
+                Client.SendNetworkMessage("RTD", RTD_Data, true)
             end
         end
     end
