@@ -1,7 +1,0 @@
-geometry "Mac-10_View.fbx"
-animation "idle" "Mac-10_View.fbx" loop from 0 to 0
-animation "holster" "Mac-10_View.fbx" from 10 to 20
-animation "draw" "Mac-10_View.fbx" from 20 to 30
-animation "shoot" "Mac-10_View.fbx" loop from 30 to 50
-animation "reload" "Mac-10_View.fbx" from 60 to 90
-animation "sprint" "Mac-10_View.fbx" loop from 100 to 120

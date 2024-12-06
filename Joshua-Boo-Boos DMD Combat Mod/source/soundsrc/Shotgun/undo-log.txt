@@ -1,0 +1,10 @@
+16:42:03 ..\..\src\simpleeventcontroller.cpp:1317 IR: Remove Sounds from Playlist
+16:42:14 ..\..\src\simpleeventcontroller.cpp:1741 IS: Add Sound to Playlist
+16:42:16 ..\..\src\simpleeventcontroller.cpp:1317 IR: Remove Sounds from Playlist
+16:42:21 ..\..\src\simpleeventcontroller.cpp:1741 IS: Add Sound to Playlist
+16:42:22 ..\..\src\simpleeventcontroller.cpp:1317 IR: Remove Sounds from Playlist
+16:42:25 ..\..\src\simpleeventcontroller.cpp:1741 IS: Add Sound to Playlist
+16:42:26 ..\..\src\simpleeventcontroller.cpp:1317 IR: Remove Sounds from Playlist
+16:42:29 ..\..\src\simpleeventcontroller.cpp:1741 IS: Add Sound to Playlist
+16:42:30 ..\..\src\simpleeventcontroller.cpp:1317 IR: Remove Sounds from Playlist
+16:42:33 ..\..\src\simpleeventcontroller.cpp:1741 IS: Add Sound to Playlist

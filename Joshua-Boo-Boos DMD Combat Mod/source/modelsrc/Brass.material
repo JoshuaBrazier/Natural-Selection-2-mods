@@ -1,5 +1,0 @@
-shader = "shaders/WeaponView.surface_shader"
-albedoMap = "modelsrc/Brass.jpg"
-specularMap = "modelsrc/Brass.jpg"
-normalMap = "modelsrc/Brass.jpg"
-emissiveMap = "modelsrc/Brass.jpg"

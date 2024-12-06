@@ -56,7 +56,6 @@ ModLoader.SetupFileHook( "lua/NetworkMessages.lua", "lua/Joshua-Boo-Boos DMD Com
 ModLoader.SetupFileHook("lua/InputHandler.lua", "lua/Joshua-Boo-Boos DMD Combat Mod/InputHandler.lua", "post")
 ModLoader.SetupFileHook("lua/BindingsDialog.lua", "lua/Joshua-Boo-Boos DMD Combat Mod/BindingsDialog.lua", "post")
 ModLoader.SetupFileHook("lua/menu2/NavBar/Screens/Options/Mods/ModsMenuData.lua", "lua/Joshua-Boo-Boos DMD Combat Mod/ModsMenuData.lua", "post")
-ModLoader.SetupFileHook("lua/Player_Client.lua", "lua/Joshua-Boo-Boos DMD Combat Mod/Player_Client.lua", "post")
 
 --MACHINE GUN MOD
 ModLoader.SetupFileHook( "lua/Weapons/Marine/HeavyMachineGun.lua", "lua/Joshua-Boo-Boos DMD Combat Mod/HeavyMachineGun.lua", "post" )

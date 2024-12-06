@@ -1,4 +1,0 @@
-modEntry = {
-    FileHooks = "lua/Joshua-Boo-Boos DMD Combat Mod/FileHooks.lua",
-    Priority = 100
-}

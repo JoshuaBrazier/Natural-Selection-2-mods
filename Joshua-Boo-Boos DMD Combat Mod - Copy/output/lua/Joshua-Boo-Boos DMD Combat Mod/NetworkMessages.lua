@@ -1,6 +1,9 @@
 local RTD_Table = {
-    entId = 'string (5)'
+    entId = 'string (5)',
+    rollTime = 'time'
     }
+
+local kTimePerRoll = 10
 
 Shared.RegisterNetworkMessage("RTD", RTD_Table)
 
@@ -71,9 +74,13 @@ if Server then
         
                 local playerEntity = Shared.GetEntity(tonumber(msg.entId))
 
-                StartSoundEffectOnEntity(dicerollSound, playerEntity)
+                if not playerEntity.lastCalledRTDTime or playerEntity.lastCalledRTDTime and playerEntity.lastCalledRTDTime ~= nil and msg.rollTime >= playerEntity.lastCalledRTDTime + kTimePerRoll then
 
-                playerEntity:AddTimedCallback(function(playerEntity)
+                    playerEntity.lastCalledRTDTime = Shared.GetTime()
+
+                    StartSoundEffectOnEntity(dicerollSound, playerEntity)
+
+                    playerEntity:AddTimedCallback(function(playerEntity)
 
                                                     ::reroll::
 
@@ -196,6 +203,7 @@ if Server then
                                                                     else
                                                                         table.removevalue(players, playerEntity)
                                                                         local newPlayerEntity = playerEntity:Replace(Exo.kMapName, playerEntity:GetTeamNumber(), false, playerEntity:GetOrigin(), { layout = "MinigunMinigun" })
+                                                                        newPlayerEntity.lastCalledRTDTime = Shared.GetTime()
                                                                         RTD_Unstuck(newPlayerEntity)
                                                                         table.insert(players, newPlayerEntity)
                                                                         for i = 1, #players do
@@ -222,6 +230,7 @@ if Server then
                                                                     else
                                                                         table.removevalue(players, playerEntity)
                                                                         local newPlayerEntity = playerEntity:Replace(Onos.kMapName, playerEntity:GetTeamNumber(), nil, nil, nil)
+                                                                        newPlayerEntity.lastCalledRTDTime = Shared.GetTime()
                                                                         RTD_Unstuck(newPlayerEntity)
                                                                         table.insert(players, newPlayerEntity)
                                                                         for i = 1, #players do
@@ -262,6 +271,7 @@ if Server then
                                                                         else
                                                                             table.removevalue(players, playerEntity)
                                                                             local newPlayerEntity = playerEntity:Replace(Exo.kMapName, playerEntity:GetTeamNumber(), false, playerEntity:GetOrigin(), { layout = "MinigunMinigun" })
+                                                                            newPlayerEntity.lastCalledRTDTime = Shared.GetTime()
                                                                             RTD_Unstuck(newPlayerEntity)
                                                                             table.insert(players, newPlayerEntity)
                                                                             for i = 1, #players do
@@ -288,6 +298,7 @@ if Server then
                                                                         else
                                                                             table.removevalue(players, playerEntity)
                                                                             local newPlayerEntity = playerEntity:Replace(Onos.kMapName, playerEntity:GetTeamNumber(), nil, nil, nil)
+                                                                            newPlayerEntity.lastCalledRTDTime = Shared.GetTime()
                                                                             RTD_Unstuck(newPlayerEntity)
                                                                             table.insert(players, newPlayerEntity)
                                                                             for i = 1, #players do
@@ -1043,6 +1054,7 @@ if Server then
 
                                             end, 1)
 
+                end
             end
         end)
 

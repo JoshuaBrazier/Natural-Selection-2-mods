@@ -68,7 +68,7 @@
 <notes></notes>
 <entrylistmode>1</entrylistmode>
 <waveform>
-<filename>../../output/sound/Shoot.mp3</filename>
+<filename>Shoot.mp3</filename>
 <soundbankname>Mac10_bank01</soundbankname>
 <weight>100</weight>
 <percentagelocked>0</percentagelocked>
@@ -107,7 +107,7 @@
 <notes></notes>
 <entrylistmode>1</entrylistmode>
 <waveform>
-<filename>../../output/sound/Reload.mp3</filename>
+<filename>Reload.mp3</filename>
 <soundbankname>Mac10_bank01</soundbankname>
 <weight>100</weight>
 <percentagelocked>0</percentagelocked>
@@ -629,8 +629,8 @@
 <_BB10_banktype>DecompressedSample</_BB10_banktype>
 <notes></notes>
 <waveform>
-<filename>../../output/sound/Reload.mp3</filename>
-<guid>{1889f7ba-ebe3-434d-ac90-200969a163c9}</guid>
+<filename>Reload.mp3</filename>
+<guid>{42d02d40-f3fb-4c71-a6a6-c99d3cf9501c}</guid>
 <mindistance>1</mindistance>
 <maxdistance>10000</maxdistance>
 <deffreq>44100</deffreq>
@@ -683,8 +683,8 @@
 <notes></notes>
 </waveform>
 <waveform>
-<filename>../../output/sound/Shoot.mp3</filename>
-<guid>{9c4eaea3-9efa-4f35-bd6d-1ed1f45da54a}</guid>
+<filename>Shoot.mp3</filename>
+<guid>{61c90c97-1f07-4668-b56d-d2f670bf4804}</guid>
 <mindistance>1</mindistance>
 <maxdistance>10000</maxdistance>
 <deffreq>44100</deffreq>
@@ -789,7 +789,7 @@
 <_BB10_forcesoftware>0</_BB10_forcesoftware>
 <_BB10_maxstreams>10</_BB10_maxstreams>
 <_lang_default_filename_prefix></_lang_default_filename_prefix>
-<_lang_default_rebuild>0</_lang_default_rebuild>
+<_lang_default_rebuild>1</_lang_default_rebuild>
 </soundbank>
 <notes></notes>
 <currentplatform>PC</currentplatform>

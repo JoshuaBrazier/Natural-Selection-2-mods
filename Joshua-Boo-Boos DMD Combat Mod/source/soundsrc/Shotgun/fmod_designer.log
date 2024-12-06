@@ -1,0 +1,49 @@
+Warning: libpng warning: Interlace handling should be turned on when using png_read_image
+Warning: libpng warning: Interlace handling should be turned on when using png_read_image
+Warning: libpng warning: Interlace handling should be turned on when using png_read_image
+Warning: libpng warning: Interlace handling should be turned on when using png_read_image
+Warning: libpng warning: Interlace handling should be turned on when using png_read_image
+Warning: QPainter::begin: Paint device returned engine == 0, type: 1
+Warning: QPainter::setPen: Painter not active
+Warning: QPainter::setBrush: Painter not active
+Warning: QPainter::setRenderHint: Painter must be active to set rendering hints
+Warning: QPainter::setPen: Painter not active
+Warning: libpng warning: Interlace handling should be turned on when using png_read_image
+Debug: "16:42:03 ..\..\src\simpleeventcontroller.cpp:1317 IR: Remove Sounds from Playlist" 
+Debug: "16:42:14 ..\..\src\simpleeventcontroller.cpp:1741 IS: Add Sound to Playlist" 
+Debug: "16:42:16 ..\..\src\simpleeventcontroller.cpp:1317 IR: Remove Sounds from Playlist" 
+Debug: "16:42:21 ..\..\src\simpleeventcontroller.cpp:1741 IS: Add Sound to Playlist" 
+Debug: "16:42:22 ..\..\src\simpleeventcontroller.cpp:1317 IR: Remove Sounds from Playlist" 
+Debug: "16:42:25 ..\..\src\simpleeventcontroller.cpp:1741 IS: Add Sound to Playlist" 
+Debug: "16:42:26 ..\..\src\simpleeventcontroller.cpp:1317 IR: Remove Sounds from Playlist" 
+Debug: "16:42:29 ..\..\src\simpleeventcontroller.cpp:1741 IS: Add Sound to Playlist" 
+Debug: "16:42:30 ..\..\src\simpleeventcontroller.cpp:1317 IR: Remove Sounds from Playlist" 
+Debug: "16:42:33 ..\..\src\simpleeventcontroller.cpp:1741 IS: Add Sound to Playlist" 
+Debug: 
+Building project 'shotgun_sounds'...
+Debug: Building project C:\Users\Joshua-Boo-Boos\Desktop\New Desktop\Natural-Selection-2-mods - Testing\Joshua-Boo-Boos DMD Combat Mod\source\soundsrc\Shotgun\shotgun_sounds.fev...
+Debug: Unique sound defs 1/5
+Debug: Retrieving sound file info...
+Debug: Retrieving reverb info...
+Debug: FEV file written ok
+Debug: Unique Envelope Points: 0 of 0
+Debug: Unique Strings: 238 characters of 238
+Debug: Caching sound file details for ''...
+Debug: buckshot_cartridge.mp3
+Debug: incendiary_cartridge.mp3
+Debug: shotgun_reload.mp3
+Debug: slug_cartridge.mp3
+Debug: standard_cartridge.mp3
+Debug: Building 'shotgun_sounds_bank00.fsb'
+Debug: Encoded C:\Users\Joshua-Boo-Boos\Desktop\New Desktop\Natural-Selection-2-mods - Testing\Joshua-Boo-Boos DMD Combat Mod\source\soundsrc\Shotgun\buckshot_cartridge.mp3
+Debug: Encoded C:\Users\Joshua-Boo-Boos\Desktop\New Desktop\Natural-Selection-2-mods - Testing\Joshua-Boo-Boos DMD Combat Mod\source\soundsrc\Shotgun\incendiary_cartridge.mp3
+Debug: Encoded C:\Users\Joshua-Boo-Boos\Desktop\New Desktop\Natural-Selection-2-mods - Testing\Joshua-Boo-Boos DMD Combat Mod\source\soundsrc\Shotgun\shotgun_reload.mp3
+Debug: Encoded C:\Users\Joshua-Boo-Boos\Desktop\New Desktop\Natural-Selection-2-mods - Testing\Joshua-Boo-Boos DMD Combat Mod\source\soundsrc\Shotgun\slug_cartridge.mp3
+Debug: Encoded C:\Users\Joshua-Boo-Boos\Desktop\New Desktop\Natural-Selection-2-mods - Testing\Joshua-Boo-Boos DMD Combat Mod\source\soundsrc\Shotgun\standard_cartridge.mp3
+Debug: Writing FSB...
+Debug: Finished building FSB
+Debug: 
+Debug: 
+Summary of build:
+SUCCESS: C:/Users/Joshua-Boo-Boos/Desktop/New Desktop/Natural-Selection-2-mods - Testing/Joshua-Boo-Boos DMD Combat Mod/source/soundsrc/Shotgun/shotgun_sounds.fev
+SUCCESS: shotgun_sounds_bank00.fsb

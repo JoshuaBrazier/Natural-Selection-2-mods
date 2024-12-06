@@ -1,0 +1,4 @@
+modEntry = {
+    FileHooks = "lua/Joshua-Boo-Boos DMD Combat Mod/Roll_The_Dice/FileHooks.lua",
+    Priority = 100
+}

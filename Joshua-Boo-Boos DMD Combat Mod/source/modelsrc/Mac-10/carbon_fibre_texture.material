@@ -1,0 +1,5 @@
+shader = "shaders/WeaponView.surface_shader"
+albedoMap = "modelsrc/Mac-10/carbon_fibre_texture.jpg"
+specularMap = "modelsrc/Mac-10/carbon_fibre_texture.jpg"
+normalMap = "modelsrc/Mac-10/carbon_fibre_texture.jpg"
+emissiveMap = "modelsrc/Mac-10/carbon_fibre_texture.jpg"
