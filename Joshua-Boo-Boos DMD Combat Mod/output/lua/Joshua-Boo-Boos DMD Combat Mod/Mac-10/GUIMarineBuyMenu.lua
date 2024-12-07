@@ -1,7 +1,7 @@
 
 if not kCombatVersion then
 
-    GUIMarineBuyMenu.kButtonGroupFrame_Labeled_x1     = PrecacheAsset("ui/buymenu_marine/button_group_frame_labeled_x1.dds")
+    GUIMarineBuyMenu.kButtonGroupFrame_Labeled_x1     = PrecacheAsset("ui/Mac-10/buymenu_marine/button_group_frame_labeled_x1.dds")
 
     local kExtraWeaponGroupButtonPositions =
     {
@@ -95,8 +95,8 @@ if not kCombatVersion then
 
     local kTechIdInfo = debug.getupvaluex(GUIMarineBuyMenu._GetButtonPixelCoordinatesForTechID, "kTechIdInfo")
 
-    local kMac10NewButtonImage = PrecacheAsset("ui/buymenu_marine/Mac10_button.dds")
-    local kMac10NewBigInfoImage = PrecacheAsset("ui/buymenu_marine/Mac10_bigicon.dds")
+    local kMac10NewButtonImage = PrecacheAsset("ui/Mac-10/buymenu_marine/Mac10_button.dds")
+    local kMac10NewBigInfoImage = PrecacheAsset("ui/Mac-10/buymenu_marine/Mac10_bigicon.dds")
 
     table.insert(kTechIdInfo,
             kTechId.Mac10,
@@ -120,9 +120,9 @@ else
 	local bigIconHeight = 300
 	local smallIconHeight = 80
 	local smallIconWidth = 80
-    local Mac10Texture = PrecacheAsset("ui/buymenu_marine/Mac10combaticon.dds")
+    local Mac10Texture = PrecacheAsset("ui/Mac-10/buymenu_marine/Mac10combaticon.dds")
 
-    local kMac10NewBigInfoImage = PrecacheAsset("ui/buymenu_marine/Mac10_bigicon.dds")
+    local kMac10NewBigInfoImage = PrecacheAsset("ui/Mac-10/buymenu_marine/Mac10_bigicon.dds")
 
 	local old_InitializeItemButtons = GUIMarineBuyMenu._InitializeItemButtons
     function GUIMarineBuyMenu:_InitializeItemButtons()

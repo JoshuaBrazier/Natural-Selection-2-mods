@@ -1,3 +1,5 @@
+local oldCMU_TSL = CombatMarineUpgrade.TeamSpecificLogic
+
 function CombatMarineUpgrade:TeamSpecificLogic(player)
 	
 	local techId = self:GetTechId()
@@ -30,20 +32,8 @@ function CombatMarineUpgrade:TeamSpecificLogic(player)
         else
             -- if this is a primary weapon, destroy the old one.
 			
-			if kRevolverCost and kMapName == Revolver.kMapName then
-				local weapon = player:GetWeaponInHUDSlot(2)
-				if (weapon) then
-					player:RemoveWeapon(weapon)
-					DestroyEntity(weapon)
-				end
-            elseif kMac10Cost and kMapName == Mac10.kMapName then
+			if kMac10Cost and kMapName == Mac10.kMapName then
                 local weapon = player:GetWeaponInHUDSlot(2)
-                if (weapon) then
-                    player:RemoveWeapon(weapon)
-                    DestroyEntity(weapon)
-                end
-			elseif GetIsPrimaryWeapon(kMapName) then
-                local weapon = player:GetWeaponInHUDSlot(1)
                 if (weapon) then
                     player:RemoveWeapon(weapon)
                     DestroyEntity(weapon)
@@ -53,6 +43,7 @@ function CombatMarineUpgrade:TeamSpecificLogic(player)
             self:GiveItem(player)
         end
 	end
-	
-	return true
+
+    oldCMU_TSL(self, player)
+
 end

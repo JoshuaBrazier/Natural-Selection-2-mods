@@ -1,6 +1,6 @@
 local oldLocalAdjust = GUIInventory.LocalAdjustSlot
 
-local kMac10Texture = PrecacheAsset("ui/Mac10_icon.dds")
+local kMac10Texture = PrecacheAsset("ui/Mac-10/Mac10_icon.dds")
 
 function GUIInventory:LocalAdjustSlot(index, hudSlot, techId, isActive, resetAnimations, alienStyle)
 	oldLocalAdjust(self, index, hudSlot, techId, isActive, resetAnimations, alienStyle)

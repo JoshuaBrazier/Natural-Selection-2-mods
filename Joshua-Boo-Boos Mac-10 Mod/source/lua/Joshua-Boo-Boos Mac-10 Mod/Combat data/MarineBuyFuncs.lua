@@ -27,7 +27,7 @@ end
 local oldDescFunc = CombatMarineBuy_GetWeaponDescription
 function CombatMarineBuy_GetWeaponDescription(techId)
 	if techId == kTechId.Mac10 then
-		return "Mac10"
+		return "Joshua-Boo-Boos Mac-10 - Requires Weapons 1 to unlock!"
 	end
 	return oldDescFunc(techId)
 end

@@ -42,6 +42,12 @@ function CombatMarineUpgrade:TeamSpecificLogic(player)
                     player:RemoveWeapon(weapon)
                     DestroyEntity(weapon)
                 end
+            elseif kSuppressedShotgunCost and kMapName == SuppressedShotgun.kMapName then
+                local weapon = player:GetWeaponInHUDSlot(1)
+                if (weapon) then
+                    player:RemoveWeapon(weapon)
+                    DestroyEntity(weapon)
+                end
 			elseif GetIsPrimaryWeapon(kMapName) then
                 local weapon = player:GetWeaponInHUDSlot(1)
                 if (weapon) then

@@ -1,0 +1,36 @@
+Warning: libpng warning: Interlace handling should be turned on when using png_read_image
+Warning: libpng warning: Interlace handling should be turned on when using png_read_image
+Warning: libpng warning: Interlace handling should be turned on when using png_read_image
+Warning: libpng warning: Interlace handling should be turned on when using png_read_image
+Warning: libpng warning: Interlace handling should be turned on when using png_read_image
+Warning: QPainter::begin: Paint device returned engine == 0, type: 1
+Warning: QPainter::setPen: Painter not active
+Warning: QPainter::setBrush: Painter not active
+Warning: QPainter::setRenderHint: Painter must be active to set rendering hints
+Warning: QPainter::setPen: Painter not active
+Warning: libpng warning: Interlace handling should be turned on when using png_read_image
+Debug: 
+Building project 'Mac10'...
+Debug: Building project C:\Users\Joshua-Boo-Boos\Desktop\New Desktop\Natural-Selection-2-mods - Testing\Joshua-Boo-Boos Mac-10 Mod\source\soundsrc\Mac10.fev...
+Debug: Unique sound defs 1/2
+Debug: Retrieving sound file info...
+Debug: Retrieving reverb info...
+Debug: FEV file written ok
+Debug: Unique Envelope Points: 0 of 0
+Debug: Unique Strings: 96 characters of 96
+Debug: Caching sound file details for ''...
+Debug: ..\..\output\sound\Reload.mp3
+Debug: ..\..\output\sound\Shoot.mp3
+Debug: Building 'Mac10_bank01.fsb'
+Debug: Warning for C:\Users\Joshua-Boo-Boos\Desktop\New Desktop\Natural-Selection-2-mods - Testing\Joshua-Boo-Boos Mac-10 Mod\source\soundsrc\..\..\output\sound\Shoot.mp3:
+Debug:     This source file was truncated.  Length reported 27648 bytes, length decoded = 17920 bytes.
+
+Debug: Encoded C:\Users\Joshua-Boo-Boos\Desktop\New Desktop\Natural-Selection-2-mods - Testing\Joshua-Boo-Boos Mac-10 Mod\source\soundsrc\..\..\output\sound\Shoot.mp3
+Debug: Encoded C:\Users\Joshua-Boo-Boos\Desktop\New Desktop\Natural-Selection-2-mods - Testing\Joshua-Boo-Boos Mac-10 Mod\source\soundsrc\..\..\output\sound\Reload.mp3
+Debug: Writing FSB...
+Debug: Finished building FSB
+Debug: 
+Debug: 
+Summary of build:
+SUCCESS: C:/Users/Joshua-Boo-Boos/Desktop/New Desktop/Natural-Selection-2-mods - Testing/Joshua-Boo-Boos Mac-10 Mod/source/soundsrc/Mac10.fev
+SUCCESS: Mac10_bank01.fsb

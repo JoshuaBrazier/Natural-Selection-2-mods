@@ -1,0 +1,1 @@
+Onos.kBlockDoers["SuppressedShotgun"] = true

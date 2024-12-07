@@ -9,11 +9,11 @@ FBXHeaderExtension:  {
 	CreationTimeStamp:  {
 		Version: 1000
 		Year: 2024
-		Month: 11
-		Day: 28
-		Hour: 20
-		Minute: 58
-		Second: 33
+		Month: 12
+		Day: 06
+		Hour: 17
+		Minute: 21
+		Second: 05
 		Millisecond: 0
 	}
 	Creator: "FBX SDK/FBX Plugins build 20070228"
@@ -21,7 +21,7 @@ FBXHeaderExtension:  {
 		FlagPLE: 0
 	}
 }
-CreationTime: "2024-11-28 20:58:33:000"
+CreationTime: "2024-12-06 17:21:05:000"
 Creator: "Blender version 2.70 (sub 0)"
 
 ; Object definitions
@@ -19874,7 +19874,7 @@ Objects:  {
 			Property: "Reflectivity", "double", "",0
 		}
 	}
-	Material: "Material::Carbon_Fiber__carbon_fibre_texture_jpg", "" {
+	Material: "Material::Carbon_Fibre__carbon_fibre_texture_jpg", "" {
 		Version: 102
 		ShadingModel: "lambert"
 		MultiLayer: 0
@@ -24987,7 +24987,7 @@ Relations:  {
 	}
 	Material: "Material::Brass__Brass_jpg", "" {
 	}
-	Material: "Material::Carbon_Fiber__carbon_fibre_texture_jpg", "" {
+	Material: "Material::Carbon_Fibre__carbon_fibre_texture_jpg", "" {
 	}
 	Material: "Material::Gunmetal__Gunmetal_jpg", "" {
 	}
@@ -25017,577 +25017,577 @@ Relations:  {
 	}
 	Deformer: "Deformer::Skin Magazine", "Skin" {
 	}
-	Deformer: "SubDeformer::Cluster Magazine root", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Charging_Handle root", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Trigger root", "Cluster" {
-	}
 	Deformer: "SubDeformer::Cluster Bolt root", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Mac-10 root", "Cluster" {
 	}
 	Deformer: "SubDeformer::Cluster Bullet root", "Cluster" {
 	}
+	Deformer: "SubDeformer::Cluster Mac-10 root", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Magazine root", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Trigger root", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Charging_Handle root", "Cluster" {
+	}
 	Deformer: "SubDeformer::Cluster Hands_001 root", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Magazine Left_Arm", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Charging_Handle Left_Arm", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Trigger Left_Arm", "Cluster" {
 	}
 	Deformer: "SubDeformer::Cluster Bolt Left_Arm", "Cluster" {
 	}
+	Deformer: "SubDeformer::Cluster Bullet Left_Arm", "Cluster" {
+	}
 	Deformer: "SubDeformer::Cluster Mac-10 Left_Arm", "Cluster" {
 	}
-	Deformer: "SubDeformer::Cluster Bullet Left_Arm", "Cluster" {
+	Deformer: "SubDeformer::Cluster Magazine Left_Arm", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Trigger Left_Arm", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Charging_Handle Left_Arm", "Cluster" {
 	}
 	Deformer: "SubDeformer::Cluster Hands_001 Left_Arm", "Cluster" {
 	}
-	Deformer: "SubDeformer::Cluster Magazine Hand", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Charging_Handle Hand", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Trigger Hand", "Cluster" {
-	}
 	Deformer: "SubDeformer::Cluster Bolt Hand", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Mac-10 Hand", "Cluster" {
 	}
 	Deformer: "SubDeformer::Cluster Bullet Hand", "Cluster" {
 	}
+	Deformer: "SubDeformer::Cluster Mac-10 Hand", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Magazine Hand", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Trigger Hand", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Charging_Handle Hand", "Cluster" {
+	}
 	Deformer: "SubDeformer::Cluster Hands_001 Hand", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Magazine index1", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Charging_Handle index1", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Trigger index1", "Cluster" {
 	}
 	Deformer: "SubDeformer::Cluster Bolt index1", "Cluster" {
 	}
+	Deformer: "SubDeformer::Cluster Bullet index1", "Cluster" {
+	}
 	Deformer: "SubDeformer::Cluster Mac-10 index1", "Cluster" {
 	}
-	Deformer: "SubDeformer::Cluster Bullet index1", "Cluster" {
+	Deformer: "SubDeformer::Cluster Magazine index1", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Trigger index1", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Charging_Handle index1", "Cluster" {
 	}
 	Deformer: "SubDeformer::Cluster Hands_001 index1", "Cluster" {
 	}
-	Deformer: "SubDeformer::Cluster Magazine index2", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Charging_Handle index2", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Trigger index2", "Cluster" {
-	}
 	Deformer: "SubDeformer::Cluster Bolt index2", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Mac-10 index2", "Cluster" {
 	}
 	Deformer: "SubDeformer::Cluster Bullet index2", "Cluster" {
 	}
+	Deformer: "SubDeformer::Cluster Mac-10 index2", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Magazine index2", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Trigger index2", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Charging_Handle index2", "Cluster" {
+	}
 	Deformer: "SubDeformer::Cluster Hands_001 index2", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Magazine index3", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Charging_Handle index3", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Trigger index3", "Cluster" {
 	}
 	Deformer: "SubDeformer::Cluster Bolt index3", "Cluster" {
 	}
+	Deformer: "SubDeformer::Cluster Bullet index3", "Cluster" {
+	}
 	Deformer: "SubDeformer::Cluster Mac-10 index3", "Cluster" {
 	}
-	Deformer: "SubDeformer::Cluster Bullet index3", "Cluster" {
+	Deformer: "SubDeformer::Cluster Magazine index3", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Trigger index3", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Charging_Handle index3", "Cluster" {
 	}
 	Deformer: "SubDeformer::Cluster Hands_001 index3", "Cluster" {
 	}
-	Deformer: "SubDeformer::Cluster Magazine middle1", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Charging_Handle middle1", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Trigger middle1", "Cluster" {
-	}
 	Deformer: "SubDeformer::Cluster Bolt middle1", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Mac-10 middle1", "Cluster" {
 	}
 	Deformer: "SubDeformer::Cluster Bullet middle1", "Cluster" {
 	}
+	Deformer: "SubDeformer::Cluster Mac-10 middle1", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Magazine middle1", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Trigger middle1", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Charging_Handle middle1", "Cluster" {
+	}
 	Deformer: "SubDeformer::Cluster Hands_001 middle1", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Magazine middle2", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Charging_Handle middle2", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Trigger middle2", "Cluster" {
 	}
 	Deformer: "SubDeformer::Cluster Bolt middle2", "Cluster" {
 	}
+	Deformer: "SubDeformer::Cluster Bullet middle2", "Cluster" {
+	}
 	Deformer: "SubDeformer::Cluster Mac-10 middle2", "Cluster" {
 	}
-	Deformer: "SubDeformer::Cluster Bullet middle2", "Cluster" {
+	Deformer: "SubDeformer::Cluster Magazine middle2", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Trigger middle2", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Charging_Handle middle2", "Cluster" {
 	}
 	Deformer: "SubDeformer::Cluster Hands_001 middle2", "Cluster" {
 	}
-	Deformer: "SubDeformer::Cluster Magazine middle3", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Charging_Handle middle3", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Trigger middle3", "Cluster" {
-	}
 	Deformer: "SubDeformer::Cluster Bolt middle3", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Mac-10 middle3", "Cluster" {
 	}
 	Deformer: "SubDeformer::Cluster Bullet middle3", "Cluster" {
 	}
+	Deformer: "SubDeformer::Cluster Mac-10 middle3", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Magazine middle3", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Trigger middle3", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Charging_Handle middle3", "Cluster" {
+	}
 	Deformer: "SubDeformer::Cluster Hands_001 middle3", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Magazine ring1", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Charging_Handle ring1", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Trigger ring1", "Cluster" {
 	}
 	Deformer: "SubDeformer::Cluster Bolt ring1", "Cluster" {
 	}
+	Deformer: "SubDeformer::Cluster Bullet ring1", "Cluster" {
+	}
 	Deformer: "SubDeformer::Cluster Mac-10 ring1", "Cluster" {
 	}
-	Deformer: "SubDeformer::Cluster Bullet ring1", "Cluster" {
+	Deformer: "SubDeformer::Cluster Magazine ring1", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Trigger ring1", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Charging_Handle ring1", "Cluster" {
 	}
 	Deformer: "SubDeformer::Cluster Hands_001 ring1", "Cluster" {
 	}
-	Deformer: "SubDeformer::Cluster Magazine ring2", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Charging_Handle ring2", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Trigger ring2", "Cluster" {
-	}
 	Deformer: "SubDeformer::Cluster Bolt ring2", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Mac-10 ring2", "Cluster" {
 	}
 	Deformer: "SubDeformer::Cluster Bullet ring2", "Cluster" {
 	}
+	Deformer: "SubDeformer::Cluster Mac-10 ring2", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Magazine ring2", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Trigger ring2", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Charging_Handle ring2", "Cluster" {
+	}
 	Deformer: "SubDeformer::Cluster Hands_001 ring2", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Magazine ring3", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Charging_Handle ring3", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Trigger ring3", "Cluster" {
 	}
 	Deformer: "SubDeformer::Cluster Bolt ring3", "Cluster" {
 	}
+	Deformer: "SubDeformer::Cluster Bullet ring3", "Cluster" {
+	}
 	Deformer: "SubDeformer::Cluster Mac-10 ring3", "Cluster" {
 	}
-	Deformer: "SubDeformer::Cluster Bullet ring3", "Cluster" {
+	Deformer: "SubDeformer::Cluster Magazine ring3", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Trigger ring3", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Charging_Handle ring3", "Cluster" {
 	}
 	Deformer: "SubDeformer::Cluster Hands_001 ring3", "Cluster" {
 	}
-	Deformer: "SubDeformer::Cluster Magazine pinky1", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Charging_Handle pinky1", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Trigger pinky1", "Cluster" {
-	}
 	Deformer: "SubDeformer::Cluster Bolt pinky1", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Mac-10 pinky1", "Cluster" {
 	}
 	Deformer: "SubDeformer::Cluster Bullet pinky1", "Cluster" {
 	}
+	Deformer: "SubDeformer::Cluster Mac-10 pinky1", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Magazine pinky1", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Trigger pinky1", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Charging_Handle pinky1", "Cluster" {
+	}
 	Deformer: "SubDeformer::Cluster Hands_001 pinky1", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Magazine pinky2", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Charging_Handle pinky2", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Trigger pinky2", "Cluster" {
 	}
 	Deformer: "SubDeformer::Cluster Bolt pinky2", "Cluster" {
 	}
+	Deformer: "SubDeformer::Cluster Bullet pinky2", "Cluster" {
+	}
 	Deformer: "SubDeformer::Cluster Mac-10 pinky2", "Cluster" {
 	}
-	Deformer: "SubDeformer::Cluster Bullet pinky2", "Cluster" {
+	Deformer: "SubDeformer::Cluster Magazine pinky2", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Trigger pinky2", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Charging_Handle pinky2", "Cluster" {
 	}
 	Deformer: "SubDeformer::Cluster Hands_001 pinky2", "Cluster" {
 	}
-	Deformer: "SubDeformer::Cluster Magazine pinky3", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Charging_Handle pinky3", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Trigger pinky3", "Cluster" {
-	}
 	Deformer: "SubDeformer::Cluster Bolt pinky3", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Mac-10 pinky3", "Cluster" {
 	}
 	Deformer: "SubDeformer::Cluster Bullet pinky3", "Cluster" {
 	}
+	Deformer: "SubDeformer::Cluster Mac-10 pinky3", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Magazine pinky3", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Trigger pinky3", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Charging_Handle pinky3", "Cluster" {
+	}
 	Deformer: "SubDeformer::Cluster Hands_001 pinky3", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Magazine thumb1", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Charging_Handle thumb1", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Trigger thumb1", "Cluster" {
 	}
 	Deformer: "SubDeformer::Cluster Bolt thumb1", "Cluster" {
 	}
+	Deformer: "SubDeformer::Cluster Bullet thumb1", "Cluster" {
+	}
 	Deformer: "SubDeformer::Cluster Mac-10 thumb1", "Cluster" {
 	}
-	Deformer: "SubDeformer::Cluster Bullet thumb1", "Cluster" {
+	Deformer: "SubDeformer::Cluster Magazine thumb1", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Trigger thumb1", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Charging_Handle thumb1", "Cluster" {
 	}
 	Deformer: "SubDeformer::Cluster Hands_001 thumb1", "Cluster" {
 	}
-	Deformer: "SubDeformer::Cluster Magazine thumb2", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Charging_Handle thumb2", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Trigger thumb2", "Cluster" {
-	}
 	Deformer: "SubDeformer::Cluster Bolt thumb2", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Mac-10 thumb2", "Cluster" {
 	}
 	Deformer: "SubDeformer::Cluster Bullet thumb2", "Cluster" {
 	}
+	Deformer: "SubDeformer::Cluster Mac-10 thumb2", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Magazine thumb2", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Trigger thumb2", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Charging_Handle thumb2", "Cluster" {
+	}
 	Deformer: "SubDeformer::Cluster Hands_001 thumb2", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Magazine thumb3", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Charging_Handle thumb3", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Trigger thumb3", "Cluster" {
 	}
 	Deformer: "SubDeformer::Cluster Bolt thumb3", "Cluster" {
 	}
+	Deformer: "SubDeformer::Cluster Bullet thumb3", "Cluster" {
+	}
 	Deformer: "SubDeformer::Cluster Mac-10 thumb3", "Cluster" {
 	}
-	Deformer: "SubDeformer::Cluster Bullet thumb3", "Cluster" {
+	Deformer: "SubDeformer::Cluster Magazine thumb3", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Trigger thumb3", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Charging_Handle thumb3", "Cluster" {
 	}
 	Deformer: "SubDeformer::Cluster Hands_001 thumb3", "Cluster" {
 	}
-	Deformer: "SubDeformer::Cluster Magazine Right_Arm", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Charging_Handle Right_Arm", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Trigger Right_Arm", "Cluster" {
-	}
 	Deformer: "SubDeformer::Cluster Bolt Right_Arm", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Mac-10 Right_Arm", "Cluster" {
 	}
 	Deformer: "SubDeformer::Cluster Bullet Right_Arm", "Cluster" {
 	}
+	Deformer: "SubDeformer::Cluster Mac-10 Right_Arm", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Magazine Right_Arm", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Trigger Right_Arm", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Charging_Handle Right_Arm", "Cluster" {
+	}
 	Deformer: "SubDeformer::Cluster Hands_001 Right_Arm", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Magazine Hand_001", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Charging_Handle Hand_001", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Trigger Hand_001", "Cluster" {
 	}
 	Deformer: "SubDeformer::Cluster Bolt Hand_001", "Cluster" {
 	}
+	Deformer: "SubDeformer::Cluster Bullet Hand_001", "Cluster" {
+	}
 	Deformer: "SubDeformer::Cluster Mac-10 Hand_001", "Cluster" {
 	}
-	Deformer: "SubDeformer::Cluster Bullet Hand_001", "Cluster" {
+	Deformer: "SubDeformer::Cluster Magazine Hand_001", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Trigger Hand_001", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Charging_Handle Hand_001", "Cluster" {
 	}
 	Deformer: "SubDeformer::Cluster Hands_001 Hand_001", "Cluster" {
 	}
-	Deformer: "SubDeformer::Cluster Magazine index1_001", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Charging_Handle index1_001", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Trigger index1_001", "Cluster" {
-	}
 	Deformer: "SubDeformer::Cluster Bolt index1_001", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Mac-10 index1_001", "Cluster" {
 	}
 	Deformer: "SubDeformer::Cluster Bullet index1_001", "Cluster" {
 	}
+	Deformer: "SubDeformer::Cluster Mac-10 index1_001", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Magazine index1_001", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Trigger index1_001", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Charging_Handle index1_001", "Cluster" {
+	}
 	Deformer: "SubDeformer::Cluster Hands_001 index1_001", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Magazine index2_001", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Charging_Handle index2_001", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Trigger index2_001", "Cluster" {
 	}
 	Deformer: "SubDeformer::Cluster Bolt index2_001", "Cluster" {
 	}
+	Deformer: "SubDeformer::Cluster Bullet index2_001", "Cluster" {
+	}
 	Deformer: "SubDeformer::Cluster Mac-10 index2_001", "Cluster" {
 	}
-	Deformer: "SubDeformer::Cluster Bullet index2_001", "Cluster" {
+	Deformer: "SubDeformer::Cluster Magazine index2_001", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Trigger index2_001", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Charging_Handle index2_001", "Cluster" {
 	}
 	Deformer: "SubDeformer::Cluster Hands_001 index2_001", "Cluster" {
 	}
-	Deformer: "SubDeformer::Cluster Magazine index3_001", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Charging_Handle index3_001", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Trigger index3_001", "Cluster" {
-	}
 	Deformer: "SubDeformer::Cluster Bolt index3_001", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Mac-10 index3_001", "Cluster" {
 	}
 	Deformer: "SubDeformer::Cluster Bullet index3_001", "Cluster" {
 	}
+	Deformer: "SubDeformer::Cluster Mac-10 index3_001", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Magazine index3_001", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Trigger index3_001", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Charging_Handle index3_001", "Cluster" {
+	}
 	Deformer: "SubDeformer::Cluster Hands_001 index3_001", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Magazine middle1_001", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Charging_Handle middle1_001", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Trigger middle1_001", "Cluster" {
 	}
 	Deformer: "SubDeformer::Cluster Bolt middle1_001", "Cluster" {
 	}
+	Deformer: "SubDeformer::Cluster Bullet middle1_001", "Cluster" {
+	}
 	Deformer: "SubDeformer::Cluster Mac-10 middle1_001", "Cluster" {
 	}
-	Deformer: "SubDeformer::Cluster Bullet middle1_001", "Cluster" {
+	Deformer: "SubDeformer::Cluster Magazine middle1_001", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Trigger middle1_001", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Charging_Handle middle1_001", "Cluster" {
 	}
 	Deformer: "SubDeformer::Cluster Hands_001 middle1_001", "Cluster" {
 	}
-	Deformer: "SubDeformer::Cluster Magazine middle2_001", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Charging_Handle middle2_001", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Trigger middle2_001", "Cluster" {
-	}
 	Deformer: "SubDeformer::Cluster Bolt middle2_001", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Mac-10 middle2_001", "Cluster" {
 	}
 	Deformer: "SubDeformer::Cluster Bullet middle2_001", "Cluster" {
 	}
+	Deformer: "SubDeformer::Cluster Mac-10 middle2_001", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Magazine middle2_001", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Trigger middle2_001", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Charging_Handle middle2_001", "Cluster" {
+	}
 	Deformer: "SubDeformer::Cluster Hands_001 middle2_001", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Magazine middle3_001", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Charging_Handle middle3_001", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Trigger middle3_001", "Cluster" {
 	}
 	Deformer: "SubDeformer::Cluster Bolt middle3_001", "Cluster" {
 	}
+	Deformer: "SubDeformer::Cluster Bullet middle3_001", "Cluster" {
+	}
 	Deformer: "SubDeformer::Cluster Mac-10 middle3_001", "Cluster" {
 	}
-	Deformer: "SubDeformer::Cluster Bullet middle3_001", "Cluster" {
+	Deformer: "SubDeformer::Cluster Magazine middle3_001", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Trigger middle3_001", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Charging_Handle middle3_001", "Cluster" {
 	}
 	Deformer: "SubDeformer::Cluster Hands_001 middle3_001", "Cluster" {
 	}
-	Deformer: "SubDeformer::Cluster Magazine ring1_001", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Charging_Handle ring1_001", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Trigger ring1_001", "Cluster" {
-	}
 	Deformer: "SubDeformer::Cluster Bolt ring1_001", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Mac-10 ring1_001", "Cluster" {
 	}
 	Deformer: "SubDeformer::Cluster Bullet ring1_001", "Cluster" {
 	}
+	Deformer: "SubDeformer::Cluster Mac-10 ring1_001", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Magazine ring1_001", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Trigger ring1_001", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Charging_Handle ring1_001", "Cluster" {
+	}
 	Deformer: "SubDeformer::Cluster Hands_001 ring1_001", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Magazine ring2_001", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Charging_Handle ring2_001", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Trigger ring2_001", "Cluster" {
 	}
 	Deformer: "SubDeformer::Cluster Bolt ring2_001", "Cluster" {
 	}
+	Deformer: "SubDeformer::Cluster Bullet ring2_001", "Cluster" {
+	}
 	Deformer: "SubDeformer::Cluster Mac-10 ring2_001", "Cluster" {
 	}
-	Deformer: "SubDeformer::Cluster Bullet ring2_001", "Cluster" {
+	Deformer: "SubDeformer::Cluster Magazine ring2_001", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Trigger ring2_001", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Charging_Handle ring2_001", "Cluster" {
 	}
 	Deformer: "SubDeformer::Cluster Hands_001 ring2_001", "Cluster" {
 	}
-	Deformer: "SubDeformer::Cluster Magazine ring3_001", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Charging_Handle ring3_001", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Trigger ring3_001", "Cluster" {
-	}
 	Deformer: "SubDeformer::Cluster Bolt ring3_001", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Mac-10 ring3_001", "Cluster" {
 	}
 	Deformer: "SubDeformer::Cluster Bullet ring3_001", "Cluster" {
 	}
+	Deformer: "SubDeformer::Cluster Mac-10 ring3_001", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Magazine ring3_001", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Trigger ring3_001", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Charging_Handle ring3_001", "Cluster" {
+	}
 	Deformer: "SubDeformer::Cluster Hands_001 ring3_001", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Magazine pinky1_001", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Charging_Handle pinky1_001", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Trigger pinky1_001", "Cluster" {
 	}
 	Deformer: "SubDeformer::Cluster Bolt pinky1_001", "Cluster" {
 	}
+	Deformer: "SubDeformer::Cluster Bullet pinky1_001", "Cluster" {
+	}
 	Deformer: "SubDeformer::Cluster Mac-10 pinky1_001", "Cluster" {
 	}
-	Deformer: "SubDeformer::Cluster Bullet pinky1_001", "Cluster" {
+	Deformer: "SubDeformer::Cluster Magazine pinky1_001", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Trigger pinky1_001", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Charging_Handle pinky1_001", "Cluster" {
 	}
 	Deformer: "SubDeformer::Cluster Hands_001 pinky1_001", "Cluster" {
 	}
-	Deformer: "SubDeformer::Cluster Magazine pinky2_001", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Charging_Handle pinky2_001", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Trigger pinky2_001", "Cluster" {
-	}
 	Deformer: "SubDeformer::Cluster Bolt pinky2_001", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Mac-10 pinky2_001", "Cluster" {
 	}
 	Deformer: "SubDeformer::Cluster Bullet pinky2_001", "Cluster" {
 	}
+	Deformer: "SubDeformer::Cluster Mac-10 pinky2_001", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Magazine pinky2_001", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Trigger pinky2_001", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Charging_Handle pinky2_001", "Cluster" {
+	}
 	Deformer: "SubDeformer::Cluster Hands_001 pinky2_001", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Magazine pinky3_001", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Charging_Handle pinky3_001", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Trigger pinky3_001", "Cluster" {
 	}
 	Deformer: "SubDeformer::Cluster Bolt pinky3_001", "Cluster" {
 	}
+	Deformer: "SubDeformer::Cluster Bullet pinky3_001", "Cluster" {
+	}
 	Deformer: "SubDeformer::Cluster Mac-10 pinky3_001", "Cluster" {
 	}
-	Deformer: "SubDeformer::Cluster Bullet pinky3_001", "Cluster" {
+	Deformer: "SubDeformer::Cluster Magazine pinky3_001", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Trigger pinky3_001", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Charging_Handle pinky3_001", "Cluster" {
 	}
 	Deformer: "SubDeformer::Cluster Hands_001 pinky3_001", "Cluster" {
 	}
-	Deformer: "SubDeformer::Cluster Magazine thumb1_001", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Charging_Handle thumb1_001", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Trigger thumb1_001", "Cluster" {
-	}
 	Deformer: "SubDeformer::Cluster Bolt thumb1_001", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Mac-10 thumb1_001", "Cluster" {
 	}
 	Deformer: "SubDeformer::Cluster Bullet thumb1_001", "Cluster" {
 	}
+	Deformer: "SubDeformer::Cluster Mac-10 thumb1_001", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Magazine thumb1_001", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Trigger thumb1_001", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Charging_Handle thumb1_001", "Cluster" {
+	}
 	Deformer: "SubDeformer::Cluster Hands_001 thumb1_001", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Magazine thumb2_001", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Charging_Handle thumb2_001", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Trigger thumb2_001", "Cluster" {
 	}
 	Deformer: "SubDeformer::Cluster Bolt thumb2_001", "Cluster" {
 	}
+	Deformer: "SubDeformer::Cluster Bullet thumb2_001", "Cluster" {
+	}
 	Deformer: "SubDeformer::Cluster Mac-10 thumb2_001", "Cluster" {
 	}
-	Deformer: "SubDeformer::Cluster Bullet thumb2_001", "Cluster" {
+	Deformer: "SubDeformer::Cluster Magazine thumb2_001", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Trigger thumb2_001", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Charging_Handle thumb2_001", "Cluster" {
 	}
 	Deformer: "SubDeformer::Cluster Hands_001 thumb2_001", "Cluster" {
 	}
-	Deformer: "SubDeformer::Cluster Magazine thumb3_001", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Charging_Handle thumb3_001", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Trigger thumb3_001", "Cluster" {
-	}
 	Deformer: "SubDeformer::Cluster Bolt thumb3_001", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Mac-10 thumb3_001", "Cluster" {
 	}
 	Deformer: "SubDeformer::Cluster Bullet thumb3_001", "Cluster" {
 	}
+	Deformer: "SubDeformer::Cluster Mac-10 thumb3_001", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Magazine thumb3_001", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Trigger thumb3_001", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Charging_Handle thumb3_001", "Cluster" {
+	}
 	Deformer: "SubDeformer::Cluster Hands_001 thumb3_001", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Magazine Hand_002", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Charging_Handle Hand_002", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Trigger Hand_002", "Cluster" {
 	}
 	Deformer: "SubDeformer::Cluster Bolt Hand_002", "Cluster" {
 	}
+	Deformer: "SubDeformer::Cluster Bullet Hand_002", "Cluster" {
+	}
 	Deformer: "SubDeformer::Cluster Mac-10 Hand_002", "Cluster" {
 	}
-	Deformer: "SubDeformer::Cluster Bullet Hand_002", "Cluster" {
+	Deformer: "SubDeformer::Cluster Magazine Hand_002", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Trigger Hand_002", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Charging_Handle Hand_002", "Cluster" {
 	}
 	Deformer: "SubDeformer::Cluster Hands_001 Hand_002", "Cluster" {
 	}
-	Deformer: "SubDeformer::Cluster Magazine Hand_003", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Charging_Handle Hand_003", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Trigger Hand_003", "Cluster" {
-	}
 	Deformer: "SubDeformer::Cluster Bolt Hand_003", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Mac-10 Hand_003", "Cluster" {
 	}
 	Deformer: "SubDeformer::Cluster Bullet Hand_003", "Cluster" {
 	}
+	Deformer: "SubDeformer::Cluster Mac-10 Hand_003", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Magazine Hand_003", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Trigger Hand_003", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Charging_Handle Hand_003", "Cluster" {
+	}
 	Deformer: "SubDeformer::Cluster Hands_001 Hand_003", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Magazine Hand_004", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Charging_Handle Hand_004", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Trigger Hand_004", "Cluster" {
 	}
 	Deformer: "SubDeformer::Cluster Bolt Hand_004", "Cluster" {
 	}
+	Deformer: "SubDeformer::Cluster Bullet Hand_004", "Cluster" {
+	}
 	Deformer: "SubDeformer::Cluster Mac-10 Hand_004", "Cluster" {
 	}
-	Deformer: "SubDeformer::Cluster Bullet Hand_004", "Cluster" {
+	Deformer: "SubDeformer::Cluster Magazine Hand_004", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Trigger Hand_004", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Charging_Handle Hand_004", "Cluster" {
 	}
 	Deformer: "SubDeformer::Cluster Hands_001 Hand_004", "Cluster" {
 	}
-	Deformer: "SubDeformer::Cluster Magazine Magazine_0", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Charging_Handle Magazine_0", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Trigger Magazine_0", "Cluster" {
-	}
 	Deformer: "SubDeformer::Cluster Bolt Magazine_0", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Mac-10 Magazine_0", "Cluster" {
 	}
 	Deformer: "SubDeformer::Cluster Bullet Magazine_0", "Cluster" {
 	}
+	Deformer: "SubDeformer::Cluster Mac-10 Magazine_0", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Magazine Magazine_0", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Trigger Magazine_0", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Charging_Handle Magazine_0", "Cluster" {
+	}
 	Deformer: "SubDeformer::Cluster Hands_001 Magazine_0", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Magazine Hand_006", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Charging_Handle Hand_006", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Trigger Hand_006", "Cluster" {
 	}
 	Deformer: "SubDeformer::Cluster Bolt Hand_006", "Cluster" {
 	}
+	Deformer: "SubDeformer::Cluster Bullet Hand_006", "Cluster" {
+	}
 	Deformer: "SubDeformer::Cluster Mac-10 Hand_006", "Cluster" {
 	}
-	Deformer: "SubDeformer::Cluster Bullet Hand_006", "Cluster" {
+	Deformer: "SubDeformer::Cluster Magazine Hand_006", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Trigger Hand_006", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Charging_Handle Hand_006", "Cluster" {
 	}
 	Deformer: "SubDeformer::Cluster Hands_001 Hand_006", "Cluster" {
 	}
-	Deformer: "SubDeformer::Cluster Magazine Hand_005_-_BULLET", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Charging_Handle Hand_005_-_BULLET", "Cluster" {
-	}
-	Deformer: "SubDeformer::Cluster Trigger Hand_005_-_BULLET", "Cluster" {
-	}
 	Deformer: "SubDeformer::Cluster Bolt Hand_005_-_BULLET", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Bullet Hand_005_-_BULLET", "Cluster" {
 	}
 	Deformer: "SubDeformer::Cluster Mac-10 Hand_005_-_BULLET", "Cluster" {
 	}
-	Deformer: "SubDeformer::Cluster Bullet Hand_005_-_BULLET", "Cluster" {
+	Deformer: "SubDeformer::Cluster Magazine Hand_005_-_BULLET", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Trigger Hand_005_-_BULLET", "Cluster" {
+	}
+	Deformer: "SubDeformer::Cluster Charging_Handle Hand_005_-_BULLET", "Cluster" {
 	}
 	Deformer: "SubDeformer::Cluster Hands_001 Hand_005_-_BULLET", "Cluster" {
 	}
@@ -25609,7 +25609,7 @@ Connections:  {
 	Connect: "OO", "Model::Camera", "Model::Scene"
 	Connect: "OO", "Model::Hands", "Model::Scene"
 	Connect: "OO", "Material::Brass__Brass_jpg", "Model::Bullet"
-	Connect: "OO", "Material::Carbon_Fiber__carbon_fibre_texture_jpg", "Model::Hands_001"
+	Connect: "OO", "Material::Carbon_Fibre__carbon_fibre_texture_jpg", "Model::Hands_001"
 	Connect: "OO", "Material::Gunmetal__Gunmetal_jpg", "Model::Mac-10"
 	Connect: "OO", "Material::Gunmetal__Gunmetal_jpg", "Model::Charging_Handle"
 	Connect: "OO", "Material::Gunmetal__Gunmetal_jpg", "Model::Trigger"
@@ -25632,579 +25632,579 @@ Connections:  {
 	Connect: "OO", "Deformer::Skin Trigger", "Model::Trigger"
 	Connect: "OO", "Deformer::Skin Bolt", "Model::Bolt"
 	Connect: "OO", "Deformer::Skin Magazine", "Model::Magazine"
-	Connect: "OO", "SubDeformer::Cluster Magazine root", "Deformer::Skin Magazine"
-	Connect: "OO", "SubDeformer::Cluster Charging_Handle root", "Deformer::Skin Charging_Handle"
-	Connect: "OO", "SubDeformer::Cluster Trigger root", "Deformer::Skin Trigger"
 	Connect: "OO", "SubDeformer::Cluster Bolt root", "Deformer::Skin Bolt"
-	Connect: "OO", "SubDeformer::Cluster Mac-10 root", "Deformer::Skin Mac-10"
 	Connect: "OO", "SubDeformer::Cluster Bullet root", "Deformer::Skin Bullet"
+	Connect: "OO", "SubDeformer::Cluster Mac-10 root", "Deformer::Skin Mac-10"
+	Connect: "OO", "SubDeformer::Cluster Magazine root", "Deformer::Skin Magazine"
+	Connect: "OO", "SubDeformer::Cluster Trigger root", "Deformer::Skin Trigger"
+	Connect: "OO", "SubDeformer::Cluster Charging_Handle root", "Deformer::Skin Charging_Handle"
 	Connect: "OO", "SubDeformer::Cluster Hands_001 root", "Deformer::Skin Hands_001"
-	Connect: "OO", "SubDeformer::Cluster Magazine Left_Arm", "Deformer::Skin Magazine"
-	Connect: "OO", "SubDeformer::Cluster Charging_Handle Left_Arm", "Deformer::Skin Charging_Handle"
-	Connect: "OO", "SubDeformer::Cluster Trigger Left_Arm", "Deformer::Skin Trigger"
 	Connect: "OO", "SubDeformer::Cluster Bolt Left_Arm", "Deformer::Skin Bolt"
-	Connect: "OO", "SubDeformer::Cluster Mac-10 Left_Arm", "Deformer::Skin Mac-10"
 	Connect: "OO", "SubDeformer::Cluster Bullet Left_Arm", "Deformer::Skin Bullet"
+	Connect: "OO", "SubDeformer::Cluster Mac-10 Left_Arm", "Deformer::Skin Mac-10"
+	Connect: "OO", "SubDeformer::Cluster Magazine Left_Arm", "Deformer::Skin Magazine"
+	Connect: "OO", "SubDeformer::Cluster Trigger Left_Arm", "Deformer::Skin Trigger"
+	Connect: "OO", "SubDeformer::Cluster Charging_Handle Left_Arm", "Deformer::Skin Charging_Handle"
 	Connect: "OO", "SubDeformer::Cluster Hands_001 Left_Arm", "Deformer::Skin Hands_001"
-	Connect: "OO", "SubDeformer::Cluster Magazine Hand", "Deformer::Skin Magazine"
-	Connect: "OO", "SubDeformer::Cluster Charging_Handle Hand", "Deformer::Skin Charging_Handle"
-	Connect: "OO", "SubDeformer::Cluster Trigger Hand", "Deformer::Skin Trigger"
 	Connect: "OO", "SubDeformer::Cluster Bolt Hand", "Deformer::Skin Bolt"
-	Connect: "OO", "SubDeformer::Cluster Mac-10 Hand", "Deformer::Skin Mac-10"
 	Connect: "OO", "SubDeformer::Cluster Bullet Hand", "Deformer::Skin Bullet"
+	Connect: "OO", "SubDeformer::Cluster Mac-10 Hand", "Deformer::Skin Mac-10"
+	Connect: "OO", "SubDeformer::Cluster Magazine Hand", "Deformer::Skin Magazine"
+	Connect: "OO", "SubDeformer::Cluster Trigger Hand", "Deformer::Skin Trigger"
+	Connect: "OO", "SubDeformer::Cluster Charging_Handle Hand", "Deformer::Skin Charging_Handle"
 	Connect: "OO", "SubDeformer::Cluster Hands_001 Hand", "Deformer::Skin Hands_001"
-	Connect: "OO", "SubDeformer::Cluster Magazine index1", "Deformer::Skin Magazine"
-	Connect: "OO", "SubDeformer::Cluster Charging_Handle index1", "Deformer::Skin Charging_Handle"
-	Connect: "OO", "SubDeformer::Cluster Trigger index1", "Deformer::Skin Trigger"
 	Connect: "OO", "SubDeformer::Cluster Bolt index1", "Deformer::Skin Bolt"
-	Connect: "OO", "SubDeformer::Cluster Mac-10 index1", "Deformer::Skin Mac-10"
 	Connect: "OO", "SubDeformer::Cluster Bullet index1", "Deformer::Skin Bullet"
+	Connect: "OO", "SubDeformer::Cluster Mac-10 index1", "Deformer::Skin Mac-10"
+	Connect: "OO", "SubDeformer::Cluster Magazine index1", "Deformer::Skin Magazine"
+	Connect: "OO", "SubDeformer::Cluster Trigger index1", "Deformer::Skin Trigger"
+	Connect: "OO", "SubDeformer::Cluster Charging_Handle index1", "Deformer::Skin Charging_Handle"
 	Connect: "OO", "SubDeformer::Cluster Hands_001 index1", "Deformer::Skin Hands_001"
-	Connect: "OO", "SubDeformer::Cluster Magazine index2", "Deformer::Skin Magazine"
-	Connect: "OO", "SubDeformer::Cluster Charging_Handle index2", "Deformer::Skin Charging_Handle"
-	Connect: "OO", "SubDeformer::Cluster Trigger index2", "Deformer::Skin Trigger"
 	Connect: "OO", "SubDeformer::Cluster Bolt index2", "Deformer::Skin Bolt"
-	Connect: "OO", "SubDeformer::Cluster Mac-10 index2", "Deformer::Skin Mac-10"
 	Connect: "OO", "SubDeformer::Cluster Bullet index2", "Deformer::Skin Bullet"
+	Connect: "OO", "SubDeformer::Cluster Mac-10 index2", "Deformer::Skin Mac-10"
+	Connect: "OO", "SubDeformer::Cluster Magazine index2", "Deformer::Skin Magazine"
+	Connect: "OO", "SubDeformer::Cluster Trigger index2", "Deformer::Skin Trigger"
+	Connect: "OO", "SubDeformer::Cluster Charging_Handle index2", "Deformer::Skin Charging_Handle"
 	Connect: "OO", "SubDeformer::Cluster Hands_001 index2", "Deformer::Skin Hands_001"
-	Connect: "OO", "SubDeformer::Cluster Magazine index3", "Deformer::Skin Magazine"
-	Connect: "OO", "SubDeformer::Cluster Charging_Handle index3", "Deformer::Skin Charging_Handle"
-	Connect: "OO", "SubDeformer::Cluster Trigger index3", "Deformer::Skin Trigger"
 	Connect: "OO", "SubDeformer::Cluster Bolt index3", "Deformer::Skin Bolt"
-	Connect: "OO", "SubDeformer::Cluster Mac-10 index3", "Deformer::Skin Mac-10"
 	Connect: "OO", "SubDeformer::Cluster Bullet index3", "Deformer::Skin Bullet"
+	Connect: "OO", "SubDeformer::Cluster Mac-10 index3", "Deformer::Skin Mac-10"
+	Connect: "OO", "SubDeformer::Cluster Magazine index3", "Deformer::Skin Magazine"
+	Connect: "OO", "SubDeformer::Cluster Trigger index3", "Deformer::Skin Trigger"
+	Connect: "OO", "SubDeformer::Cluster Charging_Handle index3", "Deformer::Skin Charging_Handle"
 	Connect: "OO", "SubDeformer::Cluster Hands_001 index3", "Deformer::Skin Hands_001"
-	Connect: "OO", "SubDeformer::Cluster Magazine middle1", "Deformer::Skin Magazine"
-	Connect: "OO", "SubDeformer::Cluster Charging_Handle middle1", "Deformer::Skin Charging_Handle"
-	Connect: "OO", "SubDeformer::Cluster Trigger middle1", "Deformer::Skin Trigger"
 	Connect: "OO", "SubDeformer::Cluster Bolt middle1", "Deformer::Skin Bolt"
-	Connect: "OO", "SubDeformer::Cluster Mac-10 middle1", "Deformer::Skin Mac-10"
 	Connect: "OO", "SubDeformer::Cluster Bullet middle1", "Deformer::Skin Bullet"
+	Connect: "OO", "SubDeformer::Cluster Mac-10 middle1", "Deformer::Skin Mac-10"
+	Connect: "OO", "SubDeformer::Cluster Magazine middle1", "Deformer::Skin Magazine"
+	Connect: "OO", "SubDeformer::Cluster Trigger middle1", "Deformer::Skin Trigger"
+	Connect: "OO", "SubDeformer::Cluster Charging_Handle middle1", "Deformer::Skin Charging_Handle"
 	Connect: "OO", "SubDeformer::Cluster Hands_001 middle1", "Deformer::Skin Hands_001"
-	Connect: "OO", "SubDeformer::Cluster Magazine middle2", "Deformer::Skin Magazine"
-	Connect: "OO", "SubDeformer::Cluster Charging_Handle middle2", "Deformer::Skin Charging_Handle"
-	Connect: "OO", "SubDeformer::Cluster Trigger middle2", "Deformer::Skin Trigger"
 	Connect: "OO", "SubDeformer::Cluster Bolt middle2", "Deformer::Skin Bolt"
-	Connect: "OO", "SubDeformer::Cluster Mac-10 middle2", "Deformer::Skin Mac-10"
 	Connect: "OO", "SubDeformer::Cluster Bullet middle2", "Deformer::Skin Bullet"
+	Connect: "OO", "SubDeformer::Cluster Mac-10 middle2", "Deformer::Skin Mac-10"
+	Connect: "OO", "SubDeformer::Cluster Magazine middle2", "Deformer::Skin Magazine"
+	Connect: "OO", "SubDeformer::Cluster Trigger middle2", "Deformer::Skin Trigger"
+	Connect: "OO", "SubDeformer::Cluster Charging_Handle middle2", "Deformer::Skin Charging_Handle"
 	Connect: "OO", "SubDeformer::Cluster Hands_001 middle2", "Deformer::Skin Hands_001"
-	Connect: "OO", "SubDeformer::Cluster Magazine middle3", "Deformer::Skin Magazine"
-	Connect: "OO", "SubDeformer::Cluster Charging_Handle middle3", "Deformer::Skin Charging_Handle"
-	Connect: "OO", "SubDeformer::Cluster Trigger middle3", "Deformer::Skin Trigger"
 	Connect: "OO", "SubDeformer::Cluster Bolt middle3", "Deformer::Skin Bolt"
-	Connect: "OO", "SubDeformer::Cluster Mac-10 middle3", "Deformer::Skin Mac-10"
 	Connect: "OO", "SubDeformer::Cluster Bullet middle3", "Deformer::Skin Bullet"
+	Connect: "OO", "SubDeformer::Cluster Mac-10 middle3", "Deformer::Skin Mac-10"
+	Connect: "OO", "SubDeformer::Cluster Magazine middle3", "Deformer::Skin Magazine"
+	Connect: "OO", "SubDeformer::Cluster Trigger middle3", "Deformer::Skin Trigger"
+	Connect: "OO", "SubDeformer::Cluster Charging_Handle middle3", "Deformer::Skin Charging_Handle"
 	Connect: "OO", "SubDeformer::Cluster Hands_001 middle3", "Deformer::Skin Hands_001"
-	Connect: "OO", "SubDeformer::Cluster Magazine ring1", "Deformer::Skin Magazine"
-	Connect: "OO", "SubDeformer::Cluster Charging_Handle ring1", "Deformer::Skin Charging_Handle"
-	Connect: "OO", "SubDeformer::Cluster Trigger ring1", "Deformer::Skin Trigger"
 	Connect: "OO", "SubDeformer::Cluster Bolt ring1", "Deformer::Skin Bolt"
-	Connect: "OO", "SubDeformer::Cluster Mac-10 ring1", "Deformer::Skin Mac-10"
 	Connect: "OO", "SubDeformer::Cluster Bullet ring1", "Deformer::Skin Bullet"
+	Connect: "OO", "SubDeformer::Cluster Mac-10 ring1", "Deformer::Skin Mac-10"
+	Connect: "OO", "SubDeformer::Cluster Magazine ring1", "Deformer::Skin Magazine"
+	Connect: "OO", "SubDeformer::Cluster Trigger ring1", "Deformer::Skin Trigger"
+	Connect: "OO", "SubDeformer::Cluster Charging_Handle ring1", "Deformer::Skin Charging_Handle"
 	Connect: "OO", "SubDeformer::Cluster Hands_001 ring1", "Deformer::Skin Hands_001"
-	Connect: "OO", "SubDeformer::Cluster Magazine ring2", "Deformer::Skin Magazine"
-	Connect: "OO", "SubDeformer::Cluster Charging_Handle ring2", "Deformer::Skin Charging_Handle"
-	Connect: "OO", "SubDeformer::Cluster Trigger ring2", "Deformer::Skin Trigger"
 	Connect: "OO", "SubDeformer::Cluster Bolt ring2", "Deformer::Skin Bolt"
-	Connect: "OO", "SubDeformer::Cluster Mac-10 ring2", "Deformer::Skin Mac-10"
 	Connect: "OO", "SubDeformer::Cluster Bullet ring2", "Deformer::Skin Bullet"
+	Connect: "OO", "SubDeformer::Cluster Mac-10 ring2", "Deformer::Skin Mac-10"
+	Connect: "OO", "SubDeformer::Cluster Magazine ring2", "Deformer::Skin Magazine"
+	Connect: "OO", "SubDeformer::Cluster Trigger ring2", "Deformer::Skin Trigger"
+	Connect: "OO", "SubDeformer::Cluster Charging_Handle ring2", "Deformer::Skin Charging_Handle"
 	Connect: "OO", "SubDeformer::Cluster Hands_001 ring2", "Deformer::Skin Hands_001"
-	Connect: "OO", "SubDeformer::Cluster Magazine ring3", "Deformer::Skin Magazine"
-	Connect: "OO", "SubDeformer::Cluster Charging_Handle ring3", "Deformer::Skin Charging_Handle"
-	Connect: "OO", "SubDeformer::Cluster Trigger ring3", "Deformer::Skin Trigger"
 	Connect: "OO", "SubDeformer::Cluster Bolt ring3", "Deformer::Skin Bolt"
-	Connect: "OO", "SubDeformer::Cluster Mac-10 ring3", "Deformer::Skin Mac-10"
 	Connect: "OO", "SubDeformer::Cluster Bullet ring3", "Deformer::Skin Bullet"
+	Connect: "OO", "SubDeformer::Cluster Mac-10 ring3", "Deformer::Skin Mac-10"
+	Connect: "OO", "SubDeformer::Cluster Magazine ring3", "Deformer::Skin Magazine"
+	Connect: "OO", "SubDeformer::Cluster Trigger ring3", "Deformer::Skin Trigger"
+	Connect: "OO", "SubDeformer::Cluster Charging_Handle ring3", "Deformer::Skin Charging_Handle"
 	Connect: "OO", "SubDeformer::Cluster Hands_001 ring3", "Deformer::Skin Hands_001"
-	Connect: "OO", "SubDeformer::Cluster Magazine pinky1", "Deformer::Skin Magazine"
-	Connect: "OO", "SubDeformer::Cluster Charging_Handle pinky1", "Deformer::Skin Charging_Handle"
-	Connect: "OO", "SubDeformer::Cluster Trigger pinky1", "Deformer::Skin Trigger"
 	Connect: "OO", "SubDeformer::Cluster Bolt pinky1", "Deformer::Skin Bolt"
-	Connect: "OO", "SubDeformer::Cluster Mac-10 pinky1", "Deformer::Skin Mac-10"
 	Connect: "OO", "SubDeformer::Cluster Bullet pinky1", "Deformer::Skin Bullet"
+	Connect: "OO", "SubDeformer::Cluster Mac-10 pinky1", "Deformer::Skin Mac-10"
+	Connect: "OO", "SubDeformer::Cluster Magazine pinky1", "Deformer::Skin Magazine"
+	Connect: "OO", "SubDeformer::Cluster Trigger pinky1", "Deformer::Skin Trigger"
+	Connect: "OO", "SubDeformer::Cluster Charging_Handle pinky1", "Deformer::Skin Charging_Handle"
 	Connect: "OO", "SubDeformer::Cluster Hands_001 pinky1", "Deformer::Skin Hands_001"
-	Connect: "OO", "SubDeformer::Cluster Magazine pinky2", "Deformer::Skin Magazine"
-	Connect: "OO", "SubDeformer::Cluster Charging_Handle pinky2", "Deformer::Skin Charging_Handle"
-	Connect: "OO", "SubDeformer::Cluster Trigger pinky2", "Deformer::Skin Trigger"
 	Connect: "OO", "SubDeformer::Cluster Bolt pinky2", "Deformer::Skin Bolt"
-	Connect: "OO", "SubDeformer::Cluster Mac-10 pinky2", "Deformer::Skin Mac-10"
 	Connect: "OO", "SubDeformer::Cluster Bullet pinky2", "Deformer::Skin Bullet"
+	Connect: "OO", "SubDeformer::Cluster Mac-10 pinky2", "Deformer::Skin Mac-10"
+	Connect: "OO", "SubDeformer::Cluster Magazine pinky2", "Deformer::Skin Magazine"
+	Connect: "OO", "SubDeformer::Cluster Trigger pinky2", "Deformer::Skin Trigger"
+	Connect: "OO", "SubDeformer::Cluster Charging_Handle pinky2", "Deformer::Skin Charging_Handle"
 	Connect: "OO", "SubDeformer::Cluster Hands_001 pinky2", "Deformer::Skin Hands_001"
-	Connect: "OO", "SubDeformer::Cluster Magazine pinky3", "Deformer::Skin Magazine"
-	Connect: "OO", "SubDeformer::Cluster Charging_Handle pinky3", "Deformer::Skin Charging_Handle"
-	Connect: "OO", "SubDeformer::Cluster Trigger pinky3", "Deformer::Skin Trigger"
 	Connect: "OO", "SubDeformer::Cluster Bolt pinky3", "Deformer::Skin Bolt"
-	Connect: "OO", "SubDeformer::Cluster Mac-10 pinky3", "Deformer::Skin Mac-10"
 	Connect: "OO", "SubDeformer::Cluster Bullet pinky3", "Deformer::Skin Bullet"
+	Connect: "OO", "SubDeformer::Cluster Mac-10 pinky3", "Deformer::Skin Mac-10"
+	Connect: "OO", "SubDeformer::Cluster Magazine pinky3", "Deformer::Skin Magazine"
+	Connect: "OO", "SubDeformer::Cluster Trigger pinky3", "Deformer::Skin Trigger"
+	Connect: "OO", "SubDeformer::Cluster Charging_Handle pinky3", "Deformer::Skin Charging_Handle"
 	Connect: "OO", "SubDeformer::Cluster Hands_001 pinky3", "Deformer::Skin Hands_001"
-	Connect: "OO", "SubDeformer::Cluster Magazine thumb1", "Deformer::Skin Magazine"
-	Connect: "OO", "SubDeformer::Cluster Charging_Handle thumb1", "Deformer::Skin Charging_Handle"
-	Connect: "OO", "SubDeformer::Cluster Trigger thumb1", "Deformer::Skin Trigger"
 	Connect: "OO", "SubDeformer::Cluster Bolt thumb1", "Deformer::Skin Bolt"
-	Connect: "OO", "SubDeformer::Cluster Mac-10 thumb1", "Deformer::Skin Mac-10"
 	Connect: "OO", "SubDeformer::Cluster Bullet thumb1", "Deformer::Skin Bullet"
+	Connect: "OO", "SubDeformer::Cluster Mac-10 thumb1", "Deformer::Skin Mac-10"
+	Connect: "OO", "SubDeformer::Cluster Magazine thumb1", "Deformer::Skin Magazine"
+	Connect: "OO", "SubDeformer::Cluster Trigger thumb1", "Deformer::Skin Trigger"
+	Connect: "OO", "SubDeformer::Cluster Charging_Handle thumb1", "Deformer::Skin Charging_Handle"
 	Connect: "OO", "SubDeformer::Cluster Hands_001 thumb1", "Deformer::Skin Hands_001"
-	Connect: "OO", "SubDeformer::Cluster Magazine thumb2", "Deformer::Skin Magazine"
-	Connect: "OO", "SubDeformer::Cluster Charging_Handle thumb2", "Deformer::Skin Charging_Handle"
-	Connect: "OO", "SubDeformer::Cluster Trigger thumb2", "Deformer::Skin Trigger"
 	Connect: "OO", "SubDeformer::Cluster Bolt thumb2", "Deformer::Skin Bolt"
-	Connect: "OO", "SubDeformer::Cluster Mac-10 thumb2", "Deformer::Skin Mac-10"
 	Connect: "OO", "SubDeformer::Cluster Bullet thumb2", "Deformer::Skin Bullet"
+	Connect: "OO", "SubDeformer::Cluster Mac-10 thumb2", "Deformer::Skin Mac-10"
+	Connect: "OO", "SubDeformer::Cluster Magazine thumb2", "Deformer::Skin Magazine"
+	Connect: "OO", "SubDeformer::Cluster Trigger thumb2", "Deformer::Skin Trigger"
+	Connect: "OO", "SubDeformer::Cluster Charging_Handle thumb2", "Deformer::Skin Charging_Handle"
 	Connect: "OO", "SubDeformer::Cluster Hands_001 thumb2", "Deformer::Skin Hands_001"
-	Connect: "OO", "SubDeformer::Cluster Magazine thumb3", "Deformer::Skin Magazine"
-	Connect: "OO", "SubDeformer::Cluster Charging_Handle thumb3", "Deformer::Skin Charging_Handle"
-	Connect: "OO", "SubDeformer::Cluster Trigger thumb3", "Deformer::Skin Trigger"
 	Connect: "OO", "SubDeformer::Cluster Bolt thumb3", "Deformer::Skin Bolt"
-	Connect: "OO", "SubDeformer::Cluster Mac-10 thumb3", "Deformer::Skin Mac-10"
 	Connect: "OO", "SubDeformer::Cluster Bullet thumb3", "Deformer::Skin Bullet"
+	Connect: "OO", "SubDeformer::Cluster Mac-10 thumb3", "Deformer::Skin Mac-10"
+	Connect: "OO", "SubDeformer::Cluster Magazine thumb3", "Deformer::Skin Magazine"
+	Connect: "OO", "SubDeformer::Cluster Trigger thumb3", "Deformer::Skin Trigger"
+	Connect: "OO", "SubDeformer::Cluster Charging_Handle thumb3", "Deformer::Skin Charging_Handle"
 	Connect: "OO", "SubDeformer::Cluster Hands_001 thumb3", "Deformer::Skin Hands_001"
-	Connect: "OO", "SubDeformer::Cluster Magazine Right_Arm", "Deformer::Skin Magazine"
-	Connect: "OO", "SubDeformer::Cluster Charging_Handle Right_Arm", "Deformer::Skin Charging_Handle"
-	Connect: "OO", "SubDeformer::Cluster Trigger Right_Arm", "Deformer::Skin Trigger"
 	Connect: "OO", "SubDeformer::Cluster Bolt Right_Arm", "Deformer::Skin Bolt"
-	Connect: "OO", "SubDeformer::Cluster Mac-10 Right_Arm", "Deformer::Skin Mac-10"
 	Connect: "OO", "SubDeformer::Cluster Bullet Right_Arm", "Deformer::Skin Bullet"
+	Connect: "OO", "SubDeformer::Cluster Mac-10 Right_Arm", "Deformer::Skin Mac-10"
+	Connect: "OO", "SubDeformer::Cluster Magazine Right_Arm", "Deformer::Skin Magazine"
+	Connect: "OO", "SubDeformer::Cluster Trigger Right_Arm", "Deformer::Skin Trigger"
+	Connect: "OO", "SubDeformer::Cluster Charging_Handle Right_Arm", "Deformer::Skin Charging_Handle"
 	Connect: "OO", "SubDeformer::Cluster Hands_001 Right_Arm", "Deformer::Skin Hands_001"
-	Connect: "OO", "SubDeformer::Cluster Magazine Hand_001", "Deformer::Skin Magazine"
-	Connect: "OO", "SubDeformer::Cluster Charging_Handle Hand_001", "Deformer::Skin Charging_Handle"
-	Connect: "OO", "SubDeformer::Cluster Trigger Hand_001", "Deformer::Skin Trigger"
 	Connect: "OO", "SubDeformer::Cluster Bolt Hand_001", "Deformer::Skin Bolt"
-	Connect: "OO", "SubDeformer::Cluster Mac-10 Hand_001", "Deformer::Skin Mac-10"
 	Connect: "OO", "SubDeformer::Cluster Bullet Hand_001", "Deformer::Skin Bullet"
+	Connect: "OO", "SubDeformer::Cluster Mac-10 Hand_001", "Deformer::Skin Mac-10"
+	Connect: "OO", "SubDeformer::Cluster Magazine Hand_001", "Deformer::Skin Magazine"
+	Connect: "OO", "SubDeformer::Cluster Trigger Hand_001", "Deformer::Skin Trigger"
+	Connect: "OO", "SubDeformer::Cluster Charging_Handle Hand_001", "Deformer::Skin Charging_Handle"
 	Connect: "OO", "SubDeformer::Cluster Hands_001 Hand_001", "Deformer::Skin Hands_001"
-	Connect: "OO", "SubDeformer::Cluster Magazine index1_001", "Deformer::Skin Magazine"
-	Connect: "OO", "SubDeformer::Cluster Charging_Handle index1_001", "Deformer::Skin Charging_Handle"
-	Connect: "OO", "SubDeformer::Cluster Trigger index1_001", "Deformer::Skin Trigger"
 	Connect: "OO", "SubDeformer::Cluster Bolt index1_001", "Deformer::Skin Bolt"
-	Connect: "OO", "SubDeformer::Cluster Mac-10 index1_001", "Deformer::Skin Mac-10"
 	Connect: "OO", "SubDeformer::Cluster Bullet index1_001", "Deformer::Skin Bullet"
+	Connect: "OO", "SubDeformer::Cluster Mac-10 index1_001", "Deformer::Skin Mac-10"
+	Connect: "OO", "SubDeformer::Cluster Magazine index1_001", "Deformer::Skin Magazine"
+	Connect: "OO", "SubDeformer::Cluster Trigger index1_001", "Deformer::Skin Trigger"
+	Connect: "OO", "SubDeformer::Cluster Charging_Handle index1_001", "Deformer::Skin Charging_Handle"
 	Connect: "OO", "SubDeformer::Cluster Hands_001 index1_001", "Deformer::Skin Hands_001"
-	Connect: "OO", "SubDeformer::Cluster Magazine index2_001", "Deformer::Skin Magazine"
-	Connect: "OO", "SubDeformer::Cluster Charging_Handle index2_001", "Deformer::Skin Charging_Handle"
-	Connect: "OO", "SubDeformer::Cluster Trigger index2_001", "Deformer::Skin Trigger"
 	Connect: "OO", "SubDeformer::Cluster Bolt index2_001", "Deformer::Skin Bolt"
-	Connect: "OO", "SubDeformer::Cluster Mac-10 index2_001", "Deformer::Skin Mac-10"
 	Connect: "OO", "SubDeformer::Cluster Bullet index2_001", "Deformer::Skin Bullet"
+	Connect: "OO", "SubDeformer::Cluster Mac-10 index2_001", "Deformer::Skin Mac-10"
+	Connect: "OO", "SubDeformer::Cluster Magazine index2_001", "Deformer::Skin Magazine"
+	Connect: "OO", "SubDeformer::Cluster Trigger index2_001", "Deformer::Skin Trigger"
+	Connect: "OO", "SubDeformer::Cluster Charging_Handle index2_001", "Deformer::Skin Charging_Handle"
 	Connect: "OO", "SubDeformer::Cluster Hands_001 index2_001", "Deformer::Skin Hands_001"
-	Connect: "OO", "SubDeformer::Cluster Magazine index3_001", "Deformer::Skin Magazine"
-	Connect: "OO", "SubDeformer::Cluster Charging_Handle index3_001", "Deformer::Skin Charging_Handle"
-	Connect: "OO", "SubDeformer::Cluster Trigger index3_001", "Deformer::Skin Trigger"
 	Connect: "OO", "SubDeformer::Cluster Bolt index3_001", "Deformer::Skin Bolt"
-	Connect: "OO", "SubDeformer::Cluster Mac-10 index3_001", "Deformer::Skin Mac-10"
 	Connect: "OO", "SubDeformer::Cluster Bullet index3_001", "Deformer::Skin Bullet"
+	Connect: "OO", "SubDeformer::Cluster Mac-10 index3_001", "Deformer::Skin Mac-10"
+	Connect: "OO", "SubDeformer::Cluster Magazine index3_001", "Deformer::Skin Magazine"
+	Connect: "OO", "SubDeformer::Cluster Trigger index3_001", "Deformer::Skin Trigger"
+	Connect: "OO", "SubDeformer::Cluster Charging_Handle index3_001", "Deformer::Skin Charging_Handle"
 	Connect: "OO", "SubDeformer::Cluster Hands_001 index3_001", "Deformer::Skin Hands_001"
-	Connect: "OO", "SubDeformer::Cluster Magazine middle1_001", "Deformer::Skin Magazine"
-	Connect: "OO", "SubDeformer::Cluster Charging_Handle middle1_001", "Deformer::Skin Charging_Handle"
-	Connect: "OO", "SubDeformer::Cluster Trigger middle1_001", "Deformer::Skin Trigger"
 	Connect: "OO", "SubDeformer::Cluster Bolt middle1_001", "Deformer::Skin Bolt"
-	Connect: "OO", "SubDeformer::Cluster Mac-10 middle1_001", "Deformer::Skin Mac-10"
 	Connect: "OO", "SubDeformer::Cluster Bullet middle1_001", "Deformer::Skin Bullet"
+	Connect: "OO", "SubDeformer::Cluster Mac-10 middle1_001", "Deformer::Skin Mac-10"
+	Connect: "OO", "SubDeformer::Cluster Magazine middle1_001", "Deformer::Skin Magazine"
+	Connect: "OO", "SubDeformer::Cluster Trigger middle1_001", "Deformer::Skin Trigger"
+	Connect: "OO", "SubDeformer::Cluster Charging_Handle middle1_001", "Deformer::Skin Charging_Handle"
 	Connect: "OO", "SubDeformer::Cluster Hands_001 middle1_001", "Deformer::Skin Hands_001"
-	Connect: "OO", "SubDeformer::Cluster Magazine middle2_001", "Deformer::Skin Magazine"
-	Connect: "OO", "SubDeformer::Cluster Charging_Handle middle2_001", "Deformer::Skin Charging_Handle"
-	Connect: "OO", "SubDeformer::Cluster Trigger middle2_001", "Deformer::Skin Trigger"
 	Connect: "OO", "SubDeformer::Cluster Bolt middle2_001", "Deformer::Skin Bolt"
-	Connect: "OO", "SubDeformer::Cluster Mac-10 middle2_001", "Deformer::Skin Mac-10"
 	Connect: "OO", "SubDeformer::Cluster Bullet middle2_001", "Deformer::Skin Bullet"
+	Connect: "OO", "SubDeformer::Cluster Mac-10 middle2_001", "Deformer::Skin Mac-10"
+	Connect: "OO", "SubDeformer::Cluster Magazine middle2_001", "Deformer::Skin Magazine"
+	Connect: "OO", "SubDeformer::Cluster Trigger middle2_001", "Deformer::Skin Trigger"
+	Connect: "OO", "SubDeformer::Cluster Charging_Handle middle2_001", "Deformer::Skin Charging_Handle"
 	Connect: "OO", "SubDeformer::Cluster Hands_001 middle2_001", "Deformer::Skin Hands_001"
-	Connect: "OO", "SubDeformer::Cluster Magazine middle3_001", "Deformer::Skin Magazine"
-	Connect: "OO", "SubDeformer::Cluster Charging_Handle middle3_001", "Deformer::Skin Charging_Handle"
-	Connect: "OO", "SubDeformer::Cluster Trigger middle3_001", "Deformer::Skin Trigger"
 	Connect: "OO", "SubDeformer::Cluster Bolt middle3_001", "Deformer::Skin Bolt"
-	Connect: "OO", "SubDeformer::Cluster Mac-10 middle3_001", "Deformer::Skin Mac-10"
 	Connect: "OO", "SubDeformer::Cluster Bullet middle3_001", "Deformer::Skin Bullet"
+	Connect: "OO", "SubDeformer::Cluster Mac-10 middle3_001", "Deformer::Skin Mac-10"
+	Connect: "OO", "SubDeformer::Cluster Magazine middle3_001", "Deformer::Skin Magazine"
+	Connect: "OO", "SubDeformer::Cluster Trigger middle3_001", "Deformer::Skin Trigger"
+	Connect: "OO", "SubDeformer::Cluster Charging_Handle middle3_001", "Deformer::Skin Charging_Handle"
 	Connect: "OO", "SubDeformer::Cluster Hands_001 middle3_001", "Deformer::Skin Hands_001"
-	Connect: "OO", "SubDeformer::Cluster Magazine ring1_001", "Deformer::Skin Magazine"
-	Connect: "OO", "SubDeformer::Cluster Charging_Handle ring1_001", "Deformer::Skin Charging_Handle"
-	Connect: "OO", "SubDeformer::Cluster Trigger ring1_001", "Deformer::Skin Trigger"
 	Connect: "OO", "SubDeformer::Cluster Bolt ring1_001", "Deformer::Skin Bolt"
-	Connect: "OO", "SubDeformer::Cluster Mac-10 ring1_001", "Deformer::Skin Mac-10"
 	Connect: "OO", "SubDeformer::Cluster Bullet ring1_001", "Deformer::Skin Bullet"
+	Connect: "OO", "SubDeformer::Cluster Mac-10 ring1_001", "Deformer::Skin Mac-10"
+	Connect: "OO", "SubDeformer::Cluster Magazine ring1_001", "Deformer::Skin Magazine"
+	Connect: "OO", "SubDeformer::Cluster Trigger ring1_001", "Deformer::Skin Trigger"
+	Connect: "OO", "SubDeformer::Cluster Charging_Handle ring1_001", "Deformer::Skin Charging_Handle"
 	Connect: "OO", "SubDeformer::Cluster Hands_001 ring1_001", "Deformer::Skin Hands_001"
-	Connect: "OO", "SubDeformer::Cluster Magazine ring2_001", "Deformer::Skin Magazine"
-	Connect: "OO", "SubDeformer::Cluster Charging_Handle ring2_001", "Deformer::Skin Charging_Handle"
-	Connect: "OO", "SubDeformer::Cluster Trigger ring2_001", "Deformer::Skin Trigger"
 	Connect: "OO", "SubDeformer::Cluster Bolt ring2_001", "Deformer::Skin Bolt"
-	Connect: "OO", "SubDeformer::Cluster Mac-10 ring2_001", "Deformer::Skin Mac-10"
 	Connect: "OO", "SubDeformer::Cluster Bullet ring2_001", "Deformer::Skin Bullet"
+	Connect: "OO", "SubDeformer::Cluster Mac-10 ring2_001", "Deformer::Skin Mac-10"
+	Connect: "OO", "SubDeformer::Cluster Magazine ring2_001", "Deformer::Skin Magazine"
+	Connect: "OO", "SubDeformer::Cluster Trigger ring2_001", "Deformer::Skin Trigger"
+	Connect: "OO", "SubDeformer::Cluster Charging_Handle ring2_001", "Deformer::Skin Charging_Handle"
 	Connect: "OO", "SubDeformer::Cluster Hands_001 ring2_001", "Deformer::Skin Hands_001"
-	Connect: "OO", "SubDeformer::Cluster Magazine ring3_001", "Deformer::Skin Magazine"
-	Connect: "OO", "SubDeformer::Cluster Charging_Handle ring3_001", "Deformer::Skin Charging_Handle"
-	Connect: "OO", "SubDeformer::Cluster Trigger ring3_001", "Deformer::Skin Trigger"
 	Connect: "OO", "SubDeformer::Cluster Bolt ring3_001", "Deformer::Skin Bolt"
-	Connect: "OO", "SubDeformer::Cluster Mac-10 ring3_001", "Deformer::Skin Mac-10"
 	Connect: "OO", "SubDeformer::Cluster Bullet ring3_001", "Deformer::Skin Bullet"
+	Connect: "OO", "SubDeformer::Cluster Mac-10 ring3_001", "Deformer::Skin Mac-10"
+	Connect: "OO", "SubDeformer::Cluster Magazine ring3_001", "Deformer::Skin Magazine"
+	Connect: "OO", "SubDeformer::Cluster Trigger ring3_001", "Deformer::Skin Trigger"
+	Connect: "OO", "SubDeformer::Cluster Charging_Handle ring3_001", "Deformer::Skin Charging_Handle"
 	Connect: "OO", "SubDeformer::Cluster Hands_001 ring3_001", "Deformer::Skin Hands_001"
-	Connect: "OO", "SubDeformer::Cluster Magazine pinky1_001", "Deformer::Skin Magazine"
-	Connect: "OO", "SubDeformer::Cluster Charging_Handle pinky1_001", "Deformer::Skin Charging_Handle"
-	Connect: "OO", "SubDeformer::Cluster Trigger pinky1_001", "Deformer::Skin Trigger"
 	Connect: "OO", "SubDeformer::Cluster Bolt pinky1_001", "Deformer::Skin Bolt"
-	Connect: "OO", "SubDeformer::Cluster Mac-10 pinky1_001", "Deformer::Skin Mac-10"
 	Connect: "OO", "SubDeformer::Cluster Bullet pinky1_001", "Deformer::Skin Bullet"
+	Connect: "OO", "SubDeformer::Cluster Mac-10 pinky1_001", "Deformer::Skin Mac-10"
+	Connect: "OO", "SubDeformer::Cluster Magazine pinky1_001", "Deformer::Skin Magazine"
+	Connect: "OO", "SubDeformer::Cluster Trigger pinky1_001", "Deformer::Skin Trigger"
+	Connect: "OO", "SubDeformer::Cluster Charging_Handle pinky1_001", "Deformer::Skin Charging_Handle"
 	Connect: "OO", "SubDeformer::Cluster Hands_001 pinky1_001", "Deformer::Skin Hands_001"
-	Connect: "OO", "SubDeformer::Cluster Magazine pinky2_001", "Deformer::Skin Magazine"
-	Connect: "OO", "SubDeformer::Cluster Charging_Handle pinky2_001", "Deformer::Skin Charging_Handle"
-	Connect: "OO", "SubDeformer::Cluster Trigger pinky2_001", "Deformer::Skin Trigger"
 	Connect: "OO", "SubDeformer::Cluster Bolt pinky2_001", "Deformer::Skin Bolt"
-	Connect: "OO", "SubDeformer::Cluster Mac-10 pinky2_001", "Deformer::Skin Mac-10"
 	Connect: "OO", "SubDeformer::Cluster Bullet pinky2_001", "Deformer::Skin Bullet"
+	Connect: "OO", "SubDeformer::Cluster Mac-10 pinky2_001", "Deformer::Skin Mac-10"
+	Connect: "OO", "SubDeformer::Cluster Magazine pinky2_001", "Deformer::Skin Magazine"
+	Connect: "OO", "SubDeformer::Cluster Trigger pinky2_001", "Deformer::Skin Trigger"
+	Connect: "OO", "SubDeformer::Cluster Charging_Handle pinky2_001", "Deformer::Skin Charging_Handle"
 	Connect: "OO", "SubDeformer::Cluster Hands_001 pinky2_001", "Deformer::Skin Hands_001"
-	Connect: "OO", "SubDeformer::Cluster Magazine pinky3_001", "Deformer::Skin Magazine"
-	Connect: "OO", "SubDeformer::Cluster Charging_Handle pinky3_001", "Deformer::Skin Charging_Handle"
-	Connect: "OO", "SubDeformer::Cluster Trigger pinky3_001", "Deformer::Skin Trigger"
 	Connect: "OO", "SubDeformer::Cluster Bolt pinky3_001", "Deformer::Skin Bolt"
-	Connect: "OO", "SubDeformer::Cluster Mac-10 pinky3_001", "Deformer::Skin Mac-10"
 	Connect: "OO", "SubDeformer::Cluster Bullet pinky3_001", "Deformer::Skin Bullet"
+	Connect: "OO", "SubDeformer::Cluster Mac-10 pinky3_001", "Deformer::Skin Mac-10"
+	Connect: "OO", "SubDeformer::Cluster Magazine pinky3_001", "Deformer::Skin Magazine"
+	Connect: "OO", "SubDeformer::Cluster Trigger pinky3_001", "Deformer::Skin Trigger"
+	Connect: "OO", "SubDeformer::Cluster Charging_Handle pinky3_001", "Deformer::Skin Charging_Handle"
 	Connect: "OO", "SubDeformer::Cluster Hands_001 pinky3_001", "Deformer::Skin Hands_001"
-	Connect: "OO", "SubDeformer::Cluster Magazine thumb1_001", "Deformer::Skin Magazine"
-	Connect: "OO", "SubDeformer::Cluster Charging_Handle thumb1_001", "Deformer::Skin Charging_Handle"
-	Connect: "OO", "SubDeformer::Cluster Trigger thumb1_001", "Deformer::Skin Trigger"
 	Connect: "OO", "SubDeformer::Cluster Bolt thumb1_001", "Deformer::Skin Bolt"
-	Connect: "OO", "SubDeformer::Cluster Mac-10 thumb1_001", "Deformer::Skin Mac-10"
 	Connect: "OO", "SubDeformer::Cluster Bullet thumb1_001", "Deformer::Skin Bullet"
+	Connect: "OO", "SubDeformer::Cluster Mac-10 thumb1_001", "Deformer::Skin Mac-10"
+	Connect: "OO", "SubDeformer::Cluster Magazine thumb1_001", "Deformer::Skin Magazine"
+	Connect: "OO", "SubDeformer::Cluster Trigger thumb1_001", "Deformer::Skin Trigger"
+	Connect: "OO", "SubDeformer::Cluster Charging_Handle thumb1_001", "Deformer::Skin Charging_Handle"
 	Connect: "OO", "SubDeformer::Cluster Hands_001 thumb1_001", "Deformer::Skin Hands_001"
-	Connect: "OO", "SubDeformer::Cluster Magazine thumb2_001", "Deformer::Skin Magazine"
-	Connect: "OO", "SubDeformer::Cluster Charging_Handle thumb2_001", "Deformer::Skin Charging_Handle"
-	Connect: "OO", "SubDeformer::Cluster Trigger thumb2_001", "Deformer::Skin Trigger"
 	Connect: "OO", "SubDeformer::Cluster Bolt thumb2_001", "Deformer::Skin Bolt"
-	Connect: "OO", "SubDeformer::Cluster Mac-10 thumb2_001", "Deformer::Skin Mac-10"
 	Connect: "OO", "SubDeformer::Cluster Bullet thumb2_001", "Deformer::Skin Bullet"
+	Connect: "OO", "SubDeformer::Cluster Mac-10 thumb2_001", "Deformer::Skin Mac-10"
+	Connect: "OO", "SubDeformer::Cluster Magazine thumb2_001", "Deformer::Skin Magazine"
+	Connect: "OO", "SubDeformer::Cluster Trigger thumb2_001", "Deformer::Skin Trigger"
+	Connect: "OO", "SubDeformer::Cluster Charging_Handle thumb2_001", "Deformer::Skin Charging_Handle"
 	Connect: "OO", "SubDeformer::Cluster Hands_001 thumb2_001", "Deformer::Skin Hands_001"
-	Connect: "OO", "SubDeformer::Cluster Magazine thumb3_001", "Deformer::Skin Magazine"
-	Connect: "OO", "SubDeformer::Cluster Charging_Handle thumb3_001", "Deformer::Skin Charging_Handle"
-	Connect: "OO", "SubDeformer::Cluster Trigger thumb3_001", "Deformer::Skin Trigger"
 	Connect: "OO", "SubDeformer::Cluster Bolt thumb3_001", "Deformer::Skin Bolt"
-	Connect: "OO", "SubDeformer::Cluster Mac-10 thumb3_001", "Deformer::Skin Mac-10"
 	Connect: "OO", "SubDeformer::Cluster Bullet thumb3_001", "Deformer::Skin Bullet"
+	Connect: "OO", "SubDeformer::Cluster Mac-10 thumb3_001", "Deformer::Skin Mac-10"
+	Connect: "OO", "SubDeformer::Cluster Magazine thumb3_001", "Deformer::Skin Magazine"
+	Connect: "OO", "SubDeformer::Cluster Trigger thumb3_001", "Deformer::Skin Trigger"
+	Connect: "OO", "SubDeformer::Cluster Charging_Handle thumb3_001", "Deformer::Skin Charging_Handle"
 	Connect: "OO", "SubDeformer::Cluster Hands_001 thumb3_001", "Deformer::Skin Hands_001"
-	Connect: "OO", "SubDeformer::Cluster Magazine Hand_002", "Deformer::Skin Magazine"
-	Connect: "OO", "SubDeformer::Cluster Charging_Handle Hand_002", "Deformer::Skin Charging_Handle"
-	Connect: "OO", "SubDeformer::Cluster Trigger Hand_002", "Deformer::Skin Trigger"
 	Connect: "OO", "SubDeformer::Cluster Bolt Hand_002", "Deformer::Skin Bolt"
-	Connect: "OO", "SubDeformer::Cluster Mac-10 Hand_002", "Deformer::Skin Mac-10"
 	Connect: "OO", "SubDeformer::Cluster Bullet Hand_002", "Deformer::Skin Bullet"
+	Connect: "OO", "SubDeformer::Cluster Mac-10 Hand_002", "Deformer::Skin Mac-10"
+	Connect: "OO", "SubDeformer::Cluster Magazine Hand_002", "Deformer::Skin Magazine"
+	Connect: "OO", "SubDeformer::Cluster Trigger Hand_002", "Deformer::Skin Trigger"
+	Connect: "OO", "SubDeformer::Cluster Charging_Handle Hand_002", "Deformer::Skin Charging_Handle"
 	Connect: "OO", "SubDeformer::Cluster Hands_001 Hand_002", "Deformer::Skin Hands_001"
-	Connect: "OO", "SubDeformer::Cluster Magazine Hand_003", "Deformer::Skin Magazine"
-	Connect: "OO", "SubDeformer::Cluster Charging_Handle Hand_003", "Deformer::Skin Charging_Handle"
-	Connect: "OO", "SubDeformer::Cluster Trigger Hand_003", "Deformer::Skin Trigger"
 	Connect: "OO", "SubDeformer::Cluster Bolt Hand_003", "Deformer::Skin Bolt"
-	Connect: "OO", "SubDeformer::Cluster Mac-10 Hand_003", "Deformer::Skin Mac-10"
 	Connect: "OO", "SubDeformer::Cluster Bullet Hand_003", "Deformer::Skin Bullet"
+	Connect: "OO", "SubDeformer::Cluster Mac-10 Hand_003", "Deformer::Skin Mac-10"
+	Connect: "OO", "SubDeformer::Cluster Magazine Hand_003", "Deformer::Skin Magazine"
+	Connect: "OO", "SubDeformer::Cluster Trigger Hand_003", "Deformer::Skin Trigger"
+	Connect: "OO", "SubDeformer::Cluster Charging_Handle Hand_003", "Deformer::Skin Charging_Handle"
 	Connect: "OO", "SubDeformer::Cluster Hands_001 Hand_003", "Deformer::Skin Hands_001"
-	Connect: "OO", "SubDeformer::Cluster Magazine Hand_004", "Deformer::Skin Magazine"
-	Connect: "OO", "SubDeformer::Cluster Charging_Handle Hand_004", "Deformer::Skin Charging_Handle"
-	Connect: "OO", "SubDeformer::Cluster Trigger Hand_004", "Deformer::Skin Trigger"
 	Connect: "OO", "SubDeformer::Cluster Bolt Hand_004", "Deformer::Skin Bolt"
-	Connect: "OO", "SubDeformer::Cluster Mac-10 Hand_004", "Deformer::Skin Mac-10"
 	Connect: "OO", "SubDeformer::Cluster Bullet Hand_004", "Deformer::Skin Bullet"
+	Connect: "OO", "SubDeformer::Cluster Mac-10 Hand_004", "Deformer::Skin Mac-10"
+	Connect: "OO", "SubDeformer::Cluster Magazine Hand_004", "Deformer::Skin Magazine"
+	Connect: "OO", "SubDeformer::Cluster Trigger Hand_004", "Deformer::Skin Trigger"
+	Connect: "OO", "SubDeformer::Cluster Charging_Handle Hand_004", "Deformer::Skin Charging_Handle"
 	Connect: "OO", "SubDeformer::Cluster Hands_001 Hand_004", "Deformer::Skin Hands_001"
-	Connect: "OO", "SubDeformer::Cluster Magazine Magazine_0", "Deformer::Skin Magazine"
-	Connect: "OO", "SubDeformer::Cluster Charging_Handle Magazine_0", "Deformer::Skin Charging_Handle"
-	Connect: "OO", "SubDeformer::Cluster Trigger Magazine_0", "Deformer::Skin Trigger"
 	Connect: "OO", "SubDeformer::Cluster Bolt Magazine_0", "Deformer::Skin Bolt"
-	Connect: "OO", "SubDeformer::Cluster Mac-10 Magazine_0", "Deformer::Skin Mac-10"
 	Connect: "OO", "SubDeformer::Cluster Bullet Magazine_0", "Deformer::Skin Bullet"
+	Connect: "OO", "SubDeformer::Cluster Mac-10 Magazine_0", "Deformer::Skin Mac-10"
+	Connect: "OO", "SubDeformer::Cluster Magazine Magazine_0", "Deformer::Skin Magazine"
+	Connect: "OO", "SubDeformer::Cluster Trigger Magazine_0", "Deformer::Skin Trigger"
+	Connect: "OO", "SubDeformer::Cluster Charging_Handle Magazine_0", "Deformer::Skin Charging_Handle"
 	Connect: "OO", "SubDeformer::Cluster Hands_001 Magazine_0", "Deformer::Skin Hands_001"
-	Connect: "OO", "SubDeformer::Cluster Magazine Hand_006", "Deformer::Skin Magazine"
-	Connect: "OO", "SubDeformer::Cluster Charging_Handle Hand_006", "Deformer::Skin Charging_Handle"
-	Connect: "OO", "SubDeformer::Cluster Trigger Hand_006", "Deformer::Skin Trigger"
 	Connect: "OO", "SubDeformer::Cluster Bolt Hand_006", "Deformer::Skin Bolt"
-	Connect: "OO", "SubDeformer::Cluster Mac-10 Hand_006", "Deformer::Skin Mac-10"
 	Connect: "OO", "SubDeformer::Cluster Bullet Hand_006", "Deformer::Skin Bullet"
+	Connect: "OO", "SubDeformer::Cluster Mac-10 Hand_006", "Deformer::Skin Mac-10"
+	Connect: "OO", "SubDeformer::Cluster Magazine Hand_006", "Deformer::Skin Magazine"
+	Connect: "OO", "SubDeformer::Cluster Trigger Hand_006", "Deformer::Skin Trigger"
+	Connect: "OO", "SubDeformer::Cluster Charging_Handle Hand_006", "Deformer::Skin Charging_Handle"
 	Connect: "OO", "SubDeformer::Cluster Hands_001 Hand_006", "Deformer::Skin Hands_001"
-	Connect: "OO", "SubDeformer::Cluster Magazine Hand_005_-_BULLET", "Deformer::Skin Magazine"
-	Connect: "OO", "SubDeformer::Cluster Charging_Handle Hand_005_-_BULLET", "Deformer::Skin Charging_Handle"
-	Connect: "OO", "SubDeformer::Cluster Trigger Hand_005_-_BULLET", "Deformer::Skin Trigger"
 	Connect: "OO", "SubDeformer::Cluster Bolt Hand_005_-_BULLET", "Deformer::Skin Bolt"
-	Connect: "OO", "SubDeformer::Cluster Mac-10 Hand_005_-_BULLET", "Deformer::Skin Mac-10"
 	Connect: "OO", "SubDeformer::Cluster Bullet Hand_005_-_BULLET", "Deformer::Skin Bullet"
+	Connect: "OO", "SubDeformer::Cluster Mac-10 Hand_005_-_BULLET", "Deformer::Skin Mac-10"
+	Connect: "OO", "SubDeformer::Cluster Magazine Hand_005_-_BULLET", "Deformer::Skin Magazine"
+	Connect: "OO", "SubDeformer::Cluster Trigger Hand_005_-_BULLET", "Deformer::Skin Trigger"
+	Connect: "OO", "SubDeformer::Cluster Charging_Handle Hand_005_-_BULLET", "Deformer::Skin Charging_Handle"
 	Connect: "OO", "SubDeformer::Cluster Hands_001 Hand_005_-_BULLET", "Deformer::Skin Hands_001"
-	Connect: "OO", "Model::root", "SubDeformer::Cluster Magazine root"
-	Connect: "OO", "Model::root", "SubDeformer::Cluster Charging_Handle root"
-	Connect: "OO", "Model::root", "SubDeformer::Cluster Trigger root"
 	Connect: "OO", "Model::root", "SubDeformer::Cluster Bolt root"
-	Connect: "OO", "Model::root", "SubDeformer::Cluster Mac-10 root"
 	Connect: "OO", "Model::root", "SubDeformer::Cluster Bullet root"
+	Connect: "OO", "Model::root", "SubDeformer::Cluster Mac-10 root"
+	Connect: "OO", "Model::root", "SubDeformer::Cluster Magazine root"
+	Connect: "OO", "Model::root", "SubDeformer::Cluster Trigger root"
+	Connect: "OO", "Model::root", "SubDeformer::Cluster Charging_Handle root"
 	Connect: "OO", "Model::root", "SubDeformer::Cluster Hands_001 root"
-	Connect: "OO", "Model::Left_Arm", "SubDeformer::Cluster Magazine Left_Arm"
-	Connect: "OO", "Model::Left_Arm", "SubDeformer::Cluster Charging_Handle Left_Arm"
-	Connect: "OO", "Model::Left_Arm", "SubDeformer::Cluster Trigger Left_Arm"
 	Connect: "OO", "Model::Left_Arm", "SubDeformer::Cluster Bolt Left_Arm"
-	Connect: "OO", "Model::Left_Arm", "SubDeformer::Cluster Mac-10 Left_Arm"
 	Connect: "OO", "Model::Left_Arm", "SubDeformer::Cluster Bullet Left_Arm"
+	Connect: "OO", "Model::Left_Arm", "SubDeformer::Cluster Mac-10 Left_Arm"
+	Connect: "OO", "Model::Left_Arm", "SubDeformer::Cluster Magazine Left_Arm"
+	Connect: "OO", "Model::Left_Arm", "SubDeformer::Cluster Trigger Left_Arm"
+	Connect: "OO", "Model::Left_Arm", "SubDeformer::Cluster Charging_Handle Left_Arm"
 	Connect: "OO", "Model::Left_Arm", "SubDeformer::Cluster Hands_001 Left_Arm"
-	Connect: "OO", "Model::Hand", "SubDeformer::Cluster Magazine Hand"
-	Connect: "OO", "Model::Hand", "SubDeformer::Cluster Charging_Handle Hand"
-	Connect: "OO", "Model::Hand", "SubDeformer::Cluster Trigger Hand"
 	Connect: "OO", "Model::Hand", "SubDeformer::Cluster Bolt Hand"
-	Connect: "OO", "Model::Hand", "SubDeformer::Cluster Mac-10 Hand"
 	Connect: "OO", "Model::Hand", "SubDeformer::Cluster Bullet Hand"
+	Connect: "OO", "Model::Hand", "SubDeformer::Cluster Mac-10 Hand"
+	Connect: "OO", "Model::Hand", "SubDeformer::Cluster Magazine Hand"
+	Connect: "OO", "Model::Hand", "SubDeformer::Cluster Trigger Hand"
+	Connect: "OO", "Model::Hand", "SubDeformer::Cluster Charging_Handle Hand"
 	Connect: "OO", "Model::Hand", "SubDeformer::Cluster Hands_001 Hand"
-	Connect: "OO", "Model::index1", "SubDeformer::Cluster Magazine index1"
-	Connect: "OO", "Model::index1", "SubDeformer::Cluster Charging_Handle index1"
-	Connect: "OO", "Model::index1", "SubDeformer::Cluster Trigger index1"
 	Connect: "OO", "Model::index1", "SubDeformer::Cluster Bolt index1"
-	Connect: "OO", "Model::index1", "SubDeformer::Cluster Mac-10 index1"
 	Connect: "OO", "Model::index1", "SubDeformer::Cluster Bullet index1"
+	Connect: "OO", "Model::index1", "SubDeformer::Cluster Mac-10 index1"
+	Connect: "OO", "Model::index1", "SubDeformer::Cluster Magazine index1"
+	Connect: "OO", "Model::index1", "SubDeformer::Cluster Trigger index1"
+	Connect: "OO", "Model::index1", "SubDeformer::Cluster Charging_Handle index1"
 	Connect: "OO", "Model::index1", "SubDeformer::Cluster Hands_001 index1"
-	Connect: "OO", "Model::index2", "SubDeformer::Cluster Magazine index2"
-	Connect: "OO", "Model::index2", "SubDeformer::Cluster Charging_Handle index2"
-	Connect: "OO", "Model::index2", "SubDeformer::Cluster Trigger index2"
 	Connect: "OO", "Model::index2", "SubDeformer::Cluster Bolt index2"
-	Connect: "OO", "Model::index2", "SubDeformer::Cluster Mac-10 index2"
 	Connect: "OO", "Model::index2", "SubDeformer::Cluster Bullet index2"
+	Connect: "OO", "Model::index2", "SubDeformer::Cluster Mac-10 index2"
+	Connect: "OO", "Model::index2", "SubDeformer::Cluster Magazine index2"
+	Connect: "OO", "Model::index2", "SubDeformer::Cluster Trigger index2"
+	Connect: "OO", "Model::index2", "SubDeformer::Cluster Charging_Handle index2"
 	Connect: "OO", "Model::index2", "SubDeformer::Cluster Hands_001 index2"
-	Connect: "OO", "Model::index3", "SubDeformer::Cluster Magazine index3"
-	Connect: "OO", "Model::index3", "SubDeformer::Cluster Charging_Handle index3"
-	Connect: "OO", "Model::index3", "SubDeformer::Cluster Trigger index3"
 	Connect: "OO", "Model::index3", "SubDeformer::Cluster Bolt index3"
-	Connect: "OO", "Model::index3", "SubDeformer::Cluster Mac-10 index3"
 	Connect: "OO", "Model::index3", "SubDeformer::Cluster Bullet index3"
+	Connect: "OO", "Model::index3", "SubDeformer::Cluster Mac-10 index3"
+	Connect: "OO", "Model::index3", "SubDeformer::Cluster Magazine index3"
+	Connect: "OO", "Model::index3", "SubDeformer::Cluster Trigger index3"
+	Connect: "OO", "Model::index3", "SubDeformer::Cluster Charging_Handle index3"
 	Connect: "OO", "Model::index3", "SubDeformer::Cluster Hands_001 index3"
-	Connect: "OO", "Model::middle1", "SubDeformer::Cluster Magazine middle1"
-	Connect: "OO", "Model::middle1", "SubDeformer::Cluster Charging_Handle middle1"
-	Connect: "OO", "Model::middle1", "SubDeformer::Cluster Trigger middle1"
 	Connect: "OO", "Model::middle1", "SubDeformer::Cluster Bolt middle1"
-	Connect: "OO", "Model::middle1", "SubDeformer::Cluster Mac-10 middle1"
 	Connect: "OO", "Model::middle1", "SubDeformer::Cluster Bullet middle1"
+	Connect: "OO", "Model::middle1", "SubDeformer::Cluster Mac-10 middle1"
+	Connect: "OO", "Model::middle1", "SubDeformer::Cluster Magazine middle1"
+	Connect: "OO", "Model::middle1", "SubDeformer::Cluster Trigger middle1"
+	Connect: "OO", "Model::middle1", "SubDeformer::Cluster Charging_Handle middle1"
 	Connect: "OO", "Model::middle1", "SubDeformer::Cluster Hands_001 middle1"
-	Connect: "OO", "Model::middle2", "SubDeformer::Cluster Magazine middle2"
-	Connect: "OO", "Model::middle2", "SubDeformer::Cluster Charging_Handle middle2"
-	Connect: "OO", "Model::middle2", "SubDeformer::Cluster Trigger middle2"
 	Connect: "OO", "Model::middle2", "SubDeformer::Cluster Bolt middle2"
-	Connect: "OO", "Model::middle2", "SubDeformer::Cluster Mac-10 middle2"
 	Connect: "OO", "Model::middle2", "SubDeformer::Cluster Bullet middle2"
+	Connect: "OO", "Model::middle2", "SubDeformer::Cluster Mac-10 middle2"
+	Connect: "OO", "Model::middle2", "SubDeformer::Cluster Magazine middle2"
+	Connect: "OO", "Model::middle2", "SubDeformer::Cluster Trigger middle2"
+	Connect: "OO", "Model::middle2", "SubDeformer::Cluster Charging_Handle middle2"
 	Connect: "OO", "Model::middle2", "SubDeformer::Cluster Hands_001 middle2"
-	Connect: "OO", "Model::middle3", "SubDeformer::Cluster Magazine middle3"
-	Connect: "OO", "Model::middle3", "SubDeformer::Cluster Charging_Handle middle3"
-	Connect: "OO", "Model::middle3", "SubDeformer::Cluster Trigger middle3"
 	Connect: "OO", "Model::middle3", "SubDeformer::Cluster Bolt middle3"
-	Connect: "OO", "Model::middle3", "SubDeformer::Cluster Mac-10 middle3"
 	Connect: "OO", "Model::middle3", "SubDeformer::Cluster Bullet middle3"
+	Connect: "OO", "Model::middle3", "SubDeformer::Cluster Mac-10 middle3"
+	Connect: "OO", "Model::middle3", "SubDeformer::Cluster Magazine middle3"
+	Connect: "OO", "Model::middle3", "SubDeformer::Cluster Trigger middle3"
+	Connect: "OO", "Model::middle3", "SubDeformer::Cluster Charging_Handle middle3"
 	Connect: "OO", "Model::middle3", "SubDeformer::Cluster Hands_001 middle3"
-	Connect: "OO", "Model::ring1", "SubDeformer::Cluster Magazine ring1"
-	Connect: "OO", "Model::ring1", "SubDeformer::Cluster Charging_Handle ring1"
-	Connect: "OO", "Model::ring1", "SubDeformer::Cluster Trigger ring1"
 	Connect: "OO", "Model::ring1", "SubDeformer::Cluster Bolt ring1"
-	Connect: "OO", "Model::ring1", "SubDeformer::Cluster Mac-10 ring1"
 	Connect: "OO", "Model::ring1", "SubDeformer::Cluster Bullet ring1"
+	Connect: "OO", "Model::ring1", "SubDeformer::Cluster Mac-10 ring1"
+	Connect: "OO", "Model::ring1", "SubDeformer::Cluster Magazine ring1"
+	Connect: "OO", "Model::ring1", "SubDeformer::Cluster Trigger ring1"
+	Connect: "OO", "Model::ring1", "SubDeformer::Cluster Charging_Handle ring1"
 	Connect: "OO", "Model::ring1", "SubDeformer::Cluster Hands_001 ring1"
-	Connect: "OO", "Model::ring2", "SubDeformer::Cluster Magazine ring2"
-	Connect: "OO", "Model::ring2", "SubDeformer::Cluster Charging_Handle ring2"
-	Connect: "OO", "Model::ring2", "SubDeformer::Cluster Trigger ring2"
 	Connect: "OO", "Model::ring2", "SubDeformer::Cluster Bolt ring2"
-	Connect: "OO", "Model::ring2", "SubDeformer::Cluster Mac-10 ring2"
 	Connect: "OO", "Model::ring2", "SubDeformer::Cluster Bullet ring2"
+	Connect: "OO", "Model::ring2", "SubDeformer::Cluster Mac-10 ring2"
+	Connect: "OO", "Model::ring2", "SubDeformer::Cluster Magazine ring2"
+	Connect: "OO", "Model::ring2", "SubDeformer::Cluster Trigger ring2"
+	Connect: "OO", "Model::ring2", "SubDeformer::Cluster Charging_Handle ring2"
 	Connect: "OO", "Model::ring2", "SubDeformer::Cluster Hands_001 ring2"
-	Connect: "OO", "Model::ring3", "SubDeformer::Cluster Magazine ring3"
-	Connect: "OO", "Model::ring3", "SubDeformer::Cluster Charging_Handle ring3"
-	Connect: "OO", "Model::ring3", "SubDeformer::Cluster Trigger ring3"
 	Connect: "OO", "Model::ring3", "SubDeformer::Cluster Bolt ring3"
-	Connect: "OO", "Model::ring3", "SubDeformer::Cluster Mac-10 ring3"
 	Connect: "OO", "Model::ring3", "SubDeformer::Cluster Bullet ring3"
+	Connect: "OO", "Model::ring3", "SubDeformer::Cluster Mac-10 ring3"
+	Connect: "OO", "Model::ring3", "SubDeformer::Cluster Magazine ring3"
+	Connect: "OO", "Model::ring3", "SubDeformer::Cluster Trigger ring3"
+	Connect: "OO", "Model::ring3", "SubDeformer::Cluster Charging_Handle ring3"
 	Connect: "OO", "Model::ring3", "SubDeformer::Cluster Hands_001 ring3"
-	Connect: "OO", "Model::pinky1", "SubDeformer::Cluster Magazine pinky1"
-	Connect: "OO", "Model::pinky1", "SubDeformer::Cluster Charging_Handle pinky1"
-	Connect: "OO", "Model::pinky1", "SubDeformer::Cluster Trigger pinky1"
 	Connect: "OO", "Model::pinky1", "SubDeformer::Cluster Bolt pinky1"
-	Connect: "OO", "Model::pinky1", "SubDeformer::Cluster Mac-10 pinky1"
 	Connect: "OO", "Model::pinky1", "SubDeformer::Cluster Bullet pinky1"
+	Connect: "OO", "Model::pinky1", "SubDeformer::Cluster Mac-10 pinky1"
+	Connect: "OO", "Model::pinky1", "SubDeformer::Cluster Magazine pinky1"
+	Connect: "OO", "Model::pinky1", "SubDeformer::Cluster Trigger pinky1"
+	Connect: "OO", "Model::pinky1", "SubDeformer::Cluster Charging_Handle pinky1"
 	Connect: "OO", "Model::pinky1", "SubDeformer::Cluster Hands_001 pinky1"
-	Connect: "OO", "Model::pinky2", "SubDeformer::Cluster Magazine pinky2"
-	Connect: "OO", "Model::pinky2", "SubDeformer::Cluster Charging_Handle pinky2"
-	Connect: "OO", "Model::pinky2", "SubDeformer::Cluster Trigger pinky2"
 	Connect: "OO", "Model::pinky2", "SubDeformer::Cluster Bolt pinky2"
-	Connect: "OO", "Model::pinky2", "SubDeformer::Cluster Mac-10 pinky2"
 	Connect: "OO", "Model::pinky2", "SubDeformer::Cluster Bullet pinky2"
+	Connect: "OO", "Model::pinky2", "SubDeformer::Cluster Mac-10 pinky2"
+	Connect: "OO", "Model::pinky2", "SubDeformer::Cluster Magazine pinky2"
+	Connect: "OO", "Model::pinky2", "SubDeformer::Cluster Trigger pinky2"
+	Connect: "OO", "Model::pinky2", "SubDeformer::Cluster Charging_Handle pinky2"
 	Connect: "OO", "Model::pinky2", "SubDeformer::Cluster Hands_001 pinky2"
-	Connect: "OO", "Model::pinky3", "SubDeformer::Cluster Magazine pinky3"
-	Connect: "OO", "Model::pinky3", "SubDeformer::Cluster Charging_Handle pinky3"
-	Connect: "OO", "Model::pinky3", "SubDeformer::Cluster Trigger pinky3"
 	Connect: "OO", "Model::pinky3", "SubDeformer::Cluster Bolt pinky3"
-	Connect: "OO", "Model::pinky3", "SubDeformer::Cluster Mac-10 pinky3"
 	Connect: "OO", "Model::pinky3", "SubDeformer::Cluster Bullet pinky3"
+	Connect: "OO", "Model::pinky3", "SubDeformer::Cluster Mac-10 pinky3"
+	Connect: "OO", "Model::pinky3", "SubDeformer::Cluster Magazine pinky3"
+	Connect: "OO", "Model::pinky3", "SubDeformer::Cluster Trigger pinky3"
+	Connect: "OO", "Model::pinky3", "SubDeformer::Cluster Charging_Handle pinky3"
 	Connect: "OO", "Model::pinky3", "SubDeformer::Cluster Hands_001 pinky3"
-	Connect: "OO", "Model::thumb1", "SubDeformer::Cluster Magazine thumb1"
-	Connect: "OO", "Model::thumb1", "SubDeformer::Cluster Charging_Handle thumb1"
-	Connect: "OO", "Model::thumb1", "SubDeformer::Cluster Trigger thumb1"
 	Connect: "OO", "Model::thumb1", "SubDeformer::Cluster Bolt thumb1"
-	Connect: "OO", "Model::thumb1", "SubDeformer::Cluster Mac-10 thumb1"
 	Connect: "OO", "Model::thumb1", "SubDeformer::Cluster Bullet thumb1"
+	Connect: "OO", "Model::thumb1", "SubDeformer::Cluster Mac-10 thumb1"
+	Connect: "OO", "Model::thumb1", "SubDeformer::Cluster Magazine thumb1"
+	Connect: "OO", "Model::thumb1", "SubDeformer::Cluster Trigger thumb1"
+	Connect: "OO", "Model::thumb1", "SubDeformer::Cluster Charging_Handle thumb1"
 	Connect: "OO", "Model::thumb1", "SubDeformer::Cluster Hands_001 thumb1"
-	Connect: "OO", "Model::thumb2", "SubDeformer::Cluster Magazine thumb2"
-	Connect: "OO", "Model::thumb2", "SubDeformer::Cluster Charging_Handle thumb2"
-	Connect: "OO", "Model::thumb2", "SubDeformer::Cluster Trigger thumb2"
 	Connect: "OO", "Model::thumb2", "SubDeformer::Cluster Bolt thumb2"
-	Connect: "OO", "Model::thumb2", "SubDeformer::Cluster Mac-10 thumb2"
 	Connect: "OO", "Model::thumb2", "SubDeformer::Cluster Bullet thumb2"
+	Connect: "OO", "Model::thumb2", "SubDeformer::Cluster Mac-10 thumb2"
+	Connect: "OO", "Model::thumb2", "SubDeformer::Cluster Magazine thumb2"
+	Connect: "OO", "Model::thumb2", "SubDeformer::Cluster Trigger thumb2"
+	Connect: "OO", "Model::thumb2", "SubDeformer::Cluster Charging_Handle thumb2"
 	Connect: "OO", "Model::thumb2", "SubDeformer::Cluster Hands_001 thumb2"
-	Connect: "OO", "Model::thumb3", "SubDeformer::Cluster Magazine thumb3"
-	Connect: "OO", "Model::thumb3", "SubDeformer::Cluster Charging_Handle thumb3"
-	Connect: "OO", "Model::thumb3", "SubDeformer::Cluster Trigger thumb3"
 	Connect: "OO", "Model::thumb3", "SubDeformer::Cluster Bolt thumb3"
-	Connect: "OO", "Model::thumb3", "SubDeformer::Cluster Mac-10 thumb3"
 	Connect: "OO", "Model::thumb3", "SubDeformer::Cluster Bullet thumb3"
+	Connect: "OO", "Model::thumb3", "SubDeformer::Cluster Mac-10 thumb3"
+	Connect: "OO", "Model::thumb3", "SubDeformer::Cluster Magazine thumb3"
+	Connect: "OO", "Model::thumb3", "SubDeformer::Cluster Trigger thumb3"
+	Connect: "OO", "Model::thumb3", "SubDeformer::Cluster Charging_Handle thumb3"
 	Connect: "OO", "Model::thumb3", "SubDeformer::Cluster Hands_001 thumb3"
-	Connect: "OO", "Model::Right_Arm", "SubDeformer::Cluster Magazine Right_Arm"
-	Connect: "OO", "Model::Right_Arm", "SubDeformer::Cluster Charging_Handle Right_Arm"
-	Connect: "OO", "Model::Right_Arm", "SubDeformer::Cluster Trigger Right_Arm"
 	Connect: "OO", "Model::Right_Arm", "SubDeformer::Cluster Bolt Right_Arm"
-	Connect: "OO", "Model::Right_Arm", "SubDeformer::Cluster Mac-10 Right_Arm"
 	Connect: "OO", "Model::Right_Arm", "SubDeformer::Cluster Bullet Right_Arm"
+	Connect: "OO", "Model::Right_Arm", "SubDeformer::Cluster Mac-10 Right_Arm"
+	Connect: "OO", "Model::Right_Arm", "SubDeformer::Cluster Magazine Right_Arm"
+	Connect: "OO", "Model::Right_Arm", "SubDeformer::Cluster Trigger Right_Arm"
+	Connect: "OO", "Model::Right_Arm", "SubDeformer::Cluster Charging_Handle Right_Arm"
 	Connect: "OO", "Model::Right_Arm", "SubDeformer::Cluster Hands_001 Right_Arm"
-	Connect: "OO", "Model::Hand_001", "SubDeformer::Cluster Magazine Hand_001"
-	Connect: "OO", "Model::Hand_001", "SubDeformer::Cluster Charging_Handle Hand_001"
-	Connect: "OO", "Model::Hand_001", "SubDeformer::Cluster Trigger Hand_001"
 	Connect: "OO", "Model::Hand_001", "SubDeformer::Cluster Bolt Hand_001"
-	Connect: "OO", "Model::Hand_001", "SubDeformer::Cluster Mac-10 Hand_001"
 	Connect: "OO", "Model::Hand_001", "SubDeformer::Cluster Bullet Hand_001"
+	Connect: "OO", "Model::Hand_001", "SubDeformer::Cluster Mac-10 Hand_001"
+	Connect: "OO", "Model::Hand_001", "SubDeformer::Cluster Magazine Hand_001"
+	Connect: "OO", "Model::Hand_001", "SubDeformer::Cluster Trigger Hand_001"
+	Connect: "OO", "Model::Hand_001", "SubDeformer::Cluster Charging_Handle Hand_001"
 	Connect: "OO", "Model::Hand_001", "SubDeformer::Cluster Hands_001 Hand_001"
-	Connect: "OO", "Model::index1_001", "SubDeformer::Cluster Magazine index1_001"
-	Connect: "OO", "Model::index1_001", "SubDeformer::Cluster Charging_Handle index1_001"
-	Connect: "OO", "Model::index1_001", "SubDeformer::Cluster Trigger index1_001"
 	Connect: "OO", "Model::index1_001", "SubDeformer::Cluster Bolt index1_001"
-	Connect: "OO", "Model::index1_001", "SubDeformer::Cluster Mac-10 index1_001"
 	Connect: "OO", "Model::index1_001", "SubDeformer::Cluster Bullet index1_001"
+	Connect: "OO", "Model::index1_001", "SubDeformer::Cluster Mac-10 index1_001"
+	Connect: "OO", "Model::index1_001", "SubDeformer::Cluster Magazine index1_001"
+	Connect: "OO", "Model::index1_001", "SubDeformer::Cluster Trigger index1_001"
+	Connect: "OO", "Model::index1_001", "SubDeformer::Cluster Charging_Handle index1_001"
 	Connect: "OO", "Model::index1_001", "SubDeformer::Cluster Hands_001 index1_001"
-	Connect: "OO", "Model::index2_001", "SubDeformer::Cluster Magazine index2_001"
-	Connect: "OO", "Model::index2_001", "SubDeformer::Cluster Charging_Handle index2_001"
-	Connect: "OO", "Model::index2_001", "SubDeformer::Cluster Trigger index2_001"
 	Connect: "OO", "Model::index2_001", "SubDeformer::Cluster Bolt index2_001"
-	Connect: "OO", "Model::index2_001", "SubDeformer::Cluster Mac-10 index2_001"
 	Connect: "OO", "Model::index2_001", "SubDeformer::Cluster Bullet index2_001"
+	Connect: "OO", "Model::index2_001", "SubDeformer::Cluster Mac-10 index2_001"
+	Connect: "OO", "Model::index2_001", "SubDeformer::Cluster Magazine index2_001"
+	Connect: "OO", "Model::index2_001", "SubDeformer::Cluster Trigger index2_001"
+	Connect: "OO", "Model::index2_001", "SubDeformer::Cluster Charging_Handle index2_001"
 	Connect: "OO", "Model::index2_001", "SubDeformer::Cluster Hands_001 index2_001"
-	Connect: "OO", "Model::index3_001", "SubDeformer::Cluster Magazine index3_001"
-	Connect: "OO", "Model::index3_001", "SubDeformer::Cluster Charging_Handle index3_001"
-	Connect: "OO", "Model::index3_001", "SubDeformer::Cluster Trigger index3_001"
 	Connect: "OO", "Model::index3_001", "SubDeformer::Cluster Bolt index3_001"
-	Connect: "OO", "Model::index3_001", "SubDeformer::Cluster Mac-10 index3_001"
 	Connect: "OO", "Model::index3_001", "SubDeformer::Cluster Bullet index3_001"
+	Connect: "OO", "Model::index3_001", "SubDeformer::Cluster Mac-10 index3_001"
+	Connect: "OO", "Model::index3_001", "SubDeformer::Cluster Magazine index3_001"
+	Connect: "OO", "Model::index3_001", "SubDeformer::Cluster Trigger index3_001"
+	Connect: "OO", "Model::index3_001", "SubDeformer::Cluster Charging_Handle index3_001"
 	Connect: "OO", "Model::index3_001", "SubDeformer::Cluster Hands_001 index3_001"
-	Connect: "OO", "Model::middle1_001", "SubDeformer::Cluster Magazine middle1_001"
-	Connect: "OO", "Model::middle1_001", "SubDeformer::Cluster Charging_Handle middle1_001"
-	Connect: "OO", "Model::middle1_001", "SubDeformer::Cluster Trigger middle1_001"
 	Connect: "OO", "Model::middle1_001", "SubDeformer::Cluster Bolt middle1_001"
-	Connect: "OO", "Model::middle1_001", "SubDeformer::Cluster Mac-10 middle1_001"
 	Connect: "OO", "Model::middle1_001", "SubDeformer::Cluster Bullet middle1_001"
+	Connect: "OO", "Model::middle1_001", "SubDeformer::Cluster Mac-10 middle1_001"
+	Connect: "OO", "Model::middle1_001", "SubDeformer::Cluster Magazine middle1_001"
+	Connect: "OO", "Model::middle1_001", "SubDeformer::Cluster Trigger middle1_001"
+	Connect: "OO", "Model::middle1_001", "SubDeformer::Cluster Charging_Handle middle1_001"
 	Connect: "OO", "Model::middle1_001", "SubDeformer::Cluster Hands_001 middle1_001"
-	Connect: "OO", "Model::middle2_001", "SubDeformer::Cluster Magazine middle2_001"
-	Connect: "OO", "Model::middle2_001", "SubDeformer::Cluster Charging_Handle middle2_001"
-	Connect: "OO", "Model::middle2_001", "SubDeformer::Cluster Trigger middle2_001"
 	Connect: "OO", "Model::middle2_001", "SubDeformer::Cluster Bolt middle2_001"
-	Connect: "OO", "Model::middle2_001", "SubDeformer::Cluster Mac-10 middle2_001"
 	Connect: "OO", "Model::middle2_001", "SubDeformer::Cluster Bullet middle2_001"
+	Connect: "OO", "Model::middle2_001", "SubDeformer::Cluster Mac-10 middle2_001"
+	Connect: "OO", "Model::middle2_001", "SubDeformer::Cluster Magazine middle2_001"
+	Connect: "OO", "Model::middle2_001", "SubDeformer::Cluster Trigger middle2_001"
+	Connect: "OO", "Model::middle2_001", "SubDeformer::Cluster Charging_Handle middle2_001"
 	Connect: "OO", "Model::middle2_001", "SubDeformer::Cluster Hands_001 middle2_001"
-	Connect: "OO", "Model::middle3_001", "SubDeformer::Cluster Magazine middle3_001"
-	Connect: "OO", "Model::middle3_001", "SubDeformer::Cluster Charging_Handle middle3_001"
-	Connect: "OO", "Model::middle3_001", "SubDeformer::Cluster Trigger middle3_001"
 	Connect: "OO", "Model::middle3_001", "SubDeformer::Cluster Bolt middle3_001"
-	Connect: "OO", "Model::middle3_001", "SubDeformer::Cluster Mac-10 middle3_001"
 	Connect: "OO", "Model::middle3_001", "SubDeformer::Cluster Bullet middle3_001"
+	Connect: "OO", "Model::middle3_001", "SubDeformer::Cluster Mac-10 middle3_001"
+	Connect: "OO", "Model::middle3_001", "SubDeformer::Cluster Magazine middle3_001"
+	Connect: "OO", "Model::middle3_001", "SubDeformer::Cluster Trigger middle3_001"
+	Connect: "OO", "Model::middle3_001", "SubDeformer::Cluster Charging_Handle middle3_001"
 	Connect: "OO", "Model::middle3_001", "SubDeformer::Cluster Hands_001 middle3_001"
-	Connect: "OO", "Model::ring1_001", "SubDeformer::Cluster Magazine ring1_001"
-	Connect: "OO", "Model::ring1_001", "SubDeformer::Cluster Charging_Handle ring1_001"
-	Connect: "OO", "Model::ring1_001", "SubDeformer::Cluster Trigger ring1_001"
 	Connect: "OO", "Model::ring1_001", "SubDeformer::Cluster Bolt ring1_001"
-	Connect: "OO", "Model::ring1_001", "SubDeformer::Cluster Mac-10 ring1_001"
 	Connect: "OO", "Model::ring1_001", "SubDeformer::Cluster Bullet ring1_001"
+	Connect: "OO", "Model::ring1_001", "SubDeformer::Cluster Mac-10 ring1_001"
+	Connect: "OO", "Model::ring1_001", "SubDeformer::Cluster Magazine ring1_001"
+	Connect: "OO", "Model::ring1_001", "SubDeformer::Cluster Trigger ring1_001"
+	Connect: "OO", "Model::ring1_001", "SubDeformer::Cluster Charging_Handle ring1_001"
 	Connect: "OO", "Model::ring1_001", "SubDeformer::Cluster Hands_001 ring1_001"
-	Connect: "OO", "Model::ring2_001", "SubDeformer::Cluster Magazine ring2_001"
-	Connect: "OO", "Model::ring2_001", "SubDeformer::Cluster Charging_Handle ring2_001"
-	Connect: "OO", "Model::ring2_001", "SubDeformer::Cluster Trigger ring2_001"
 	Connect: "OO", "Model::ring2_001", "SubDeformer::Cluster Bolt ring2_001"
-	Connect: "OO", "Model::ring2_001", "SubDeformer::Cluster Mac-10 ring2_001"
 	Connect: "OO", "Model::ring2_001", "SubDeformer::Cluster Bullet ring2_001"
+	Connect: "OO", "Model::ring2_001", "SubDeformer::Cluster Mac-10 ring2_001"
+	Connect: "OO", "Model::ring2_001", "SubDeformer::Cluster Magazine ring2_001"
+	Connect: "OO", "Model::ring2_001", "SubDeformer::Cluster Trigger ring2_001"
+	Connect: "OO", "Model::ring2_001", "SubDeformer::Cluster Charging_Handle ring2_001"
 	Connect: "OO", "Model::ring2_001", "SubDeformer::Cluster Hands_001 ring2_001"
-	Connect: "OO", "Model::ring3_001", "SubDeformer::Cluster Magazine ring3_001"
-	Connect: "OO", "Model::ring3_001", "SubDeformer::Cluster Charging_Handle ring3_001"
-	Connect: "OO", "Model::ring3_001", "SubDeformer::Cluster Trigger ring3_001"
 	Connect: "OO", "Model::ring3_001", "SubDeformer::Cluster Bolt ring3_001"
-	Connect: "OO", "Model::ring3_001", "SubDeformer::Cluster Mac-10 ring3_001"
 	Connect: "OO", "Model::ring3_001", "SubDeformer::Cluster Bullet ring3_001"
+	Connect: "OO", "Model::ring3_001", "SubDeformer::Cluster Mac-10 ring3_001"
+	Connect: "OO", "Model::ring3_001", "SubDeformer::Cluster Magazine ring3_001"
+	Connect: "OO", "Model::ring3_001", "SubDeformer::Cluster Trigger ring3_001"
+	Connect: "OO", "Model::ring3_001", "SubDeformer::Cluster Charging_Handle ring3_001"
 	Connect: "OO", "Model::ring3_001", "SubDeformer::Cluster Hands_001 ring3_001"
-	Connect: "OO", "Model::pinky1_001", "SubDeformer::Cluster Magazine pinky1_001"
-	Connect: "OO", "Model::pinky1_001", "SubDeformer::Cluster Charging_Handle pinky1_001"
-	Connect: "OO", "Model::pinky1_001", "SubDeformer::Cluster Trigger pinky1_001"
 	Connect: "OO", "Model::pinky1_001", "SubDeformer::Cluster Bolt pinky1_001"
-	Connect: "OO", "Model::pinky1_001", "SubDeformer::Cluster Mac-10 pinky1_001"
 	Connect: "OO", "Model::pinky1_001", "SubDeformer::Cluster Bullet pinky1_001"
+	Connect: "OO", "Model::pinky1_001", "SubDeformer::Cluster Mac-10 pinky1_001"
+	Connect: "OO", "Model::pinky1_001", "SubDeformer::Cluster Magazine pinky1_001"
+	Connect: "OO", "Model::pinky1_001", "SubDeformer::Cluster Trigger pinky1_001"
+	Connect: "OO", "Model::pinky1_001", "SubDeformer::Cluster Charging_Handle pinky1_001"
 	Connect: "OO", "Model::pinky1_001", "SubDeformer::Cluster Hands_001 pinky1_001"
-	Connect: "OO", "Model::pinky2_001", "SubDeformer::Cluster Magazine pinky2_001"
-	Connect: "OO", "Model::pinky2_001", "SubDeformer::Cluster Charging_Handle pinky2_001"
-	Connect: "OO", "Model::pinky2_001", "SubDeformer::Cluster Trigger pinky2_001"
 	Connect: "OO", "Model::pinky2_001", "SubDeformer::Cluster Bolt pinky2_001"
-	Connect: "OO", "Model::pinky2_001", "SubDeformer::Cluster Mac-10 pinky2_001"
 	Connect: "OO", "Model::pinky2_001", "SubDeformer::Cluster Bullet pinky2_001"
+	Connect: "OO", "Model::pinky2_001", "SubDeformer::Cluster Mac-10 pinky2_001"
+	Connect: "OO", "Model::pinky2_001", "SubDeformer::Cluster Magazine pinky2_001"
+	Connect: "OO", "Model::pinky2_001", "SubDeformer::Cluster Trigger pinky2_001"
+	Connect: "OO", "Model::pinky2_001", "SubDeformer::Cluster Charging_Handle pinky2_001"
 	Connect: "OO", "Model::pinky2_001", "SubDeformer::Cluster Hands_001 pinky2_001"
-	Connect: "OO", "Model::pinky3_001", "SubDeformer::Cluster Magazine pinky3_001"
-	Connect: "OO", "Model::pinky3_001", "SubDeformer::Cluster Charging_Handle pinky3_001"
-	Connect: "OO", "Model::pinky3_001", "SubDeformer::Cluster Trigger pinky3_001"
 	Connect: "OO", "Model::pinky3_001", "SubDeformer::Cluster Bolt pinky3_001"
-	Connect: "OO", "Model::pinky3_001", "SubDeformer::Cluster Mac-10 pinky3_001"
 	Connect: "OO", "Model::pinky3_001", "SubDeformer::Cluster Bullet pinky3_001"
+	Connect: "OO", "Model::pinky3_001", "SubDeformer::Cluster Mac-10 pinky3_001"
+	Connect: "OO", "Model::pinky3_001", "SubDeformer::Cluster Magazine pinky3_001"
+	Connect: "OO", "Model::pinky3_001", "SubDeformer::Cluster Trigger pinky3_001"
+	Connect: "OO", "Model::pinky3_001", "SubDeformer::Cluster Charging_Handle pinky3_001"
 	Connect: "OO", "Model::pinky3_001", "SubDeformer::Cluster Hands_001 pinky3_001"
-	Connect: "OO", "Model::thumb1_001", "SubDeformer::Cluster Magazine thumb1_001"
-	Connect: "OO", "Model::thumb1_001", "SubDeformer::Cluster Charging_Handle thumb1_001"
-	Connect: "OO", "Model::thumb1_001", "SubDeformer::Cluster Trigger thumb1_001"
 	Connect: "OO", "Model::thumb1_001", "SubDeformer::Cluster Bolt thumb1_001"
-	Connect: "OO", "Model::thumb1_001", "SubDeformer::Cluster Mac-10 thumb1_001"
 	Connect: "OO", "Model::thumb1_001", "SubDeformer::Cluster Bullet thumb1_001"
+	Connect: "OO", "Model::thumb1_001", "SubDeformer::Cluster Mac-10 thumb1_001"
+	Connect: "OO", "Model::thumb1_001", "SubDeformer::Cluster Magazine thumb1_001"
+	Connect: "OO", "Model::thumb1_001", "SubDeformer::Cluster Trigger thumb1_001"
+	Connect: "OO", "Model::thumb1_001", "SubDeformer::Cluster Charging_Handle thumb1_001"
 	Connect: "OO", "Model::thumb1_001", "SubDeformer::Cluster Hands_001 thumb1_001"
-	Connect: "OO", "Model::thumb2_001", "SubDeformer::Cluster Magazine thumb2_001"
-	Connect: "OO", "Model::thumb2_001", "SubDeformer::Cluster Charging_Handle thumb2_001"
-	Connect: "OO", "Model::thumb2_001", "SubDeformer::Cluster Trigger thumb2_001"
 	Connect: "OO", "Model::thumb2_001", "SubDeformer::Cluster Bolt thumb2_001"
-	Connect: "OO", "Model::thumb2_001", "SubDeformer::Cluster Mac-10 thumb2_001"
 	Connect: "OO", "Model::thumb2_001", "SubDeformer::Cluster Bullet thumb2_001"
+	Connect: "OO", "Model::thumb2_001", "SubDeformer::Cluster Mac-10 thumb2_001"
+	Connect: "OO", "Model::thumb2_001", "SubDeformer::Cluster Magazine thumb2_001"
+	Connect: "OO", "Model::thumb2_001", "SubDeformer::Cluster Trigger thumb2_001"
+	Connect: "OO", "Model::thumb2_001", "SubDeformer::Cluster Charging_Handle thumb2_001"
 	Connect: "OO", "Model::thumb2_001", "SubDeformer::Cluster Hands_001 thumb2_001"
-	Connect: "OO", "Model::thumb3_001", "SubDeformer::Cluster Magazine thumb3_001"
-	Connect: "OO", "Model::thumb3_001", "SubDeformer::Cluster Charging_Handle thumb3_001"
-	Connect: "OO", "Model::thumb3_001", "SubDeformer::Cluster Trigger thumb3_001"
 	Connect: "OO", "Model::thumb3_001", "SubDeformer::Cluster Bolt thumb3_001"
-	Connect: "OO", "Model::thumb3_001", "SubDeformer::Cluster Mac-10 thumb3_001"
 	Connect: "OO", "Model::thumb3_001", "SubDeformer::Cluster Bullet thumb3_001"
+	Connect: "OO", "Model::thumb3_001", "SubDeformer::Cluster Mac-10 thumb3_001"
+	Connect: "OO", "Model::thumb3_001", "SubDeformer::Cluster Magazine thumb3_001"
+	Connect: "OO", "Model::thumb3_001", "SubDeformer::Cluster Trigger thumb3_001"
+	Connect: "OO", "Model::thumb3_001", "SubDeformer::Cluster Charging_Handle thumb3_001"
 	Connect: "OO", "Model::thumb3_001", "SubDeformer::Cluster Hands_001 thumb3_001"
-	Connect: "OO", "Model::Hand_002", "SubDeformer::Cluster Magazine Hand_002"
-	Connect: "OO", "Model::Hand_002", "SubDeformer::Cluster Charging_Handle Hand_002"
-	Connect: "OO", "Model::Hand_002", "SubDeformer::Cluster Trigger Hand_002"
 	Connect: "OO", "Model::Hand_002", "SubDeformer::Cluster Bolt Hand_002"
-	Connect: "OO", "Model::Hand_002", "SubDeformer::Cluster Mac-10 Hand_002"
 	Connect: "OO", "Model::Hand_002", "SubDeformer::Cluster Bullet Hand_002"
+	Connect: "OO", "Model::Hand_002", "SubDeformer::Cluster Mac-10 Hand_002"
+	Connect: "OO", "Model::Hand_002", "SubDeformer::Cluster Magazine Hand_002"
+	Connect: "OO", "Model::Hand_002", "SubDeformer::Cluster Trigger Hand_002"
+	Connect: "OO", "Model::Hand_002", "SubDeformer::Cluster Charging_Handle Hand_002"
 	Connect: "OO", "Model::Hand_002", "SubDeformer::Cluster Hands_001 Hand_002"
-	Connect: "OO", "Model::Hand_003", "SubDeformer::Cluster Magazine Hand_003"
-	Connect: "OO", "Model::Hand_003", "SubDeformer::Cluster Charging_Handle Hand_003"
-	Connect: "OO", "Model::Hand_003", "SubDeformer::Cluster Trigger Hand_003"
 	Connect: "OO", "Model::Hand_003", "SubDeformer::Cluster Bolt Hand_003"
-	Connect: "OO", "Model::Hand_003", "SubDeformer::Cluster Mac-10 Hand_003"
 	Connect: "OO", "Model::Hand_003", "SubDeformer::Cluster Bullet Hand_003"
+	Connect: "OO", "Model::Hand_003", "SubDeformer::Cluster Mac-10 Hand_003"
+	Connect: "OO", "Model::Hand_003", "SubDeformer::Cluster Magazine Hand_003"
+	Connect: "OO", "Model::Hand_003", "SubDeformer::Cluster Trigger Hand_003"
+	Connect: "OO", "Model::Hand_003", "SubDeformer::Cluster Charging_Handle Hand_003"
 	Connect: "OO", "Model::Hand_003", "SubDeformer::Cluster Hands_001 Hand_003"
-	Connect: "OO", "Model::Hand_004", "SubDeformer::Cluster Magazine Hand_004"
-	Connect: "OO", "Model::Hand_004", "SubDeformer::Cluster Charging_Handle Hand_004"
-	Connect: "OO", "Model::Hand_004", "SubDeformer::Cluster Trigger Hand_004"
 	Connect: "OO", "Model::Hand_004", "SubDeformer::Cluster Bolt Hand_004"
-	Connect: "OO", "Model::Hand_004", "SubDeformer::Cluster Mac-10 Hand_004"
 	Connect: "OO", "Model::Hand_004", "SubDeformer::Cluster Bullet Hand_004"
+	Connect: "OO", "Model::Hand_004", "SubDeformer::Cluster Mac-10 Hand_004"
+	Connect: "OO", "Model::Hand_004", "SubDeformer::Cluster Magazine Hand_004"
+	Connect: "OO", "Model::Hand_004", "SubDeformer::Cluster Trigger Hand_004"
+	Connect: "OO", "Model::Hand_004", "SubDeformer::Cluster Charging_Handle Hand_004"
 	Connect: "OO", "Model::Hand_004", "SubDeformer::Cluster Hands_001 Hand_004"
-	Connect: "OO", "Model::Magazine_0", "SubDeformer::Cluster Magazine Magazine_0"
-	Connect: "OO", "Model::Magazine_0", "SubDeformer::Cluster Charging_Handle Magazine_0"
-	Connect: "OO", "Model::Magazine_0", "SubDeformer::Cluster Trigger Magazine_0"
 	Connect: "OO", "Model::Magazine_0", "SubDeformer::Cluster Bolt Magazine_0"
-	Connect: "OO", "Model::Magazine_0", "SubDeformer::Cluster Mac-10 Magazine_0"
 	Connect: "OO", "Model::Magazine_0", "SubDeformer::Cluster Bullet Magazine_0"
+	Connect: "OO", "Model::Magazine_0", "SubDeformer::Cluster Mac-10 Magazine_0"
+	Connect: "OO", "Model::Magazine_0", "SubDeformer::Cluster Magazine Magazine_0"
+	Connect: "OO", "Model::Magazine_0", "SubDeformer::Cluster Trigger Magazine_0"
+	Connect: "OO", "Model::Magazine_0", "SubDeformer::Cluster Charging_Handle Magazine_0"
 	Connect: "OO", "Model::Magazine_0", "SubDeformer::Cluster Hands_001 Magazine_0"
-	Connect: "OO", "Model::Hand_006", "SubDeformer::Cluster Magazine Hand_006"
-	Connect: "OO", "Model::Hand_006", "SubDeformer::Cluster Charging_Handle Hand_006"
-	Connect: "OO", "Model::Hand_006", "SubDeformer::Cluster Trigger Hand_006"
 	Connect: "OO", "Model::Hand_006", "SubDeformer::Cluster Bolt Hand_006"
-	Connect: "OO", "Model::Hand_006", "SubDeformer::Cluster Mac-10 Hand_006"
 	Connect: "OO", "Model::Hand_006", "SubDeformer::Cluster Bullet Hand_006"
+	Connect: "OO", "Model::Hand_006", "SubDeformer::Cluster Mac-10 Hand_006"
+	Connect: "OO", "Model::Hand_006", "SubDeformer::Cluster Magazine Hand_006"
+	Connect: "OO", "Model::Hand_006", "SubDeformer::Cluster Trigger Hand_006"
+	Connect: "OO", "Model::Hand_006", "SubDeformer::Cluster Charging_Handle Hand_006"
 	Connect: "OO", "Model::Hand_006", "SubDeformer::Cluster Hands_001 Hand_006"
-	Connect: "OO", "Model::Hand_005_-_BULLET", "SubDeformer::Cluster Magazine Hand_005_-_BULLET"
-	Connect: "OO", "Model::Hand_005_-_BULLET", "SubDeformer::Cluster Charging_Handle Hand_005_-_BULLET"
-	Connect: "OO", "Model::Hand_005_-_BULLET", "SubDeformer::Cluster Trigger Hand_005_-_BULLET"
 	Connect: "OO", "Model::Hand_005_-_BULLET", "SubDeformer::Cluster Bolt Hand_005_-_BULLET"
-	Connect: "OO", "Model::Hand_005_-_BULLET", "SubDeformer::Cluster Mac-10 Hand_005_-_BULLET"
 	Connect: "OO", "Model::Hand_005_-_BULLET", "SubDeformer::Cluster Bullet Hand_005_-_BULLET"
+	Connect: "OO", "Model::Hand_005_-_BULLET", "SubDeformer::Cluster Mac-10 Hand_005_-_BULLET"
+	Connect: "OO", "Model::Hand_005_-_BULLET", "SubDeformer::Cluster Magazine Hand_005_-_BULLET"
+	Connect: "OO", "Model::Hand_005_-_BULLET", "SubDeformer::Cluster Trigger Hand_005_-_BULLET"
+	Connect: "OO", "Model::Hand_005_-_BULLET", "SubDeformer::Cluster Charging_Handle Hand_005_-_BULLET"
 	Connect: "OO", "Model::Hand_005_-_BULLET", "SubDeformer::Cluster Hands_001 Hand_005_-_BULLET"
 	Connect: "OO", "Model::root", "Model::Hands"
 	Connect: "OO", "Model::Left_Arm", "Model::Hands"
