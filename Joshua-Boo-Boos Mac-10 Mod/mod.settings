@@ -7,9 +7,9 @@ It does 12.5 damage at W0 and can be bought when AA is researched.
 
 This is the first suppressed weapon in NS2 that I have seen!
 
-Combat compatible requiring W1 before unlocking!
+Combat and Suppressed Shotgun compatible requiring W1 before unlocking!
 
-Also compatible with the CBM!]=]
+Not compatible with the CBM!]=]
 image       = "preview.jpg"
 tag_modtype = "Gameplay Tweak"
 tag_support = "Must be run on Server"

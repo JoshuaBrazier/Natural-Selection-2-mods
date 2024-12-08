@@ -1,4 +1,4 @@
 modEntry = {
     FileHooks = "lua/Joshua-Boo-Boos Mac-10 Mod/FileHooks.lua",
-    Priority = 8
+    Priority = 100
 }
