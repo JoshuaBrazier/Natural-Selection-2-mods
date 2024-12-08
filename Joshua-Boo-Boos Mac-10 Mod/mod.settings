@@ -3,7 +3,7 @@ source_dir  = "source"
 output_dir  = "output"
 description = [=[This mod adds a new weapon to the marine arsenal - the Mac-10 machine pistol.
 
-It does 12.5 damage at W0 and can be bought when AA is researched.
+It does 12.5 damage at W0 (so 13.75 damage when unlocked on Combat maps).
 
 This is the first suppressed weapon in NS2 that I have seen!
 
