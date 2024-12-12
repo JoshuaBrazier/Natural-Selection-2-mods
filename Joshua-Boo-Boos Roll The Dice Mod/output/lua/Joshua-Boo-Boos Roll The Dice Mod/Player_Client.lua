@@ -1,4 +1,4 @@
-local kTimePerRoll = 10
+local kTimePerRoll = 15
 
 local function RTD()
     local player = Client.GetLocalPlayer()
