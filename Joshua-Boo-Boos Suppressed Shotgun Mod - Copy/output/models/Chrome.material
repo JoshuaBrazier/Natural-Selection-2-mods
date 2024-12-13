@@ -1,0 +1,5 @@
+shader = "shaders/WeaponView.surface_shader"
+albedoMap = "modelsrc/Chrome.jpg"
+specularMap = "modelsrc/Chrome.jpg"
+normalMap = "modelsrc/Chrome.jpg"
+emissiveMap = "modelsrc/Chrome.jpg"

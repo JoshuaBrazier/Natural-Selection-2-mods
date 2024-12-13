@@ -1,0 +1,38 @@
+Warning: libpng warning: Interlace handling should be turned on when using png_read_image
+Warning: libpng warning: Interlace handling should be turned on when using png_read_image
+Warning: libpng warning: Interlace handling should be turned on when using png_read_image
+Warning: libpng warning: Interlace handling should be turned on when using png_read_image
+Warning: libpng warning: Interlace handling should be turned on when using png_read_image
+Warning: QPainter::begin: Paint device returned engine == 0, type: 1
+Warning: QPainter::setPen: Painter not active
+Warning: QPainter::setBrush: Painter not active
+Warning: QPainter::setRenderHint: Painter must be active to set rendering hints
+Warning: QPainter::setPen: Painter not active
+Warning: libpng warning: Interlace handling should be turned on when using png_read_image
+Debug: "13:17:12 ..\..\src\simpleeventcontroller.cpp:1317 IR: Remove Sounds from Playlist" 
+Debug: "13:17:18 ..\..\src\simpleeventcontroller.cpp:1741 IS: Add Sound to Playlist" 
+Debug: 
+Building project 'SuppressedShotgun'...
+Debug: Building project C:\Users\Joshua-Boo-Boos\Desktop\Joshua-Boo-Boos Suppressed Shotgun Mod\source\soundsrc\SuppressedShotgun.fev...
+Debug: Unique sound defs 1/3
+Debug: Retrieving sound file info...
+Debug: Retrieving reverb info...
+Debug: FEV file written ok
+Debug: Unique Envelope Points: 0 of 0
+Debug: Unique Strings: 149 characters of 149
+Debug: Caching sound file details for ''...
+Debug: ..\..\..\..\downloads\Dedech.mp3
+Debug: Suppressed_Shotgun_Bolt_Close.mp3
+Debug: Suppressed_Shotgun_Load_Cartridge.mp3
+Debug: Suppressed_Shotgun_Shot.mp3
+Debug: Building 'SuppressedShotgun_bank00.fsb'
+Debug: Encoded C:\Users\Joshua-Boo-Boos\Desktop\Joshua-Boo-Boos Suppressed Shotgun Mod\source\soundsrc\Suppressed_Shotgun_Load_Cartridge.mp3
+Debug: Encoded C:\Users\Joshua-Boo-Boos\Desktop\Joshua-Boo-Boos Suppressed Shotgun Mod\source\soundsrc\Suppressed_Shotgun_Shot.mp3
+Debug: Encoded C:\Users\Joshua-Boo-Boos\Desktop\Joshua-Boo-Boos Suppressed Shotgun Mod\source\soundsrc\Suppressed_Shotgun_Bolt_Close.mp3
+Debug: Writing FSB...
+Debug: Finished building FSB
+Debug: 
+Debug: 
+Summary of build:
+SUCCESS: C:/Users/Joshua-Boo-Boos/Desktop/Joshua-Boo-Boos Suppressed Shotgun Mod/source/soundsrc/SuppressedShotgun.fev
+SUCCESS: SuppressedShotgun_bank00.fsb

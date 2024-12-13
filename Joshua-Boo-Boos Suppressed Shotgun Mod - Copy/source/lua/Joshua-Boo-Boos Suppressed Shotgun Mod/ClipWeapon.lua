@@ -1,0 +1,1 @@
+Script.Load("lua/Joshua-Boo-Boos Suppressed Shotgun Mod/SuppressedShotgun.lua")

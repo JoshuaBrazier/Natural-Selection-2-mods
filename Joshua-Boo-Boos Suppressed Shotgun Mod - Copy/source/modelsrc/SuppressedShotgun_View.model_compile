@@ -1,0 +1,10 @@
+geometry "SuppressedShotgun_View.fbx"
+animation "idle" "SuppressedShotgun_View.fbx" loop from 0 to 4
+animation "holster" "SuppressedShotgun_View.fbx" from 10 to 20
+animation "draw" "SuppressedShotgun_View.fbx" from 35 to 47
+animation "shoot" "SuppressedShotgun_View.fbx" from 50 to 60
+animation "sprint" "SuppressedShotgun_View.fbx" loop from 100 to 120
+animation "run" "SuppressedShotgun_View.fbx" loop from 70 to 90
+animation "reload_start" "SuppressedShotgun_View.fbx" from 140 to 145
+animation "reload_cartridge" "SuppressedShotgun_View.fbx" loop from 150 to 160
+animation "reload_end" "SuppressedShotgun_View.fbx" from 170 to 175

@@ -1,0 +1,21 @@
+name        = "Joshua-Boo-Boos Suppressed Shotgun Mod"
+source_dir  = "source"
+output_dir  = "output"
+description = [=[This mod adds an entirely new Marine weapon - the Suppressed Shotgun!
+
+Buffs:
+
+35% distance between pellet rings compared to the NS2 shotgun
+Has the four cartridge types included in my first shotgun mod!
+0.3 seconds per shot
+8-11 (12 with Weapons 4) cartridge capacity
+
+Debuffs:
+
+50% pellet damage compared to the NS2 shotgun
+
+This new weapon is Combat and Mac-10 but not CBM compatible.]=]
+image       = "preview.jpg"
+tag_modtype = "Gameplay Tweak"
+tag_support = "Must be run on Server"
+publish_id = 3379350678
