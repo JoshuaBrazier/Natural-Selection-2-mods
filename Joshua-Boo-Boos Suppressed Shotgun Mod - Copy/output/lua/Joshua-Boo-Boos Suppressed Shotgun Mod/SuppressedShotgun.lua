@@ -565,7 +565,7 @@ function SuppressedShotgun:FirePrimary(player)
     elseif self.shotgun_cartridge == "slug" then
         SuppressedShotgun.kShotgunRings =
         {
-            { pelletCount = 1, distance = 0.0000 * kAccuracyScalar, pelletSize = 0.016, pelletDamage = 170 * kDamageScalar, thetaOffset = 0}
+            { pelletCount = 1, distance = 0.0000 * kAccuracyScalar, pelletSize = 0.016, pelletDamage = 170 * kDamageScalar * kSlugDamageMultiplier, thetaOffset = 0}
         }
     end
 
@@ -951,11 +951,12 @@ function SuppressedShotgun:OnDraw(player, previousWeaponMapName)
 
                 if player.SendDirectMessage then
 
-                    player:SendDirectMessage('Secondary Attack: Switches between cartridges -> Standard (PVPVE) / W0, Buckshot (PVE) / W1, Incendiary (PVE) / W2, Slug (PVP) / W3')
-                    player:SendDirectMessage('Standard: Base NS2')
-                    player:SendDirectMessage('Buckshot: ~85% PDmg and ~115% SDmg')
-                    player:SendDirectMessage('Incendiary: ~90% PDmg and Fire DOT')
-                    player:SendDirectMessage('Slug: 85% PDmg via 1 Pellet & 5 sec data.')
+                    player:SendDirectMessage('Secondary Attack: Switches between cartridges (W0: Standard [PVPVE] | W1: Buckshot [PVE] | W2: Incendiary [PVE] | W3: Slug [PVP])')
+                    player:SendDirectMessage("Percentages are relative to the NS2 shotgun")
+                    player:SendDirectMessage('Standard: 75% Dmg')
+                    player:SendDirectMessage('Buckshot: 64% PDmg and 98% SDmg')
+                    player:SendDirectMessage('Incendiary: 67.5% PDmg and Fire DOT')
+                    player:SendDirectMessage('Slug: 64% Dmg in 1 Pellet & 5 sec data')
 
                 end
 
