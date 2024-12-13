@@ -1,5 +1,0 @@
-shader = "shaders/WeaponView.surface_shader"
-albedoMap = "modelsrc/Gunmetal.jpg"
-specularMap = "modelsrc/Gunmetal.jpg"
-normalMap = "modelsrc/Gunmetal.jpg"
-emissiveMap = "modelsrc/Gunmetal.jpg"

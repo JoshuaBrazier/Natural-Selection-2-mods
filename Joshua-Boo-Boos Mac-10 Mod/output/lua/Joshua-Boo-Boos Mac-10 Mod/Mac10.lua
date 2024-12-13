@@ -68,7 +68,7 @@ if Client then
             local origin = player:GetEyePos()
             local viewCoords= player:GetViewCoords()
         
-            return origin + viewCoords.zAxis * 0.4 + viewCoords.xAxis * -0.1 + viewCoords.yAxis * -0.2
+            return origin + viewCoords.zAxis * 0.5 + viewCoords.xAxis * -0.05 + viewCoords.yAxis * -0.075
         end
         
         return self:GetOrigin()

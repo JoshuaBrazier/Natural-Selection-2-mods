@@ -1,0 +1,5 @@
+shader = "shaders/WeaponView.surface_shader"
+albedoMap = "modelsrc/Digital.jpg"
+specularMap = "modelsrc/Digital.jpg"
+normalMap = "modelsrc/Digital.jpg"
+emissiveMap = "modelsrc/Digital.jpg"
