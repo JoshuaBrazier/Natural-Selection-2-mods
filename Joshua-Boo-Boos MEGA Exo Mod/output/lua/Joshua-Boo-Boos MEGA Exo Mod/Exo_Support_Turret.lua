@@ -122,7 +122,7 @@ function Exo_Support_Turret:OnUpdate(deltaTime)
         owner_exo_entity = Shared.GetEntity(self.owner_exo)
     end
     self.time_now = Shared.GetTime()
-    if Server and owner_exo_entity ~= nil then
+    if Server and owner_exo_entity ~= nil and IsValid(owner_exo_entity) and owner_exo_entity.GetViewCoords then
         SetAnglesFromVector(self, owner_exo_entity:GetViewCoords().zAxis)
     end
     if not self.set_owner then
@@ -132,7 +132,7 @@ function Exo_Support_Turret:OnUpdate(deltaTime)
                 self.set_owner = true
             end
         end
-    else
+    elseif self.set_owner and owner_exo_entity ~= nil and IsValid(owner_exo_entity) then
         local entity_sphere = GetEntitiesForTeamWithinRange("Player", kTeam2Index, self:GetOrigin(), kTargetSeekingRange)
         local cone_of_targets = {}
         if #entity_sphere > 0 then
