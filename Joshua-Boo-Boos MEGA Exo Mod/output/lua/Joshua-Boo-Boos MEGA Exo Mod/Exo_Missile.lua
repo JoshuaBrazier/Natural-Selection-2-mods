@@ -204,7 +204,7 @@ function Exo_Missile:OnUpdate(deltaTime)
         local cone_of_targets = {}
         if #entity_sphere > 0 then
             for i = 1, #entity_sphere do
-                if CanHitTargetEntity(self:GetOrigin(), entity_sphere[i]:GetOrigin(), self, entity_sphere[i]) and entity_sphere[i]:GetCloakFraction() < kCloakingValueForMissileLockLoss then
+                if (CanHitTargetEntity(self:GetOrigin(), entity_sphere[i]:GetEyePos(), self, entity_sphere[i]) or CanHitTargetEntity(self:GetOrigin(), entity_sphere[i]:GetOrigin() + Vector(0, 0.2, 0), self, entity_sphere[i])) and entity_sphere[i]:GetCloakFraction() < kCloakingValueForMissileLockLoss then
                     local vector_to_enemy = GetNormalizedVector(entity_sphere[i]:GetOrigin() - self:GetOrigin())
                     local dotProductValue = vector_to_enemy:DotProduct(GetNormalizedVector(self.final_direction_vector))
                     local angle = math.acos(dotProductValue) * (180 / 3.14159)

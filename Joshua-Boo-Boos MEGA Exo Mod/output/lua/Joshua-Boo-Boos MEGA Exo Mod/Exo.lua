@@ -32,6 +32,7 @@ Script.Load("lua/Hud/GUINotificationMixin.lua")
 Script.Load("lua/PlayerStatusMixin.lua")
 Script.Load("lua/Joshua-Boo-Boos MEGA Exo Mod/Exo_Missile.lua")
 Script.Load("lua/Joshua-Boo-Boos MEGA Exo Mod/Exo_Mine.lua")
+Script.Load("lua/Joshua-Boo-Boos MEGA Exo Mod/Exo_Support_Turret.lua")
 Script.Load("lua/DamageTypes.lua")
 
 if Client then
@@ -303,6 +304,11 @@ function Exo:OnCreate()
     self.alien_player_check_time = 0
 
     self.mines_deployed = {}
+
+    self.turret_spawn_timer_now = 0
+    self.turret_spawn_timer = 0
+
+    self.defenseMod = ModLoader.GetModInfo("defense")
     
 end
 
@@ -1149,6 +1155,8 @@ function Exo:HandleButtons(input)
 
     self.siege_mode_timer_now = Shared.GetTime()
 
+    self.turret_spawn_timer_now = Shared.GetTime()
+
     if self:GetHasMinigun() then
 
         -- if self.siege_mode then
@@ -1185,6 +1193,68 @@ function Exo:HandleButtons(input)
                         StartSoundEffectOnEntity(siege_activated_sound, self, 0.7)
                     end
                 end
+            end
+
+        end
+
+        if bit.band(input.commands, Move.Jump) ~= 0 and self.siege_mode then
+
+            local nearby_exo_support_turrets = GetEntitiesForTeamWithinRange("Exo_Support_Turret", kTeam1Index, self:GetOrigin(), 10)
+            local my_exo_support_turrets = {}
+            for i = 1, #nearby_exo_support_turrets do
+                if nearby_exo_support_turrets[i].owner_exo == self:GetId() then
+                    table.insert(my_exo_support_turrets, nearby_exo_support_turrets[i])
+                end
+            end
+
+            if #my_exo_support_turrets == 0 then
+
+                if self.defenseMod then
+
+                    if self.turret_spawn_timer_now > self.turret_spawn_timer then
+
+                        self.turret_spawn_timer = Shared.GetTime() + 30.25
+
+                        if Server then
+
+                            local exo_support_turret_1
+                            exo_support_turret_1 = CreateEntity(Exo_Support_Turret.kMapName, self:GetOrigin(), self:GetTeamNumber())
+                            exo_support_turret_1.owner_exo = self:GetId()
+                            exo_support_turret_1.turret_number = 1
+
+                            local exo_support_turret_2
+                            exo_support_turret_2 = CreateEntity(Exo_Support_Turret.kMapName, self:GetOrigin(), self:GetTeamNumber())
+                            exo_support_turret_2.owner_exo = self:GetId()
+                            exo_support_turret_2.turret_number = 2
+
+                        end
+
+                    end
+
+                else
+
+                    if self.turret_spawn_timer_now > self.turret_spawn_timer then
+
+                        self.turret_spawn_timer = Shared.GetTime() + 15.25
+
+                        if Server then
+
+                            local exo_support_turret_1
+                            exo_support_turret_1 = CreateEntity(Exo_Support_Turret.kMapName, self:GetOrigin(), self:GetTeamNumber())
+                            exo_support_turret_1.owner_exo = self:GetId()
+                            exo_support_turret_1.turret_number = 1
+
+                            local exo_support_turret_2
+                            exo_support_turret_2 = CreateEntity(Exo_Support_Turret.kMapName, self:GetOrigin(), self:GetTeamNumber())
+                            exo_support_turret_2.owner_exo = self:GetId()
+                            exo_support_turret_2.turret_number = 2
+
+                        end
+
+                    end
+
+                end
+
             end
 
         end

@@ -1,7 +1,9 @@
 name        = "Joshua-Boo-Boos MEGA Exo Mod"
 source_dir  = "source"
 output_dir  = "output"
-description = [=[Exos now have a periodically activated short-range scanner which detects alien players. 
+description = [=[Update: Minigun Exos can now in Siege Mode by pressing the Jump key spawn two mobile sentry turrets that have automated target tracking dealing 25 damage in Defense rounds every 0.4 seconds and in other rounds every 1 second. The new turret has a lifetime of 15 seconds in non-Defense rounds and 30 seconds in Defense rounds.
+
+Exos now have a periodically activated short-range scanner which detects alien players. 
 
 Alien players with a cloaking value of 0.5 or more are not detected by the periodic scan. 
 

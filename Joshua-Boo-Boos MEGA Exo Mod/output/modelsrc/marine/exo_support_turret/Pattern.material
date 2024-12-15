@@ -1,0 +1,5 @@
+shader = "shaders/WeaponView.surface_shader"
+albedoMap = "modelsrc/marine/exo_support_turret/Pattern.jpg"
+specularMap = "modelsrc/marine/exo_support_turret/Pattern.jpg"
+normalMap = "modelsrc/marine/exo_support_turret/Pattern.jpg"
+emissiveMap = "modelsrc/marine/exo_support_turret/Pattern.jpg"

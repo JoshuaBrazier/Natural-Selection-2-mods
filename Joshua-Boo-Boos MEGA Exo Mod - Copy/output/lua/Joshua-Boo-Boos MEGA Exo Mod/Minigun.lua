@@ -325,6 +325,7 @@ local function Shoot(self, leftSide)
                                                                     missile.owner_exo = parent:GetId()
                                                                     missile.final_direction_vector = parent:GetViewCoords().zAxis
                                                                     missile.initial_look_vector = missile.final_direction_vector
+                                                                    missile.tracking_missile_damage = 25
                                                                 end, i * 0.15)
                                     end
                                 else
@@ -333,6 +334,7 @@ local function Shoot(self, leftSide)
                                     missile.owner_exo = parent:GetId()
                                     missile.final_direction_vector = parent:GetViewCoords().zAxis
                                     missile.initial_look_vector = missile.final_direction_vector
+                                    missile.tracking_missile_damage = 20
                                 end
                             elseif not leftSide then
                                 if self.defenseMod then
@@ -343,6 +345,7 @@ local function Shoot(self, leftSide)
                                                                     missile.owner_exo = parent:GetId()
                                                                     missile.final_direction_vector = parent:GetViewCoords().zAxis
                                                                     missile.initial_look_vector = missile.final_direction_vector
+                                                                    missile.tracking_missile_damage = 25
                                                                 end, i * 0.15)
                                     end
                                 else
@@ -351,6 +354,7 @@ local function Shoot(self, leftSide)
                                     missile.owner_exo = parent:GetId()
                                     missile.final_direction_vector = parent:GetViewCoords().zAxis
                                     missile.initial_look_vector = missile.final_direction_vector
+                                    missile.tracking_missile_damage = 20
                                 end
                             end
                         end
@@ -470,6 +474,7 @@ local function Shoot(self, leftSide)
                                                                     missile.owner_exo = parent:GetId()
                                                                     missile.final_direction_vector = parent:GetViewCoords().zAxis
                                                                     missile.initial_look_vector = missile.final_direction_vector
+                                                                    missile.tracking_missile_damage = 25
                                                                 end, i * 0.15)
                                     end
                                 else
@@ -478,6 +483,7 @@ local function Shoot(self, leftSide)
                                     missile.owner_exo = parent:GetId()
                                     missile.final_direction_vector = parent:GetViewCoords().zAxis
                                     missile.initial_look_vector = missile.final_direction_vector
+                                    missile.tracking_missile_damage = 25
                                 end
                             elseif not leftSide then
                                 if self.defenseMod then
@@ -488,6 +494,7 @@ local function Shoot(self, leftSide)
                                                                     missile.owner_exo = parent:GetId()
                                                                     missile.final_direction_vector = parent:GetViewCoords().zAxis
                                                                     missile.initial_look_vector = missile.final_direction_vector
+                                                                    missile.tracking_missile_damage = 25
                                                                 end, i * 0.15)
                                     end
                                 else
@@ -496,6 +503,7 @@ local function Shoot(self, leftSide)
                                     missile.owner_exo = parent:GetId()
                                     missile.final_direction_vector = parent:GetViewCoords().zAxis
                                     missile.initial_look_vector = missile.final_direction_vector
+                                    missile.tracking_missile_damage = 25
                                 end
                             end
                         end
@@ -512,11 +520,13 @@ local function Shoot(self, leftSide)
                                 missile.owner_exo = parent:GetId()
                                 missile.final_direction_vector = parent:GetViewCoords().zAxis
                                 missile.initial_look_vector = missile.final_direction_vector
+                                missile.tracking_missile_damage = 20
                             elseif not leftSide then
                                 missile = CreateEntity(Exo_Missile.kMapName, barrel_point + (1) * GetNormalizedVector(parent:GetViewAngles():GetCoords().xAxis) + Vector(0, 0.4, 0) + (-0.21) * GetNormalizedVector(parent:GetViewAngles():GetCoords().zAxis), kTeam1Index)
                                 missile.owner_exo = parent:GetId()
                                 missile.final_direction_vector = parent:GetViewCoords().zAxis
                                 missile.initial_look_vector = missile.final_direction_vector
+                                missile.tracking_missile_damage = 20
                             end
                             missile.final_direction_vector = GetNormalizedVector(direction)
                         end
